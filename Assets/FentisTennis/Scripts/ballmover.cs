@@ -68,7 +68,7 @@ public class BallMover : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Floor(FT)"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             height *= vCOR;
             float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR*(1+vCOR)*height, 0f, Mathf.Infinity);
