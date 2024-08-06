@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class generator : MonoBehaviour
+public class Generator : MonoBehaviour
 {
-    public GameObject[] secciones;
-    public GameObject pastito;
-    public GameObject camara;
-    public int distancia = 0;
-    public int dificultad = 1;
-    public int rangoDespawneo;
+    public GameObject[] sections;
+    public GameObject grass;
+    public int distance = 0;
+    public int difficulty = 1;
+    public int despawnRadius;
     bool rapidGeneration = false;
     public int difficultyScalar = 100;
     // Start is called before the first frame update
@@ -21,14 +20,14 @@ public class generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dificultad = (int)Mathf.Floor(distancia / difficultyScalar);
+        difficulty = (int)Mathf.Clamp(Mathf.Floor(distance / difficultyScalar), 1f, Mathf.Infinity);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GenerarZonas();
+            GenerateZones();
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            InvokeRepeating(nameof(GenerarZonas), 0, 0.5f);
+            InvokeRepeating(nameof(GenerateZones), 0, 0.5f);
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
@@ -36,7 +35,7 @@ public class generator : MonoBehaviour
         }
         if (rapidGeneration)
         {
-            GenerarZonas();
+            GenerateZones();
         }if (Input.GetKeyDown(KeyCode.K))
         {
             rapidGeneration = true;
@@ -46,53 +45,51 @@ public class generator : MonoBehaviour
             rapidGeneration = false;
         }
     }
-    void GenerarZonas()
+    void GenerateZones()
     {
-        SiguienteZona();
-        DespawnearZonas();
+        NextZone();
+        DespawnZones();
     }
-    GameObject lastSeccion;
-    void SiguienteZona()
+    GameObject lastSection;
+    void NextZone()
     {
-        Instantiate(pastito, new Vector3(distancia, 0, 0), Quaternion.identity);
-        distancia++;
-        //camara.transform.position = new Vector3(camara.transform.position.x + 1, camara.transform.position.y, camara.transform.position.z);
-        GameObject seccion = secciones[Random.Range(0, secciones.Length)];
+        Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
+        distance++;
+        GameObject section = sections[Random.Range(0, sections.Length)];
         bool isRepated = false;
         do
         {
-            isRepated = seccion == lastSeccion;
+            isRepated = section == lastSection;
             if (!isRepated)
             {
-                GenerarSeccion(seccion);
-                lastSeccion = seccion;
+                GenerateSection(section);
+                lastSection = section;
             }
             else
             {
-                seccion = secciones[Random.Range(0, secciones.Length)];
+                section = sections[Random.Range(0, sections.Length)];
             }
         } while (isRepated);
     }
 
-    void GenerarSeccion(GameObject seccion)
+    void GenerateSection(GameObject section)
     {
-        int cantidad = Random.Range(dificultad, dificultad + 4);
-        for (int i = 0; i < cantidad; i++)
+        int amount = Random.Range(difficulty, difficulty + 4);
+        for (int i = 0; i < amount; i++)
         {
-            Instantiate(seccion, new Vector3(distancia, 0, 0), Quaternion.identity);
-            distancia++;
-            //camara.transform.position = new Vector3(camara.transform.position.x + 1, camara.transform.position.y, camara.transform.position.z);
+            Instantiate(section, new Vector3(distance, 0, 0), Quaternion.identity);
+            distance++;
         }
     }
 
-    void DespawnearZonas()
+    void DespawnZones()
     {
-        GameObject[] zonas = GameObject.FindGameObjectsWithTag("zona");
-        foreach (GameObject zona in zonas)
+        GameObject[] zones = GameObject.FindGameObjectsWithTag("Zone");
+        foreach (GameObject zone in zones)
         {
-            if (zona.transform.position.x < distancia - rangoDespawneo)
+            if (zone.transform.position.x < distance - despawnRadius)
             {
-                Destroy(zona);
+                Destroy(zone);
             }
         }
     }

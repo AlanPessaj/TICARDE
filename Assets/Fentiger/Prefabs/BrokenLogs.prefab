@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 42297c25fdaabf44f9f1977c82c9cf7e, type: 2}
+  - {fileID: 2100000, guid: d434a82dc32c22d49b2ca6ed2f3bb4b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,8 +105,8 @@ GameObject:
   - component: {fileID: 7356976296332531973}
   - component: {fileID: 3122087857389851046}
   m_Layer: 0
-  m_Name: tronquitos
-  m_TagString: zona
+  m_Name: BrokenLogs
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

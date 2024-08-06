@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 209575043}
   - component: {fileID: 209575042}
   m_Layer: 0
-  m_Name: pelota
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,13 +287,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f10f4ab7d95a5f418dc910ecaef7b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntoI: {fileID: 1930570280}
-  puntoF: {fileID: 508735630}
-  altura: 2
+  sPoint: {fileID: 1930570280}
+  ePoint: {fileID: 508735630}
+  height: 2
   stepSize: 3
   vCOR: 0.725
   hCOR: 0.55
-  minAltura: 0.25
+  minheight: 0.25
 --- !u!54 &209575043
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 508735628}
   - component: {fileID: 508735627}
   m_Layer: 0
-  m_Name: punto final
+  m_Name: Starting Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 1031766148}
   - component: {fileID: 1031766147}
   m_Layer: 9
-  m_Name: piso
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 1930570278}
   - component: {fileID: 1930570277}
   m_Layer: 0
-  m_Name: punto inicial
+  m_Name: End Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
