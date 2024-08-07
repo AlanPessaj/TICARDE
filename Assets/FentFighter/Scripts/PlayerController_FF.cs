@@ -99,13 +99,17 @@ public class PlayerController_FF : MonoBehaviour
                 if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * lateralSpeed * Time.deltaTime, 0, 0);
-                    gameObject.GetComponent<Rigidbody>().AddForce(movementSpeed * lateralSpeed, jumpForce, 0, ForceMode.Impulse);
+                    gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
                 }
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 //agacharse
             }
+        }
+        if (isColliding)
+        {
+            lateralSpeed = 0;
         }
         transform.Translate(lateralSpeed * movementSpeed * Time.deltaTime, 0, 0);
     }
