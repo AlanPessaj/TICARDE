@@ -32,7 +32,7 @@ public class PlayerController_FF : MonoBehaviour
             transform.Rotate(180, 0, 0);
             facingLeft = true;
         }
-        int lateralSpeed = 0;
+        int movDirection = 0;
         if (isPlayer1)
         {
             if (Input.GetKey(KeyCode.D))
@@ -43,7 +43,7 @@ public class PlayerController_FF : MonoBehaviour
                 }
                 else
                 {
-                    lateralSpeed += 1;
+                    movDirection += 1;
                 }
             }
             if (Input.GetKey(KeyCode.A))
@@ -54,14 +54,14 @@ public class PlayerController_FF : MonoBehaviour
                 }
                 else
                 {
-                    lateralSpeed -= 1;
+                    movDirection -= 1;
                 }
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
                 if (!airborne)
                 {
-                    gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * lateralSpeed * Time.deltaTime, 0, 0);
+                    gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
                 }
             }
@@ -80,7 +80,7 @@ public class PlayerController_FF : MonoBehaviour
                 }
                 else
                 {
-                    lateralSpeed += 1;
+                    movDirection += 1;
                 }
             }
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -91,14 +91,14 @@ public class PlayerController_FF : MonoBehaviour
                 }
                 else
                 {
-                    lateralSpeed -= 1;
+                    movDirection -= 1;
                 }
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (!airborne)
                 {
-                    gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * lateralSpeed * Time.deltaTime, 0, 0);
+                    gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
                 }
             }
@@ -109,9 +109,16 @@ public class PlayerController_FF : MonoBehaviour
         }
         if (isColliding)
         {
-            lateralSpeed = 0;
+            if (transform.position.x > otherPlayer.transform.position.x)
+            {
+                movDirection = (int)Mathf.Clamp(movDirection, 0, Mathf.Infinity);
+            }
+            else
+            {
+                movDirection = (int)Mathf.Clamp(movDirection, Mathf.NegativeInfinity, 0);
+            }
         }
-        transform.Translate(lateralSpeed * movementSpeed * Time.deltaTime, 0, 0);
+        transform.Translate(movDirection * movementSpeed * Time.deltaTime, 0, 0);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -122,7 +129,6 @@ public class PlayerController_FF : MonoBehaviour
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            GetComponent<Rigidbody>().isKinematic = true;
             isColliding = true;
         }
     }
@@ -135,7 +141,6 @@ public class PlayerController_FF : MonoBehaviour
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            GetComponent<Rigidbody>().isKinematic = false;
             isColliding = false;
         }
     }
