@@ -10,10 +10,12 @@ public class PlayerController_FF : MonoBehaviour
     public int jumpForce;
     bool airborne;
     bool isColliding;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         isPlayer1 = gameObject.name == "Player1";
+        animator = GetComponent<Animator>();
     }
     bool facingLeft;
     bool isPlayer1;
@@ -44,6 +46,25 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     movDirection += 1;
+                    if (facingLeft)
+                    {
+                        animator.SetBool("runb", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("run", true);
+                    }
+                }
+            }
+            else
+            {
+                if (facingLeft)
+                {
+                    animator.SetBool("runb", false);
+                }
+                else
+                {
+                    animator.SetBool("run", false);
                 }
             }
             if (Input.GetKey(KeyCode.A))
@@ -55,6 +76,25 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     movDirection -= 1;
+                    if (!facingLeft)
+                    {
+                        animator.SetBool("runb", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("run", true);
+                    }
+                }
+            }
+            else
+            {
+                if (!facingLeft)
+                {
+                    animator.SetBool("runb", false);
+                }
+                else
+                {
+                    animator.SetBool("run", false);
                 }
             }
             if (Input.GetKeyDown(KeyCode.W))
@@ -63,7 +103,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
-                    StartCoroutine(PlayAnimation("jump"));
+                    animator.SetTrigger("jump");
                 }
             }
             if (Input.GetKey(KeyCode.S))
@@ -144,12 +184,5 @@ public class PlayerController_FF : MonoBehaviour
         {
             isColliding = false;
         }
-    }
-
-    IEnumerator PlayAnimation(string name)
-    {
-        GetComponent<Animator>().SetBool(name, true);
-        yield return new WaitForSeconds(0.5f);
-        GetComponent<Animator>().SetBool(name, false);
     }
 }
