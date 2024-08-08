@@ -422,8 +422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPlayer: {fileID: 4362044495520995539}
-  movementForce: 10
-  movementSpeed: 10
+  movementForce: 5
+  movementSpeed: 5
   jumpForce: 15
 --- !u!23 &2141157543
 MeshRenderer:
@@ -1236,8 +1236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPlayer: {fileID: 2141157541}
-  movementForce: 10
-  movementSpeed: 10
+  movementForce: 5
+  movementSpeed: 5
   jumpForce: 15
 --- !u!65 &4362044495520995541
 BoxCollider:
