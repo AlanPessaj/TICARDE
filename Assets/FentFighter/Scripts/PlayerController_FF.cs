@@ -109,6 +109,7 @@ public class PlayerController_FF : MonoBehaviour
             if (Input.GetKey(KeyCode.S))
             {
                 //agacharse
+
             }
         }
         else
