@@ -23,13 +23,13 @@ public class PlayerController_FF : MonoBehaviour
         if (otherPlayer.transform.position.x > transform.position.x && facingLeft)
         {
             //Cambiar a derecha
-            transform.Rotate(180, 0, 0);
+            transform.Rotate(0, 180, 0, Space.World);
             facingLeft = false;
         }
         else if(otherPlayer.transform.position.x < transform.position.x && !facingLeft)
         {
             //Cambiar a izquierda
-            transform.Rotate(180, 0, 0);
+            transform.Rotate(0, 180, 0, Space.World);
             facingLeft = true;
         }
         int movDirection = 0;
@@ -118,7 +118,7 @@ public class PlayerController_FF : MonoBehaviour
                 movDirection = (int)Mathf.Clamp(movDirection, Mathf.NegativeInfinity, 0);
             }
         }
-        transform.Translate(movDirection * movementSpeed * Time.deltaTime, 0, 0);
+        transform.Translate(movDirection * movementSpeed * Time.deltaTime, 0, 0, Space.World);
     }
 
     private void OnCollisionEnter(Collision other)
