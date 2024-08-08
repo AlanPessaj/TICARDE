@@ -63,7 +63,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
-                    GetComponent<Animator>().Play("mixamo_com");
+                    StartCoroutine(PlayAnimation("jump"));
                 }
             }
             if (Input.GetKey(KeyCode.S))
@@ -144,5 +144,12 @@ public class PlayerController_FF : MonoBehaviour
         {
             isColliding = false;
         }
+    }
+
+    IEnumerator PlayAnimation(string name)
+    {
+        GetComponent<Animator>().SetBool(name, true);
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Animator>().SetBool(name, false);
     }
 }
