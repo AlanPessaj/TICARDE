@@ -990,7 +990,7 @@ ModelImporter:
       name: great_sword_run2
       takeName: great_sword_run2
       firstFrame: 0
-      lastFrame: 501
+      lastFrame: 38
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1018,7 +1018,7 @@ ModelImporter:
       name: great_sword_run
       takeName: great_sword_run
       firstFrame: 0
-      lastFrame: 501
+      lastFrame: 43
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
