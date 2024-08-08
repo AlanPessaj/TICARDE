@@ -63,6 +63,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                    GetComponent<Animator>().Play("mixamo_com");
                 }
             }
             if (Input.GetKey(KeyCode.S))

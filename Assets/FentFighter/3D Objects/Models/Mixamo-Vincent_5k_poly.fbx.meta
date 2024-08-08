@@ -89,7 +89,12 @@ ModelImporter:
     4300000: vincent_Casual_Male_Lod_0
     9500000: //RootNode
     13700000: vincent_Casual_Male_Lod_0
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: vincent_Casual_Male_Lod_0Mat
+    second: {fileID: 2100000, guid: d97f74b5c34660f4bb396ad9c9ca40b3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -155,8 +160,461 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
-    human: []
-    skeleton: []
+    human:
+    - boneName: Vincent:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:Neck1
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:Head
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftInHandThumb
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftHandThumb1
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightInHandThumb
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightHandThumb1
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Vincent:Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Mixamo-Vincent_5k_poly(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: vincent_Casual_Male_Lod_0
+      parentName: Mixamo-Vincent_5k_poly(Clone)
+      position: {x: -0.00019997358, y: 0.8843, z: 0.05495}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:Hips
+      parentName: Mixamo-Vincent_5k_poly(Clone)
+      position: {x: -3.7234042e-18, y: 0.963794, z: 0.03985525}
+      rotation: {x: -0.000000037748944, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:Spine
+      parentName: Vincent:Hips
+      position: {x: 2.646978e-25, y: 0.092263184, z: 0.015771331}
+      rotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:Spine1
+      parentName: Vincent:Spine
+      position: {x: -0, y: 0.16254029, z: -0.0016560555}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:Spine2
+      parentName: Vincent:Spine1
+      position: {x: -0, y: 0.13639648, z: -0.01292305}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:Neck
+      parentName: Vincent:Spine2
+      position: {x: -0, y: 0.13877441, z: -0.043541867}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:Neck1
+      parentName: Vincent:Neck
+      position: {x: -0, y: 0.04340027, z: 0.009268952}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:Head
+      parentName: Vincent:Neck1
+      position: {x: -1.0587912e-24, y: 0.04026611, z: 0.008585205}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:HeadTop_End
+      parentName: Vincent:Head
+      position: {x: -5.1704583e-18, y: 0.17886597, z: 0.0012312889}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MixamoVincent5k_TurboSquid_001_2010
+      parentName: Vincent:HeadTop_End
+      position: {x: 0.0000000010687455, y: -0.0000000019275155, z: -0.0000000017460522}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightShoulder
+      parentName: Vincent:Spine2
+      position: {x: 0.061401974, y: 0.10187011, z: -0.037932433}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightArm
+      parentName: Vincent:RightShoulder
+      position: {x: 0.123231195, y: -0.01112976, z: -0.01793457}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightForeArm
+      parentName: Vincent:RightArm
+      position: {x: 0.2768701, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightHand
+      parentName: Vincent:RightForeArm
+      position: {x: 0.27873778, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightHandIndex1
+      parentName: Vincent:RightHand
+      position: {x: 0.115738526, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightHandIndex2
+      parentName: Vincent:RightHandIndex1
+      position: {x: 0.040578, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightHandIndex3_End
+      parentName: Vincent:RightHandIndex2
+      position: {x: 0.040430907, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightInHandThumb
+      parentName: Vincent:RightHand
+      position: {x: 0.03175812, y: -0.010028992, z: 0.03981964}
+      rotation: {x: -0.044097774, y: -0.09553715, z: 0.044097774, w: 0.99347043}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightHandThumb1
+      parentName: Vincent:RightInHandThumb
+      position: {x: 0.042937927, y: -0.010019073, z: 0.021231841}
+      rotation: {x: -0.040661238, y: -0.010029919, z: 0.07749785, w: 0.9961126}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightHandThumb2_End
+      parentName: Vincent:RightHandThumb1
+      position: {x: 0.03742401, y: -0.020137023, z: 0.017029267}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftShoulder
+      parentName: Vincent:Spine2
+      position: {x: -0.06144226, y: 0.10187011, z: -0.037932433}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftArm
+      parentName: Vincent:LeftShoulder
+      position: {x: -0.12319092, y: -0.01112976, z: -0.01793457}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftForeArm
+      parentName: Vincent:LeftArm
+      position: {x: -0.2768701, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftHand
+      parentName: Vincent:LeftForeArm
+      position: {x: -0.27873778, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftHandIndex1
+      parentName: Vincent:LeftHand
+      position: {x: -0.115738526, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftHandIndex2
+      parentName: Vincent:LeftHandIndex1
+      position: {x: -0.040578, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftHandIndex3_End
+      parentName: Vincent:LeftHandIndex2
+      position: {x: -0.040430907, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftInHandThumb
+      parentName: Vincent:LeftHand
+      position: {x: -0.031459656, y: -0.010028992, z: 0.0400235}
+      rotation: {x: -0.04488049, y: 0.100698926, z: -0.04488049, w: 0.99289036}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftHandThumb1
+      parentName: Vincent:LeftInHandThumb
+      position: {x: -0.043298338, y: -0.010028992, z: 0.020796204}
+      rotation: {x: -0.038626358, y: 0.0046563814, z: -0.07817561, w: 0.9961801}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftHandThumb2_End
+      parentName: Vincent:LeftHandThumb1
+      position: {x: -0.03736206, y: -0.020137023, z: 0.017261047}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftUpLeg
+      parentName: Vincent:Hips
+      position: {x: -0.09633789, y: -0.032732543, z: -0.000000007152557}
+      rotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftLeg
+      parentName: Vincent:LeftUpLeg
+      position: {x: -0, y: -0.46725097, z: -0.017299652}
+      rotation: {x: 0.008726534, y: -0, z: 0, w: 0.9999619}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftFoot
+      parentName: Vincent:LeftLeg
+      position: {x: -0.00012604713, y: -0.34194335, z: -0.008476867}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftToeBase
+      parentName: Vincent:LeftFoot
+      position: {x: 0.0018328666, y: -0.120640054, z: 0.082822636}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:LeftFootToeBase_End
+      parentName: Vincent:LeftToeBase
+      position: {x: -0, y: 0.0018087599, z: 0.10362336}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightUpLeg
+      parentName: Vincent:Hips
+      position: {x: 0.09633789, y: -0.032732543, z: -0.000000007152557}
+      rotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightLeg
+      parentName: Vincent:RightUpLeg
+      position: {x: -0, y: -0.46725097, z: -0.017299652}
+      rotation: {x: 0.008726534, y: -0, z: 0, w: 0.9999619}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightFoot
+      parentName: Vincent:RightLeg
+      position: {x: -0.00012606621, y: -0.34194335, z: -0.008476867}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightToeBase
+      parentName: Vincent:RightFoot
+      position: {x: 0.0018330956, y: -0.120640054, z: 0.082822636}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Vincent:RightFootToeBase_End
+      parentName: Vincent:RightToeBase
+      position: {x: -0.00003194809, y: 0.0018087599, z: 0.10362336}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
