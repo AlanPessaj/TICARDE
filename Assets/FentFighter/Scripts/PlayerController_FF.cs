@@ -122,6 +122,25 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     movDirection += 1;
+                    if (facingLeft)
+                    {
+                        animator.SetBool("runb", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("run", true);
+                    }
+                }
+            }
+            else
+            {
+                if (facingLeft)
+                {
+                    animator.SetBool("runb", false);
+                }
+                else
+                {
+                    animator.SetBool("run", false);
                 }
             }
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -133,6 +152,25 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     movDirection -= 1;
+                    if (!facingLeft)
+                    {
+                        animator.SetBool("runb", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("run", true);
+                    }
+                }
+            }
+            else
+            {
+                if (!facingLeft)
+                {
+                    animator.SetBool("runb", false);
+                }
+                else
+                {
+                    animator.SetBool("run", false);
                 }
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -141,6 +179,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                    animator.SetTrigger("jump");
                 }
             }
             if (Input.GetKey(KeyCode.DownArrow))
