@@ -27,12 +27,14 @@ public class PlayerController_FF : MonoBehaviour
             //Cambiar a derecha
             transform.Rotate(0, 180, 0, Space.World);
             facingLeft = false;
+            animator.SetTrigger("turnAround");
         }
         else if(otherPlayer.transform.position.x < transform.position.x && !facingLeft)
         {
             //Cambiar a izquierda
             transform.Rotate(0, 180, 0, Space.World);
             facingLeft = true;
+            animator.SetTrigger("turnAround");
         }
         int movDirection = 0;
         if (isPlayer1)
