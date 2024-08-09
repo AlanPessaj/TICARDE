@@ -97,6 +97,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S));
             if (Input.GetKeyDown(KeyCode.W))
             {
                 if (!airborne)
@@ -108,8 +109,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.S))
             {
-                //agacharse
-
+                movDirection = 0;
             }
         }
         else
@@ -174,6 +174,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow));
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (!airborne)
@@ -185,7 +186,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                //agacharse
+                movDirection = 0;
             }
         }
         if (isColliding)
