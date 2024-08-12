@@ -6,9 +6,9 @@ public class HitDetector_FF : MonoBehaviour
 {
     public HitManager_FF hitManager;
     public int colNumber;
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Fist_FF"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
         {
             hitManager.hColliders[colNumber] = GetComponent<Collider>();
         }

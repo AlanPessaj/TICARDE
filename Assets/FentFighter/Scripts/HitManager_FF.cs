@@ -16,43 +16,53 @@ public class HitManager_FF : MonoBehaviour
     {
         for (int i = 0; i < hColliders.Length; i++)
         {
+            bool collided = false;
             if (hColliders[i] == null) {continue;}
             for (int o = i + 1; o < hColliders.Length; o++)
             {
-                if (hColliders[i] == null) {continue;}
+                if (hColliders[o] == null) {continue;}
                 if (i == 0)
                 {
                     if (o == 1)
                     {
                         if (hColliders[o + 1] != null)
                         {
-                            //pego en cabeza, pecho y piernas
+                            Debug.Log("pego en cabeza, pecho y piernas");
+                            collided = true;
+                            break;
                         }
                         else
                         {
-                            //pego en cabeza y pecho
+                            Debug.Log("pego en cabeza y pecho");
+                            collided = true;
                         }
                     }
                     else
                     {
-                        //pego en cabeza y piernas
+                        Debug.Log("pego en cabeza y piernas");
+                        collided = true;
                     }
                 }
                 else
                 {
-                    //pego en pecho y piernas
+                    Debug.Log("pego en pecho y piernas");
+                    collided = true;
                 }
+            }
+            if (collided)
+            {
+                break;
             }
             switch (i)
             {
                 case 0:
-                    //pego en cabeza
+                    Debug.Log("pego en cabeza");
                     break;
                 case 1:
-                    //pego en pecho
+                    Debug.Log("pego en pecho");
                     break;
                 case 2:
-                    //pego en piernas
+                    Debug.Log("pego en piernas");
                     break;
             }
         }

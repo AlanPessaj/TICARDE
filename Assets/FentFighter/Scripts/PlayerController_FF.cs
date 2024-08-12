@@ -16,6 +16,7 @@ public class PlayerController_FF : MonoBehaviour
     {
         isPlayer1 = gameObject.name == "Player1";
         animator = GetComponent<Animator>();
+        facingLeft = otherPlayer.transform.position.x < transform.position.x;
     }
     bool facingLeft;
     bool isPlayer1;
