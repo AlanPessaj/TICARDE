@@ -1,0 +1,46 @@
+
+            if (Input.GetButtonDown("A"))
+            {
+                if (Input.GetButtonDown("B"))
+                {
+                    if (Input.GetButtonDown("C"))
+                    {
+                        //A + B + C
+                    }
+                    else
+                    {
+                        //A + B
+                    }
+                }
+                else if (Input.GetButtonDown("C"))
+                {
+                    //A + C
+                }
+                else
+                {
+                    //A
+                    transform.GetChild(0);
+                }
+                
+            }
+            if (Input.GetButtonDown("B"))
+            {
+                if (!Input.GetButtonDown("A"))
+                {
+                    if (Input.GetButtonDown("C"))
+                    {
+                        //B + C
+                    }
+                    else
+                    {
+                        //B
+                    }
+                }
+            }
+            if (Input.GetButtonDown("C"))
+            {
+                if (!Input.GetButtonDown("B") && !Input.GetButtonDown("A"))
+                {
+                    //C
+                }
+            }

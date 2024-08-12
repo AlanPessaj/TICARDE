@@ -114,6 +114,54 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection = 0;
             }
+            if (Input.GetButtonDown("A"))
+            {
+                if (Input.GetButtonDown("B"))
+                {
+                    if (Input.GetButtonDown("C"))
+                    {
+                        //A + B + C
+                    }
+                    else
+                    {
+                        //A + B
+                    }
+                }
+                else if (Input.GetButtonDown("C"))
+                {
+                    //A + C
+                }
+                else
+                {
+                    //A
+                    transform.GetChild(0).gameObject.SetActive(true);
+                    animator.SetTrigger("Punch");
+                }
+                
+            }
+            if (Input.GetButtonDown("B"))
+            {
+                if (!Input.GetButtonDown("A"))
+                {
+                    if (Input.GetButtonDown("C"))
+                    {
+                        //B + C
+                    }
+                    else
+                    {
+                        //B
+                        transform.GetChild(1).gameObject.SetActive(true);
+                        animator.SetTrigger("Kick");
+                    }
+                }
+            }
+            if (Input.GetButtonDown("C"))
+            {
+                if (!Input.GetButtonDown("B") && !Input.GetButtonDown("A"))
+                {
+                    //C
+                }
+            }
         }
         else
         {
@@ -190,6 +238,54 @@ public class PlayerController_FF : MonoBehaviour
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 movDirection = 0;
+            }
+            if (Input.GetButtonDown("A2"))
+            {
+                if (Input.GetButtonDown("B2"))
+                {
+                    if (Input.GetButtonDown("C2"))
+                    {
+                        //A + B + C
+                    }
+                    else
+                    {
+                        //A + B
+                    }
+                }
+                else if (Input.GetButtonDown("C2"))
+                {
+                    //A + C
+                }
+                else
+                {
+                    //A
+                    transform.GetChild(0).gameObject.SetActive(true);
+                    animator.SetTrigger("Punch");
+                }
+
+            }
+            if (Input.GetButtonDown("B2"))
+            {
+                if (!Input.GetButtonDown("A2"))
+                {
+                    if (Input.GetButtonDown("C2"))
+                    {
+                        //B + C
+                    }
+                    else
+                    {
+                        //B
+                        transform.GetChild(1).gameObject.SetActive(true);
+                        animator.SetTrigger("Kick");
+                    }
+                }
+            }
+            if (Input.GetButtonDown("C2"))
+            {
+                if (!Input.GetButtonDown("B2") && !Input.GetButtonDown("A2"))
+                {
+                    //C
+                }
             }
         }
         if (isColliding)
