@@ -5,6 +5,7 @@ using UnityEngine;
 public class HitManager_FF : MonoBehaviour
 {
     public Collider[] hColliders = new Collider[3];
+    public bool blocking;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,25 +28,53 @@ public class HitManager_FF : MonoBehaviour
                     {
                         if (hColliders[o + 1] != null)
                         {
-                            Debug.Log("pego en cabeza, pecho y piernas");
+                            if (blocking)
+                            {
+                                Debug.Log("pego en piernas (block pecho cabeza)");
+                            }
+                            else
+                            {
+                                Debug.Log("pego en cabeza, pecho y piernas");
+                            }
                             collided = true;
                             break;
                         }
                         else
                         {
-                            Debug.Log("pego en cabeza y pecho");
+                            if (blocking)
+                            {
+                                Debug.Log("(block cabeza pecho)");
+                            }
+                            else
+                            {
+                                Debug.Log("pego en cabeza y pecho");
+                            }
                             collided = true;
                         }
                     }
                     else
                     {
-                        Debug.Log("pego en cabeza y piernas");
+                        if (blocking)
+                        {
+                            Debug.Log("pego en piernas (block cabeza)");
+                        }
+                        else
+                        {
+                            Debug.Log("pego en cabeza y piernas");
+                        }
                         collided = true;
                     }
                 }
                 else
                 {
-                    Debug.Log("pego en pecho y piernas");
+                    if (blocking)
+                    {
+                        Debug.Log("pego en piernas (block pecho)");
+                    }
+                    else
+                    {
+                        Debug.Log("pego en pecho y piernas");
+                    }
                     collided = true;
                 }
             }
@@ -56,13 +85,34 @@ public class HitManager_FF : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    Debug.Log("pego en cabeza");
+                    if (blocking)
+                    {
+                        Debug.Log("(block cabeza)");
+                    }
+                    else
+                    {
+                        Debug.Log("pego en cabeza");
+                    }
                     break;
                 case 1:
-                    Debug.Log("pego en pecho");
+                    if (blocking)
+                    {
+                        Debug.Log("(block pecho)");
+                    }
+                    else
+                    {
+                        Debug.Log("pego en pecho");
+                    }
                     break;
                 case 2:
-                    Debug.Log("pego en piernas");
+                    if (blocking)
+                    {
+                        Debug.Log("(block pecho)");
+                    }
+                    else
+                    {
+                        Debug.Log("pego en pecho");
+                    }
                     break;
             }
         }

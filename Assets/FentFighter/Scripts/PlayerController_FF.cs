@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController_FF : MonoBehaviour
 {
     public GameObject otherPlayer;
+    public HitManager_FF hitManager;
     public int movementForce;
     public int movementSpeed;
     public int jumpForce;
@@ -161,17 +162,19 @@ public class PlayerController_FF : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetButtonDown("C"))
+            if (Input.GetButton("C"))
             {
                 if (!Input.GetButtonDown("B") && !Input.GetButtonDown("A"))
                 {
                     //C
                     animator.SetBool("holdBlock", true);
+                    hitManager.blocking = true;
                 }
             }
             else
             {
                 animator.SetBool("holdBlock", false);
+                hitManager.blocking = false;
             }
         }
         else
@@ -297,7 +300,7 @@ public class PlayerController_FF : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetButtonDown("C2"))
+            if (Input.GetButton("C2"))
             {
                 if (!Input.GetButtonDown("B2") && !Input.GetButtonDown("A2"))
                 {
@@ -305,12 +308,14 @@ public class PlayerController_FF : MonoBehaviour
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
                     {
                         animator.SetBool("holdBlock", true);
+                        hitManager.blocking = true;
                     }
                 }
             }
             else
             {
                 animator.SetBool("holdBlock", false);
+                hitManager.blocking = false;
             }
         }
         if (isColliding)

@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8f63ed89d6daa45a6d5971d0cc24aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitManager: {fileID: 4362044495520995541}
+  hitManager: {fileID: 1636486677}
   colNumber: 1
 --- !u!1 &238406222
 GameObject:
@@ -1703,7 +1703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8f63ed89d6daa45a6d5971d0cc24aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitManager: {fileID: 4362044495520995541}
+  hitManager: {fileID: 1636486677}
   colNumber: 0
 --- !u!1 &694440172
 GameObject:
@@ -3632,7 +3632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8f63ed89d6daa45a6d5971d0cc24aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitManager: {fileID: 4362044495520995541}
+  hitManager: {fileID: 1636486677}
   colNumber: 2
 --- !u!1 &1629213290
 GameObject:
@@ -3678,6 +3678,7 @@ GameObject:
   - component: {fileID: 1636486674}
   - component: {fileID: 1636486672}
   - component: {fileID: 1636486673}
+  - component: {fileID: 1636486677}
   m_Layer: 10
   m_Name: Player2
   m_TagString: Untagged
@@ -3698,6 +3699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPlayer: {fileID: 4362044495520995539}
+  hitManager: {fileID: 1636486677}
   movementForce: 5
   movementSpeed: 5
   jumpForce: 15
@@ -3768,6 +3770,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1636486677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636486671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d82b9735873c14cbc708f4002f9cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  blocking: 0
 --- !u!1 &1642366513
 GameObject:
   m_ObjectHideFlags: 0
@@ -5290,6 +5309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherPlayer: {fileID: 1636486671}
+  hitManager: {fileID: 4362044495520995541}
   movementForce: 5
   movementSpeed: 5
   jumpForce: 15
@@ -5309,6 +5329,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  blocking: 0
 --- !u!54 &4362044495520995542
 Rigidbody:
   m_ObjectHideFlags: 0
