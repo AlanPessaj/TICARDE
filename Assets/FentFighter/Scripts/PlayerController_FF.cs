@@ -134,8 +134,11 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A
-                    transform.GetChild(0).gameObject.SetActive(true);
-                    animator.SetTrigger("Punch");
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        transform.GetChild(0).gameObject.SetActive(true);
+                        animator.SetTrigger("Punch");
+                    }
                 }
                 
             }
@@ -150,8 +153,11 @@ public class PlayerController_FF : MonoBehaviour
                     else
                     {
                         //B
-                        transform.GetChild(1).gameObject.SetActive(true);
-                        animator.SetTrigger("Kick");
+                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                        {
+                            transform.GetChild(1).gameObject.SetActive(true);
+                            animator.SetTrigger("Kick");
+                        }
                     }
                 }
             }
@@ -160,7 +166,12 @@ public class PlayerController_FF : MonoBehaviour
                 if (!Input.GetButtonDown("B") && !Input.GetButtonDown("A"))
                 {
                     //C
+                    animator.SetBool("holdBlock", true);
                 }
+            }
+            else
+            {
+                animator.SetBool("holdBlock", false);
             }
         }
         else
@@ -259,8 +270,11 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A
-                    transform.GetChild(0).gameObject.SetActive(true);
-                    animator.SetTrigger("Punch");
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        transform.GetChild(0).gameObject.SetActive(true);
+                        animator.SetTrigger("Punch");
+                    }
                 }
 
             }
@@ -275,8 +289,11 @@ public class PlayerController_FF : MonoBehaviour
                     else
                     {
                         //B
-                        transform.GetChild(1).gameObject.SetActive(true);
-                        animator.SetTrigger("Kick");
+                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                        {
+                            transform.GetChild(1).gameObject.SetActive(true);
+                            animator.SetTrigger("Kick");
+                        }
                     }
                 }
             }
@@ -285,7 +302,15 @@ public class PlayerController_FF : MonoBehaviour
                 if (!Input.GetButtonDown("B2") && !Input.GetButtonDown("A2"))
                 {
                     //C
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        animator.SetBool("holdBlock", true);
+                    }
                 }
+            }
+            else
+            {
+                animator.SetBool("holdBlock", false);
             }
         }
         if (isColliding)
