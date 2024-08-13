@@ -135,11 +135,7 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
-                    {
-                        transform.GetChild(0).gameObject.SetActive(true);
-                        animator.SetTrigger("Punch");
-                    }
+                    animator.SetTrigger("Punch");
                 }
                 
             }
