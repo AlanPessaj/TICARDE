@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController_FF : MonoBehaviour
 {
+    public GameObject fist;
     public GameObject otherPlayer;
     public HitManager_FF hitManager;
     public int movementForce;
@@ -135,7 +136,11 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A
-                    animator.SetTrigger("Punch");
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        fist.SetActive(true);
+                        animator.SetTrigger("Punch");
+                    }
                 }
                 
             }
@@ -152,7 +157,7 @@ public class PlayerController_FF : MonoBehaviour
                         //B
                         if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
                         {
-                            transform.GetChild(1).gameObject.SetActive(true);
+                            fist.SetActive(true);
                             animator.SetTrigger("Kick");
                         }
                     }
@@ -271,7 +276,7 @@ public class PlayerController_FF : MonoBehaviour
                     //A
                     if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
                     {
-                        transform.GetChild(0).gameObject.SetActive(true);
+                        fist.SetActive(true);
                         animator.SetTrigger("Punch");
                     }
                 }
@@ -290,7 +295,7 @@ public class PlayerController_FF : MonoBehaviour
                         //B
                         if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
                         {
-                            transform.GetChild(1).gameObject.SetActive(true);
+                            fist.SetActive(true);
                             animator.SetTrigger("Kick");
                         }
                     }
