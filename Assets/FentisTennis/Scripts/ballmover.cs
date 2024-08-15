@@ -30,17 +30,18 @@ public class BallMover : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            sPoint.position = new Vector3(0, 1, 0);
-            ePoint.position = new Vector3(5, 1, 5);
-            stepSize = 3f;
-            height = 2f;
+            sPoint.position = new Vector3(-18, 4, 10);
+            ePoint.position = new Vector3(18, 4, -10);
+            stepSize = 1f;
+            height = 8f;
             step = 0f;
+            transform.position = new Vector3(10, 10, 10);
         }
-        if (transform.position.y < 0)
+        if (transform.position.y < 0.001f)
         {
             ignoredCollision = true;
         }
-        transform.position = new Vector3(Mathf.LerpUnclamped(sPoint.position.x, ePoint.position.x, step), sPoint.position.y, Mathf.LerpUnclamped(sPoint.position.z, ePoint.position.z, step));
+        transform.position = new Vector3(Mathf.LerpUnclamped(sPoint.position.x, ePoint.position.x, step), transform.position.y, Mathf.LerpUnclamped(sPoint.position.z, ePoint.position.z, step));
         step += stepSize * Time.deltaTime;
         float x = Vector3.Distance(sPoint.position, new Vector3(transform.position.x, sPoint.position.y, transform.position.z));
         float r1 = Vector3.Distance(sPoint.position, ePoint.position);
@@ -62,7 +63,7 @@ public class BallMover : MonoBehaviour
         if (ignoredCollision)
         {
             transform.position = new Vector3(transform.position.x, 20, transform.position.z);
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -0.1f, transform.position.z);
         }
     }
 
