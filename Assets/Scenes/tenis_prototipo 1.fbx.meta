@@ -1,40 +1,56 @@
 fileFormatVersion: 2
-guid: a90b7fcfe16fb174588bbcd748bf8a55
+guid: 500654dc3a6158d40b8d5808ee6dbeef
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: court
     100002: medium part of the net
     100004: orange
-    100006: red
-    100008: //RootNode
-    100010: top red
+    100006: post
+    100008: post.001
+    100010: post.002
+    100012: red
+    100014: //RootNode
+    100016: top red
     400000: court
     400002: medium part of the net
     400004: orange
-    400006: red
-    400008: //RootNode
-    400010: top red
+    400006: post
+    400008: post.001
+    400010: post.002
+    400012: red
+    400014: //RootNode
+    400016: top red
     2100000: court
     2100002: orange
     2100004: top red
     2100006: net.001
     2100008: part of the net
+    2100010: Material
     2300000: court
     2300002: medium part of the net
     2300004: orange
-    2300006: red
-    2300008: top red
+    2300006: post
+    2300008: post.001
+    2300010: post.002
+    2300012: red
+    2300014: top red
     3300000: court
     3300002: medium part of the net
     3300004: orange
-    3300006: red
-    3300008: top red
+    3300006: post
+    3300008: post.001
+    3300010: post.002
+    3300012: red
+    3300014: top red
     4300000: court
     4300002: orange
     4300004: top red
     4300006: red
     4300008: medium part of the net
+    4300010: post
+    4300012: post.001
+    4300014: post.002
   externalObjects:
   - first:
       type: UnityEngine:Material
