@@ -12,16 +12,22 @@ public class BallMover : MonoBehaviour
     public float vCOR;
     public float hCOR;
     public float minheight;
+    Vector3 sPointi;
+    Vector3 ePointi;
+    float heighti;
+    float stepi;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sPointi = sPoint.position;
+        ePointi = ePoint.position;
+        heighti = height;
+        stepi = stepSize;
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool ignoredCollision = false;
         if (height < minheight)
         {
             height = 0f;
@@ -30,16 +36,11 @@ public class BallMover : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            sPoint.position = new Vector3(-18, 4, 10);
-            ePoint.position = new Vector3(18, 4, -10);
-            stepSize = 1f;
-            height = 8f;
+            sPoint.position = sPointi;
+            ePoint.position = ePointi;
+            stepSize = stepi;
+            height = heighti;
             step = 0f;
-            transform.position = new Vector3(10, 10, 10);
-        }
-        if (transform.position.y < 0.001f)
-        {
-            ignoredCollision = true;
         }
         transform.position = new Vector3(Mathf.LerpUnclamped(sPoint.position.x, ePoint.position.x, step), transform.position.y, Mathf.LerpUnclamped(sPoint.position.z, ePoint.position.z, step));
         step += stepSize * Time.deltaTime;
@@ -54,16 +55,11 @@ public class BallMover : MonoBehaviour
         }
         else
         {
-            sPoint.position = new Vector3(0, 1, 0);
-            ePoint.position = new Vector3(5, 1, 5);
-            stepSize = 3f;
-            height = 2f;
+            sPoint.position = sPointi;
+            ePoint.position = ePointi;
+            stepSize = stepi;
+            height = heighti;
             step = 0f;
-        }
-        if (ignoredCollision)
-        {
-            transform.position = new Vector3(transform.position.x, 20, transform.position.z);
-            transform.position = new Vector3(transform.position.x, -0.1f, transform.position.z);
         }
     }
 
@@ -74,9 +70,9 @@ public class BallMover : MonoBehaviour
             height *= vCOR;
             float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR*(1+vCOR)*height, 0f, Mathf.Infinity);
             Vector3 direction = (ePoint.position - sPoint.position).normalized;
-            sPoint.position = new Vector3(transform.position.x, other.transform.position.y + 0.5f, transform.position.z);
+            sPoint.position = new Vector3(transform.position.x, other.transform.parent.position.y + 0.5f, transform.position.z);
             Vector3 displacement = direction * distance;
-            ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.position.y + 0.5f, displacement.z + sPoint.position.z);
+            ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.parent.position.y + 0.5f, displacement.z + sPoint.position.z);
         }
         step = 0f;
     }
