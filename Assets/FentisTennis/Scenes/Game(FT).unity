@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 209575038}
   - component: {fileID: 209575043}
   - component: {fileID: 209575042}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 800455121}
   - component: {fileID: 800455123}
   - component: {fileID: 800455122}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ball Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   - component: {fileID: 1884093395}
   - component: {fileID: 1884093394}
   - component: {fileID: 1884093393}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 48
   m_CollisionDetection: 0
 --- !u!136 &1884093395
 CapsuleCollider:
@@ -925,7 +925,7 @@ GameObject:
   - component: {fileID: 2012602344}
   - component: {fileID: 2012602349}
   - component: {fileID: 2012602348}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1032,7 +1032,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1001 &2029932077
 PrefabInstance:

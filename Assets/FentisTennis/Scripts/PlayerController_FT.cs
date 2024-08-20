@@ -37,19 +37,19 @@ public class PlayerController_FT : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0));
+                transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0));
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
+                transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime));
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0));
+                transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0));
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime));
+                transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
             }
         }
     }
