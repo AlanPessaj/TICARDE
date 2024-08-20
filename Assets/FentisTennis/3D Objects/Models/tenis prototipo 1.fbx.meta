@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 500654dc3a6158d40b8d5808ee6dbeef
+guid: 448461c828f540b49a0b293419689218
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -23,10 +23,12 @@ ModelImporter:
     400016: top red
     2100000: court
     2100002: orange
-    2100004: top red
-    2100006: net.001
-    2100008: part of the net
-    2100010: Material
+    2100004: rampa
+    2100006: grey
+    2100008: top red
+    2100010: net.001
+    2100012: part of the net
+    2100014: Material
     2300000: court
     2300002: medium part of the net
     2300004: orange
@@ -51,12 +53,23 @@ ModelImporter:
     4300010: post
     4300012: post.001
     4300014: post.002
+    2186277476908879412: ImportLogs
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: d1fe17695d96a0442a8d4cf402b8c149, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: court
     second: {fileID: 2100000, guid: 3c826056dedea3e4393b218dd106d0b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grey
+    second: {fileID: 2100000, guid: 83ec2aa4f6132324da477cbb3dacb753, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -72,6 +85,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: part of the net
     second: {fileID: 2100000, guid: bd3d866016f915743b22d89d3a32c48e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rampa
+    second: {fileID: 2100000, guid: 0d785577e2d6fc044b8fab0e0a37ee2c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
