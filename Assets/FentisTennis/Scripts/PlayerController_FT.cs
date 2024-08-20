@@ -5,12 +5,16 @@ using UnityEngine;
 public class PlayerController_FT : MonoBehaviour
 {
     public int movementSpeed;
+    float timer;
+    public int racketSpeed;
+    public GameObject racket;
+    public GameObject racketPivot;
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+    float rotation = 1;
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +36,26 @@ public class PlayerController_FT : MonoBehaviour
             {
                 transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
             }
+
+
+            if (Input.GetButtonDown("A"))
+            {
+                racket.transform.Rotate(-90, 0, 0);
+            }
+            if (Input.GetButton("A"))
+            {
+                
+                timer += Time.deltaTime;
+                rotation -= Time.deltaTime * racketSpeed;
+                racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(-90, 0, rotation), 0);
+            }
+            if (Input.GetButtonUp("A"))
+            {
+                racket.transform.Rotate(90, 0, 0);
+                racketPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
+                rotation = 1;
+            }
+
         }
         else
         {
