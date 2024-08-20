@@ -111,6 +111,7 @@ public class BallMover_FT : MonoBehaviour
     void ApproximateQuadratic()
     {
         float r1 = Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.x));
+        Vector2 qEPoint = new Vector2(r1, sPoint.position.y - ePoint.position.y);
         do
         {
             /*if (BuildAndRun(r1, r1) == 0)
@@ -122,15 +123,15 @@ public class BallMover_FT : MonoBehaviour
                 step = 0f;
                 break;
             }*/
-            if (BuildAndRun(r1, r1) < 0 - ePoint.position.y)
+            if (BuildAndRun(qEPoint.x, r1) <  qEPoint.y)
             {
-                r1 += aproxAccuracy * (ePoint.position.y - BuildAndRun(r1, r1));
+                r1 += aproxAccuracy * (qEPoint.y - BuildAndRun(qEPoint.x, r1));
             }
             else
             {
-                r1 -= aproxAccuracy * (BuildAndRun(r1, r1) - ePoint.position.y);
+                r1 -= aproxAccuracy * (BuildAndRun(qEPoint.x, r1) - qEPoint.y);
             }
-        } while (Mathf.Abs(ePoint.position.y - BuildAndRun(r1, r1)) > aproxThreshold);
+        } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold && !noAproximation);
         this.r1 = r1;
         CreateQuadratic();
     }
