@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallMover_FT : MonoBehaviour
 {
@@ -47,12 +48,7 @@ public class BallMover_FT : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            sPoint.position = sPointi;
-            ePoint.position = ePointi;
-            stepSize = stepi;
-            height = heighti;
-            step = 0f;
-            UpdateQuadratic();
+            SceneManager.LoadScene("Game(FT)");
         }
         transform.position = new Vector3(Mathf.LerpUnclamped(sPoint.position.x, ePoint.position.x, step), transform.position.y, Mathf.LerpUnclamped(sPoint.position.z, ePoint.position.z, step));
         step += stepSize * Time.deltaTime;
@@ -68,6 +64,7 @@ public class BallMover_FT : MonoBehaviour
     {
         if (sPoint.position.y == ePoint.position.y || noAproximation)
         {
+            r1 = Vector3.Distance(sPoint.position, ePoint.position);
             CreateQuadratic();
         }
         else
@@ -78,7 +75,6 @@ public class BallMover_FT : MonoBehaviour
 
     void CreateQuadratic()
     {
-        r1 = Vector3.Distance(sPoint.position, ePoint.position);
         if (r1 != 0)
         {
             Vector2 intermedio = new Vector2(r1 / 2, height - sPoint.position.y);
@@ -91,6 +87,7 @@ public class BallMover_FT : MonoBehaviour
             stepSize = stepi;
             height = heighti;
             step = 0f;
+            rolling = false;
             UpdateQuadratic();
         }
     }
@@ -110,8 +107,8 @@ public class BallMover_FT : MonoBehaviour
 
     void ApproximateQuadratic()
     {
-        float r1 = Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.x));
-        Vector2 qEPoint = new Vector2(r1, sPoint.position.y - ePoint.position.y);
+        float r1 = Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z));
+        Vector2 qEPoint = new Vector2(r1, ePoint.position.y - sPoint.position.y);
         do
         {
             /*if (BuildAndRun(r1, r1) == 0)
@@ -121,6 +118,7 @@ public class BallMover_FT : MonoBehaviour
                 stepSize = stepi;
                 height = heighti;
                 step = 0f;
+                rolling = false;
                 break;
             }*/
             if (BuildAndRun(qEPoint.x, r1) <  qEPoint.y)
@@ -133,7 +131,8 @@ public class BallMover_FT : MonoBehaviour
             }
         } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold && !noAproximation);
         this.r1 = r1;
-        CreateQuadratic();
+        CreateQuadratic(r1, true);
+        Debug.Log(F(qEPoint.x));
     }
 
     float F(float x)
@@ -156,7 +155,6 @@ public class BallMover_FT : MonoBehaviour
             Vector3 displacement = direction * distance;
             ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.parent.position.y + 0.5f, displacement.z + sPoint.position.z);
             UpdateQuadratic();
-            Debug.Log("BOING");
         }
         step = 0f;
     }
