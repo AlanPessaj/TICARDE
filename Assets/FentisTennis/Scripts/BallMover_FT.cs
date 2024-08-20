@@ -58,7 +58,8 @@ public class BallMover_FT : MonoBehaviour
     }
     float BuildAndRun(float x, float r1)
     {
-        return F(x, CreateQuadratic(r1));
+        CreateQuadratic();
+        return F(x);
     }
     void UpdateQuadratic()
     {
@@ -92,35 +93,12 @@ public class BallMover_FT : MonoBehaviour
         }
     }
 
-    float CreateQuadratic(float r1)
-    {
-        if (r1 != 0)
-        {
-            Vector2 intermedio = new Vector2(r1 / 2, height - sPoint.position.y);
-            return intermedio.y / ((intermedio.x - r1) * intermedio.x);
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
     void ApproximateQuadratic()
     {
-        float r1 = Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z));
+        r1 = Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z));
         Vector2 qEPoint = new Vector2(r1, ePoint.position.y - sPoint.position.y);
         do
         {
-            /*if (BuildAndRun(r1, r1) == 0)
-            {
-                sPoint.position = sPointi;
-                ePoint.position = ePointi;
-                stepSize = stepi;
-                height = heighti;
-                step = 0f;
-                rolling = false;
-                break;
-            }*/
             if (BuildAndRun(qEPoint.x, r1) <  qEPoint.y)
             {
                 r1 += aproxAccuracy * (qEPoint.y - BuildAndRun(qEPoint.x, r1));
@@ -130,16 +108,10 @@ public class BallMover_FT : MonoBehaviour
                 r1 -= aproxAccuracy * (BuildAndRun(qEPoint.x, r1) - qEPoint.y);
             }
         } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold && !noAproximation);
-        this.r1 = r1;
-        CreateQuadratic(r1, true);
-        Debug.Log(F(qEPoint.x));
+        CreateQuadratic();
     }
 
     float F(float x)
-    {
-        return a * (x - r1) * x;
-    }
-    float F(float x, float a)
     {
         return a * (x - r1) * x;
     }
