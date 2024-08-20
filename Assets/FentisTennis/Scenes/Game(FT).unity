@@ -470,19 +470,12 @@ MonoBehaviour:
   ePoint: {fileID: 508735630}
   height: 12
   stepSize: 1
-  step: 0
   vCOR: 0.7
   hCOR: 0.5
   minheight: 0.25
-  sPointi: {x: 0, y: 0, z: 0}
-  ePointi: {x: 0, y: 0, z: 0}
-  heighti: 0
-  stepi: 0
-  rolling: 0
   aproxAccuracy: 0
   aproxThreshold: 0
-  a: 0
-  r1: 0
+  noAproximation: 1
 --- !u!54 &209575043
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMover : MonoBehaviour
+public class BallMover_FT : MonoBehaviour
 {
     public Transform sPoint;
     public Transform ePoint;
@@ -19,6 +19,7 @@ public class BallMover : MonoBehaviour
     bool rolling;
     public float aproxAccuracy;
     public float aproxThreshold;
+    public bool noAproximation;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +66,7 @@ public class BallMover : MonoBehaviour
     }
     void UpdateQuadratic()
     {
-        if (sPoint.position.y == ePoint.position.y)
+        if (sPoint.position.y == ePoint.position.y || noAproximation)
         {
             CreateQuadratic();
         }
