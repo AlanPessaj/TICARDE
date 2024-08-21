@@ -5,12 +5,17 @@ using UnityEngine;
 public class PlayerController_FT : MonoBehaviour
 {
     public int movementSpeed;
+    float timer;
+    public int racketSpeed;
+    public GameObject racket;
+    public GameObject racketPivot;
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+    float rotation;
+    bool chargingShot = true;
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +37,36 @@ public class PlayerController_FT : MonoBehaviour
             {
                 transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
             }
+            if (Input.GetButtonDown("A"))
+            {
+                racket.transform.Rotate(-90, 0, 0);
+            }
+            if (Input.GetButton("A"))
+            {
+                
+                timer += Time.deltaTime;
+                if (chargingShot)
+                {
+                    rotation += Time.deltaTime * racketSpeed/2;
+                    racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(0, 45, rotation), 0);
+                    chargingShot = rotation <= 1;
+                    if (!chargingShot)
+                        rotation = 0;
+                }
+                else
+                {
+                    rotation += Time.deltaTime * racketSpeed;
+                    racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(45, -90, rotation), 0);
+                }
+            }
+            if (Input.GetButtonUp("A"))
+            {
+                racket.transform.Rotate(90, 0, 0);
+                racketPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
+                rotation = 0;
+                chargingShot = true;
+            }
+
         }
         else
         {
@@ -50,6 +85,35 @@ public class PlayerController_FT : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
+            }
+            if (Input.GetButtonDown("A2"))
+            {
+                racket.transform.Rotate(-90, 0, 0, Space.Self);
+            }
+            if (Input.GetButton("A2"))
+            {
+
+                timer += Time.deltaTime;
+                if (chargingShot)
+                {
+                    rotation += Time.deltaTime * racketSpeed / 2;
+                    racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(180, 225, rotation), 0);
+                    chargingShot = rotation <= 1;
+                    if (!chargingShot)
+                        rotation = 0;
+                }
+                else
+                {
+                    rotation += Time.deltaTime * racketSpeed;
+                    racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(225, 90, rotation), 0);
+                }
+            }
+            if (Input.GetButtonUp("A2"))
+            {
+                racket.transform.Rotate(90, 0, 0, Space.Self);
+                racketPivot.transform.rotation = Quaternion.Euler(180, 0, 0);
+                rotation = 0;
+                chargingShot = true;
             }
         }
     }
