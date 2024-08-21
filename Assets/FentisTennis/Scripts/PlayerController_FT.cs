@@ -88,7 +88,7 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (Input.GetButtonDown("A2"))
             {
-                racket.transform.Rotate(-90, 0, 0, Space.Self);
+                racket.transform.Rotate(-90, 0, 0);
             }
             if (Input.GetButton("A2"))
             {
@@ -110,8 +110,8 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (Input.GetButtonUp("A2"))
             {
-                racket.transform.Rotate(90, 0, 0, Space.Self);
-                racketPivot.transform.rotation = Quaternion.Euler(180, 0, 0);
+                racket.transform.Rotate(90, 0, 0);
+                racketPivot.transform.rotation = Quaternion.Euler(0, 180, 0);
                 rotation = 0;
                 chargingShot = true;
             }
