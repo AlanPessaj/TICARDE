@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BallMover_FT : MonoBehaviour
 {
+    public ShotManager_FT shot;
     public Transform sPoint;
     public Transform ePoint;
     public float height;
@@ -61,7 +62,7 @@ public class BallMover_FT : MonoBehaviour
         CreateQuadratic();
         return F(x);
     }
-    void UpdateQuadratic()
+    public void UpdateQuadratic()
     {
         if (sPoint.position.y == ePoint.position.y || noAproximation)
         {
@@ -83,11 +84,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else
         {
-            sPoint.position = sPointi;
-            ePoint.position = ePointi;
-            stepSize = stepi;
-            height = heighti;
-            step = 0f;
+            shot.ShotFinder();
             rolling = false;
             UpdateQuadratic();
         }
@@ -127,7 +124,11 @@ public class BallMover_FT : MonoBehaviour
             Vector3 displacement = direction * distance;
             ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.parent.position.y + 0.5f, displacement.z + sPoint.position.z);
             UpdateQuadratic();
+            step = 0f;
         }
-        step = 0f;
+        else
+        {
+            shot.ShotFinder();
+        }
     }
 }

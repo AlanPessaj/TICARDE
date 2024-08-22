@@ -26,13 +26,14 @@ public class ShotManager_FT : MonoBehaviour
     {
         float initX = Mathf.Lerp(0, 51, Random.value); 
         float initZ = Mathf.Lerp(-31, 31, Random.value);
-        float finX = Mathf.Lerp(-50.5f, 0, Random.value); 
-        float finZ = Mathf.Lerp(-31, 31, Random.value);
+        float finX = initX - Random.Range(1f, 100f);
+        float finZ = (Random.Range(-2, 3) * 12.4f) + initZ;
         ball.sPoint.position = new Vector3(initX, 6, initZ);
-        ball.ePoint.position = new Vector3(finX, -1, finZ);
+        ball.ePoint.position = new Vector3(finX, 0, finZ);
         ball.step = 0f;
         ball.height = 12f;
         ball.stepSize = 0.7f;
+        ball.UpdateQuadratic();
     }
 
 }
