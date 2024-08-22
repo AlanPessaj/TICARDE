@@ -9,7 +9,7 @@ public class BallMover_FT : MonoBehaviour
     public Transform ePoint;
     public float height;
     public float stepSize = 0.1f;
-    float step = 0f;
+    public float step = 0f;
     public float vCOR;
     public float hCOR;
     public float minheight;
