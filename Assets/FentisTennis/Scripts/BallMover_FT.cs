@@ -18,7 +18,7 @@ public class BallMover_FT : MonoBehaviour
     Vector3 ePointi;
     float heighti;
     float stepi;
-    bool rolling;
+    public bool rolling;
     public float aproxAccuracy;
     public float aproxThreshold;
     public bool noAproximation;
@@ -85,8 +85,6 @@ public class BallMover_FT : MonoBehaviour
         else
         {
             shot.ShotFinder();
-            rolling = false;
-            UpdateQuadratic();
         }
     }
 

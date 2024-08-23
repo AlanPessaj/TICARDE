@@ -33,6 +33,7 @@ public class ShotManager_FT : MonoBehaviour
         ball.step = 0f;
         ball.height = 12f;
         ball.stepSize = 0.7f;
+        ball.rolling = false;
         ball.UpdateQuadratic();
     }
 
