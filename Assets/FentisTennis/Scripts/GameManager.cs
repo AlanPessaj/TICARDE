@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
-    public bool serve = false;
+    public int serve = 0;
     // Start is called before the first frame update
     void Start()
     {
-        Serve();
+        Serve(true);
 
     }
 
@@ -21,14 +21,21 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void Serve()
+    void Serve(bool isPlayer1)
     {
-        serve = true;
+        if(isPlayer1)
+        {
+            serve = 1;
+        }
+        else
+        {
+            serve = 2;
+        }
         player1.transform.position = new Vector3(-50, 4, -30);
         player2.transform.position = new Vector3(50, 4, 30);
 
         //salida
-        //serve = false;
+        //serve = 0;
     }
 
 }
