@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player1;
     public GameObject player2;
-    public GameObject camera;
+    new public GameObject camera;
     Vector3 initialPosition;
     Vector3 averagePosition;
     Vector3 initAveragePosition;
