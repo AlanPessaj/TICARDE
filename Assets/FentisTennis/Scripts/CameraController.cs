@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public GameObject player1;
+    public GameObject player2;
     public GameObject camera;
     Vector3 initialPosition;
+    Vector3 averagePosition;
+    Vector3 initAveragePosition;
     // Start is called before the first frame update
     void Start()
     {
         initialPosition = camera.transform.position;
+        averagePosition = (player1.transform.position - player2.transform.position) / 2;
+        initAveragePosition = averagePosition;
     }
 
     Vector3 offset;
@@ -17,6 +23,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        averagePosition = (player1.transform.position + player2.transform.position) / 2;
         if (Vector3.Distance(initialPosition, camera.transform.position) > 2)
         {
             camera.transform.position = initialPosition;
@@ -24,10 +31,11 @@ public class CameraController : MonoBehaviour
         }
         if (counter >= 9)
         {
-            offset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
             counter = 0;
         }
-        camera.transform.Translate(offset/10, Space.Self);
+        //camera.transform.Translate(offset/10, Space.Self);
+        Vector3 finalPosition = averagePosition + initialPosition;
+        camera.transform.position = new Vector3(finalPosition.x, finalPosition.y, Mathf.Clamp(finalPosition.z, -21, 21));
         counter++;
     }
 }
