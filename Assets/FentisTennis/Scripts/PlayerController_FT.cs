@@ -61,7 +61,6 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
                 }
-
             }
             else if (gamemanager.serve == 0)
             {
@@ -139,22 +138,22 @@ public class PlayerController_FT : MonoBehaviour
             }
             else if (gamemanager.serve == 1)
             {
-                /*if (Input.GetKey(KeyCode.DownArrow))
+                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30)
                 {
-                    transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(movementSpeed * -1 * Time.deltaTime, 0, 0));
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z > 0)
+                if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)));
+                    transform.Translate(new Vector3(0, 0, (-movementSpeed * -1 * Time.deltaTime)));
                 }
-                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 30)
+                if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    transform.Translate(new Vector3((-movementSpeed * Time.deltaTime), 0, 0));
+                    transform.Translate(new Vector3((-movementSpeed * -1 * Time.deltaTime), 0, 0));
                 }
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0)
                 {
-                    transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime));
-                }*/
+                    transform.Translate(new Vector3(0, 0, movementSpeed * -1 * Time.deltaTime));
+                }
             }
             else if(gamemanager.serve == 0)
             {
