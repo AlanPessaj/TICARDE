@@ -4,35 +4,58 @@ using UnityEngine;
 
 public class ShotManager_FT : MonoBehaviour
 {
-    PlayerController_FT player;
     public BallMover_FT ball;
+    float lateralDistance = 12.4f;
+    public float driveHeight;
+    public float lobHeight;
+    public float stepSize;
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<PlayerController_FT>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("B"))
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            ShotFinder();
+            ShotFinder(0, 0, false, gameObject, true);
         }
     }
 
-    public void ShotFinder()
+    public void ShotFinder(int direction, float power, bool lob, GameObject player, bool random = false)
     {
-        float initX = Mathf.Lerp(0, 51, Random.value); 
-        float initZ = Mathf.Lerp(-31, 31, Random.value);
-        float finX = initX - Random.Range(1f, 100f);
-        float finZ = (Random.Range(-2, 3) * 12.4f) + initZ;
+        float initX = 0;
+        float initZ = 0;
+        float finX = 0;
+        float finZ = 0;
+        if (random)
+        {
+            initX = Mathf.Lerp(0, 51, Random.value);
+            initZ = Mathf.Lerp(-31, 31, Random.value);
+            finX = initX - Random.Range(1f, 100f);
+            finZ = (Random.Range(-2, 3) * 12.4f) + initZ;
+        }
+        else
+        {
+            initX = player.transform.position.x;
+            initZ = player.transform.position.z;
+            finX = initX + Mathf.Sqrt(Mathf.Pow(power, 2) - Mathf.Pow(direction * lateralDistance, 2));
+            finZ = initZ + (direction * lateralDistance);
+        }
+        if (!lob)
+        {
+            ball.height = driveHeight;
+        }
+        else
+        {
+            ball.height = lobHeight;
+        }
         ball.sPoint.position = new Vector3(initX, 6, initZ);
         ball.ePoint.position = new Vector3(finX, 0, finZ);
         ball.step = 0f;
-        ball.height = 12f;
-        ball.stepSize = 0.7f;
+        ball.stepSize = stepSize;
         ball.rolling = false;
         ball.UpdateQuadratic();
     }

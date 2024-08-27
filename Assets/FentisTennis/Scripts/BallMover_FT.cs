@@ -84,7 +84,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else
         {
-            shot.ShotFinder();
+            shot.ShotFinder(0, 0, false, gameObject, true);
         }
     }
 
@@ -94,6 +94,7 @@ public class BallMover_FT : MonoBehaviour
         Vector2 qEPoint = new Vector2(r1, ePoint.position.y - sPoint.position.y);
         do
         {
+            float currentValue = BuildAndRun(qEPoint.x, r1);
             if (BuildAndRun(qEPoint.x, r1) <  qEPoint.y)
             {
                 r1 += aproxAccuracy * (qEPoint.y - BuildAndRun(qEPoint.x, r1));
@@ -126,7 +127,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else
         {
-            shot.ShotFinder();
+            shot.ShotFinder(0, 0, false, gameObject, true);
         }
     }
 }
