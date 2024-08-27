@@ -19,6 +19,7 @@ public class PlayerController_FT : MonoBehaviour
     float rotation;
     bool doingDrive = false;
     bool doingLob = false;
+    bool doingSmash = false;
     // Update is called once per frame
     void Update()
     {
@@ -29,19 +30,19 @@ public class PlayerController_FT : MonoBehaviour
                 //PLAYER 1
                 if (Input.GetKey(KeyCode.W) && transform.position.x < -45)
                 {
-                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime) / 4, 0, 0));
+                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime) / 4, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.S) && transform.position.x > -50)
                 {
-                    transform.Translate(new Vector3((-movementSpeed * Time.deltaTime) / 4, 0, 0));
+                    transform.Translate(new Vector3((-movementSpeed * Time.deltaTime) / 4, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.A) && transform.position.z < 0)
                 {
-                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)/4));
+                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)/4), Space.World);
                 }
                 if (Input.GetKey(KeyCode.D) && transform.position.z > -30)
                 {
-                    transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4));
+                    transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
 
             }
@@ -49,38 +50,38 @@ public class PlayerController_FT : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.S))
                 {
-                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.A) && transform.position.z < 0)
                 {
-                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)));
+                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)), Space.World);
                 }
                 if (Input.GetKey(KeyCode.W) && transform.position.x < -30)
                 {
-                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime), 0, 0));
+                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime), 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.D))
                 {
-                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
+                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
             }
             else if (gamemanager.serve == 0)
             {
                 if (Input.GetKey(KeyCode.W))
                 {
-                    transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.A))
                 {
-                    transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime));
+                    transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
                 if (Input.GetKey(KeyCode.S))
                 {
-                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.D))
                 {
-                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
+                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
                 checkButtons();
             }
@@ -91,19 +92,19 @@ public class PlayerController_FT : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50)
                 {
-                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime)/4, 0, 0));
+                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime)/4, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z < 30)
                 {
-                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)/4));
+                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)/4), Space.World);
                 }
                 if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 45)
                 {
-                    transform.Translate(new Vector3((-movementSpeed * Time.deltaTime)/4, 0, 0));
+                    transform.Translate(new Vector3((-movementSpeed * Time.deltaTime)/4, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0)
                 {
-                    transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4));
+                    transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
                 if (Input.GetButtonDown("A2"))
                 {
@@ -114,39 +115,38 @@ public class PlayerController_FT : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30)
                 {
-                    transform.Translate(new Vector3(movementSpeed * -1 * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(movementSpeed * -1 * Time.deltaTime, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    transform.Translate(new Vector3(0, 0, (-movementSpeed * -1 * Time.deltaTime)));
+                    transform.Translate(new Vector3(0, 0, (-movementSpeed * -1 * Time.deltaTime)), Space.World);
                 }
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    transform.Translate(new Vector3((-movementSpeed * -1 * Time.deltaTime), 0, 0));
+                    transform.Translate(new Vector3((-movementSpeed * -1 * Time.deltaTime), 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0)
                 {
-                    transform.Translate(new Vector3(0, 0, movementSpeed * -1 * Time.deltaTime));
+                    transform.Translate(new Vector3(0, 0, movementSpeed * -1 * Time.deltaTime), Space.World);
                 }
             }
             else if(gamemanager.serve == 0)
             {
-
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
-                    transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime));
+                    transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
-                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0));
+                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
                 if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
+                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
                 checkButtons();
             }
@@ -186,14 +186,7 @@ public class PlayerController_FT : MonoBehaviour
                 }
                 timer += Time.deltaTime;
                 rotation += Time.deltaTime * racketSpeed / 2;
-                if (isPlayer1)
-                {
-                    racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(0, 45, rotation), 0);
-                }
-                else
-                {
-                    racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(180, 225, rotation), 0);
-                }
+                racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, rotation), 0);
             }
 
         }
@@ -209,17 +202,27 @@ public class PlayerController_FT : MonoBehaviour
                 if (Input.GetButtonDown("B" + player))
                 {
                     doingLob = true;
-                    racket.transform.Translate(0, -0.25f, 0, Space.World);
-                    racket.transform.transform.position = new Vector3(racket.transform.position.x, racket.transform.position.y - 0.25f, racket.transform.position.z);
+                    racket.transform.Rotate(0, 0, 180);
+                    racket.transform.localPosition = new Vector3(0, -0.25f, -1.5f);
+
                 }
                 timer += Time.deltaTime;
                 rotation += Time.deltaTime * racketSpeed / 2;
-                racketPivot.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(0, -45, rotation));
+                racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -45, rotation));
             }
         }
         if (Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //C
+            if (Input.GetButtonDown("C" + player))
+            {
+                doingSmash = true;
+                racket.transform.localPosition = new Vector3(0, 1f, -1.5f);
+
+            }
+            timer += Time.deltaTime;
+            rotation += Time.deltaTime * racketSpeed / 2;
+            racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, rotation));
         }
         if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
@@ -239,24 +242,10 @@ public class PlayerController_FT : MonoBehaviour
             if (doingDrive)
             {
                 rotation += Time.deltaTime * racketSpeed;
-                if (isPlayer1)
-                {
-                    racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(45, -90, rotation), 0);
-                }
-                else
-                {
-                    racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(225, 90, rotation), 0);
-                }
+                racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, rotation), 0);
                 if (rotation >= 1)
                 {
-                    if (isPlayer1)
-                    {
-                        racketPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    }
-                    else
-                    {
-                        racketPivot.transform.rotation = Quaternion.Euler(0, 180, 0);
-                    }
+                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                     racket.transform.Rotate(90, 0, 0);
                     rotation = 0;
                     doingDrive = false;
@@ -265,21 +254,26 @@ public class PlayerController_FT : MonoBehaviour
             if (doingLob)
             {
                 rotation += Time.deltaTime * racketSpeed;
-                racketPivot.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(-45, 90, rotation));
+                racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, rotation));
                 if (rotation >= 1)
                 {
-                    if (isPlayer1)
-                    {
-                        racketPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    }
-                    else
-                    {
-                        racketPivot.transform.rotation = Quaternion.Euler(0, 180, 0);
-                    }
+                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                     racket.transform.Rotate(0, 0, -180);
-                    racket.transform.transform.position = new Vector3(racket.transform.position.x, racket.transform.position.y + 0.25f, racket.transform.position.z);
+                    racket.transform.localPosition = new Vector3(0, 0, -1.5f);
                     rotation = 0;
                     doingLob = false;
+                }
+            }
+            if (doingSmash)
+            {
+                rotation += Time.deltaTime * racketSpeed;
+                racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, rotation));
+                if (rotation >= 1)
+                {
+                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
+                    racket.transform.localPosition = new Vector3(0, 0, -1.5f);
+                    rotation = 0;
+                    doingSmash = false;
                 }
             }
         }
