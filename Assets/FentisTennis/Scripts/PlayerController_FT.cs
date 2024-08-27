@@ -80,27 +80,9 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime));
                 }
-                if (Input.GetButtonDown("A"))
+                if (Input.GetButtonDown("A") && !Input.GetButton("B") && !Input.GetButton("C"))
                 {
                     racket.transform.Rotate(-90, 0, 0);
-                }
-                if (Input.GetButton("A"))
-                {
-
-                    timer += Time.deltaTime;
-                    if (chargingShot)
-                    {
-                        rotation += Time.deltaTime * racketSpeed / 2;
-                        racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(0, 45, rotation), 0);
-                        chargingShot = rotation <= 1;
-                        if (!chargingShot)
-                            rotation = 0;
-                    }
-                    else
-                    {
-                        rotation += Time.deltaTime * racketSpeed;
-                        racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(45, -90, rotation), 0);
-                    }
                 }
                 if (Input.GetButtonUp("A"))
                 {
@@ -108,6 +90,62 @@ public class PlayerController_FT : MonoBehaviour
                     racketPivot.transform.rotation = Quaternion.Euler(0, 0, 0);
                     rotation = 0;
                     chargingShot = true;
+                }
+                if (Input.GetButton("A"))
+                {
+                    if (Input.GetButton("B"))
+                    {
+                        if (Input.GetButton("C"))
+                        {
+                            //A + B + C
+                        }
+                        else
+                        {
+                            //A + B
+                        }
+                    }
+                    else if (Input.GetButton("C"))
+                    {
+                        //A + C
+                    }
+                    else
+                    {
+                        //A
+                        timer += Time.deltaTime;
+                        if (chargingShot)
+                        {
+                            rotation += Time.deltaTime * racketSpeed / 2;
+                            racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(0, 45, rotation), 0);
+                            chargingShot = rotation <= 1;
+                            if (!chargingShot)
+                                rotation = 0;
+                        }
+                        else
+                        {
+                            rotation += Time.deltaTime * racketSpeed;
+                            racketPivot.transform.rotation = Quaternion.Euler(0, Mathf.Lerp(45, -90, rotation), 0);
+                        }
+                    }
+
+                }
+                if (Input.GetButton("B") && !Input.GetButton("A"))
+                {
+                    if (Input.GetButton("C"))
+                    {
+                        //B + C
+                    }
+                    else
+                    {
+                        //B
+                    }
+                }
+                if (Input.GetButton("C") && !Input.GetButton("B") && !Input.GetButton("A"))
+                {
+                    //C
+                }
+                else
+                {
+                    //NONE
                 }
             }
         }

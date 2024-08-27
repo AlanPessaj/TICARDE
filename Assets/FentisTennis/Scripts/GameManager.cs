@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public GameObject player1;
     public GameObject player2;
     public int serve = 0;
@@ -37,5 +36,4 @@ public class GameManager : MonoBehaviour
         //salida
         //serve = 0;
     }
-
 }
