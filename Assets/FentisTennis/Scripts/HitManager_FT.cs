@@ -27,7 +27,7 @@ public class HitManager_FT : MonoBehaviour
                     {
                         if (hColliders[o + 1] != null)
                         {
-                            Debug.Log("pego en smash, drive y elevado");
+                            Debug.Log("pego en smash, drive y globo");
                             collided = true;
                             break;
                         }
@@ -39,13 +39,13 @@ public class HitManager_FT : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("pego en smash y elevado");
+                        Debug.Log("pego en smash y globo");
                         collided = true;
                     }
                 }
                 else
                 {
-                    Debug.Log("pego en drive y elevado");
+                    Debug.Log("pego en drive y globo");
                     collided = true;
                 }
             }
@@ -62,7 +62,7 @@ public class HitManager_FT : MonoBehaviour
                     Debug.Log("pego en drive");
                     break;
                 case 2:
-                    Debug.Log("pego en elevado");
+                    Debug.Log("pego en globo");
                     break;
             }
         }
