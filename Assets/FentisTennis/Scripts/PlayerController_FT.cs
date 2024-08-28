@@ -46,9 +46,9 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
-                if (Input.GetButtonDown("A"))
+                if (Input.GetButtonDown("C"))
                 {
-                    shot.ShotFinder(-2, 5, false, gameObject);
+                    shot.ShotFinder(-2, 24.4f + 60, false, gameObject);
                 }
             }
             else if(gameManager.serve == 2)
@@ -111,9 +111,9 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
-                if (Input.GetButtonDown("A"))
+                if (Input.GetButtonDown("C"))
                 {
-                    shot.ShotFinder(-2, 5, false, gameObject);
+                    shot.ShotFinder(-2, 24.4f + 60, false, gameObject);
                 }
             }
             else if (gameManager.serve == 1)

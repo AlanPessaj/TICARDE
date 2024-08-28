@@ -12,7 +12,7 @@ public class GameManager_FT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Serve(player1);
+        //StartServe(player1);
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class GameManager_FT : MonoBehaviour
 
     }
 
-    void Serve(GameObject player)
+    public void StartServe(GameObject player)
     {
         if(player == player1)
         {
@@ -36,12 +36,19 @@ public class GameManager_FT : MonoBehaviour
         ballmover.active = false;
         ballmover.transform.parent = player.transform;
         ballmover.transform.localPosition = new Vector3(1.5f, 0, 0);
-
+        //tirar la pelota para arriba
 
 
         //salida
         //serve = 0;
         //ballmover.active = true;
         //ballmover.transform.parent = null;
+    }
+
+    public void EndServe()
+    {
+        serve = 0;
+        ballmover.active = true;
+        ballmover.transform.parent = null;
     }
 }

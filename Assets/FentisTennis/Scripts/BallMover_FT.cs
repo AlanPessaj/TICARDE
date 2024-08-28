@@ -14,10 +14,6 @@ public class BallMover_FT : MonoBehaviour
     public float vCOR;
     public float hCOR;
     public float minheight;
-    Vector3 sPointi;
-    Vector3 ePointi;
-    float heighti;
-    float stepi;
     public bool rolling;
     public float aproxAccuracy;
     public float aproxThreshold;
@@ -27,10 +23,6 @@ public class BallMover_FT : MonoBehaviour
     void Start()
     {
         UpdateQuadratic();
-        sPointi = sPoint.position;
-        ePointi = ePoint.position;
-        heighti = height;
-        stepi = stepSize;
     }
     float a;
     float r1;
