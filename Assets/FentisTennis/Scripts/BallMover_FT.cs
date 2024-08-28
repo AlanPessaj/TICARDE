@@ -107,7 +107,7 @@ public class BallMover_FT : MonoBehaviour
         CreateQuadratic();
     }
 
-    float F(float x)
+    public float F(float x)
     {
         return a * (x - r1) * x;
     }

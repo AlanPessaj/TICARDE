@@ -9,7 +9,7 @@ public class PlayerController_FT : MonoBehaviour
     public int racketSpeed;
     public GameObject racket;
     public GameObject racketPivot;
-    public GameManager gamemanager;
+    public GameManager_FT gamemanager;
     bool isPlayer1;
     // Start is called before the first frame update
     void Start()
