@@ -179,14 +179,17 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //A
-                if (Input.GetButtonDown("A" + player))
+                if (!doingSmash && !doingLob)
                 {
-                    doingDrive = true;
-                    racket.transform.Rotate(-90, 0, 0);
+                    if (Input.GetButtonDown("A" + player))
+                    {
+                        doingDrive = true;
+                        racket.transform.Rotate(-90, 0, 0);
+                    }
+                    timer += Time.deltaTime;
+                    rotation += Time.deltaTime * racketSpeed / 2;
+                    racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, rotation), 0);
                 }
-                timer += Time.deltaTime;
-                rotation += Time.deltaTime * racketSpeed / 2;
-                racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, rotation), 0);
             }
 
         }
@@ -199,30 +202,36 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //B
-                if (Input.GetButtonDown("B" + player))
+                if (!doingSmash && !doingDrive)
                 {
-                    doingLob = true;
-                    racket.transform.Rotate(0, 0, 180);
-                    racket.transform.localPosition = new Vector3(0, -0.25f, -1.5f);
+                    if (Input.GetButtonDown("B" + player))
+                    {
+                        doingLob = true;
+                        racket.transform.Rotate(0, 0, 180);
+                        racket.transform.localPosition = new Vector3(0, -0.25f, -1.5f);
 
+                    }
+                    timer += Time.deltaTime;
+                    rotation += Time.deltaTime * racketSpeed / 2;
+                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -45, rotation));
                 }
-                timer += Time.deltaTime;
-                rotation += Time.deltaTime * racketSpeed / 2;
-                racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -45, rotation));
             }
         }
         if (Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //C
-            if (Input.GetButtonDown("C" + player))
+            if (!doingDrive && !doingLob)
             {
-                doingSmash = true;
-                racket.transform.localPosition = new Vector3(0, 1f, -1.5f);
+                if (Input.GetButtonDown("C" + player))
+                {
+                    doingSmash = true;
+                    racket.transform.localPosition = new Vector3(0, 1f, -1.5f);
 
+                }
+                timer += Time.deltaTime;
+                rotation += Time.deltaTime * racketSpeed / 2;
+                racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, rotation));
             }
-            timer += Time.deltaTime;
-            rotation += Time.deltaTime * racketSpeed / 2;
-            racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, rotation));
         }
         if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {

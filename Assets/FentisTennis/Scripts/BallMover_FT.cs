@@ -22,6 +22,7 @@ public class BallMover_FT : MonoBehaviour
     public float aproxAccuracy;
     public float aproxThreshold;
     public bool noAproximation;
+    public bool active = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,26 +37,29 @@ public class BallMover_FT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (height < minheight && !rolling)
+        if (active)
         {
-            height = 0f;
-            UpdateQuadratic();
-            rolling = true;
+            if (height < minheight && !rolling)
+            {
+                height = 0f;
+                UpdateQuadratic();
+                rolling = true;
+            }
+            if (rolling)
+            {
+                stepSize -= hCOR * Time.deltaTime;
+                stepSize = Mathf.Clamp(stepSize, 0f, Mathf.Infinity);
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("Game(FT)");
+            }
+            transform.position = new Vector3(Mathf.LerpUnclamped(sPoint.position.x, ePoint.position.x, step), transform.position.y, Mathf.LerpUnclamped(sPoint.position.z, ePoint.position.z, step));
+            step += stepSize * Time.deltaTime;
+            float x = Vector3.Distance(sPoint.position, new Vector3(transform.position.x, sPoint.position.y, transform.position.z));
+            float ballY = F(x);
+            transform.position = new Vector3(transform.position.x, ballY + sPoint.position.y, transform.position.z);
         }
-        if (rolling)
-        {
-            stepSize -= hCOR * Time.deltaTime;
-            stepSize = Mathf.Clamp(stepSize, 0f, Mathf.Infinity);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("Game(FT)");
-        }
-        transform.position = new Vector3(Mathf.LerpUnclamped(sPoint.position.x, ePoint.position.x, step), transform.position.y, Mathf.LerpUnclamped(sPoint.position.z, ePoint.position.z, step));
-        step += stepSize * Time.deltaTime;
-        float x = Vector3.Distance(sPoint.position, new Vector3(transform.position.x, sPoint.position.y, transform.position.z));
-        float ballY = F(x);
-        transform.position = new Vector3(transform.position.x, ballY + sPoint.position.y, transform.position.z);
     }
     float BuildAndRun(float x, float r1)
     {
@@ -87,13 +91,14 @@ public class BallMover_FT : MonoBehaviour
             shot.ShotFinder(0, 0, false, gameObject, true);
         }
     }
-
+    int counter = 0;
     void ApproximateQuadratic()
     {
         r1 = Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z));
         Vector2 qEPoint = new Vector2(r1, ePoint.position.y - sPoint.position.y);
         do
         {
+            counter++;
             float currentValue = BuildAndRun(qEPoint.x, r1);
             if (BuildAndRun(qEPoint.x, r1) <  qEPoint.y)
             {
@@ -102,6 +107,10 @@ public class BallMover_FT : MonoBehaviour
             else
             {
                 r1 -= aproxAccuracy * (BuildAndRun(qEPoint.x, r1) - qEPoint.y);
+            }
+            if(counter > 1000)
+            {
+                noAproximation = true;
             }
         } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold && !noAproximation);
         CreateQuadratic();
