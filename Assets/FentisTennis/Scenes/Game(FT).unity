@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f10f4ab7d95a5f418dc910ecaef7b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shot: {fileID: 2012602350}
+  shot: {fileID: 645166232}
   sPoint: {fileID: 1930570280}
   ePoint: {fileID: 508735630}
   height: 12
@@ -741,6 +741,7 @@ GameObject:
   - component: {fileID: 645166230}
   - component: {fileID: 645166229}
   - component: {fileID: 645166231}
+  - component: {fileID: 645166232}
   m_Layer: 0
   m_Name: GAMEMANAGER
   m_TagString: Untagged
@@ -792,6 +793,22 @@ MonoBehaviour:
   player1: {fileID: 2012602343}
   player2: {fileID: 1884093392}
   serve: 0
+--- !u!114 &645166232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645166228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1836c18bb041aa04a95defd7f5e96f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 209575042}
+  driveHeight: 12
+  lobHeight: 16
+  stepSize: 0.7
 --- !u!1 &800455120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1292,6 @@ GameObject:
   - component: {fileID: 1884093395}
   - component: {fileID: 1884093394}
   - component: {fileID: 1884093393}
-  - component: {fileID: 1884093399}
   m_Layer: 10
   m_Name: Player2
   m_TagString: Untagged
@@ -1391,22 +1407,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1884093399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884093392}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1836c18bb041aa04a95defd7f5e96f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 209575042}
-  driveHeight: 0
-  lobHeight: 0
-  stepSize: 0
 --- !u!1 &1893227728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,7 +1608,6 @@ GameObject:
   - component: {fileID: 2012602344}
   - component: {fileID: 2012602349}
   - component: {fileID: 2012602348}
-  - component: {fileID: 2012602350}
   m_Layer: 10
   m_Name: Player1
   m_TagString: Untagged
@@ -1724,22 +1723,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2012602350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012602343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1836c18bb041aa04a95defd7f5e96f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 209575042}
-  driveHeight: 0
-  lobHeight: 0
-  stepSize: 0
 --- !u!1 &2092556755
 GameObject:
   m_ObjectHideFlags: 0
