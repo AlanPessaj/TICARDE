@@ -127,7 +127,7 @@ public class BallMover_FT : MonoBehaviour
             UpdateQuadratic();
             step = 0f;
         }
-        else
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
             shot.ShotFinder(0, 0, false, gameObject, true);
         }

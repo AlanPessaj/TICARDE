@@ -32,6 +32,7 @@ public class ShotManager_FT : MonoBehaviour
         float finX = 0;
         float finZ = 0;
         direction *= -1;
+        power += lateralDistance * 2;
         if (random)
         {
             initX = Mathf.Lerp(0, 51, Random.value);

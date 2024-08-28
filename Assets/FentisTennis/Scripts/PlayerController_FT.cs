@@ -12,6 +12,7 @@ public class PlayerController_FT : MonoBehaviour
     public GameManager_FT gameManager;
     ShotManager_FT shot;
     bool isPlayer1;
+    public HitManager_FT hitManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +49,7 @@ public class PlayerController_FT : MonoBehaviour
                 }
                 if (Input.GetButtonDown("C"))
                 {
-                    shot.ShotFinder(-2, 24.4f + 60, false, gameObject);
+                    shot.ShotFinder(-2, 60, false, gameObject);
                 }
             }
             else if(gameManager.serve == 2)
@@ -113,7 +114,7 @@ public class PlayerController_FT : MonoBehaviour
                 }
                 if (Input.GetButtonDown("C"))
                 {
-                    shot.ShotFinder(-2, 24.4f + 60, false, gameObject);
+                    shot.ShotFinder(-2, 60, false, gameObject);
                 }
             }
             else if (gameManager.serve == 1)
@@ -213,7 +214,7 @@ public class PlayerController_FT : MonoBehaviour
                     {
                         doingLob = true;
                         racket.transform.Rotate(0, 0, 180);
-                        racket.transform.localPosition = new Vector3(0, -0.25f, -1.5f);
+                        racket.transform.localPosition = new Vector3(0, -0.25f, -3f);
 
                     }
                     timer += Time.deltaTime;
@@ -230,7 +231,7 @@ public class PlayerController_FT : MonoBehaviour
                 if (Input.GetButtonDown("C" + player))
                 {
                     doingSmash = true;
-                    racket.transform.localPosition = new Vector3(0, 1f, -1.5f);
+                    racket.transform.localPosition = new Vector3(0, 1f, -3f);
 
                 }
                 timer += Time.deltaTime;
@@ -257,6 +258,11 @@ public class PlayerController_FT : MonoBehaviour
             {
                 rotation += Time.deltaTime * racketSpeed;
                 racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, rotation), 0);
+                if (hitManager.hColliders[1] != null)
+                {
+                    shot.ShotFinder(-2, 60, false, gameObject);
+                    rotation = 2;
+                }
                 if (rotation >= 1)
                 {
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
@@ -269,11 +275,16 @@ public class PlayerController_FT : MonoBehaviour
             {
                 rotation += Time.deltaTime * racketSpeed;
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, rotation));
+                if (hitManager.hColliders[2] != null)
+                {
+                    shot.ShotFinder(-2, 60, true, gameObject);
+                    rotation = 2;
+                }
                 if (rotation >= 1)
                 {
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                     racket.transform.Rotate(0, 0, -180);
-                    racket.transform.localPosition = new Vector3(0, 0, -1.5f);
+                    racket.transform.localPosition = new Vector3(0, 0, -3f);
                     rotation = 0;
                     doingLob = false;
                 }
@@ -282,10 +293,15 @@ public class PlayerController_FT : MonoBehaviour
             {
                 rotation += Time.deltaTime * racketSpeed;
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, rotation));
+                if (hitManager.hColliders[0] != null)
+                {
+                    shot.ShotFinder(-2, 60, false, gameObject);
+                    rotation = 2;
+                }
                 if (rotation >= 1)
                 {
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.localPosition = new Vector3(0, 0, -1.5f);
+                    racket.transform.localPosition = new Vector3(0, 0, -3f);
                     rotation = 0;
                     doingSmash = false;
                 }
