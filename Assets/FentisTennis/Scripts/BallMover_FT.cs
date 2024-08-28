@@ -91,9 +91,10 @@ public class BallMover_FT : MonoBehaviour
             shot.ShotFinder(0, 0, false, gameObject, true);
         }
     }
-    int counter = 0;
+    public bool falisafe = true;
     void ApproximateQuadratic()
     {
+        int counter = 0;
         r1 = Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z));
         Vector2 qEPoint = new Vector2(r1, ePoint.position.y - sPoint.position.y);
         do
@@ -108,7 +109,7 @@ public class BallMover_FT : MonoBehaviour
             {
                 r1 -= aproxAccuracy * (BuildAndRun(qEPoint.x, r1) - qEPoint.y);
             }
-            if(counter > 1000)
+            if(counter > 1000 && falisafe)
             {
                 noAproximation = true;
             }
