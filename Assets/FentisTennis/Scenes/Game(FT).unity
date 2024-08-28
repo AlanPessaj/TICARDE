@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -567,6 +567,7 @@ MonoBehaviour:
   aproxThreshold: 0.001
   noAproximation: 0
   active: 1
+  falisafe: 0
 --- !u!54 &209575043
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -621,10 +622,10 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.25
+  m_Time: 0.4
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -636,7 +637,7 @@ TrailRenderer:
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.2112069
       - serializedVersion: 3
         time: 1
         value: 0
@@ -644,7 +645,7 @@ TrailRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.19827586
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -1423,7 +1424,7 @@ MonoBehaviour:
   racketSpeed: 6
   racket: {fileID: 1870666536}
   racketPivot: {fileID: 886490317}
-  gamemanager: {fileID: 645166231}
+  gameManager: {fileID: 645166231}
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1814,7 +1815,7 @@ MonoBehaviour:
   racketSpeed: 6
   racket: {fileID: 1220108756}
   racketPivot: {fileID: 2092556755}
-  gamemanager: {fileID: 645166231}
+  gameManager: {fileID: 645166231}
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0

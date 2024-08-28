@@ -12,7 +12,7 @@ public class GameManager_FT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Serve(player1);
+        Serve(player1);
     }
 
     // Update is called once per frame

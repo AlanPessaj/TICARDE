@@ -9,12 +9,14 @@ public class PlayerController_FT : MonoBehaviour
     public int racketSpeed;
     public GameObject racket;
     public GameObject racketPivot;
-    public GameManager_FT gamemanager;
+    public GameManager_FT gameManager;
+    ShotManager_FT shot;
     bool isPlayer1;
     // Start is called before the first frame update
     void Start()
     {
         isPlayer1 = gameObject.name == "Player1";
+        shot = gameManager.gameObject.GetComponent<ShotManager_FT>();
     }
     float rotation;
     bool doingDrive = false;
@@ -25,7 +27,7 @@ public class PlayerController_FT : MonoBehaviour
     {
         if (isPlayer1)
         {
-            if (gamemanager.serve == 1)
+            if (gameManager.serve == 1)
             {
                 //PLAYER 1
                 if (Input.GetKey(KeyCode.W) && transform.position.x < -45)
@@ -44,9 +46,12 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
-
+                if (Input.GetButtonDown("A"))
+                {
+                    shot.ShotFinder(-2, 5, false, gameObject);
+                }
             }
-            else if(gamemanager.serve == 2)
+            else if(gameManager.serve == 2)
             {
                 if (Input.GetKey(KeyCode.S))
                 {
@@ -65,7 +70,7 @@ public class PlayerController_FT : MonoBehaviour
                     transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
             }
-            else if (gamemanager.serve == 0)
+            else if (gameManager.serve == 0)
             {
                 if (Input.GetKey(KeyCode.W))
                 {
@@ -88,7 +93,7 @@ public class PlayerController_FT : MonoBehaviour
         }
         else
         {
-            if(gamemanager.serve == 2)
+            if(gameManager.serve == 2)
             {
                 if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50)
                 {
@@ -106,12 +111,12 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
-                if (Input.GetButtonDown("A2"))
+                if (Input.GetButtonDown("A"))
                 {
-                    racket.transform.Rotate(-90, 0, 0);
+                    shot.ShotFinder(-2, 5, false, gameObject);
                 }
             }
-            else if (gamemanager.serve == 1)
+            else if (gameManager.serve == 1)
             {
                 if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30)
                 {
@@ -130,7 +135,7 @@ public class PlayerController_FT : MonoBehaviour
                     transform.Translate(new Vector3(0, 0, movementSpeed * -1 * Time.deltaTime), Space.World);
                 }
             }
-            else if(gamemanager.serve == 0)
+            else if(gameManager.serve == 0)
             {
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
