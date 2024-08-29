@@ -56,7 +56,7 @@ public class ShotManager_FT : MonoBehaviour
         }
         else
         {
-            ball.height = ball.transform.position.y + 0.1f;
+            ball.height = ball.transform.position.y;
         }
         gameManager.EndServe();
         ball.sPoint.position = new Vector3(initX, ball.transform.position.y, initZ);
@@ -64,7 +64,7 @@ public class ShotManager_FT : MonoBehaviour
         ball.step = 0f;
         ball.stepSize = stepSize;
         ball.rolling = false;
-        ball.UpdateQuadratic(true);
+        ball.UpdateQuadratic(type == ShotType.smash);
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager_FT : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class GameManager_FT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Game(FT)");
+        }
         if (serving)
         {
             if (throwingBall)
@@ -83,6 +88,8 @@ public class GameManager_FT : MonoBehaviour
         serve = 0;
         ballmover.active = true;
         ballmover.transform.parent = null;
+        serving = false;
+        readyToServe = false;
     }
 
     public void ThrowBall()

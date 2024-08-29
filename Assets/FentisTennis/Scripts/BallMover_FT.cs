@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BallMover_FT : MonoBehaviour
 {
@@ -42,10 +41,6 @@ public class BallMover_FT : MonoBehaviour
                 stepSize -= hCOR * Time.deltaTime;
                 stepSize = Mathf.Clamp(stepSize, 0f, Mathf.Infinity);
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene("Game(FT)");
-            }
             transform.position = new Vector3(Mathf.LerpUnclamped(sPoint.position.x, ePoint.position.x, step), transform.position.y, Mathf.LerpUnclamped(sPoint.position.z, ePoint.position.z, step));
             step += stepSize * Time.deltaTime;
             float x = Vector3.Distance(sPoint.position, new Vector3(transform.position.x, sPoint.position.y, transform.position.z));
@@ -62,11 +57,11 @@ public class BallMover_FT : MonoBehaviour
     {
         if (smash)
         {
-            Vector3 crudeSpoint = sPoint.position + ((ePoint.position - sPoint.position).normalized * Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z)));
+            Vector3 crudeSpoint = sPoint.position + ((ePoint.position - sPoint.position).normalized * -Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z)));
             sPoint.position = new Vector3(crudeSpoint.x, ePoint.position.y, crudeSpoint.z);
-            UpdateQuadratic();
+            step = 0.5f;
         }
-        else if (sPoint.position.y == ePoint.position.y || noAproximation)
+        if (sPoint.position.y == ePoint.position.y || noAproximation)
         {
             r1 = Vector3.Distance(sPoint.position, ePoint.position);
             CreateQuadratic();
