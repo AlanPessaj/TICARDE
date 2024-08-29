@@ -262,7 +262,7 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, rotation), 0);
                 if (hitManager.hColliders[1] != null)
                 {
-                    shot.ShotFinder(-2, 60, false, gameObject);
+                    shot.ShotFinder(-2, 60, ShotType.drive, gameObject);
                     rotation = 2;
                 }
                 if (rotation >= 1)
@@ -279,7 +279,7 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, rotation));
                 if (hitManager.hColliders[2] != null)
                 {
-                    shot.ShotFinder(-2, 60, true, gameObject);
+                    shot.ShotFinder(-2, 60, ShotType.lob, gameObject);
                     rotation = 2;
                 }
                 if (rotation >= 1)
@@ -301,7 +301,7 @@ public class PlayerController_FT : MonoBehaviour
                     {
                         gameManager.EndServe();
                     }
-                    shot.ShotFinder(-2, 60, false, gameObject);
+                    shot.ShotFinder(-2, 60, ShotType.smash, gameObject);
                     rotation = 2;
                 }
                 if (rotation >= 1)

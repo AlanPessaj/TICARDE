@@ -21,47 +21,57 @@ public class ShotManager_FT : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            ShotFinder(0, 0, false, gameObject, true);
+            ShotFinder(0, 0, ShotType.drive, gameObject, true);
         }
     }
 
-    public void ShotFinder(int direction, float power, bool lob, GameObject player, bool random = false)
+    public void ShotFinder(int direction, float power, ShotType type, GameObject player, bool random = false)
     {
-        float initX = 0;
-        float initZ = 0;
-        float finX = 0;
-        float finZ = 0;
-        direction *= -1;
-        power += lateralDistance * 2;
+        int directionModifier = 1;
         if (random)
         {
-            initX = Mathf.Lerp(0, 51, Random.value);
-            initZ = Mathf.Lerp(-31, 31, Random.value);
-            finX = initX - Random.Range(1f, 100f);
-            finZ = (Random.Range(-2, 3) * 12.4f) + initZ;
+            player.transform.position = new Vector3(Random.Range(0f, 51f), 0, Random.Range(-31, 31));
+            player.transform.eulerAngles = new Vector3(0, 180, 0);
+            direction = Random.Range(-2, 3);
+            power = Random.Range(40f, 80f);
+            type = ShotType.lob;
         }
-        else
+        if (player.transform.eulerAngles.y == 180)
         {
-            initX = player.transform.position.x;
-            initZ = player.transform.position.z;
-            finX = initX + Mathf.Sqrt(Mathf.Pow(power, 2) - Mathf.Pow(direction * lateralDistance, 2));
-            finZ = initZ + (direction * lateralDistance);
+            directionModifier = -1;
         }
-        if (!lob)
+        direction *= -1;
+        power += lateralDistance * 2;
+        float initX = player.transform.position.x;
+        float initZ = player.transform.position.z;
+        float finX = initX + Mathf.Sqrt(Mathf.Pow(power, 2) - Mathf.Pow(direction * lateralDistance, 2)) * directionModifier;
+        float finZ = initZ + (direction * lateralDistance);
+        if (type == ShotType.drive)
         {
             ball.height = driveHeight;
         }
-        else
+        else if (type == ShotType.lob)
         {
             ball.height = lobHeight;
         }
+        else
+        {
+            ball.height = ball.transform.position.y + 0.1f;
+        }
         gameManager.EndServe();
-        ball.sPoint.position = new Vector3(initX, 6, initZ);
+        ball.sPoint.position = new Vector3(initX, ball.transform.position.y, initZ);
         ball.ePoint.position = new Vector3(finX, 0, finZ);
         ball.step = 0f;
         ball.stepSize = stepSize;
         ball.rolling = false;
-        ball.UpdateQuadratic();
+        ball.UpdateQuadratic(true);
     }
 
+}
+
+public enum ShotType
+{
+    drive,
+    lob,
+    smash
 }
