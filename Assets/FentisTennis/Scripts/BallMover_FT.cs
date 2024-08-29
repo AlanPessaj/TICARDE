@@ -70,7 +70,7 @@ public class BallMover_FT : MonoBehaviour
             ApproximateQuadratic();
             if (smash)
             {
-                Vector3 crudeSpoint = (ePoint.position - sPoint.position).normalized * r1;
+                Vector3 crudeSpoint = sPoint.position + ((ePoint.position - sPoint.position).normalized * r1);
                 sPoint.position = new Vector3(crudeSpoint.x, ePoint.position.y, crudeSpoint.z);
                 UpdateQuadratic();
             }
