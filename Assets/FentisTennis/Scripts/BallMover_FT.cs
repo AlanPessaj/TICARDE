@@ -60,7 +60,13 @@ public class BallMover_FT : MonoBehaviour
     }
     public void UpdateQuadratic(bool smash = false)
     {
-        if (sPoint.position.y == ePoint.position.y || noAproximation)
+        if (smash)
+        {
+            Vector3 crudeSpoint = sPoint.position + ((ePoint.position - sPoint.position).normalized * Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z)));
+            sPoint.position = new Vector3(crudeSpoint.x, ePoint.position.y, crudeSpoint.z);
+            UpdateQuadratic();
+        }
+        else if (sPoint.position.y == ePoint.position.y || noAproximation)
         {
             r1 = Vector3.Distance(sPoint.position, ePoint.position);
             CreateQuadratic();
@@ -68,12 +74,6 @@ public class BallMover_FT : MonoBehaviour
         else
         {
             ApproximateQuadratic();
-            if (smash)
-            {
-                Vector3 crudeSpoint = sPoint.position + ((ePoint.position - sPoint.position).normalized * r1);
-                sPoint.position = new Vector3(crudeSpoint.x, ePoint.position.y, crudeSpoint.z);
-                UpdateQuadratic();
-            }
         }
     }
 
