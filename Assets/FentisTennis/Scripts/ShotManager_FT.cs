@@ -61,7 +61,6 @@ public class ShotManager_FT : MonoBehaviour
         ball.step = 0f;
         ball.stepSize = stepSize;
         ball.rolling = false;
-        ball.enabled = true;
         ball.UpdateQuadratic();
     }
 

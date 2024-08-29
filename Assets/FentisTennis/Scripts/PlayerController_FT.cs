@@ -47,10 +47,11 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
-                if (Input.GetButtonDown("C"))
+                if (Input.GetButtonDown("A"))
                 {
-                    shot.ShotFinder(-2, 60, false, gameObject);
+                    gameManager.ThrowBall();
                 }
+                checkButtons(true);
             }
             else if(gameManager.serve == 2)
             {
@@ -112,10 +113,11 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
-                if (Input.GetButtonDown("C"))
+                if (Input.GetButtonDown("A"))
                 {
-                    shot.ShotFinder(-2, 60, false, gameObject);
+                    gameManager.ThrowBall();
                 }
+                checkButtons(true);
             }
             else if (gameManager.serve == 1)
             {
@@ -158,14 +160,14 @@ public class PlayerController_FT : MonoBehaviour
             }
         }
     }
-    void checkButtons()
+    void checkButtons(bool serve = false)
     {
         string player = "";
         if (!isPlayer1)
         {
             player = "2";
         }
-        if (Input.GetButton("A" + player))
+        if (Input.GetButton("A" + player) && !serve)
         {
             if (Input.GetButton("B" + player))
             {
@@ -199,7 +201,7 @@ public class PlayerController_FT : MonoBehaviour
             }
 
         }
-        if (Input.GetButton("B" + player) && !Input.GetButton("A" + player))
+        if (Input.GetButton("B" + player) && !Input.GetButton("A" + player) && !serve)
         {
             if (Input.GetButton("C" + player))
             {
@@ -295,6 +297,10 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, rotation));
                 if (hitManager.hColliders[0] != null)
                 {
+                    if (serve)
+                    {
+                        gameManager.EndServe();
+                    }
                     shot.ShotFinder(-2, 60, false, gameObject);
                     rotation = 2;
                 }

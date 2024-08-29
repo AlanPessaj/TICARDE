@@ -9,16 +9,49 @@ public class GameManager_FT : MonoBehaviour
     public ShotManager_FT shotmanager;
     public BallMover_FT ballmover;
     public int serve = 0;
+    bool readyToServe;
+    bool throwingBall = false;
+    bool serving;
+    float stepSize;
+    public float initialStepSize;
+    public float maxBallHeight;
     // Start is called before the first frame update
     void Start()
     {
-        //StartServe(player1);
+        StartServe(player1);
+        stepSize = initialStepSize;
     }
-
+    float ballHeight;
     // Update is called once per frame
     void Update()
     {
-
+        if (serving)
+        {
+            if (throwingBall)
+            {
+                stepSize = (1 - ballHeight) * initialStepSize + 0.1f;
+                ballHeight += Time.deltaTime * stepSize;
+                ballmover.transform.localPosition = new Vector3(ballmover.transform.localPosition.x, Mathf.Lerp(0, maxBallHeight, ballHeight), ballmover.transform.localPosition.z);
+                if (ballHeight >= 1)
+                {
+                    ballHeight = 0;
+                    throwingBall = false;
+                    stepSize = initialStepSize;
+                }
+            }
+            else
+            {
+                stepSize = ballHeight * initialStepSize + 0.1f;
+                ballHeight += Time.deltaTime * stepSize;
+                ballmover.transform.localPosition = new Vector3(ballmover.transform.localPosition.x, Mathf.Lerp(maxBallHeight, 0, ballHeight), ballmover.transform.localPosition.z);
+                if (ballHeight >= 1)
+                {
+                    ballHeight = 0;
+                    serving = false;
+                    stepSize = initialStepSize;
+                }
+            }
+        }
     }
 
     public void StartServe(GameObject player)
@@ -36,7 +69,7 @@ public class GameManager_FT : MonoBehaviour
         ballmover.active = false;
         ballmover.transform.parent = player.transform;
         ballmover.transform.localPosition = new Vector3(1.5f, 0, 0);
-        //tirar la pelota para arriba
+        readyToServe = true;
 
 
         //salida
@@ -50,5 +83,14 @@ public class GameManager_FT : MonoBehaviour
         serve = 0;
         ballmover.active = true;
         ballmover.transform.parent = null;
+    }
+
+    public void ThrowBall()
+    {
+        if (readyToServe)
+        {
+            serving = true;
+            throwingBall = true;
+        }
     }
 }

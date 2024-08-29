@@ -1023,6 +1023,8 @@ MonoBehaviour:
   shotmanager: {fileID: 645166232}
   ballmover: {fileID: 1639290137}
   serve: 0
+  initialStepSize: 4
+  maxBallHeight: 5
 --- !u!114 &645166232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,7 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 1639290137}
   driveHeight: 12
-  lobHeight: 16
+  lobHeight: 20
   stepSize: 0.7
 --- !u!1 &800455120
 GameObject:
@@ -1695,7 +1697,7 @@ MonoBehaviour:
   hCOR: 0.5
   minheight: 0.25
   rolling: 0
-  aproxAccuracy: 0.1
+  aproxAccuracy: 0.01
   aproxThreshold: 0.001
   noAproximation: 0
   active: 1
@@ -2715,8 +2717,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.8, z: 4}
-  m_Center: {x: 2, y: -0.4, z: 0}
+  m_Size: {x: 4, y: 0.8, z: 4}
+  m_Center: {x: 1, y: -0.4, z: 0}
 --- !u!4 &6067811059364887382
 Transform:
   m_ObjectHideFlags: 0
@@ -2871,8 +2873,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.8, z: 4}
-  m_Center: {x: 3, y: 1.2, z: 0}
+  m_Size: {x: 4, y: 0.8, z: 4}
+  m_Center: {x: 2, y: 1.2, z: 0}
 --- !u!4 &6067811061113804708
 Transform:
   m_ObjectHideFlags: 0
@@ -2977,8 +2979,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.8, z: 4}
-  m_Center: {x: 2, y: 0.4, z: 0}
+  m_Size: {x: 4, y: 0.8, z: 4}
+  m_Center: {x: 1, y: 0.4, z: 0}
 --- !u!4 &6067811061277613398
 Transform:
   m_ObjectHideFlags: 0
