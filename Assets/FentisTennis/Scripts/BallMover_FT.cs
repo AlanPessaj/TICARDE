@@ -58,7 +58,7 @@ public class BallMover_FT : MonoBehaviour
         CreateQuadratic();
         return F(x);
     }
-    public void UpdateQuadratic()
+    public void UpdateQuadratic(bool smash = false)
     {
         if (sPoint.position.y == ePoint.position.y || noAproximation)
         {
@@ -68,6 +68,12 @@ public class BallMover_FT : MonoBehaviour
         else
         {
             ApproximateQuadratic();
+            if (smash)
+            {
+                Vector3 crudeSpoint = (ePoint.position - sPoint.position).normalized * r1;
+                sPoint.position = new Vector3(crudeSpoint.x, ePoint.position.y, crudeSpoint.z);
+                UpdateQuadratic();
+            }
         }
     }
 
@@ -80,10 +86,10 @@ public class BallMover_FT : MonoBehaviour
         }
         else
         {
-            shot.ShotFinder(0, 0, false, gameObject, true);
+            shot.ShotFinder(0, 0, ShotType.drive, gameObject, true);
         }
     }
-    public bool falisafe = true;
+    public bool failSafe;
     void ApproximateQuadratic()
     {
         int counter = 0;
@@ -101,7 +107,7 @@ public class BallMover_FT : MonoBehaviour
             {
                 r1 -= aproxAccuracy * (BuildAndRun(qEPoint.x, r1) - qEPoint.y);
             }
-            if(counter > 1000 && falisafe)
+            if(counter > 1000 && failSafe)
             {
                 noAproximation = true;
             }
@@ -129,7 +135,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
-            shot.ShotFinder(0, 0, false, gameObject, true);
+            shot.ShotFinder(0, 0, ShotType.drive, gameObject, true);
         }
     }
 }

@@ -18,7 +18,7 @@ public class GameManager_FT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartServe(player1);
+        //StartServe(player1);
         stepSize = initialStepSize;
     }
     float ballHeight;
