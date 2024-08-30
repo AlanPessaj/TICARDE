@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShotManager_FT : MonoBehaviour
 {
@@ -19,13 +20,31 @@ public class ShotManager_FT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PredictShot(gameObject, ShotType.drive);
+        }
         if (Input.GetKeyDown(KeyCode.G))
         {
-            ShotFinder(0, 0, ShotType.drive, gameObject, true);
+            FindShot(0, 0, ShotType.drive, gameObject, true);
         }
     }
 
-    public void ShotFinder(int direction, float power, ShotType type, GameObject player, bool random = false)
+    public bool PredictShot(GameObject player, ShotType shot)
+    {
+        Scene simulationScene = SceneManager.CreateScene("simulationScene");
+        SceneManager.MoveGameObjectToScene(Instantiate(player), simulationScene);
+        SceneManager.MoveGameObjectToScene(Instantiate(ball.gameObject), simulationScene);
+        for (int i = 0; i < 10; i++)
+        {
+            simulationScene.GetRootGameObjects()[0].GetComponent<PlayerController_FT>().Update();
+            simulationScene.GetRootGameObjects()[1].GetComponent<BallMover_FT>().Update();
+            simulationScene.GetPhysicsScene().Simulate(Time.fixedDeltaTime);
+        }
+        return true;
+    }
+
+    public void FindShot(int direction, float power, ShotType type, GameObject player, bool random = false)
     {
         int directionModifier = 1;
         if (random)

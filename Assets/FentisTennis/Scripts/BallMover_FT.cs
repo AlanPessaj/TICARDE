@@ -26,7 +26,7 @@ public class BallMover_FT : MonoBehaviour
     float a;
     float r1;
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (active)
         {
@@ -81,7 +81,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else
         {
-            shot.ShotFinder(0, 0, ShotType.drive, gameObject, true);
+            shot.FindShot(0, 0, ShotType.drive, gameObject, true);
         }
     }
     public bool failSafe;
@@ -130,7 +130,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
-            shot.ShotFinder(0, 0, ShotType.drive, gameObject, true);
+            shot.FindShot(0, 0, ShotType.drive, gameObject, true);
         }
     }
 }
