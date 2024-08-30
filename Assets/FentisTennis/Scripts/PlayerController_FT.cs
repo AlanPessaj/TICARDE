@@ -13,6 +13,7 @@ public class PlayerController_FT : MonoBehaviour
     ShotManager_FT shot;
     bool isPlayer1;
     public HitManager_FT hitManager;
+    public ShotManager_FT simShot;
     // Start is called before the first frame update
     void Start()
     {
@@ -247,14 +248,50 @@ public class PlayerController_FT : MonoBehaviour
             if (Input.GetButtonUp("A" + player))
             {
                 rotation = 0;
+                if (simShot != null)
+                {
+                    float[] results = shot.PredictShot(gameObject);
+                    if (results != null )
+                    {
+                        if (Mathf.Abs(results[1]) > transform.GetChild(0).GetChild(1).GetComponent<BoxCollider>().size.z / 2)
+                        {
+                            //empezar a moverse
+                            Debug.Log("drive");
+                        }
+                    }
+                }
             }
             if (Input.GetButtonUp("B" + player))
             {
                 rotation = 0;
+                if (simShot != null)
+                {
+                    float[] results = shot.PredictShot(gameObject);
+                    if (results != null)
+                    {
+                        if (Mathf.Abs(results[1]) > transform.GetChild(0).GetChild(2).GetComponent<BoxCollider>().size.z / 2)
+                        {
+                            //empezar a moverse
+                            Debug.Log("lob");
+                        }
+                    }
+                }
             }
             if (Input.GetButtonUp("C" + player))
             {
                 rotation = 0;
+                if (simShot != null)
+                {
+                    float[] results = shot.PredictShot(gameObject);
+                    if (results != null)
+                    {
+                        if (Mathf.Abs(results[1]) > transform.GetChild(0).GetChild(0).GetComponent<BoxCollider>().size.z / 2)
+                        {
+                            //empezar a moverse
+                            Debug.Log("smash");
+                        }
+                    }
+                }
             }
             if (doingDrive)
             {
@@ -262,8 +299,15 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, rotation), 0);
                 if (hitManager.hColliders[1] != null)
                 {
-                    shot.FindShot(-2, 60, ShotType.drive, gameObject);
-                    rotation = 2;
+                    if (simShot == null)
+                    {
+                        shot.FindShot(-2, 60, ShotType.drive, gameObject);
+                        rotation = 2;
+                    }
+                    else
+                    {
+                        simShot.ballHit = 2;
+                    }
                 }
                 if (rotation >= 1)
                 {
@@ -279,8 +323,15 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, rotation));
                 if (hitManager.hColliders[2] != null)
                 {
-                    shot.FindShot(-2, 60, ShotType.lob, gameObject);
-                    rotation = 2;
+                    if (simShot == null)
+                    {
+                        shot.FindShot(-2, 60, ShotType.lob, gameObject);
+                        rotation = 2;
+                    }
+                    else
+                    {
+                        simShot.ballHit = 2;
+                    }
                 }
                 if (rotation >= 1)
                 {
@@ -297,12 +348,19 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, rotation));
                 if (hitManager.hColliders[0] != null)
                 {
-                    if (serve)
+                    if (simShot == null)
                     {
+                        if (serve)
+                        {
                         gameManager.EndServe();
+                        }
+                        shot.FindShot(-2, 60, ShotType.smash, gameObject);
+                        rotation = 2;
                     }
-                    shot.FindShot(-2, 60, ShotType.smash, gameObject);
-                    rotation = 2;
+                    else
+                    {
+                        simShot.ballHit = 2;
+                    }
                 }
                 if (rotation >= 1)
                 {

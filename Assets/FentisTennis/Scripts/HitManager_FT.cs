@@ -12,7 +12,7 @@ public class HitManager_FT : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         for (int i = 0; i < hColliders.Length; i++)
         {

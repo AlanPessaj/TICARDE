@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ShotManager_FT : MonoBehaviour
 {
+    const float noHit = 200;
+    public float ballHit = noHit;
     public BallMover_FT ball;
     GameManager_FT gameManager;
     float lateralDistance = 12.4f;
@@ -22,7 +24,7 @@ public class ShotManager_FT : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            PredictShot(gameObject, ShotType.drive);
+            Debug.Log(PredictShot(GameObject.Find("Player1")));
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -30,18 +32,32 @@ public class ShotManager_FT : MonoBehaviour
         }
     }
 
-    public bool PredictShot(GameObject player, ShotType shot)
+    public float[] PredictShot(GameObject player)
     {
+        float[] results = new float[2];
         Scene simulationScene = SceneManager.CreateScene("simulationScene");
+        Physics.autoSimulation = false;
         SceneManager.MoveGameObjectToScene(Instantiate(player), simulationScene);
         SceneManager.MoveGameObjectToScene(Instantiate(ball.gameObject), simulationScene);
-        for (int i = 0; i < 10; i++)
+        for (int i = 1; i < 11; i++)
         {
-            simulationScene.GetRootGameObjects()[0].GetComponent<PlayerController_FT>().Update();
-            simulationScene.GetRootGameObjects()[1].GetComponent<BallMover_FT>().Update();
             simulationScene.GetPhysicsScene().Simulate(Time.fixedDeltaTime);
+            simulationScene.GetRootGameObjects()[0].GetComponent<PlayerController_FT>().Update();
+            simulationScene.GetRootGameObjects()[0].transform.GetChild(0).gameObject.GetComponent<HitManager_FT>().Update();
+            simulationScene.GetRootGameObjects()[1].GetComponent<BallMover_FT>().Update();
+            if (ballHit != noHit)
+            {
+                ballHit = noHit;
+                SceneManager.UnloadSceneAsync(simulationScene);
+                Physics.autoSimulation = true;
+                results[0] = i;
+                results[1] = ballHit;
+                return results;
+            }
         }
-        return true;
+        SceneManager.UnloadSceneAsync(simulationScene);
+        Physics.autoSimulation = true;
+        return null;
     }
 
     public void FindShot(int direction, float power, ShotType type, GameObject player, bool random = false)
