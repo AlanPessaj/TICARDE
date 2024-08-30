@@ -30,9 +30,11 @@ public class ShotManager_FT : MonoBehaviour
         int directionModifier = 1;
         if (random)
         {
-            player.transform.position = new Vector3(Random.Range(0f, 51f), 0, Random.Range(-31, 31));
+            player.transform.position = new Vector3(23, 0, 0);
+            direction = 0;
+            //player.transform.position = new Vector3(Random.Range(0f, 51f), 0, Random.Range(-31, 31));
             player.transform.eulerAngles = new Vector3(0, 180, 0);
-            direction = Random.Range(-2, 3);
+            //direction = Random.Range(-2, 3);
             power = Random.Range(40f, 80f);
             type = ShotType.lob;
         }

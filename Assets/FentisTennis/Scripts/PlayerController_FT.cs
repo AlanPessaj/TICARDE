@@ -55,38 +55,38 @@ public class PlayerController_FT : MonoBehaviour
             }
             else if(gameManager.serve == 2)
             {
-                if (Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.S) && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.A) && transform.position.z < 0)
+                if (Input.GetKey(KeyCode.A) && transform.position.z < 0 && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)), Space.World);
                 }
-                if (Input.GetKey(KeyCode.W) && transform.position.x < -30)
+                if (Input.GetKey(KeyCode.W) && transform.position.x < -30 && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3((movementSpeed * Time.deltaTime), 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.D))
+                if (Input.GetKey(KeyCode.D) && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
             }
             else if (gameManager.serve == 0)
             {
-                if (Input.GetKey(KeyCode.W))
+                if (Input.GetKey(KeyCode.W) && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetKey(KeyCode.A) && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
-                if (Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.S) && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.D))
+                if (Input.GetKey(KeyCode.D) && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
@@ -121,19 +121,19 @@ public class PlayerController_FT : MonoBehaviour
             }
             else if (gameManager.serve == 1)
             {
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30)
+                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30 && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(movementSpeed * -1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow))
+                if (Input.GetKey(KeyCode.LeftArrow) && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * -1 * Time.deltaTime)), Space.World);
                 }
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeyCode.UpArrow) && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3((-movementSpeed * -1 * Time.deltaTime), 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0)
+                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0 && !doingDrive && !doingSmash && !doingLob)
                 {
                     transform.Translate(new Vector3(0, 0, movementSpeed * -1 * Time.deltaTime), Space.World);
                 }
