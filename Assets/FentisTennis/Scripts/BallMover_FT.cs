@@ -16,12 +16,11 @@ public class BallMover_FT : MonoBehaviour
     public bool rolling;
     public float aproxAccuracy;
     public float aproxThreshold;
-    public bool noAproximation;
     public bool active = true;
     // Start is called before the first frame update
     void Start()
     {
-        UpdateQuadratic();
+        
     }
     float a;
     float r1;
@@ -61,7 +60,7 @@ public class BallMover_FT : MonoBehaviour
             sPoint.position = new Vector3(crudeSpoint.x, ePoint.position.y, crudeSpoint.z);
             step = 0.5f;
         }
-        if (sPoint.position.y == ePoint.position.y || noAproximation)
+        if (sPoint.position.y == ePoint.position.y)
         {
             r1 = Vector3.Distance(sPoint.position, ePoint.position);
             CreateQuadratic();
@@ -81,6 +80,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else
         {
+            //BORRAME
             shot.FindShot(0, 0, ShotType.drive, gameObject, true);
         }
     }
@@ -102,11 +102,12 @@ public class BallMover_FT : MonoBehaviour
             {
                 r1 -= aproxAccuracy * (BuildAndRun(qEPoint.x, r1) - qEPoint.y);
             }
-            if(counter > 1000 && failSafe)
+            if(counter > 10000 && failSafe)
             {
-                noAproximation = true;
+                Destroy(gameObject);
+                break;
             }
-        } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold && !noAproximation);
+        } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold);
         CreateQuadratic();
     }
 
@@ -130,6 +131,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
+            //BORRAME
             shot.FindShot(0, 0, ShotType.drive, gameObject, true);
         }
     }

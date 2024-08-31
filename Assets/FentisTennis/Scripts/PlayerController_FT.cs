@@ -10,7 +10,7 @@ public class PlayerController_FT : MonoBehaviour
     public GameObject racket;
     public GameObject racketPivot;
     public GameManager_FT gameManager;
-    ShotManager_FT shot;
+    public ShotManager_FT shot;
     bool isPlayer1;
     public HitManager_FT hitManager;
     public ShotManager_FT simShot;
@@ -248,9 +248,9 @@ public class PlayerController_FT : MonoBehaviour
             if (Input.GetButtonUp("A" + player))
             {
                 rotation = 0;
-                if (simShot != null)
+                if (simShot == null)
                 {
-                    float[] results = shot.PredictShot(gameObject);
+                    /*float[] results = shot.PredictShot(gameObject);
                     if (results != null )
                     {
                         if (Mathf.Abs(results[1]) > transform.GetChild(0).GetChild(1).GetComponent<BoxCollider>().size.z / 2)
@@ -258,13 +258,13 @@ public class PlayerController_FT : MonoBehaviour
                             //empezar a moverse
                             Debug.Log("drive");
                         }
-                    }
+                    }*/
                 }
             }
             if (Input.GetButtonUp("B" + player))
             {
                 rotation = 0;
-                if (simShot != null)
+                if (simShot == null)
                 {
                     float[] results = shot.PredictShot(gameObject);
                     if (results != null)
@@ -280,7 +280,7 @@ public class PlayerController_FT : MonoBehaviour
             if (Input.GetButtonUp("C" + player))
             {
                 rotation = 0;
-                if (simShot != null)
+                if (simShot == null)
                 {
                     float[] results = shot.PredictShot(gameObject);
                     if (results != null)
@@ -311,10 +311,17 @@ public class PlayerController_FT : MonoBehaviour
                 }
                 if (rotation >= 1)
                 {
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.Rotate(90, 0, 0);
-                    rotation = 0;
-                    doingDrive = false;
+                    if (simShot != null)
+                    {
+                        simShot.finishedHit = true;
+                    }
+                    else
+                    {
+                        racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
+                        racket.transform.Rotate(90, 0, 0);
+                        rotation = 0;
+                        doingDrive = false;
+                    }
                 }
             }
             if (doingLob)
@@ -335,11 +342,18 @@ public class PlayerController_FT : MonoBehaviour
                 }
                 if (rotation >= 1)
                 {
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.Rotate(0, 0, -180);
-                    racket.transform.localPosition = new Vector3(0, 0, -3f);
-                    rotation = 0;
-                    doingLob = false;
+                    if (simShot != null)
+                    {
+                        simShot.finishedHit = true;
+                    }
+                    else
+                    {
+                        racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
+                        racket.transform.Rotate(0, 0, -180);
+                        racket.transform.localPosition = new Vector3(0, 0, -3f);
+                        rotation = 0;
+                        doingLob = false;
+                    }
                 }
             }
             if (doingSmash)
@@ -350,9 +364,10 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     if (simShot == null)
                     {
+                        gameObject.name = gameObject.name;
                         if (serve)
                         {
-                        gameManager.EndServe();
+                            gameManager.EndServe();
                         }
                         shot.FindShot(-2, 60, ShotType.smash, gameObject);
                         rotation = 2;
@@ -364,10 +379,17 @@ public class PlayerController_FT : MonoBehaviour
                 }
                 if (rotation >= 1)
                 {
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.localPosition = new Vector3(0, 0, -3f);
-                    rotation = 0;
-                    doingSmash = false;
+                    if (simShot != null)
+                    {
+                        simShot.finishedHit = true;
+                    }
+                    else
+                    {
+                        racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
+                        racket.transform.localPosition = new Vector3(0, 0, -3f);
+                        rotation = 0;
+                        doingSmash = false;
+                    }
                 }
             }
         }

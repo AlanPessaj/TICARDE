@@ -16,10 +16,14 @@ public class GameManager_FT : MonoBehaviour
     float stepSize;
     public float initialStepSize;
     public float maxBallHeight;
+    public bool startServing;
     // Start is called before the first frame update
     void Start()
     {
-        StartServe(player1);
+        if (startServing)
+        {
+            StartServe(player1);
+        }
         stepSize = initialStepSize;
     }
     float ballHeight;
