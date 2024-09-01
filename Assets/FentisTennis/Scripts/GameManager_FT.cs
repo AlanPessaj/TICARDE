@@ -79,12 +79,6 @@ public class GameManager_FT : MonoBehaviour
         ballmover.transform.parent = player.transform;
         ballmover.transform.localPosition = new Vector3(1.5f, 0, 0);
         readyToServe = true;
-
-
-        //salida
-        //serve = 0;
-        //ballmover.active = true;
-        //ballmover.transform.parent = null;
     }
 
     public void EndServe()

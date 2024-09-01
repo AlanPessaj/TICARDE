@@ -250,15 +250,12 @@ public class PlayerController_FT : MonoBehaviour
                 rotation = 0;
                 if (simShot == null)
                 {
-                    /*float[] results = shot.PredictShot(gameObject);
-                    if (results != null )
+                    float[] results = shot.PredictShot(gameObject);
+                    if (results != null)
                     {
-                        if (Mathf.Abs(results[1]) > transform.GetChild(0).GetChild(1).GetComponent<BoxCollider>().size.z / 2)
-                        {
-                            //empezar a moverse
-                            Debug.Log("drive");
-                        }
-                    }*/
+                        //empezar a moverse
+                        Debug.Log("drive");
+                    }
                 }
             }
             if (Input.GetButtonUp("B" + player))
@@ -269,11 +266,8 @@ public class PlayerController_FT : MonoBehaviour
                     float[] results = shot.PredictShot(gameObject);
                     if (results != null)
                     {
-                        if (Mathf.Abs(results[1]) > transform.GetChild(0).GetChild(2).GetComponent<BoxCollider>().size.z / 2)
-                        {
-                            //empezar a moverse
-                            Debug.Log("lob");
-                        }
+                        //empezar a moverse
+                        Debug.Log("lob");
                     }
                 }
             }
@@ -285,11 +279,8 @@ public class PlayerController_FT : MonoBehaviour
                     float[] results = shot.PredictShot(gameObject);
                     if (results != null)
                     {
-                        if (Mathf.Abs(results[1]) > transform.GetChild(0).GetChild(0).GetComponent<BoxCollider>().size.z / 2)
-                        {
-                            //empezar a moverse
-                            Debug.Log("smash");
-                        }
+                        //empezar a moverse
+                        Debug.Log("smash");
                     }
                 }
             }
@@ -299,6 +290,7 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, rotation), 0);
                 if (hitManager.hColliders[1] != null)
                 {
+                    gameObject.name = gameObject.name;
                     if (simShot == null)
                     {
                         shot.FindShot(-2, 60, ShotType.drive, gameObject);
@@ -306,7 +298,7 @@ public class PlayerController_FT : MonoBehaviour
                     }
                     else
                     {
-                        simShot.ballHit = 2;
+                        simShot.ballHit = new float[]{3, 3};
                     }
                 }
                 if (rotation >= 1)
@@ -337,7 +329,7 @@ public class PlayerController_FT : MonoBehaviour
                     }
                     else
                     {
-                        simShot.ballHit = 2;
+                        simShot.ballHit = new float[] { 3, 3 };
                     }
                 }
                 if (rotation >= 1)
@@ -374,7 +366,7 @@ public class PlayerController_FT : MonoBehaviour
                     }
                     else
                     {
-                        simShot.ballHit = 2;
+                        simShot.ballHit = new float[] { 3, 3 };
                     }
                 }
                 if (rotation >= 1)

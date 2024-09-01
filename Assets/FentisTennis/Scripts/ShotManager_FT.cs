@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ShotManager_FT : MonoBehaviour
 {
-    const float noHit = 200;
-    public float ballHit = noHit;
+    public float[] ballHit;
     public BallMover_FT ball;
     GameManager_FT gameManager;
     float lateralDistance = 12.4f;
@@ -18,6 +17,7 @@ public class ShotManager_FT : MonoBehaviour
     void Start()
     {
         gameManager = GetComponent<GameManager_FT>();
+        ballHit = null;
     }
 
     // Update is called once per frame
@@ -37,14 +37,14 @@ public class ShotManager_FT : MonoBehaviour
     {
         Scene simulationScene = SceneManager.CreateScene("simulation " + player.name);
         Physics.autoSimulation = false;
-        float[] results = new float[2];
+        float[] results = new float[3];
         GameObject cPlayer = Instantiate(player, player.transform.position + new Vector3(100, 100, 100), player.transform.rotation);
         GameObject cBall;
-        Transform cSPoint = ball.sPoint;
-        Transform cEPoint = ball.ePoint;
-        cSPoint.position = cSPoint.position + new Vector3(100, 100, 100);
-        cEPoint.position = cEPoint.position + new Vector3(100, 100, 100);
+        GameObject cSPoint = Instantiate(ball.sPoint.gameObject, ball.sPoint.transform.position + new Vector3(100, 100, 100), ball.sPoint.transform.rotation);
+        GameObject cEPoint = Instantiate(ball.ePoint.gameObject, ball.ePoint.transform.position + new Vector3(100, 100, 100), ball.ePoint.transform.rotation);
         SceneManager.MoveGameObjectToScene(cPlayer, simulationScene);
+        SceneManager.MoveGameObjectToScene(cSPoint, simulationScene);
+        SceneManager.MoveGameObjectToScene(cEPoint, simulationScene);
         if (gameManager.serve == int.Parse(player.name.Substring(player.name.Length - 1)))
         {
             cBall = cPlayer.transform.GetChild(2).gameObject;
@@ -54,8 +54,8 @@ public class ShotManager_FT : MonoBehaviour
             cBall = Instantiate(ball.gameObject, ball.transform.position + new Vector3(100, 100, 100), ball.transform.rotation);
             SceneManager.MoveGameObjectToScene(cBall, simulationScene);
         }
-        cBall.GetComponent<BallMover_FT>().sPoint = cSPoint;
-        cBall.GetComponent<BallMover_FT>().ePoint = cEPoint;
+        cBall.GetComponent<BallMover_FT>().sPoint = cSPoint.transform;
+        cBall.GetComponent<BallMover_FT>().ePoint = cEPoint.transform;
         Destroy(cPlayer.GetComponent<MeshRenderer>());
         cPlayer.name = player.name;
         cPlayer.GetComponent<PlayerController_FT>().simShot = this;
@@ -68,21 +68,22 @@ public class ShotManager_FT : MonoBehaviour
             cBall.GetComponent<BallMover_FT>().Update();
             cPlayer.GetComponent<PlayerController_FT>().Update();
             cPlayer.transform.GetChild(0).gameObject.GetComponent<HitManager_FT>().Update();
-            if (ballHit != noHit)
+            if (ballHit != null)
             {
-                ballHit = noHit;
                 SceneManager.UnloadSceneAsync(simulationScene);
                 Physics.autoSimulation = true;
                 results[0] = i;
-                results[1] = ballHit;
+                results[1] = ballHit[0];
+                results[2] = ballHit[1];
+                ballHit = null;
                 return results;
             }
             if (finishedHit)
             {
+                finishedHit = false;
                 break;
             }
         }
-        finishedHit = false;
         SceneManager.UnloadSceneAsync(simulationScene);
         Physics.autoSimulation = true;
         return null;
