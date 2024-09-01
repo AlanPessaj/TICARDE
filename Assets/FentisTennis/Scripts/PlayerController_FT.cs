@@ -21,9 +21,9 @@ public class PlayerController_FT : MonoBehaviour
         shot = gameManager.gameObject.GetComponent<ShotManager_FT>();
     }
     float rotation;
-    bool doingDrive = false;
-    bool doingLob = false;
-    bool doingSmash = false;
+    public bool doingDrive = false;
+    public bool doingLob = false;
+    public bool doingSmash = false;
     // Update is called once per frame
     public void Update()
     {
@@ -250,7 +250,7 @@ public class PlayerController_FT : MonoBehaviour
                 rotation = 0;
                 if (simShot == null)
                 {
-                    float[] results = shot.PredictShot(gameObject);
+                    float[] results = shot.PredictShot(gameObject, new bool[]{doingDrive, doingLob, doingSmash});
                     if (results != null)
                     {
                         //empezar a moverse
@@ -263,7 +263,7 @@ public class PlayerController_FT : MonoBehaviour
                 rotation = 0;
                 if (simShot == null)
                 {
-                    float[] results = shot.PredictShot(gameObject);
+                    float[] results = shot.PredictShot(gameObject, new bool[] { doingDrive, doingLob, doingSmash });
                     if (results != null)
                     {
                         //empezar a moverse
@@ -276,7 +276,7 @@ public class PlayerController_FT : MonoBehaviour
                 rotation = 0;
                 if (simShot == null)
                 {
-                    float[] results = shot.PredictShot(gameObject);
+                    float[] results = shot.PredictShot(gameObject, new bool[] { doingDrive, doingLob, doingSmash });
                     if (results != null)
                     {
                         //empezar a moverse
@@ -298,7 +298,7 @@ public class PlayerController_FT : MonoBehaviour
                     }
                     else
                     {
-                        simShot.ballHit = new float[]{3, 3};
+                        simShot.ballHit = true;
                     }
                 }
                 if (rotation >= 1)
@@ -329,7 +329,7 @@ public class PlayerController_FT : MonoBehaviour
                     }
                     else
                     {
-                        simShot.ballHit = new float[] { 3, 3 };
+                        simShot.ballHit = true;
                     }
                 }
                 if (rotation >= 1)
@@ -366,7 +366,7 @@ public class PlayerController_FT : MonoBehaviour
                     }
                     else
                     {
-                        simShot.ballHit = new float[] { 3, 3 };
+                        simShot.ballHit = true;
                     }
                 }
                 if (rotation >= 1)
