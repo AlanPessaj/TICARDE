@@ -35,6 +35,7 @@ public class PlayerController_FT : MonoBehaviour
     public bool doingDrive;
     public bool doingLob;
     public bool doingSmash;
+    public bool slowMotion;
     // Update is called once per frame
     public void Update()
     {
@@ -175,6 +176,7 @@ public class PlayerController_FT : MonoBehaviour
         {
             CheckPrediction();
         }
+        slowMotion = !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0;
     }
 
     void CheckPrediction()

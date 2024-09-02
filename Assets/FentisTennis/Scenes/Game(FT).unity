@@ -1918,12 +1918,13 @@ MonoBehaviour:
   shot: {fileID: 0}
   hitManager: {fileID: 3162515174754375576}
   simShot: {fileID: 0}
-  timeSlow: 5
+  timeSlow: 7
   minPower: 0
   maxPower: 70
   doingDrive: 0
   doingLob: 0
   doingSmash: 0
+  slowMotion: 0
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2311,12 +2312,13 @@ MonoBehaviour:
   shot: {fileID: 0}
   hitManager: {fileID: 6067811059419904809}
   simShot: {fileID: 0}
-  timeSlow: 5
+  timeSlow: 7
   minPower: 0
   maxPower: 70
   doingDrive: 0
   doingLob: 0
   doingSmash: 0
+  slowMotion: 0
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
