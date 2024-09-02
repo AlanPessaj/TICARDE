@@ -447,18 +447,27 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (Input.GetButtonUp("A" + player))
             {
+                if (chargingDrive)
+                {
+                    CheckDirection();
+                }
                 chargingDrive = false;
-                CheckDirection();
             }
             if (Input.GetButtonUp("B" + player))
             {
+                if (chargingLob)
+                {
+                    CheckDirection();
+                }
                 chargingLob = false;
-                CheckDirection();
             }
             if (Input.GetButtonUp("C" + player))
             {
+                if (chargingSmash)
+                {
+                    CheckDirection();
+                }
                 chargingSmash = false;
-                CheckDirection();
             }
             if (doingDrive && simShot == null)
             {
