@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BallMover_FT : MonoBehaviour
 {
@@ -14,28 +13,19 @@ public class BallMover_FT : MonoBehaviour
     public float vCOR;
     public float hCOR;
     public float minheight;
-    Vector3 sPointi;
-    Vector3 ePointi;
-    float heighti;
-    float stepi;
     public bool rolling;
     public float aproxAccuracy;
     public float aproxThreshold;
-    public bool noAproximation;
     public bool active = true;
     // Start is called before the first frame update
     void Start()
     {
-        UpdateQuadratic();
-        sPointi = sPoint.position;
-        ePointi = ePoint.position;
-        heighti = height;
-        stepi = stepSize;
+        
     }
     float a;
     float r1;
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (active)
         {
@@ -50,10 +40,6 @@ public class BallMover_FT : MonoBehaviour
                 stepSize -= hCOR * Time.deltaTime;
                 stepSize = Mathf.Clamp(stepSize, 0f, Mathf.Infinity);
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene("Game(FT)");
-            }
             transform.position = new Vector3(Mathf.LerpUnclamped(sPoint.position.x, ePoint.position.x, step), transform.position.y, Mathf.LerpUnclamped(sPoint.position.z, ePoint.position.z, step));
             step += stepSize * Time.deltaTime;
             float x = Vector3.Distance(sPoint.position, new Vector3(transform.position.x, sPoint.position.y, transform.position.z));
@@ -66,9 +52,15 @@ public class BallMover_FT : MonoBehaviour
         CreateQuadratic();
         return F(x);
     }
-    public void UpdateQuadratic()
+    public void UpdateQuadratic(bool smash = false)
     {
-        if (sPoint.position.y == ePoint.position.y || noAproximation)
+        if (smash)
+        {
+            Vector3 crudeSpoint = sPoint.position + ((ePoint.position - sPoint.position).normalized * -Vector3.Distance(sPoint.position, new Vector3(ePoint.position.x, sPoint.position.y, ePoint.position.z)));
+            sPoint.position = new Vector3(crudeSpoint.x, ePoint.position.y, crudeSpoint.z);
+            step = 0.5f;
+        }
+        if (sPoint.position.y == ePoint.position.y)
         {
             r1 = Vector3.Distance(sPoint.position, ePoint.position);
             CreateQuadratic();
@@ -88,10 +80,11 @@ public class BallMover_FT : MonoBehaviour
         }
         else
         {
-            shot.ShotFinder(0, 0, false, gameObject, true);
+            //BORRAME
+            shot.FindShot(0, 0, ShotType.drive, gameObject, true);
         }
     }
-    public bool falisafe = true;
+    public bool failSafe;
     void ApproximateQuadratic()
     {
         int counter = 0;
@@ -109,11 +102,12 @@ public class BallMover_FT : MonoBehaviour
             {
                 r1 -= aproxAccuracy * (BuildAndRun(qEPoint.x, r1) - qEPoint.y);
             }
-            if(counter > 1000 && falisafe)
+            if(counter > 10000 && failSafe)
             {
-                noAproximation = true;
+                Destroy(gameObject);
+                break;
             }
-        } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold && !noAproximation);
+        } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold);
         CreateQuadratic();
     }
 
@@ -127,17 +121,18 @@ public class BallMover_FT : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             height *= vCOR;
-            float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR*(1+vCOR)*height, 0f, Mathf.Infinity);
+            float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR * (1 + vCOR) * height, 0f, Mathf.Infinity);
             Vector3 direction = (ePoint.position - sPoint.position).normalized;
-            sPoint.position = new Vector3(transform.position.x, other.transform.parent.position.y + 0.5f, transform.position.z);
+            sPoint.position = new Vector3(transform.position.x, other.transform.position.y + 0.5f, transform.position.z);
             Vector3 displacement = direction * distance;
-            ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.parent.position.y + 0.5f, displacement.z + sPoint.position.z);
+            ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.position.y + 0.5f, displacement.z + sPoint.position.z);
             UpdateQuadratic();
             step = 0f;
         }
-        else
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
-            shot.ShotFinder(0, 0, false, gameObject, true);
+            //BORRAME
+            shot.FindShot(0, 0, ShotType.drive, gameObject, true);
         }
     }
 }
