@@ -329,8 +329,6 @@ public class PlayerController_FT : MonoBehaviour
                             }
                             else
                             {
-                                power = driveRotation;
-                                doingDrive = true;
                                 driveRotation = 0;
                                 SlowMotion(1);
                             }
@@ -338,7 +336,7 @@ public class PlayerController_FT : MonoBehaviour
                     }
                     if (chargingDrive)
                     {
-                        SlowMotion(1 / timeSlow);
+                        //SlowMotion(1 / timeSlow);
                         driveRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                         racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, driveRotation), 0);
                     }
@@ -430,7 +428,7 @@ public class PlayerController_FT : MonoBehaviour
                 }
                 if (chargingSmash)
                 {
-                    SlowMotion(1 / timeSlow);
+                    //SlowMotion(1 / timeSlow);
                     smashRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, smashRotation));
                 }
@@ -467,7 +465,9 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     CheckDirection();
                 }
+                power = driveRotation;
                 chargingDrive = false;
+                doingDrive = true;
             }
             if (Input.GetButtonUp("B" + player))
             {
@@ -475,6 +475,8 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     CheckDirection();
                 }
+                power = driveRotation;
+                doingDrive = true;
                 chargingLob = false;
             }
             if (Input.GetButtonUp("C" + player))
@@ -483,11 +485,13 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     CheckDirection();
                 }
+                power = smashRotation;
+                doingSmash = true;
                 chargingSmash = false;
             }
             if (doingDrive && simShot == null)
             {
-                driveRotation += Time.deltaTime * racketSpeed;
+                //driveRotation += Time.deltaTime * racketSpeed;
                 racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, driveRotation), 0);
                 if (hitManager.hColliders[1] != null)
                 {
@@ -505,7 +509,7 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (doingLob && simShot == null)
             {
-                lobRotation += Time.deltaTime * racketSpeed;
+                //lobRotation += Time.deltaTime * racketSpeed;
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, lobRotation));
                 if (hitManager.hColliders[2] != null)
                 {
@@ -523,7 +527,7 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (doingSmash && simShot == null)
             {
-                smashRotation += Time.deltaTime * racketSpeed;
+                //smashRotation += Time.deltaTime * racketSpeed;
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, smashRotation));
                 if (hitManager.hColliders[0] != null)
                 {
