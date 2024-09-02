@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1025,6 +1025,7 @@ MonoBehaviour:
   serve: 0
   initialStepSize: 4
   maxBallHeight: 5
+  startServing: 0
 --- !u!114 &645166232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,10 +1038,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1836c18bb041aa04a95defd7f5e96f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballHit: 200
   ball: {fileID: 1639290137}
   driveHeight: 12
   lobHeight: 20
   stepSize: 0.7
+  finishedHit: 0
 --- !u!1 &800455120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,7 +1788,6 @@ MonoBehaviour:
   rolling: 0
   aproxAccuracy: 0.01
   aproxThreshold: 0.001
-  noAproximation: 0
   active: 1
   failSafe: 0
 --- !u!54 &1639290138
@@ -1912,7 +1914,9 @@ MonoBehaviour:
   racket: {fileID: 1973305278}
   racketPivot: {fileID: 886490317}
   gameManager: {fileID: 645166231}
+  shot: {fileID: 0}
   hitManager: {fileID: 3162515174754375576}
+  simShot: {fileID: 0}
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2297,7 +2301,9 @@ MonoBehaviour:
   racket: {fileID: 1415840530}
   racketPivot: {fileID: 2092556755}
   gameManager: {fileID: 645166231}
+  shot: {fileID: 0}
   hitManager: {fileID: 6067811059419904809}
+  simShot: {fileID: 0}
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
