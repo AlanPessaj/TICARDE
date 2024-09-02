@@ -13,6 +13,7 @@ public class ShotManager_FT : MonoBehaviour
     public float lobHeight;
     public float stepSize;
     public bool finishedHit;
+    public GameObject court;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,18 +37,22 @@ public class ShotManager_FT : MonoBehaviour
     {
         Scene simulationScene = SceneManager.CreateScene("simulation " + player.name);
         Physics.autoSimulation = false;
-        float[] results = new float[3];
+        float[] results = null;
         player.GetComponent<Rigidbody>().useGravity = false;
         GameObject cPlayer = Instantiate(player, player.transform.position + new Vector3(0, 0, 1000), player.transform.rotation);
-        Destroy(cPlayer.GetComponent<MeshRenderer>());
-        Destroy(cPlayer.GetComponent<Rigidbody>());
-        player.GetComponent<Rigidbody>().useGravity = true;
-        GameObject cBall;
+        GameObject cCourt = Instantiate(court, court.transform.position + new Vector3(0, 0, 1000), court.transform.rotation);
         GameObject cSPoint = Instantiate(ball.sPoint.gameObject, ball.sPoint.transform.position + new Vector3(0, 0, 1000), ball.sPoint.transform.rotation);
         GameObject cEPoint = Instantiate(ball.ePoint.gameObject, ball.ePoint.transform.position + new Vector3(0, 0, 1000), ball.ePoint.transform.rotation);
+        cCourt.transform.localScale = court.transform.lossyScale;
+        Destroy(cPlayer.GetComponent<MeshRenderer>());
+        Destroy(cPlayer.GetComponent<Rigidbody>());
+        Destroy(cCourt.GetComponent<MeshRenderer>());
+        player.GetComponent<Rigidbody>().useGravity = true;
+        GameObject cBall;
         SceneManager.MoveGameObjectToScene(cPlayer, simulationScene);
         SceneManager.MoveGameObjectToScene(cSPoint, simulationScene);
         SceneManager.MoveGameObjectToScene(cEPoint, simulationScene);
+        SceneManager.MoveGameObjectToScene(cCourt, simulationScene);
         if (gameManager.serve == int.Parse(player.name.Substring(player.name.Length - 1)))
         {
             cBall = cPlayer.transform.GetChild(2).gameObject;
@@ -76,13 +81,13 @@ public class ShotManager_FT : MonoBehaviour
             cPlayer.transform.GetChild(0).gameObject.GetComponent<HitManager_FT>().Update();
             if (ballHit)
             {
+                results = new float[3];
                 SceneManager.UnloadSceneAsync(simulationScene);
                 Physics.autoSimulation = true;
                 results[0] = i;
                 //results[1] = ballHit[0];
                 //results[2] = ballHit[1];
-                //ballHit = null;
-                return results;
+                break;
             }
             if (finishedHit)
             {
@@ -92,7 +97,8 @@ public class ShotManager_FT : MonoBehaviour
         }
         SceneManager.UnloadSceneAsync(simulationScene);
         Physics.autoSimulation = true;
-        return null;
+        ballHit = false;
+        return results;
     }
 
     public void FindShot(int direction, float power, ShotType type, GameObject player, bool random = false)
@@ -105,7 +111,7 @@ public class ShotManager_FT : MonoBehaviour
             //player.transform.position = new Vector3(Random.Range(0f, 51f), 0, Random.Range(-31, 31));
             player.transform.eulerAngles = new Vector3(0, 180, 0);
             //direction = Random.Range(-2, 3);
-            power = Random.Range(40f, 80f);
+            power = 40f;
             type = ShotType.lob;
         }
         if (player.transform.eulerAngles.y == 180)

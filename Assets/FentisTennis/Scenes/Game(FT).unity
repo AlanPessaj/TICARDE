@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1038,12 +1038,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1836c18bb041aa04a95defd7f5e96f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballHit: []
+  ballHit: 0
   ball: {fileID: 1639290137}
   driveHeight: 12
   lobHeight: 20
   stepSize: 0.7
   finishedHit: 0
+  court: {fileID: 1748812694}
 --- !u!1 &800455120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,6 +1918,9 @@ MonoBehaviour:
   shot: {fileID: 0}
   hitManager: {fileID: 3162515174754375576}
   simShot: {fileID: 0}
+  doingDrive: 0
+  doingLob: 0
+  doingSmash: 0
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2304,6 +2308,9 @@ MonoBehaviour:
   shot: {fileID: 0}
   hitManager: {fileID: 6067811059419904809}
   simShot: {fileID: 0}
+  doingDrive: 0
+  doingLob: 0
+  doingSmash: 0
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
