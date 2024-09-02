@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController_FT : MonoBehaviour
 {
     public int movementSpeed;
-    float timer;
     public int racketSpeed;
     public GameObject racket;
     public GameObject racketPivot;
@@ -195,7 +194,7 @@ public class PlayerController_FT : MonoBehaviour
         }
     }
     
-    void SlowMotion(float targetSpeed)
+    public void SlowMotion(float targetSpeed)
     {
         if (Time.timeScale != targetSpeed && simShot == null)
         {
@@ -340,7 +339,6 @@ public class PlayerController_FT : MonoBehaviour
                     if (chargingDrive)
                     {
                         SlowMotion(1 / timeSlow);
-                        timer += Time.deltaTime;
                         driveRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                         racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, driveRotation), 0);
                     }
@@ -391,7 +389,6 @@ public class PlayerController_FT : MonoBehaviour
                     if (chargingLob)
                     {
                         SlowMotion(1 / timeSlow);
-                        timer += Time.deltaTime;
                         lobRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                         racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -45, lobRotation));
                     }
@@ -434,7 +431,6 @@ public class PlayerController_FT : MonoBehaviour
                 if (chargingSmash)
                 {
                     SlowMotion(1 / timeSlow);
-                    timer += Time.deltaTime;
                     smashRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, smashRotation));
                 }
@@ -446,6 +442,24 @@ public class PlayerController_FT : MonoBehaviour
             if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0)
             {
                 SlowMotion(1);
+                if (isPlayer1)
+                {
+                    if (gameManager.ballmover.transform.position.x < transform.position.x - 2)
+                    {
+                        doingDrive = driveRotation != 0;
+                        doingLob = lobRotation != 0;
+                        doingSmash = smashRotation != 0;
+                    }
+                }
+                else
+                {
+                    if (gameManager.ballmover.transform.position.x > transform.position.x + 2)
+                    {
+                        doingDrive = driveRotation != 0;
+                        doingLob = lobRotation != 0;
+                        doingSmash = smashRotation != 0;
+                    }
+                }
             }
             if (Input.GetButtonUp("A" + player))
             {

@@ -1920,7 +1920,7 @@ MonoBehaviour:
   simShot: {fileID: 0}
   timeSlow: 7
   minPower: 0
-  maxPower: 70
+  maxPower: 80
   doingDrive: 0
   doingLob: 0
   doingSmash: 0
@@ -2314,7 +2314,7 @@ MonoBehaviour:
   simShot: {fileID: 0}
   timeSlow: 7
   minPower: 0
-  maxPower: 70
+  maxPower: 80
   doingDrive: 0
   doingLob: 0
   doingSmash: 0

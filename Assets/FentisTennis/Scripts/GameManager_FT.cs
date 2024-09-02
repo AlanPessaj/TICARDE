@@ -32,7 +32,7 @@ public class GameManager_FT : MonoBehaviour
     {
         if (player1.GetComponent<PlayerController_FT>().slowMotion && player2.GetComponent<PlayerController_FT>().slowMotion)
         {
-
+            player1.GetComponent<PlayerController_FT>().SlowMotion(1);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
