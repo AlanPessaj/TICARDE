@@ -25,7 +25,7 @@ public class ShotManager_FT : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            Debug.Log(PredictShot(GameObject.Find("Player1"), new bool[3]));
+            Debug.Log(PredictShot(GameObject.Find("Player1"), ShotType.drive));
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -33,7 +33,7 @@ public class ShotManager_FT : MonoBehaviour
         }
     }
 
-    public float[] PredictShot(GameObject player, bool[] shot)
+    public float[] PredictShot(GameObject player, ShotType type)
     {
         Scene simulationScene = SceneManager.CreateScene("simulation " + player.name);
         Physics.autoSimulation = false;
@@ -48,6 +48,18 @@ public class ShotManager_FT : MonoBehaviour
         Destroy(cPlayer.GetComponent<Rigidbody>());
         Destroy(cCourt.GetComponent<MeshRenderer>());
         player.GetComponent<Rigidbody>().useGravity = true;
+        switch (type)
+        {
+            case ShotType.drive:
+                cPlayer.GetComponent<PlayerController_FT>().doingDrive = true;
+            break;
+            case ShotType.lob:
+                cPlayer.GetComponent<PlayerController_FT>().doingLob = true;
+                break;
+            case ShotType.smash:
+                cPlayer.GetComponent<PlayerController_FT>().doingSmash = true;
+                break;
+        }
         GameObject cBall;
         SceneManager.MoveGameObjectToScene(cPlayer, simulationScene);
         SceneManager.MoveGameObjectToScene(cSPoint, simulationScene);
@@ -65,13 +77,10 @@ public class ShotManager_FT : MonoBehaviour
         cBall.GetComponent<BallMover_FT>().sPoint = cSPoint.transform;
         cBall.GetComponent<BallMover_FT>().ePoint = cEPoint.transform;
         cBall.GetComponent<BallMover_FT>().UpdateQuadratic();
-        cBall.GetComponent<BallMover_FT>().active = false;
+        //cBall.GetComponent<BallMover_FT>().active = false;
         cPlayer.name = player.name;
         cPlayer.GetComponent<PlayerController_FT>().simShot = this;
         cPlayer.GetComponent<PlayerController_FT>().shot = null;
-        cPlayer.GetComponent<PlayerController_FT>().doingDrive = shot[0];
-        cPlayer.GetComponent<PlayerController_FT>().doingLob = shot[1];
-        cPlayer.GetComponent<PlayerController_FT>().doingSmash = shot[2];
         Destroy(cBall.GetComponent<MeshRenderer>());
         for (int i = 1; i < 100; i++)
         {
