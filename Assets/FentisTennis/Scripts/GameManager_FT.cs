@@ -30,6 +30,10 @@ public class GameManager_FT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player1.GetComponent<PlayerController_FT>().slowMotion && player2.GetComponent<PlayerController_FT>().slowMotion)
+        {
+            player1.GetComponent<PlayerController_FT>().SlowMotion(1);
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("Game(FT)");
@@ -79,12 +83,6 @@ public class GameManager_FT : MonoBehaviour
         ballmover.transform.parent = player.transform;
         ballmover.transform.localPosition = new Vector3(1.5f, 0, 0);
         readyToServe = true;
-
-
-        //salida
-        //serve = 0;
-        //ballmover.active = true;
-        //ballmover.transform.parent = null;
     }
 
     public void EndServe()

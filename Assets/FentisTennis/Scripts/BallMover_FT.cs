@@ -121,11 +121,11 @@ public class BallMover_FT : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             height *= vCOR;
-            float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR*(1+vCOR)*height, 0f, Mathf.Infinity);
+            float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR * (1 + vCOR) * height, 0f, Mathf.Infinity);
             Vector3 direction = (ePoint.position - sPoint.position).normalized;
-            sPoint.position = new Vector3(transform.position.x, other.transform.parent.position.y + 0.5f, transform.position.z);
+            sPoint.position = new Vector3(transform.position.x, other.transform.position.y + 0.5f, transform.position.z);
             Vector3 displacement = direction * distance;
-            ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.parent.position.y + 0.5f, displacement.z + sPoint.position.z);
+            ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.position.y + 0.5f, displacement.z + sPoint.position.z);
             UpdateQuadratic();
             step = 0f;
         }
