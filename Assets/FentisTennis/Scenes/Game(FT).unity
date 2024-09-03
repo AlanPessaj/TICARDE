@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -991,7 +991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 2012602343}
   player2: {fileID: 1884093392}
-  camera: {fileID: 61145146}
+  camera: {fileID: 61145148}
 --- !u!4 &645166230
 Transform:
   m_ObjectHideFlags: 0
@@ -1038,12 +1038,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1836c18bb041aa04a95defd7f5e96f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballHit: 200
+  ballHit: 0
   ball: {fileID: 1639290137}
   driveHeight: 12
   lobHeight: 20
   stepSize: 0.7
   finishedHit: 0
+  court: {fileID: 1748812694}
 --- !u!1 &800455120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,6 +1918,13 @@ MonoBehaviour:
   shot: {fileID: 0}
   hitManager: {fileID: 3162515174754375576}
   simShot: {fileID: 0}
+  timeSlow: 7
+  minPower: 30
+  maxPower: 60
+  doingDrive: 0
+  doingLob: 0
+  doingSmash: 0
+  slowMotion: 0
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2000,7 +2008,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884093392}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 46.2, y: 4, z: 31}
+  m_LocalPosition: {x: 46.2, y: 4, z: 0}
   m_LocalScale: {x: 2, y: 4, z: 2}
   m_Children:
   - {fileID: 3162515174754375579}
@@ -2276,7 +2284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012602343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.4, y: 4, z: -1.7}
+  m_LocalPosition: {x: -34.1, y: 4, z: 0}
   m_LocalScale: {x: 2, y: 4, z: 2}
   m_Children:
   - {fileID: 6067811059419904810}
@@ -2304,6 +2312,13 @@ MonoBehaviour:
   shot: {fileID: 0}
   hitManager: {fileID: 6067811059419904809}
   simShot: {fileID: 0}
+  timeSlow: 7
+  minPower: 30
+  maxPower: 60
+  doingDrive: 0
+  doingLob: 0
+  doingSmash: 0
+  slowMotion: 0
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
