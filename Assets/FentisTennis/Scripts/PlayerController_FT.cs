@@ -175,7 +175,7 @@ public class PlayerController_FT : MonoBehaviour
 
     void CheckPrediction()
     {
-        if (doingDrive && hitManager.hColliders[1] != null)
+        /*if (doingDrive && hitManager.hColliders[1] != null)
         {
             simShot.ballHit = true;
         }
@@ -186,7 +186,7 @@ public class PlayerController_FT : MonoBehaviour
         if (doingSmash && hitManager.hColliders[0] != null)
         {
             simShot.ballHit = true;
-        }
+        */
     }
     
     public void SlowMotion(float targetSpeed)
@@ -303,7 +303,7 @@ public class PlayerController_FT : MonoBehaviour
                 //A
                 if (!doingSmash && !doingLob)
                 {
-                    if (Input.GetButtonDown("A" + player))
+                    /*if (Input.GetButtonDown("A" + player))
                     {
                         if (simShot == null)
                         {
@@ -320,7 +320,7 @@ public class PlayerController_FT : MonoBehaviour
                                 //animacion de no pegarle
                             }
                         }
-                    }
+                    }*/
                 }
             }
 
@@ -338,7 +338,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     if (Input.GetButtonDown("B" + player))
                     {
-                        if (simShot == null)
+                        /*if (simShot == null)
                         {
                             float[] results = shot.PredictShot(gameObject, ShotType.lob);
                             if (true)
@@ -353,7 +353,7 @@ public class PlayerController_FT : MonoBehaviour
                             {
                                 //animacion de no pegarle
                             }
-                        }
+                        }*/
                     }
                 }
             }
@@ -365,7 +365,7 @@ public class PlayerController_FT : MonoBehaviour
             {
                 if (Input.GetButtonDown("C" + player))
                 {
-                    if (simShot == null)
+                    /*if (simShot == null)
                     {
                         float[] results = shot.PredictShot(gameObject, ShotType.smash);
                         if (true)
@@ -379,7 +379,7 @@ public class PlayerController_FT : MonoBehaviour
                         {
                             //animacion de no pegarle
                         }
-                    }
+                    }*/
                 }
             }
         }
