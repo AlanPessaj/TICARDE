@@ -8,7 +8,7 @@ public class ShotManager_FT : MonoBehaviour
     public bool ballHit;
     public BallMover_FT ball;
     GameManager_FT gameManager;
-    float lateralDistance = 8.48f;
+    float lateralDistance = 12.4f;
     public float driveHeight;
     public float lobHeight;
     public float stepSize;
