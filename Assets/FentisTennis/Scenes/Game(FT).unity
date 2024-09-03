@@ -991,7 +991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 2012602343}
   player2: {fileID: 1884093392}
-  camera: {fileID: 61145148}
+  camera: {fileID: 61145146}
 --- !u!4 &645166230
 Transform:
   m_ObjectHideFlags: 0
@@ -1044,7 +1044,6 @@ MonoBehaviour:
   lobHeight: 20
   stepSize: 0.7
   finishedHit: 0
-  court: {fileID: 1748812694}
 --- !u!1 &800455120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,13 +1917,6 @@ MonoBehaviour:
   shot: {fileID: 0}
   hitManager: {fileID: 3162515174754375576}
   simShot: {fileID: 0}
-  timeSlow: 7
-  minPower: 30
-  maxPower: 60
-  doingDrive: 0
-  doingLob: 0
-  doingSmash: 0
-  slowMotion: 0
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2312,13 +2304,6 @@ MonoBehaviour:
   shot: {fileID: 0}
   hitManager: {fileID: 6067811059419904809}
   simShot: {fileID: 0}
-  timeSlow: 7
-  minPower: 30
-  maxPower: 60
-  doingDrive: 0
-  doingLob: 0
-  doingSmash: 0
-  slowMotion: 0
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
