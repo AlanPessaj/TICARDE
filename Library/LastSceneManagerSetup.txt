@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/arte.unity
+=======
+- path: Assets/FentisTennis/Scenes/Game(FT).unity
+>>>>>>> 00b039cad6ebe51b5cdae3dbcac256034987512c
   isLoaded: 1
   isActive: 1

@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player1;
     public GameObject player2;
-    new public GameObject camera;
+    new public Camera camera;
     Vector3 initialPosition;
     Vector3 averagePosition;
     Vector3 initAveragePosition;
@@ -37,5 +37,6 @@ public class CameraController : MonoBehaviour
         Vector3 finalPosition = averagePosition + initialPosition;
         camera.transform.position = new Vector3(finalPosition.x, finalPosition.y, Mathf.Clamp(finalPosition.z, -21, 21));
         counter++;
+        camera.fieldOfView = Mathf.Lerp(50, 60, Time.timeScale);
     }
 }

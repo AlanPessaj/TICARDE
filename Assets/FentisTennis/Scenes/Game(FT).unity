@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1910,21 +1910,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d5eabc6c7ca8b4c9ab28a3d0af1afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 25
+  movementSpeed: 30
   racketSpeed: 6
   racket: {fileID: 1973305278}
   racketPivot: {fileID: 886490317}
   gameManager: {fileID: 645166231}
-  shot: {fileID: 0}
+  shot: {fileID: 645166232}
   hitManager: {fileID: 3162515174754375576}
   simShot: {fileID: 0}
-  timeSlow: 7
-  minPower: 30
-  maxPower: 60
+  timeSlow: 0
+  minPower: 0
+  maxPower: 0
   doingDrive: 0
   doingLob: 0
   doingSmash: 0
-  slowMotion: 0
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2309,16 +2308,15 @@ MonoBehaviour:
   racket: {fileID: 1415840530}
   racketPivot: {fileID: 2092556755}
   gameManager: {fileID: 645166231}
-  shot: {fileID: 0}
+  shot: {fileID: 645166232}
   hitManager: {fileID: 6067811059419904809}
   simShot: {fileID: 0}
   timeSlow: 7
-  minPower: 30
-  maxPower: 60
+  minPower: 20
+  maxPower: 80
   doingDrive: 0
   doingLob: 0
   doingSmash: 0
-  slowMotion: 0
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
