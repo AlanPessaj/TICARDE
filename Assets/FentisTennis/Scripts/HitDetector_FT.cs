@@ -10,16 +10,7 @@ public class HitDetector_FT : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
         {
-            if (colNumber != 4)
-            {
-                hitManager.hColliders[colNumber] = GetComponent<Collider>();
-            }
-            else
-            {
-                hitManager.hColliders[0] = GetComponent<Collider>();
-                hitManager.hColliders[1] = GetComponent<Collider>();
-                hitManager.hColliders[2] = GetComponent<Collider>();
-            }
+            hitManager.hColliders[colNumber] = GetComponent<Collider>();
         }
     }
 }
