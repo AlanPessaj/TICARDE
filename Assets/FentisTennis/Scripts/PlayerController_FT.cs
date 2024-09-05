@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerController_FT : MonoBehaviour
 {
     public float movementSpeed;
@@ -411,6 +410,8 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, driveRotation), 0);
                 if (hitManager.hColliders[1] != null)
                 {
+                    shot.ball.bounced = false;
+                    shot.ball.wasPlayer1 = isPlayer1;
                     gameObject.name = gameObject.name;
                     shot.FindShot(direction, ShotType.drive, isPlayer1);
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
@@ -434,6 +435,8 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, lobRotation));
                 if (hitManager.hColliders[2] != null)
                 {
+                    shot.ball.bounced = false;
+                    shot.ball.wasPlayer1 = isPlayer1;
                     shot.FindShot(direction, ShotType.lob, isPlayer1);
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                     racket.transform.Rotate(0, 0, -180);
@@ -467,6 +470,8 @@ public class PlayerController_FT : MonoBehaviour
                     {
                         shot.FindShot(direction, ShotType.smash, isPlayer1);
                     }
+                    shot.ball.bounced = false;
+                    shot.ball.wasPlayer1 = isPlayer1;
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                     racket.transform.localPosition = new Vector3(0, 0, -3f);
                     smashRotation = 0;

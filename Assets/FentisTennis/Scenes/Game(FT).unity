@@ -1777,6 +1777,8 @@ MonoBehaviour:
   aproxAccuracy: 0.01
   aproxThreshold: 0.001
   active: 1
+  wasPlayer1: 1
+  bounced: 0
   failSafe: 1
 --- !u!54 &1639290138
 Rigidbody:
