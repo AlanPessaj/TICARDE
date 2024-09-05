@@ -177,16 +177,16 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
-                if (Input.GetButtonDown("A"))
+                if (Input.GetButtonDown("A2"))
                 {
                     gameManager.ThrowBall();
                 }
                 CheckButtons(true);
-                transform.Translate(movement.normalized / 4 * Time.deltaTime * movementSpeed);
+                transform.Translate(movement.normalized / 4 * Time.deltaTime * -movementSpeed);
             }
             else
             {
-                transform.Translate(movement.normalized * Time.deltaTime * movementSpeed);
+                transform.Translate(movement.normalized * Time.deltaTime * -movementSpeed);
             }
         }
         if (!canHit)
