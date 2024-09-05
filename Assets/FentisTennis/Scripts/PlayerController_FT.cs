@@ -161,19 +161,19 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (gameManager.serve == 2)
             {
-                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x > 45)
+                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50)
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z > 0)
+                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z < 30)
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x < 50)
+                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 45)
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z < 30)
+                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0)
                 {
                     movement += new Vector3(0, 0, -1);
                 }
