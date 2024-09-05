@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController_FT : MonoBehaviour
 {
-    public int movementSpeed;
+    public float movementSpeed;
     float timer;
     public int racketSpeed;
     public GameObject racket;
@@ -23,8 +23,8 @@ public class PlayerController_FT : MonoBehaviour
         timeSlow += 1;
         isPlayer1 = gameObject.name == "Player1";
         shot = gameManager.gameObject.GetComponent<ShotManager_FT>();
+        speedConst = movementSpeed;
     }
-    float power;
     int direction;
     float driveRotation;
     float lobRotation;
@@ -32,9 +32,18 @@ public class PlayerController_FT : MonoBehaviour
     public bool doingDrive;
     public bool doingLob;
     public bool doingSmash;
+    float speedConst;
     // Update is called once per frame
     public void Update()
     {
+        if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0)
+        {
+            movementSpeed = 0;
+        }
+        else
+        {
+            movementSpeed = speedConst;
+        }
         if (isPlayer1)
         {
             if (gameManager.serve == 1)
@@ -302,22 +311,13 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     if (Input.GetButtonDown("A" + player))
                     {
-                            if (driveRotation == 0)
-                            {
-                                    racket.transform.Rotate(-90, 0, 0);
-                                    //empezar a moverse
-                                    Debug.Log("drive");
-                            }
-                            else
-                            {
-                                power = driveRotation;
-                                doingDrive = true;
-                                driveRotation = 0;
-                            }
+                        racket.transform.Rotate(-90, 0, 0);
+                        //empezar a moverse
+                        Debug.Log("drive");
                     }
-                        timer += Time.deltaTime;
-                        driveRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
-                        racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, driveRotation), 0);
+                    timer += Time.deltaTime;
+                    driveRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
+                    racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, driveRotation), 0);
                 }
             }
 
@@ -335,23 +335,14 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     if (Input.GetButtonDown("B" + player))
                     {
-                            if (lobRotation == 0)
-                            {
-                                    racket.transform.Rotate(0, 0, 180);
-                                    racket.transform.localPosition = new Vector3(0, -0.25f, -3f);
-                                    //empezar a moverse
-                                    Debug.Log("lob");
-                            }
-                            else
-                            {
-                                power = lobRotation;
-                                doingLob = true;
-                                lobRotation = 0;
-                            }
+                        racket.transform.Rotate(0, 0, 180);
+                        racket.transform.localPosition = new Vector3(0, -0.25f, -3f);
+                        //empezar a moverse
+                        Debug.Log("lob");
                     }
-                        timer += Time.deltaTime;
-                        lobRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
-                        racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -45, lobRotation));
+                    timer += Time.deltaTime;
+                    lobRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
+                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -45, lobRotation));
                 }
             }
         }
@@ -362,23 +353,13 @@ public class PlayerController_FT : MonoBehaviour
             {
                 if (Input.GetButtonDown("C" + player))
                 {
-                        if (smashRotation == 0)
-                        {
-                                racket.transform.localPosition = new Vector3(0, 1f, -3f);
-                                //empezar a moverse
-                                Debug.Log("smash");
-                        }
-                        else
-                        {
-                            power = smashRotation;
-                            doingSmash = true;
-                            smashRotation = 0;
-                        }
-                    
+                    racket.transform.localPosition = new Vector3(0, 1f, -3f);
+                    //empezar a moverse
+                    Debug.Log("smash");
                 }
-                    timer += Time.deltaTime;
-                    smashRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, smashRotation));
+                timer += Time.deltaTime;
+                smashRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
+                racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, smashRotation));
             }
         }
         if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
@@ -387,14 +368,20 @@ public class PlayerController_FT : MonoBehaviour
             if (Input.GetButtonUp("A" + player))
             {
                 CheckDirection();
+                doingDrive = true;
+                driveRotation = 0;
             }
             if (Input.GetButtonUp("B" + player))
             {
                 CheckDirection();
+                doingLob = true;
+                lobRotation = 0;
             }
             if (Input.GetButtonUp("C" + player))
             {
                 CheckDirection();
+                doingSmash = true;
+                smashRotation = 0;
             }
             if (doingDrive && simShot == null)
             {
@@ -403,7 +390,7 @@ public class PlayerController_FT : MonoBehaviour
                 if (hitManager.hColliders[1] != null)
                 {
                     gameObject.name = gameObject.name;
-                    shot.FindShot(direction, Mathf.Lerp(minPower, maxPower, power), ShotType.drive, gameObject);
+                    shot.FindShot(direction, ShotType.drive, isPlayer1);
                     driveRotation = 2;
                 }
                 if (driveRotation >= 1)
@@ -420,7 +407,7 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, lobRotation));
                 if (hitManager.hColliders[2] != null)
                 {
-                    shot.FindShot(direction, Mathf.Lerp(minPower, maxPower, power), ShotType.lob, gameObject);
+                    shot.FindShot(direction, ShotType.lob, isPlayer1);
                     lobRotation = 2;
                 }
                 if (lobRotation >= 1)
@@ -438,15 +425,14 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, smashRotation));
                 if (hitManager.hColliders[0] != null)
                 {
-                    gameObject.name = gameObject.name;
                     if (serve)
                     {
                         gameManager.EndServe();
-                        shot.FindShot(-2, Mathf.Lerp(minPower, maxPower, power), ShotType.smash, gameObject);
+                        shot.FindShot(-2, ShotType.smash, isPlayer1);
                     }
                     else
                     {
-                        shot.FindShot(direction, Mathf.Lerp(minPower, maxPower, power), ShotType.smash, gameObject);
+                        shot.FindShot(direction, ShotType.smash, isPlayer1);
                     }
                     smashRotation = 2;
                 }
