@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/FentFighter/Scenes/Game(FF).unity
-  isLoaded: 1
-  isActive: 1
