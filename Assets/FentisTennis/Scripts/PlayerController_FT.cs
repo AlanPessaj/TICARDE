@@ -387,13 +387,13 @@ public class PlayerController_FT : MonoBehaviour
         if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //NONE
-            if (Input.GetButtonUp("A" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit)
+            if (Input.GetButtonUp("A" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit && !serve)
             {
                 CheckDirection();
                 doingDrive = true;
                 driveRotation = Mathf.InverseLerp(45, -90, racketPivot.transform.eulerAngles.y);
             }
-            if (Input.GetButtonUp("B" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && driveRotation == 0 && canHit)
+            if (Input.GetButtonUp("B" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && driveRotation == 0 && canHit && !serve)
             {
                 CheckDirection();
                 doingLob = true;
