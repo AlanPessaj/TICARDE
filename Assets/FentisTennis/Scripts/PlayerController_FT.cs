@@ -37,6 +37,7 @@ public class PlayerController_FT : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        Vector3 movement = new Vector3();
         if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0 || doingDrive || doingLob || doingSmash)
         {
             movementSpeed = 0;
@@ -47,135 +48,145 @@ public class PlayerController_FT : MonoBehaviour
         }
         if (isPlayer1)
         {
+            if(gameManager.serve == 2)
+            {
+                if (Input.GetKey(KeyCode.W) && transform.position.x < -30)
+                {
+                    movement += new Vector3(1, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.A) && transform.position.z < 0)
+                {
+                    movement += new Vector3(0, 0, 1);
+                }
+                if (Input.GetKey(KeyCode.S) && transform.position.x > -50)
+                {
+                    movement += new Vector3(-1, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.D) && transform.position.z > -30)
+                {
+                    movement += new Vector3(0, 0, -1);
+                }
+            }
+            if (gameManager.serve == 0)
+            {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    movement += new Vector3(1, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    movement += new Vector3(0, 0, 1);
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    movement += new Vector3(-1, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    movement += new Vector3(0, 0, -1);
+                }
+                CheckButtons();
+            }
             if (gameManager.serve == 1)
             {
                 //PLAYER 1
-                if (Input.GetKey(KeyCode.W) && transform.position.x < -45 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.W) && transform.position.x < -45)
                 {
-                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime) / 4, 0, 0), Space.World);
+                    movement += new Vector3(1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.S) && transform.position.x > -50 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.A) && transform.position.z < 0)
                 {
-                    transform.Translate(new Vector3((-movementSpeed * Time.deltaTime) / 4, 0, 0), Space.World);
+                    movement += new Vector3(0, 0, 1);
                 }
-                if (Input.GetKey(KeyCode.A) && transform.position.z < 0 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.S) && transform.position.x > -50)
                 {
-                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)/4), Space.World);
+                    movement += new Vector3(-1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.D) && transform.position.z > -30 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.D) && transform.position.z > -30)
                 {
-                    transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
+                    movement += new Vector3(0, 0, -1);
                 }
                 if (Input.GetButtonDown("A"))
                 {
                     gameManager.ThrowBall();
                 }
                 CheckButtons(true);
+                transform.Translate(movement.normalized / 4 * Time.deltaTime * movementSpeed);
             }
-            else if(gameManager.serve == 2)
+            else
             {
-                if (Input.GetKey(KeyCode.S))
-                {
-                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
-                }
-                if (Input.GetKey(KeyCode.A))
-                {
-                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)), Space.World);
-                }
-                if (Input.GetKey(KeyCode.W) && transform.position.x < -30)
-                {
-                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime), 0, 0), Space.World);
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
-                }
-            }
-            else if (gameManager.serve == 0)
-            {
-                if (Input.GetKey(KeyCode.W))
-                {
-                    transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
-                }
-                if (Input.GetKey(KeyCode.A))
-                {
-                    transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime), Space.World);
-                }
-                if (Input.GetKey(KeyCode.S))
-                {
-                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
-                }
-                CheckButtons();
+                transform.Translate(movement.normalized * Time.deltaTime * movementSpeed);
             }
         }
         else
         {
-            if(gameManager.serve == 2)
+            if (gameManager.serve == 1)
             {
-                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x > 30)
                 {
-                    transform.Translate(new Vector3((movementSpeed * Time.deltaTime)/4, 0, 0), Space.World);
+                    movement += new Vector3(1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z < 30 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z > 0)
                 {
-                    transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)/4), Space.World);
+                    movement += new Vector3(0, 0, 1);
                 }
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 45 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x < 50)
                 {
-                    transform.Translate(new Vector3((-movementSpeed * Time.deltaTime)/4, 0, 0), Space.World);
+                    movement += new Vector3(-1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z < 30)
                 {
-                    transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
+                    movement += new Vector3(0, 0, -1);
+                }
+            }
+            if(gameManager.serve == 0)
+            {
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    movement += new Vector3(1, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    movement += new Vector3(0, 0, 1);
+                }
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    movement += new Vector3(-1, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    movement += new Vector3(0, 0, -1);
+                }
+                CheckButtons();
+            }
+            if (gameManager.serve == 2)
+            {
+                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x > 45)
+                {
+                    movement += new Vector3(1, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z > 0)
+                {
+                    movement += new Vector3(0, 0, 1);
+                }
+                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x < 50)
+                {
+                    movement += new Vector3(-1, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z < 30)
+                {
+                    movement += new Vector3(0, 0, -1);
                 }
                 if (Input.GetButtonDown("A"))
                 {
                     gameManager.ThrowBall();
                 }
                 CheckButtons(true);
+                transform.Translate(movement.normalized / 4 * Time.deltaTime * movementSpeed);
             }
-            else if (gameManager.serve == 1)
+            else
             {
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30)
-                {
-                    transform.Translate(new Vector3(movementSpeed * -1 * Time.deltaTime, 0, 0), Space.World);
-                }
-                if (Input.GetKey(KeyCode.LeftArrow))
-                {
-                    transform.Translate(new Vector3(0, 0, (-movementSpeed * -1 * Time.deltaTime)), Space.World);
-                }
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    transform.Translate(new Vector3((-movementSpeed * -1 * Time.deltaTime), 0, 0), Space.World);
-                }
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
-                    transform.Translate(new Vector3(0, 0, movementSpeed * -1 * Time.deltaTime), Space.World);
-                }
-            }
-            else if(gameManager.serve == 0)
-            {
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
-                }
-                if (Input.GetKey(KeyCode.LeftArrow))
-                {
-                    transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime), Space.World);
-                }
-                if (Input.GetKey(KeyCode.DownArrow))
-                {
-                    transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
-                }
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
-                    transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
-                }
-                CheckButtons();
+                transform.Translate(movement.normalized * Time.deltaTime * movementSpeed);
             }
         }
         if (!canHit)
