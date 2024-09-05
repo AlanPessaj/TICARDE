@@ -18,16 +18,12 @@ public class CameraController : MonoBehaviour
         initAveragePosition = averagePosition;*/
 
     }
-
-    Vector3 offset;
-    int counter;
     // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(initialPosition, camera.transform.position) > 20)
         {
             camera.transform.position = initialPosition;
-            counter = 20;
         }
         camera.transform.position += (ball.position - oldBall) / 10;
         oldBall = ball.position;
