@@ -29,9 +29,6 @@ public class PlayerController_FT : MonoBehaviour
     float driveRotation;
     float lobRotation;
     float smashRotation;
-    bool chargingDrive;
-    bool chargingLob;
-    bool chargingSmash;
     public bool doingDrive;
     public bool doingLob;
     public bool doingSmash;
@@ -43,19 +40,19 @@ public class PlayerController_FT : MonoBehaviour
             if (gameManager.serve == 1)
             {
                 //PLAYER 1
-                if (Input.GetKey(KeyCode.W) && transform.position.x < -45 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.W) && transform.position.x < -45 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
                 {
                     transform.Translate(new Vector3((movementSpeed * Time.deltaTime) / 4, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.S) && transform.position.x > -50 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.S) && transform.position.x > -50 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
                 {
                     transform.Translate(new Vector3((-movementSpeed * Time.deltaTime) / 4, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.A) && transform.position.z < 0 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.A) && transform.position.z < 0 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
                 {
                     transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)/4), Space.World);
                 }
-                if (Input.GetKey(KeyCode.D) && transform.position.z > -30 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.D) && transform.position.z > -30 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
@@ -67,38 +64,38 @@ public class PlayerController_FT : MonoBehaviour
             }
             else if(gameManager.serve == 2)
             {
-                if (Input.GetKey(KeyCode.S) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.S))
                 {
                     transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.A) && transform.position.z < 0 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.A))
                 {
                     transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)), Space.World);
                 }
-                if (Input.GetKey(KeyCode.W) && transform.position.x < -30 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.W) && transform.position.x < -30)
                 {
                     transform.Translate(new Vector3((movementSpeed * Time.deltaTime), 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.D) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.D))
                 {
                     transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
             }
             else if (gameManager.serve == 0)
             {
-                if (Input.GetKey(KeyCode.W) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.W))
                 {
                     transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.A) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.A))
                 {
                     transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
-                if (Input.GetKey(KeyCode.S) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.S))
                 {
                     transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.D) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.D))
                 {
                     transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
@@ -109,19 +106,19 @@ public class PlayerController_FT : MonoBehaviour
         {
             if(gameManager.serve == 2)
             {
-                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
                 {
                     transform.Translate(new Vector3((movementSpeed * Time.deltaTime)/4, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z < 30 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z < 30 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
                 {
                     transform.Translate(new Vector3(0, 0, (movementSpeed * Time.deltaTime)/4), Space.World);
                 }
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 45 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 45 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
                 {
                     transform.Translate(new Vector3((-movementSpeed * Time.deltaTime)/4, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0 && !doingDrive && !doingSmash && !doingLob && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * Time.deltaTime)/4), Space.World);
                 }
@@ -133,47 +130,43 @@ public class PlayerController_FT : MonoBehaviour
             }
             else if (gameManager.serve == 1)
             {
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30)
                 {
                     transform.Translate(new Vector3(movementSpeed * -1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     transform.Translate(new Vector3(0, 0, (-movementSpeed * -1 * Time.deltaTime)), Space.World);
                 }
-                if (Input.GetKey(KeyCode.UpArrow) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.UpArrow))
                 {
                     transform.Translate(new Vector3((-movementSpeed * -1 * Time.deltaTime), 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0 && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.RightArrow))
                 {
                     transform.Translate(new Vector3(0, 0, movementSpeed * -1 * Time.deltaTime), Space.World);
                 }
             }
             else if(gameManager.serve == 0)
             {
-                if (Input.GetKey(KeyCode.UpArrow) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.UpArrow))
                 {
                     transform.Translate(new Vector3(movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     transform.Translate(new Vector3(0, 0, movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
-                if (Input.GetKey(KeyCode.DownArrow) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.DownArrow))
                 {
                     transform.Translate(new Vector3(-movementSpeed * 1 * Time.deltaTime, 0, 0), Space.World);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && !doingDrive && !doingSmash && !doingLob && !chargingDrive && !chargingLob && !chargingSmash && driveRotation == 0 && lobRotation == 0 && smashRotation == 0)
+                if (Input.GetKey(KeyCode.RightArrow))
                 {
                     transform.Translate(new Vector3(0, 0, -movementSpeed * 1 * Time.deltaTime), Space.World);
                 }
                 CheckButtons();
             }
-        }
-        if (simShot != null)
-        {
-            CheckPrediction();
         }
     }
 
@@ -305,43 +298,26 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //A
-                if (!doingSmash && !doingLob && !chargingSmash && !chargingLob && smashRotation == 0 && lobRotation == 0)
+                if (!doingSmash && !doingLob && smashRotation == 0 && lobRotation == 0)
                 {
                     if (Input.GetButtonDown("A" + player))
                     {
-                        if (simShot == null)
-                        {
                             if (driveRotation == 0)
                             {
-                                float[] results = shot.PredictShot(gameObject, ShotType.drive);
-                                if (results != null)
-                                {
-                                    chargingDrive = true;
                                     racket.transform.Rotate(-90, 0, 0);
                                     //empezar a moverse
                                     Debug.Log("drive");
-                                }
-                                else
-                                {
-                                    //animacion de no pegarle
-                                }
                             }
                             else
                             {
                                 power = driveRotation;
                                 doingDrive = true;
                                 driveRotation = 0;
-                                SlowMotion(1);
                             }
-                        }
                     }
-                    if (chargingDrive)
-                    {
-                        SlowMotion(1 / timeSlow);
                         timer += Time.deltaTime;
                         driveRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                         racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, driveRotation), 0);
-                    }
                 }
             }
 
@@ -355,109 +331,69 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //B
-                if (!doingSmash && !doingDrive && !chargingSmash && !chargingDrive && smashRotation == 0 && driveRotation == 0)
+                if (!doingSmash && !doingDrive && smashRotation == 0 && driveRotation == 0)
                 {
                     if (Input.GetButtonDown("B" + player))
                     {
-                        if (simShot == null)
-                        {
                             if (lobRotation == 0)
                             {
-                                float[] results = shot.PredictShot(gameObject, ShotType.lob);
-                                if (results != null)
-                                {
-                                    chargingLob = true;
                                     racket.transform.Rotate(0, 0, 180);
                                     racket.transform.localPosition = new Vector3(0, -0.25f, -3f);
                                     //empezar a moverse
                                     Debug.Log("lob");
-                                }
-                                else
-                                {
-                                    //animacion de no pegarle
-                                }
                             }
                             else
                             {
                                 power = lobRotation;
                                 doingLob = true;
                                 lobRotation = 0;
-                                SlowMotion(1);
                             }
-                        }
                     }
-                    if (chargingLob)
-                    {
-                        SlowMotion(1 / timeSlow);
                         timer += Time.deltaTime;
                         lobRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                         racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -45, lobRotation));
-                    }
                 }
             }
         }
         if (Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //C
-            if (!doingDrive && !chargingDrive && !chargingLob && !doingLob && driveRotation == 0 && lobRotation == 0)
+            if (!doingDrive && !doingLob && driveRotation == 0 && lobRotation == 0)
             {
                 if (Input.GetButtonDown("C" + player))
                 {
-                    if (simShot == null)
-                    {
                         if (smashRotation == 0)
                         {
-                            float[] results = shot.PredictShot(gameObject, ShotType.smash);
-                            if (results != null)
-                            {
-                                chargingSmash = true;
                                 racket.transform.localPosition = new Vector3(0, 1f, -3f);
                                 //empezar a moverse
                                 Debug.Log("smash");
-                            }
-                            else
-                            {
-                                //animacion de no pegarle
-                            }
                         }
                         else
                         {
                             power = smashRotation;
                             doingSmash = true;
                             smashRotation = 0;
-                            SlowMotion(1);
                         }
-                    }
+                    
                 }
-                if (chargingSmash)
-                {
-                    SlowMotion(1 / timeSlow);
                     timer += Time.deltaTime;
                     smashRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, smashRotation));
-                }
             }
         }
         if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //NONE
-            if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0)
-            {
-                SlowMotion(1);
-            }
             if (Input.GetButtonUp("A" + player))
             {
-                chargingDrive = false;
                 CheckDirection();
             }
             if (Input.GetButtonUp("B" + player))
             {
-                chargingLob = false;
                 CheckDirection();
             }
             if (Input.GetButtonUp("C" + player))
             {
-                chargingSmash = false;
                 CheckDirection();
             }
             if (doingDrive && simShot == null)
