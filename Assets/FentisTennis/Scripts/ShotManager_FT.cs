@@ -135,11 +135,15 @@ public class ShotManager_FT : MonoBehaviour
         float initZ = ball.transform.position.z;
         //float finX = initX + Mathf.Sqrt(Mathf.Pow(power, 2) - Mathf.Pow(direction * lateralDistance, 2)) * directionModifier;
         float finX = Random.Range(minPower, maxPower) * directionModifier;
-        if (reset)
+        float finZ;
+        if (serve)
         {
-
+            finZ = Mathf.Lerp(0, 21, Mathf.InverseLerp(-31, 0, ball.transform.position.z * directionModifier)) * directionModifier;
         }
-        float finZ = initZ + (direction * lateralDistance);
+        else
+        {
+            finZ = initZ + (direction * lateralDistance);
+        }
         if (type == ShotType.drive)
         {
             ball.height = driveHeight;

@@ -37,7 +37,7 @@ public class PlayerController_FT : MonoBehaviour
     public void Update()
     {
         Vector3 movement = new Vector3();
-        if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0 || doingDrive || doingLob || doingSmash)
+        if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0 || doingDrive || doingLob || doingSmash || (gameManager.serving && gameManager.serve == int.Parse(gameObject.name.Substring(gameObject.name.Length - 1))))
         {
             movementSpeed = 0;
         }
@@ -121,19 +121,19 @@ public class PlayerController_FT : MonoBehaviour
         {
             if (gameManager.serve == 1)
             {
-                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x > 30)
+                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50)
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z > 0)
+                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z < 30)
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x < 50)
+                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30)
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z < 30)
+                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0)
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -464,7 +464,7 @@ public class PlayerController_FT : MonoBehaviour
                     if (serve)
                     {
                         gameManager.EndServe();
-                        shot.FindShot(-2, ShotType.smash, isPlayer1);
+                        shot.FindShot(-2, ShotType.smash, isPlayer1, true);
                     }
                     else
                     {

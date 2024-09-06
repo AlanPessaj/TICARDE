@@ -12,7 +12,7 @@ public class GameManager_FT : MonoBehaviour
     public int serve = 0;
     bool readyToServe;
     bool throwingBall = false;
-    bool serving;
+    public bool serving;
     float stepSize;
     public float initialStepSize;
     public float maxBallHeight;
