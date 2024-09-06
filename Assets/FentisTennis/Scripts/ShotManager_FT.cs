@@ -31,7 +31,7 @@ public class ShotManager_FT : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
-            FindShot(0, ShotType.drive, false, true);
+            FindShot(0, ShotType.drive, false, false, true);
         }
     }
 
@@ -112,10 +112,10 @@ public class ShotManager_FT : MonoBehaviour
         return results;
     }
 
-    public void FindShot(int direction, ShotType type, bool isPlayer1, bool random = false)
+    public void FindShot(int direction, ShotType type, bool isPlayer1, bool serve = false, bool reset = false)
     {
         int directionModifier = 1;
-        if (random)
+        if (reset)
         {
             ball.transform.position = new Vector3(23, 0, 0);
             direction = 0;
@@ -135,6 +135,10 @@ public class ShotManager_FT : MonoBehaviour
         float initZ = ball.transform.position.z;
         //float finX = initX + Mathf.Sqrt(Mathf.Pow(power, 2) - Mathf.Pow(direction * lateralDistance, 2)) * directionModifier;
         float finX = Random.Range(minPower, maxPower) * directionModifier;
+        if (reset)
+        {
+
+        }
         float finZ = initZ + (direction * lateralDistance);
         if (type == ShotType.drive)
         {

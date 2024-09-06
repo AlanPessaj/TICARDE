@@ -83,7 +83,7 @@ public class BallMover_FT : MonoBehaviour
         else
         {
             //BORRAME
-            shot.FindShot(0, ShotType.drive, false, true);
+            shot.FindShot(0, ShotType.drive, false, false, true);
         }
     }
     public bool failSafe;
@@ -161,7 +161,7 @@ public class BallMover_FT : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
             //BORRAME
-            shot.FindShot(0, ShotType.drive, false, true);
+            shot.FindShot(0, ShotType.drive, false, false, true);
         }
     }
 }
