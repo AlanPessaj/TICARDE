@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/FentFighter/3D Objects/e.unity
-  isLoaded: 1
-  isActive: 1

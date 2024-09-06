@@ -17,6 +17,8 @@ public class BallMover_FT : MonoBehaviour
     public float aproxAccuracy;
     public float aproxThreshold;
     public bool active = true;
+    public bool wasPlayer1 = true;
+    public bool bounced = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +83,7 @@ public class BallMover_FT : MonoBehaviour
         else
         {
             //BORRAME
-            shot.FindShot(0, 0, ShotType.drive, gameObject, true);
+            shot.FindShot(0, ShotType.drive, false, false, true);
         }
     }
     public bool failSafe;
@@ -120,6 +122,33 @@ public class BallMover_FT : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
+            if (transform.position.x < 21 && transform.position.x > -21)
+            {
+                if (wasPlayer1)
+                {
+                    if (bounced)
+                    {
+                        //Punto para p2
+                        bounced = false;
+                    }
+                    else
+                    {
+                        bounced = true;
+                    }
+                }
+                else
+                {
+                    if (bounced)
+                    {
+                        //Punto para p1
+                        bounced = false;
+                    }
+                    else
+                    {
+                        bounced = true;
+                    }
+                }
+            }
             height *= vCOR;
             float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR * (1 + vCOR) * height, 0f, Mathf.Infinity);
             Vector3 direction = (ePoint.position - sPoint.position).normalized;
@@ -132,7 +161,7 @@ public class BallMover_FT : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
             //BORRAME
-            shot.FindShot(0, 0, ShotType.drive, gameObject, true);
+            shot.FindShot(0, ShotType.drive, false, false, true);
         }
     }
 }

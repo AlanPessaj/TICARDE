@@ -8,12 +8,14 @@ public class ShotManager_FT : MonoBehaviour
     public bool ballHit;
     public BallMover_FT ball;
     GameManager_FT gameManager;
-    float lateralDistance = 12.4f;
+    float lateralDistance = 8.4f;
     public float driveHeight;
     public float lobHeight;
     public float stepSize;
     public bool finishedHit;
     public GameObject court;
+    public float minPower;
+    public float maxPower;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public class ShotManager_FT : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
-            FindShot(0, 0, ShotType.drive, gameObject, true);
+            FindShot(0, ShotType.drive, false, false, true);
         }
     }
 
@@ -110,29 +112,38 @@ public class ShotManager_FT : MonoBehaviour
         return results;
     }
 
-    public void FindShot(int direction, float power, ShotType type, GameObject player, bool random = false)
+    public void FindShot(int direction, ShotType type, bool isPlayer1, bool serve = false, bool reset = false)
     {
         int directionModifier = 1;
-        if (random)
+        if (reset)
         {
-            player.transform.position = new Vector3(23, 0, 0);
+            ball.transform.position = new Vector3(23, 0, 0);
             direction = 0;
             //player.transform.position = new Vector3(Random.Range(0f, 51f), 0, Random.Range(-31, 31));
-            player.transform.eulerAngles = new Vector3(0, 180, 0);
             //direction = Random.Range(-2, 3);
-            power = 40f;
+            //power = 40f;
+            isPlayer1 = false;
             type = ShotType.lob;
         }
-        if (player.transform.eulerAngles.y == 180)
+        if (!isPlayer1)
         {
             directionModifier = -1;
         }
         direction *= -1;
-        power += lateralDistance * 2;
-        float initX = player.transform.position.x;
-        float initZ = player.transform.position.z;
-        float finX = initX + Mathf.Sqrt(Mathf.Pow(power, 2) - Mathf.Pow(direction * lateralDistance, 2)) * directionModifier;
-        float finZ = initZ + (direction * lateralDistance);
+        //power += lateralDistance * 2;
+        float initX = ball.transform.position.x;
+        float initZ = ball.transform.position.z;
+        //float finX = initX + Mathf.Sqrt(Mathf.Pow(power, 2) - Mathf.Pow(direction * lateralDistance, 2)) * directionModifier;
+        float finX = Random.Range(minPower, maxPower) * directionModifier;
+        float finZ;
+        if (serve)
+        {
+            finZ = Mathf.Lerp(0, 21, Mathf.InverseLerp(-31, 0, ball.transform.position.z * directionModifier)) * directionModifier;
+        }
+        else
+        {
+            finZ = initZ + (direction * lateralDistance);
+        }
         if (type == ShotType.drive)
         {
             ball.height = driveHeight;

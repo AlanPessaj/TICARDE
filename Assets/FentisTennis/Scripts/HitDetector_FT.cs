@@ -6,7 +6,7 @@ public class HitDetector_FT : MonoBehaviour
 {
     public HitManager_FT hitManager;
     public int colNumber;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
         {
