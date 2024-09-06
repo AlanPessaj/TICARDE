@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameManager_FT : MonoBehaviour
@@ -17,9 +19,19 @@ public class GameManager_FT : MonoBehaviour
     public float initialStepSize;
     public float maxBallHeight;
     public int startServing;
+    public int points1 = 0;
+    public int points2 = 0;
+    public int games1 = 0;
+    public int games2 = 0;
+    public GameObject player1Canvas;
+    public GameObject player2Canvas;
+    string player1Name = "Player1";
+    string player2Name = "Player2";
     // Start is called before the first frame update
     void Start()
     {
+        player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name;//Name
+        player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player2Name;//Name
         switch (startServing)
         {
             case 1:
@@ -101,6 +113,111 @@ public class GameManager_FT : MonoBehaviour
         {
             serving = true;
             throwingBall = true;
+        }
+    }
+
+    public void AddPoint(GameObject scorer)
+    {
+        if (scorer.name == "Player1")
+        {
+            points1++;
+            if (points2 == 4 && points1 == 4)
+            {
+                points2--;
+                points1--;
+            }
+            if (points2 < 4 && points1 >= 5)
+            {
+                games1++;
+                points1 = 0;
+                points2 = 0;
+            }
+            if (points2 < 3 && points2 > 0 && points1 >= 4)
+            {
+                games1++;
+                points1 = 0;
+                points2 = 0;
+            }
+            if (points2 == 0 && points1 >= 3)
+            {
+                games1++;
+                points1 = 0;
+                points2 = 0;
+            }
+            player1Canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = games1.ToString();
+            switch (points1)
+            {
+                case 0:
+                    player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
+                    break;
+                case 1:
+                    player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "15";
+                    break;
+                case 2:
+                    player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "30";
+                    break;
+                case 3:
+                    player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "40";
+                    break;
+                case 4:
+                    player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
+                    break;
+            }
+        }
+        else
+        {
+            points2++;
+            if (points1 == 4 && points2 == 4)
+            {
+                points2--;
+                points1--;
+            }
+            if (points1 < 4 && points2 >= 5)
+            {
+                games2++;
+                points1 = 0;
+                points2 = 0;
+            }
+            if (points1 < 3 && points1 > 0 && points2 >= 4)
+            {
+                games2++;
+                points1 = 0;
+                points2 = 0;
+            }
+            if (points1 == 0 && points2 >= 3)
+            {
+                games2++;
+                points1 = 0;
+                points2 = 0;
+            }
+            player2Canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = games2.ToString();
+            switch (points2)
+            {
+                case 0:
+                    player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
+                    break;
+                case 1:
+                    player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "15";
+                    break;
+                case 2:
+                    player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "30";
+                    break;
+                case 3:
+                    player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "40";
+                    break;
+                case 4:
+                    player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
+                    break;
+            }
+            
+        }
+        if ((games1 + games2) % 2 == 0)
+        {
+            StartServe(player1);
+        }
+        else
+        {
+            StartServe(player2);
         }
     }
 }
