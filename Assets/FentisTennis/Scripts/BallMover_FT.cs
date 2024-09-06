@@ -19,6 +19,7 @@ public class BallMover_FT : MonoBehaviour
     public bool active = true;
     public bool wasPlayer1 = true;
     public bool bounced = false;
+    public GameManager_FT gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -129,6 +130,7 @@ public class BallMover_FT : MonoBehaviour
                     if (bounced)
                     {
                         //Punto para p2
+                        gameManager.AddPoint(gameManager.player2);
                         bounced = false;
                     }
                     else
@@ -141,6 +143,7 @@ public class BallMover_FT : MonoBehaviour
                     if (bounced)
                     {
                         //Punto para p1
+                        gameManager.AddPoint(gameManager.player1);
                         bounced = false;
                     }
                     else
@@ -160,8 +163,14 @@ public class BallMover_FT : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
-            //BORRAME
-            shot.FindShot(0, ShotType.drive, false, false, true);
+            if (wasPlayer1)
+            {
+                gameManager.AddPoint(gameManager.player2);
+            }
+            else
+            {
+                gameManager.AddPoint(gameManager.player1);
+            }
         }
     }
 }
