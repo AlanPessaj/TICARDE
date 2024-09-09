@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController_FT : MonoBehaviour
 {
     public float movementSpeed;
-    float timer = 1;
+    float timer = 0.25f;
     public int racketSpeed;
     public GameObject racket;
     public GameObject racketPivot;
@@ -65,6 +65,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
+                CheckButtons();
             }
             if (gameManager.serve == 0)
             {
@@ -137,6 +138,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
+                CheckButtons();
             }
             if(gameManager.serve == 0)
             {
@@ -194,7 +196,7 @@ public class PlayerController_FT : MonoBehaviour
             if (timer <= 0)
             {
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
-                timer = 1;
+                timer = 0.25f;
                 canHit = true;
             }
         }
@@ -396,7 +398,7 @@ public class PlayerController_FT : MonoBehaviour
             {
                 CheckDirection();
                 doingLob = true;
-                lobRotation = Mathf.InverseLerp(-45, 90, racketPivot.transform.localEulerAngles.z);
+                lobRotation = Mathf.InverseLerp(315, 90, racketPivot.transform.localEulerAngles.z);
             }
             if (Input.GetButtonUp("C" + player) && !doingSmash && !doingDrive && !doingLob && driveRotation == 0 && lobRotation == 0 && canHit)
             {
@@ -483,8 +485,11 @@ public class PlayerController_FT : MonoBehaviour
                     racket.transform.localPosition = new Vector3(0, 0, -3f);
                     smashRotation = 0;
                     doingSmash = false;
-                    canHit = false;
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -15);
+                    if (!serve)
+                    {
+                        canHit = false;
+                        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -15);
+                    }
                 }
             }
         }

@@ -25,10 +25,10 @@ public class ShotManager_FT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        /*if (Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log(PredictShot(GameObject.Find("Player1"), ShotType.drive));
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.G))
         {
             FindShot(0, ShotType.drive, false, false, true);
@@ -156,7 +156,6 @@ public class ShotManager_FT : MonoBehaviour
         {
             ball.height = ball.transform.position.y;
         }
-        gameManager.EndServe();
         ball.sPoint.position = new Vector3(initX, ball.transform.position.y, initZ);
         ball.ePoint.position = new Vector3(finX, 0, finZ);
         ball.step = 0f;

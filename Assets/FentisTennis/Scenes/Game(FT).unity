@@ -1439,6 +1439,7 @@ MonoBehaviour:
   games2: 0
   player1Canvas: {fileID: 1177585469}
   player2Canvas: {fileID: 1673970352}
+  canvas: {fileID: 823319289}
 --- !u!114 &645166232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1455,7 +1456,7 @@ MonoBehaviour:
   ball: {fileID: 1639290137}
   driveHeight: 12
   lobHeight: 20
-  stepSize: 0.7
+  stepSize: 0.55
   finishedHit: 0
   court: {fileID: 1748812694}
   minPower: 30
@@ -2496,19 +2497,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2680032
+      value: -1.9280032
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.22
+      value: -0.43999997
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21999997
+      value: -0.44
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1149757
+      value: -1.7749757
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2568,7 +2569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8886459
+      value: 1.2286459
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
