@@ -27,6 +27,7 @@ public class GameManager_FT : MonoBehaviour
     public GameObject player2Canvas;
     string player1Name = "Player1";
     string player2Name = "Player2";
+    public GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -90,8 +91,8 @@ public class GameManager_FT : MonoBehaviour
         {
             serve = 2;
         }
-        player1.transform.position = new Vector3(-50, 4, -30);
-        player2.transform.position = new Vector3(50, 4, 30);
+        player1.transform.position = new Vector3(-50, 6, -30);
+        player2.transform.position = new Vector3(50, 6, 30);
         ballmover.active = false;
         ballmover.transform.parent = player.transform;
         ballmover.transform.localPosition = new Vector3(1.5f, 0, 0);
@@ -163,6 +164,13 @@ public class GameManager_FT : MonoBehaviour
                     player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
                     break;
             }
+            if (games1 >= 3)
+            {
+                canvas.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "GANADOR: " + player1Name;
+                canvas.transform.GetChild(4).gameObject.SetActive(true);
+                //canvas.transform.GetChild(4).gameObject.SetActive(false);
+                ResetPoints();
+            }
         }
         else
         {
@@ -209,7 +217,13 @@ public class GameManager_FT : MonoBehaviour
                     player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
                     break;
             }
-            
+            if (games2 >= 3)
+            {
+                canvas.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "GANADOR: " + player2Name;
+                canvas.transform.GetChild(4).gameObject.SetActive(true);
+                //canvas.transform.GetChild(4).gameObject.SetActive(false);
+                ResetPoints();
+            }
         }
         if ((games1 + games2) % 2 == 0)
         {
@@ -219,5 +233,12 @@ public class GameManager_FT : MonoBehaviour
         {
             StartServe(player2);
         }
+    }
+    void ResetPoints()
+    {
+        games1 = 0;
+        games2 = 0;
+        points1 = 0;
+        points2 = 0;
     }
 }
