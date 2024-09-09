@@ -1439,6 +1439,7 @@ MonoBehaviour:
   games2: 0
   player1Canvas: {fileID: 1177585469}
   player2Canvas: {fileID: 1673970352}
+  canvas: {fileID: 823319289}
 --- !u!114 &645166232
 MonoBehaviour:
   m_ObjectHideFlags: 0

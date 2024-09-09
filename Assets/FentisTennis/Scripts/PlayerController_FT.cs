@@ -65,6 +65,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
+                CheckButtons();
             }
             if (gameManager.serve == 0)
             {
@@ -137,6 +138,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
+                CheckButtons();
             }
             if(gameManager.serve == 0)
             {

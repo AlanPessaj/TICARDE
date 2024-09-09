@@ -21,12 +21,15 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(initialPosition, camera.transform.position) > 20)
+        if (ball.position.y > -2)
         {
-            camera.transform.position = initialPosition;
+            if (Vector3.Distance(initialPosition, camera.transform.position) > 20)
+            {
+                camera.transform.position = initialPosition;
+            }
+            camera.transform.position += (ball.position - oldBall) / 10;
+            oldBall = ball.position;
         }
-        camera.transform.position += (ball.position - oldBall) / 10;
-        oldBall = ball.position;
     }
 
     void melavoyaguradarporlasdudas()
