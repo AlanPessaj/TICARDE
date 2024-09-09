@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectorScripts : MonoBehaviour
 {
@@ -46,6 +47,21 @@ public class SelectorScripts : MonoBehaviour
                 item.SetActive(false);
             }
             logos[index].SetActive(true);
+        }
+        if (Input.GetButtonDown("A"))
+        {
+            switch (index)
+            {
+                case 0:
+                    SceneManager.LoadScene("Game(FF)");
+                break;
+                case 1:
+                    SceneManager.LoadScene("Game(FT)");
+                break;
+                case 2:
+                    SceneManager.LoadScene("Game(FG)");
+                break;
+            }
         }
     }
 }
