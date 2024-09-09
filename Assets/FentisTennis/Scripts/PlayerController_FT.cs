@@ -427,7 +427,7 @@ public class PlayerController_FT : MonoBehaviour
                     racket.transform.Rotate(90, 0, 0);
                     driveRotation = 0;
                     doingDrive = false;
-                    canHit = false;
+                    canHit = true;
                     transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -15);
                 }
             }
@@ -453,7 +453,7 @@ public class PlayerController_FT : MonoBehaviour
                     racket.transform.localPosition = new Vector3(0, 0, -3f);
                     lobRotation = 0;
                     doingLob = false;
-                    canHit = false;
+                    canHit = true;
                     transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -15);
                 }
             }
@@ -487,7 +487,7 @@ public class PlayerController_FT : MonoBehaviour
                     doingSmash = false;
                     if (!serve)
                     {
-                        canHit = false;
+                        canHit = true;
                         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -15);
                     }
                 }

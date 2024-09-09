@@ -8,7 +8,6 @@ public class HitDetector_FT : MonoBehaviour
     public int colNumber;
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("HIT");
         if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
         {
             hitManager.hColliders[colNumber] = GetComponent<Collider>();
