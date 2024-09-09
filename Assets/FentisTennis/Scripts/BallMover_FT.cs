@@ -129,8 +129,8 @@ public class BallMover_FT : MonoBehaviour
                 {
                     if (bounced)
                     {
-                        //Punto para p2
-                        gameManager.AddPoint(gameManager.player2);
+                        //Punto para p1
+                        gameManager.AddPoint(gameManager.player1);
                         bounced = false;
                     }
                     else
@@ -142,8 +142,8 @@ public class BallMover_FT : MonoBehaviour
                 {
                     if (bounced)
                     {
-                        //Punto para p1
-                        gameManager.AddPoint(gameManager.player1);
+                        //Punto para p2
+                        gameManager.AddPoint(gameManager.player2);
                         bounced = false;
                     }
                     else
@@ -165,11 +165,29 @@ public class BallMover_FT : MonoBehaviour
         {
             if (wasPlayer1)
             {
-                gameManager.AddPoint(gameManager.player2);
+                if (bounced)
+                {
+                    //Punto para p1
+                    gameManager.AddPoint(gameManager.player1);
+                    bounced = false;
+                }
+                else
+                {
+                    bounced = true;
+                }
             }
             else
             {
-                gameManager.AddPoint(gameManager.player1);
+                if (bounced)
+                {
+                    //Punto para p2
+                    gameManager.AddPoint(gameManager.player2);
+                    bounced = false;
+                }
+                else
+                {
+                    bounced = true;
+                }
             }
         }
     }

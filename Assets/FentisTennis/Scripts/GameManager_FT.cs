@@ -166,9 +166,8 @@ public class GameManager_FT : MonoBehaviour
             }
             if (games1 >= 3)
             {
-                canvas.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "GANADOR: " + player1Name;
                 canvas.transform.GetChild(4).gameObject.SetActive(true);
-                //canvas.transform.GetChild(4).gameObject.SetActive(false);
+                canvas.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "GANADOR: " + player1Name;
                 ResetPoints();
             }
         }
@@ -219,9 +218,8 @@ public class GameManager_FT : MonoBehaviour
             }
             if (games2 >= 3)
             {
-                canvas.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = "GANADOR: " + player2Name;
                 canvas.transform.GetChild(4).gameObject.SetActive(true);
-                //canvas.transform.GetChild(4).gameObject.SetActive(false);
+                canvas.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = "GANADOR: " + player2Name;
                 ResetPoints();
             }
         }
@@ -240,5 +238,9 @@ public class GameManager_FT : MonoBehaviour
         games2 = 0;
         points1 = 0;
         points2 = 0;
+        player1Canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = games1.ToString();
+        player2Canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = games2.ToString();
+        player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
+        player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
     }
 }
