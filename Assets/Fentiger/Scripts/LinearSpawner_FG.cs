@@ -17,7 +17,7 @@ public class LinearSpawner_FG : MonoBehaviour
     {
         if (timer <= 0)
         {
-            Instantiate(thing, transform.position + new Vector3(0, -2.5f, -14f), Quaternion.identity, transform);
+            Instantiate(thing, transform.position + new Vector3(0, -2.5f, -16.5f), Quaternion.identity, transform);
             timer = Random.Range(0.5f,spawnRate);
         }
         timer -= Time.deltaTime;

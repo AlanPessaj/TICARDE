@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2980699583452390772}
   - component: {fileID: 114099911126456814}
-  m_Layer: 0
+  - component: {fileID: 65950358195407088}
+  - component: {fileID: 54063557179075570}
+  m_Layer: 12
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +47,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.25
+--- !u!65 &65950358195407088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276149425105017193}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 0.8, z: 2}
+  m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!54 &54063557179075570
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276149425105017193}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &1101994088683003735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,6 +86,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: f75635f96c232464585981cd36ca48dc, type: 3}
       propertyPath: m_Name
       value: auto
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f75635f96c232464585981cd36ca48dc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f75635f96c232464585981cd36ca48dc, type: 3}
       propertyPath: m_LocalPosition.x

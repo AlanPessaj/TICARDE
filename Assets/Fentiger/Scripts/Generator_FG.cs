@@ -45,7 +45,7 @@ public class Generator_FG : MonoBehaviour
             rapidGeneration = false;
         }
     }
-    void GenerateZones()
+    public void GenerateZones()
     {
         NextZone();
         DespawnZones();
