@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class generator : MonoBehaviour
+public class Generator : MonoBehaviour
 {
     public GameObject[] sections;
     public GameObject grass;
