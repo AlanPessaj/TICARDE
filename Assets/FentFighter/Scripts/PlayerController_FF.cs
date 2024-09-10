@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController_FF : MonoBehaviour
 {
     public GameObject fist;
+    public GameObject foot;
     public GameObject otherPlayer;
     public HitManager_FF hitManager;
     public int movementForce;
@@ -157,7 +158,7 @@ public class PlayerController_FF : MonoBehaviour
                         //B
                         if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
                         {
-                            fist.SetActive(true);
+                            foot.SetActive(true);
                             animator.SetTrigger("Kick");
                         }
                     }

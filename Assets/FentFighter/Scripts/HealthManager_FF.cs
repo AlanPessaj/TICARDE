@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthManager_FF : MonoBehaviour
 {
@@ -20,9 +21,13 @@ public class HealthManager_FF : MonoBehaviour
         {
             UpdateHealth();
         }
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(gameObject.scene.name);
+        }
     }
 
-    void UpdateHealth()
+    public void UpdateHealth()
     {
         UI.transform.GetChild(0).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxHealth, health)), 0, 0);
     }

@@ -19,7 +19,14 @@ public class HitScript_FF : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(false);
+        if (stateInfo.IsName("punch"))
+        {
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(false);
+        }
+        else
+        {
+            animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(false);
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
