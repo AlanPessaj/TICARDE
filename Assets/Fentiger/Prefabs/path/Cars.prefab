@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2299517403626218860}
   - component: {fileID: 7440190989915060401}
   - component: {fileID: 5007873200722285730}
+  - component: {fileID: 2966427721795931044}
   m_Layer: 0
   m_Name: Cars
   m_TagString: Zone
@@ -92,6 +93,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2966427721795931044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4167764292532976631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b80fcf8cd780a4585abc879775e3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thing: {fileID: 5276149425105017193, guid: d2b505a18e0885d419c13ba6423a6bd0, type: 3}
+  spawnRate: 2
 --- !u!1 &5229564640536918918
 GameObject:
   m_ObjectHideFlags: 0
