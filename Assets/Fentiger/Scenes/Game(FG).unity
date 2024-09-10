@@ -179,8 +179,62 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &287369560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 287369562}
+  - component: {fileID: 287369561}
+  m_Layer: 0
+  m_Name: GAMEMANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &287369561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287369560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c926f775b350f745a5888c374a5149e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sections:
+  - {fileID: 5873325583378978193, guid: 8267a4810620e26439a884a97cd1680b, type: 3}
+  - {fileID: 4167764292532976631, guid: d26d65c93eaa4a848ba90209b016aa35, type: 3}
+  - {fileID: 5873325583378978193, guid: 4c2c65955e56d2547976d8e7baf8858e, type: 3}
+  - {fileID: 5873325583378978193, guid: 58878af3f5707414cae442bde93a7b8c, type: 3}
+  - {fileID: 5873325583378978193, guid: 7c6017503b332fb449e369ac25845f7b, type: 3}
+  grass: {fileID: 4787763905658012092, guid: 4b8a130b54878db45b4756b9c49247e1, type: 3}
+  distance: 0
+  difficulty: 1
+  despawnRadius: 20
+  difficultyScalar: 100
+--- !u!4 &287369562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287369560}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.8119998, y: 0.99875, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +246,6 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
-  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -264,29 +317,6 @@ Transform:
   m_Father: {fileID: 1863136301}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 70, y: 90, z: 0}
---- !u!114 &534669906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c926f775b350f745a5888c374a5149e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sections:
-  - {fileID: 5873325583378978193, guid: 8267a4810620e26439a884a97cd1680b, type: 3}
-  - {fileID: 4167764292532976631, guid: d26d65c93eaa4a848ba90209b016aa35, type: 3}
-  - {fileID: 5873325583378978193, guid: 4c2c65955e56d2547976d8e7baf8858e, type: 3}
-  - {fileID: 5873325583378978193, guid: 58878af3f5707414cae442bde93a7b8c, type: 3}
-  - {fileID: 5873325583378978193, guid: 7c6017503b332fb449e369ac25845f7b, type: 3}
-  grass: {fileID: 4787763905658012092, guid: 4b8a130b54878db45b4756b9c49247e1, type: 3}
-  distance: 0
-  difficulty: 1
-  despawnRadius: 20
-  difficultyScalar: 100
 --- !u!1 &1863136296
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,10 +416,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863136296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 534669905}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
