@@ -6,6 +6,7 @@ public class animationScript : MonoBehaviour
 {
     public Sprite[] sprites;
     public int index;
+    public GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,11 @@ public class animationScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (index == -1)
+        {
+            canvas.SetActive(true);
+            Destroy(gameObject);
+        }
         GetComponent<SpriteRenderer>().sprite = sprites[index];
     }
 }
