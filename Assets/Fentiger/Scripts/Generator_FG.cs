@@ -14,7 +14,10 @@ public class Generator_FG : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < 10; i++)
+        {
+            GenerateZones(true);
+        }
     }
 
     // Update is called once per frame
@@ -36,7 +39,8 @@ public class Generator_FG : MonoBehaviour
         if (rapidGeneration)
         {
             GenerateZones();
-        }if (Input.GetKeyDown(KeyCode.K))
+        }
+        if (Input.GetKeyDown(KeyCode.K))
         {
             rapidGeneration = true;
         }
@@ -45,10 +49,13 @@ public class Generator_FG : MonoBehaviour
             rapidGeneration = false;
         }
     }
-    public void GenerateZones()
+    public void GenerateZones(bool initialSpawn = false)
     {
         NextZone();
-        DespawnZones();
+        if (!initialSpawn || distance - despawnRadius < 0)
+        {
+            DespawnZones();
+        }
     }
     GameObject lastSection;
     void NextZone()
