@@ -7,6 +7,7 @@ public class HitManager_FF : MonoBehaviour
     public Collider[] hColliders = new Collider[3];
     public bool blocking;
     float immunityTimer;
+    public float XPMultiplier;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +33,12 @@ public class HitManager_FF : MonoBehaviour
                             if (blocking)
                             {
                                 Debug.Log("pego en piernas (block pecho cabeza)");
-                                damage();
+                                TakeDamage(2.5f);
                             }
                             else
                             {
                                 Debug.Log("pego en cabeza, pecho y piernas");
-                                damage();
+                                TakeDamage(2.5f);
                             }
                             collided = true;
                             break;
@@ -47,12 +48,11 @@ public class HitManager_FF : MonoBehaviour
                             if (blocking)
                             {
                                 Debug.Log("(block cabeza pecho)");
-                                damage();
                             }
                             else
                             {
                                 Debug.Log("pego en cabeza y pecho");
-                                damage();
+                                TakeDamage(2.5f);
                             }
                             collided = true;
                         }
@@ -62,12 +62,12 @@ public class HitManager_FF : MonoBehaviour
                         if (blocking)
                         {
                             Debug.Log("pego en piernas (block cabeza)");
-                            damage();
+                            TakeDamage(2.5f);
                         }
                         else
                         {
                             Debug.Log("pego en cabeza y piernas");
-                            damage();
+                            TakeDamage(2.5f);
                         }
                         collided = true;
                     }
@@ -77,12 +77,12 @@ public class HitManager_FF : MonoBehaviour
                     if (blocking)
                     {
                         Debug.Log("pego en piernas (block pecho)");
-                        damage();
+                        TakeDamage(2.5f);
                     }
                     else
                     {
                         Debug.Log("pego en pecho y piernas");
-                        damage();
+                        TakeDamage(2.5f);
                     }
                     collided = true;
                 }
@@ -97,36 +97,33 @@ public class HitManager_FF : MonoBehaviour
                     if (blocking)
                     {
                         Debug.Log("(block cabeza)");
-                        damage();
                     }
                     else
                     {
                         Debug.Log("pego en cabeza");
-                        damage();
+                        TakeDamage(2.5f);
                     }
                     break;
                 case 1:
                     if (blocking)
                     {
                         Debug.Log("(block pecho)");
-                        damage();
                     }
                     else
                     {
                         Debug.Log("pego en pecho");
-                        damage();
+                        TakeDamage(2.5f);
                     }
                     break;
                 case 2:
                     if (blocking)
                     {
-                        Debug.Log("(block pecho)");
-                        damage();
+                        Debug.Log("(block piernas)");
                     }
                     else
                     {
-                        Debug.Log("pego en pecho");
-                        damage();
+                        Debug.Log("pego en piernas");
+                        TakeDamage(2.5f);
                     }
                     break;
             }
@@ -142,12 +139,12 @@ public class HitManager_FF : MonoBehaviour
         }
     }
 
-    void damage()
+    void TakeDamage(float damage)
     {
         if (immunityTimer <= 0)
         {
-            gameObject.GetComponent<HealthManager_FF>().health -= 20;
-            gameObject.GetComponent<HealthManager_FF>().UpdateHealth();
+            GetComponent<UIManager_FF>().ChangeHealth(-damage);
+            GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damage * XPMultiplier);
             immunityTimer = 1f;
         }
     }

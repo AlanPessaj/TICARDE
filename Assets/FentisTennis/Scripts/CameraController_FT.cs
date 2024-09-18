@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController_FT : MonoBehaviour
 {
     public GameObject player1;
     public GameObject player2;

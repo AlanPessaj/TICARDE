@@ -1,46 +1,50 @@
-
-            if (Input.GetButtonDown("A"))
+    void CheckButtons()
+    {
+        string player = "";
+        if (!isPlayer1)
+        {
+            player = "2";
+        }
+        if (Input.GetButton("A" + player))
+        {
+            if (Input.GetButton("B" + player))
             {
-                if (Input.GetButtonDown("B"))
+                if (Input.GetButton("C" + player))
                 {
-                    if (Input.GetButtonDown("C"))
-                    {
-                        //A + B + C
-                    }
-                    else
-                    {
-                        //A + B
-                    }
-                }
-                else if (Input.GetButtonDown("C"))
-                {
-                    //A + C
+                    //A + B + C
                 }
                 else
                 {
-                    //A
-                    transform.GetChild(0);
+                    //A + B
                 }
-                
             }
-            if (Input.GetButtonDown("B"))
+            else if (Input.GetButton("C" + player))
             {
-                if (!Input.GetButtonDown("A"))
-                {
-                    if (Input.GetButtonDown("C"))
-                    {
-                        //B + C
-                    }
-                    else
-                    {
-                        //B
-                    }
-                }
+                //A + C
             }
-            if (Input.GetButtonDown("C"))
+            else
             {
-                if (!Input.GetButtonDown("B") && !Input.GetButtonDown("A"))
-                {
-                    //C
-                }
+                //A
             }
+
+        }
+        if (Input.GetButton("B" + player) && !Input.GetButton("A" + player))
+        {
+            if (Input.GetButton("C" + player))
+            {
+                //B + C
+            }
+            else
+            {
+                //B
+            }
+        }
+        if (Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
+        {
+            //C
+        }
+        if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
+        {
+            //NONE
+        }
+    }

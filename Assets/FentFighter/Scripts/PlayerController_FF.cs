@@ -117,67 +117,6 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection = 0;
             }
-            if (Input.GetButtonDown("A"))
-            {
-                if (Input.GetButtonDown("B"))
-                {
-                    if (Input.GetButtonDown("C"))
-                    {
-                        //A + B + C
-                    }
-                    else
-                    {
-                        //A + B
-                    }
-                }
-                else if (Input.GetButtonDown("C"))
-                {
-                    //A + C
-                }
-                else
-                {
-                    //A
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
-                    {
-                        fist.SetActive(true);
-                        animator.SetTrigger("Punch");
-                    }
-                }
-                
-            }
-            if (Input.GetButtonDown("B"))
-            {
-                if (!Input.GetButtonDown("A"))
-                {
-                    if (Input.GetButtonDown("C"))
-                    {
-                        //B + C
-                    }
-                    else
-                    {
-                        //B
-                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
-                        {
-                            foot.SetActive(true);
-                            animator.SetTrigger("Kick");
-                        }
-                    }
-                }
-            }
-            if (Input.GetButton("C"))
-            {
-                if (!Input.GetButtonDown("B") && !Input.GetButtonDown("A"))
-                {
-                    //C
-                    animator.SetBool("holdBlock", true);
-                    hitManager.blocking = true;
-                }
-            }
-            else
-            {
-                animator.SetBool("holdBlock", false);
-                hitManager.blocking = false;
-            }
         }
         else
         {
@@ -255,71 +194,8 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection = 0;
             }
-            if (Input.GetButtonDown("A2"))
-            {
-                if (Input.GetButtonDown("B2"))
-                {
-                    if (Input.GetButtonDown("C2"))
-                    {
-                        //A + B + C
-                    }
-                    else
-                    {
-                        //A + B
-                    }
-                }
-                else if (Input.GetButtonDown("C2"))
-                {
-                    //A + C
-                }
-                else
-                {
-                    //A
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
-                    {
-                        fist.SetActive(true);
-                        animator.SetTrigger("Punch");
-                    }
-                }
-
-            }
-            if (Input.GetButtonDown("B2"))
-            {
-                if (!Input.GetButtonDown("A2"))
-                {
-                    if (Input.GetButtonDown("C2"))
-                    {
-                        //B + C
-                    }
-                    else
-                    {
-                        //B
-                        if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
-                        {
-                            fist.SetActive(true);
-                            animator.SetTrigger("Kick");
-                        }
-                    }
-                }
-            }
-            if (Input.GetButton("C2"))
-            {
-                if (!Input.GetButtonDown("B2") && !Input.GetButtonDown("A2"))
-                {
-                    //C
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
-                    {
-                        animator.SetBool("holdBlock", true);
-                        hitManager.blocking = true;
-                    }
-                }
-            }
-            else
-            {
-                animator.SetBool("holdBlock", false);
-                hitManager.blocking = false;
-            }
         }
+        CheckButtons();
         if (isColliding)
         {
             if (transform.position.x > otherPlayer.transform.position.x)
@@ -332,6 +208,94 @@ public class PlayerController_FF : MonoBehaviour
             }
         }
         transform.Translate(movDirection * movementSpeed * Time.deltaTime, 0, 0, Space.World);
+    }
+
+    void CheckButtons()
+    {
+        string player = "";
+        if (!isPlayer1)
+        {
+            player = "2";
+        }
+        if (Input.GetButton("A" + player))
+        {
+            if (Input.GetButton("B" + player))
+            {
+                if (Input.GetButton("C" + player))
+                {
+                    //A + B + C
+                }
+                else
+                {
+                    //A + B
+                    if (GetComponent<UIManager_FF>().RemoveXP(25))
+                    {
+                        Debug.Log("Habilidad");
+                    }
+                }
+            }
+            else if (Input.GetButton("C" + player))
+            {
+                //A + C
+            }
+            else
+            {
+                //A
+                if (Input.GetButtonDown("A" + player))
+                {
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0))
+                    {
+                        fist.SetActive(true);
+                        animator.SetTrigger("Punch");
+                    }
+                }
+            }
+
+        }
+        if (Input.GetButton("B" + player) && !Input.GetButton("A" + player))
+        {
+            if (Input.GetButton("C" + player))
+            {
+                //B + C
+                if (GetComponent<UIManager_FF>().RemoveXP(100))
+                {
+                    Debug.Log("Ulti");
+                }
+            }
+            else
+            {
+                //B
+                if (Input.GetButtonDown("B" + player))
+                {
+                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0))
+                    {
+                        foot.SetActive(true);
+                        animator.SetTrigger("Kick");
+                    }
+                }
+            }
+        }
+        if (Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
+        {
+            //C
+            if (Input.GetButtonDown("C" + player))
+            {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0))
+                {
+                    animator.SetBool("holdBlock", true);
+                    hitManager.blocking = true;
+                }
+            }
+        }
+        else
+        {
+            animator.SetBool("holdBlock", false);
+            hitManager.blocking = false;
+        }
+        if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
+        {
+            //NONE
+        }
     }
 
     private void OnCollisionEnter(Collision other)
