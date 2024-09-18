@@ -11,13 +11,15 @@ public class Generator_FG : MonoBehaviour
     public int despawnRadius;
     bool rapidGeneration = false;
     public int difficultyScalar = 100;
+    bool initialSpawn = true;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 10; i++)
+        while (distance < despawnRadius)
         {
-            GenerateZones(true);
+            GenerateZones();
         }
+        initialSpawn = false;
     }
 
     // Update is called once per frame
@@ -49,13 +51,10 @@ public class Generator_FG : MonoBehaviour
             rapidGeneration = false;
         }
     }
-    public void GenerateZones(bool initialSpawn = false)
+    public void GenerateZones()
     {
         NextZone();
-        if (!initialSpawn || distance - despawnRadius < 0)
-        {
-            DespawnZones();
-        }
+        DespawnZones();
     }
     GameObject lastSection;
     void NextZone()
@@ -84,8 +83,11 @@ public class Generator_FG : MonoBehaviour
         int amount = Random.Range(difficulty, difficulty + 4);
         for (int i = 0; i < amount; i++)
         {
-            Instantiate(section, new Vector3(distance, 0, 0), Quaternion.identity);
-            distance++;
+            if (!initialSpawn || distance < despawnRadius)
+            {
+                Instantiate(section, new Vector3(distance, 0, 0), Quaternion.identity);
+                distance++;
+            }
         }
     }
 

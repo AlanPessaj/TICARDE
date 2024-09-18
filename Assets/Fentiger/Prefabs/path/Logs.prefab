@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5626706216527908181}
   - component: {fileID: 5409240520631932790}
   - component: {fileID: 7356976296332531973}
+  - component: {fileID: 5828471113585786713}
   - component: {fileID: 3122087857389851046}
   m_Layer: 0
   m_Name: Logs
@@ -171,6 +172,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5828471113585786713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5873325583378978193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b80fcf8cd780a4585abc879775e3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thing: {fileID: 2378211375671546629, guid: 3beb5d3c9c42aa74383238d7ce0588e9, type: 3}
+  spawnRate: 1
 --- !u!65 &3122087857389851046
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -16,9 +16,9 @@ public class CameraController_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!((player1.position.x + player2.position.x) / 2 < (generator.distance - generator.despawnRadius) + 7.5f || player1.position.x == 0))
+        if (!((player1.position.x + player2.position.x) / 2 < (generator.distance - generator.despawnRadius) + 7.6f || player1.position.x == 0))
         {
-            transform.position = new Vector3((player1.position.x + player2.position.x) / 2 - 5.5f, transform.position.y, transform.position.z);
+            transform.position = new Vector3((player1.position.x + player2.position.x) / 2 - 5.4f, transform.position.y, transform.position.z);
         }
     }
 }
