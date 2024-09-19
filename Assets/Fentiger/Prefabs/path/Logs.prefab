@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7356976296332531973}
   - component: {fileID: 5828471113585786713}
   - component: {fileID: 3122087857389851046}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Logs
   m_TagString: Zone
   m_Icon: {fileID: 0}
@@ -110,8 +110,8 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!64 &7306677560508731651
-MeshCollider:
+--- !u!65 &2510572123619460387
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,10 +120,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 80527d7d6cb8dce47803d8d21aacbd94, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.0000098, y: 1.915519, z: 2.0680187}
+  m_Center: {x: 0.000004540763, y: -0.042240728, z: -0.08808229}
 --- !u!1001 &1505882865071705917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,6 +134,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: agua
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934493020615059248, guid: 1f8c7417ff166664a922db30772eeb3b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7934493020615097104, guid: 1f8c7417ff166664a922db30772eeb3b,
         type: 3}
@@ -200,6 +204,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.50368065
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934493020616997360, guid: 1f8c7417ff166664a922db30772eeb3b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f8c7417ff166664a922db30772eeb3b, type: 3}

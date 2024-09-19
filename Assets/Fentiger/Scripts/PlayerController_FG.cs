@@ -22,7 +22,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x))
             {
-                transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                 if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
                 {
                     generator.GenerateZones();
@@ -30,15 +30,15 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x))
             {
-                transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
             }
             if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
             if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
 
             if (transform.position.z > 13f || transform.position.z < -13f)
@@ -52,7 +52,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x))
             {
-                transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                 if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
                 {
                     generator.GenerateZones();
@@ -60,15 +60,15 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x))
             {
-                transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
         }
         CheckTile();
