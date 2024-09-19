@@ -198,7 +198,7 @@ GameObject:
   m_Layer: 11
   m_Name: Foot
   m_TagString: Untagged
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccac030e3d3df4cb6d209a06ec7038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2.5
+  damage: 12
   type: 1
 --- !u!1 &83951991
 GameObject:
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccac030e3d3df4cb6d209a06ec7038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2.5
+  damage: 6
   type: 0
 --- !u!1 &218919179
 GameObject:
@@ -846,8 +846,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000,
-        type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 2812461466333098468, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1031,7 +1030,7 @@ GameObject:
   m_Layer: 11
   m_Name: Foot
   m_TagString: Untagged
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -1119,7 +1118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccac030e3d3df4cb6d209a06ec7038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2.5
+  damage: 12
   type: 1
 --- !u!1 &535542124
 GameObject:
@@ -1542,7 +1541,7 @@ MonoBehaviour:
   - {fileID: 0}
   damageProperties: {fileID: 0}
   blocking: 0
-  XPMultiplier: 2
+  XPMultiplier: 1.5
 --- !u!114 &788796818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,7 +1713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccac030e3d3df4cb6d209a06ec7038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2.5
+  damage: 6
   type: 0
 --- !u!1 &1142081132
 GameObject:
@@ -1971,8 +1970,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000,
-        type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 2812461466333098468, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2614,7 +2612,7 @@ MonoBehaviour:
   - {fileID: 0}
   damageProperties: {fileID: 0}
   blocking: 0
-  XPMultiplier: 2
+  XPMultiplier: 1.5
 --- !u!114 &1779018772
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class HitManager_FF : MonoBehaviour
 {
     public Collider[] hColliders = new Collider[3];
-    public Properties_FF damageProperties = new Properties_FF();
+    public Properties_FF damageProperties = null;
     public bool blocking;
     float immunityTimer;
     public float XPMultiplier;
@@ -130,10 +130,10 @@ public class HitManager_FF : MonoBehaviour
             }
         }
         hColliders = new Collider[3];
-        damageProperties = new Properties_FF();
+        damageProperties = null;
         if (immunityTimer > 0)
         {
-            immunityTimer -= Time.deltaTime;
+            immunityTimer -= Time.deltaTime * 2;
         }
         else
         {
