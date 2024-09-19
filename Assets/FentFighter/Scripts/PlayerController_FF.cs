@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController_FF : MonoBehaviour
 {
+    public GameObject proyectile;
     public GameObject fist;
     public GameObject foot;
     public GameObject otherPlayer;
@@ -228,9 +229,15 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A + B
-                    if (GetComponent<UIManager_FF>().RemoveXP(25))
+                    if (Input.GetButtonDown("A" + player) || Input.GetButtonDown("B" + player))
                     {
-                        Debug.Log("Habilidad");
+                        if (GetComponent<UIManager_FF>().RemoveXP(100))
+                        {
+                            Debug.Log("Ulti");
+                            GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform);
+                            temp.transform.parent = null;
+                            temp.transform.localScale *= 3;
+                        }
                     }
                 }
             }
@@ -257,9 +264,13 @@ public class PlayerController_FF : MonoBehaviour
             if (Input.GetButton("C" + player))
             {
                 //B + C
-                if (GetComponent<UIManager_FF>().RemoveXP(100))
+                if (Input.GetButtonDown("B" + player) || Input.GetButtonDown("C" + player))
                 {
-                    Debug.Log("Ulti");
+                    if (GetComponent<UIManager_FF>().RemoveXP(25))
+                    {
+                        Debug.Log("Habilidad");
+                        Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform).transform.parent = null;
+                    }
                 }
             }
             else
