@@ -5,6 +5,7 @@ using UnityEngine;
 public class HitManager_FF : MonoBehaviour
 {
     public Collider[] hColliders = new Collider[3];
+    public Properties_FF damageProperties = null;
     public bool blocking;
     float immunityTimer;
     public float XPMultiplier;
@@ -33,12 +34,12 @@ public class HitManager_FF : MonoBehaviour
                             if (blocking)
                             {
                                 Debug.Log("pego en piernas (block pecho cabeza)");
-                                TakeDamage(2.5f);
+                                TakeDamage(damageProperties);
                             }
                             else
                             {
                                 Debug.Log("pego en cabeza, pecho y piernas");
-                                TakeDamage(2.5f);
+                                TakeDamage(damageProperties);
                             }
                             collided = true;
                             break;
@@ -52,7 +53,7 @@ public class HitManager_FF : MonoBehaviour
                             else
                             {
                                 Debug.Log("pego en cabeza y pecho");
-                                TakeDamage(2.5f);
+                                TakeDamage(damageProperties);
                             }
                             collided = true;
                         }
@@ -62,12 +63,12 @@ public class HitManager_FF : MonoBehaviour
                         if (blocking)
                         {
                             Debug.Log("pego en piernas (block cabeza)");
-                            TakeDamage(2.5f);
+                            TakeDamage(damageProperties);
                         }
                         else
                         {
                             Debug.Log("pego en cabeza y piernas");
-                            TakeDamage(2.5f);
+                            TakeDamage(damageProperties);
                         }
                         collided = true;
                     }
@@ -77,12 +78,12 @@ public class HitManager_FF : MonoBehaviour
                     if (blocking)
                     {
                         Debug.Log("pego en piernas (block pecho)");
-                        TakeDamage(2.5f);
+                        TakeDamage(damageProperties);
                     }
                     else
                     {
                         Debug.Log("pego en pecho y piernas");
-                        TakeDamage(2.5f);
+                        TakeDamage(damageProperties);
                     }
                     collided = true;
                 }
@@ -101,7 +102,7 @@ public class HitManager_FF : MonoBehaviour
                     else
                     {
                         Debug.Log("pego en cabeza");
-                        TakeDamage(2.5f);
+                        TakeDamage(damageProperties);
                     }
                     break;
                 case 1:
@@ -112,7 +113,7 @@ public class HitManager_FF : MonoBehaviour
                     else
                     {
                         Debug.Log("pego en pecho");
-                        TakeDamage(2.5f);
+                        TakeDamage(damageProperties);
                     }
                     break;
                 case 2:
@@ -123,15 +124,16 @@ public class HitManager_FF : MonoBehaviour
                     else
                     {
                         Debug.Log("pego en piernas");
-                        TakeDamage(2.5f);
+                        TakeDamage(damageProperties);
                     }
                     break;
             }
         }
         hColliders = new Collider[3];
+        damageProperties = null;
         if (immunityTimer > 0)
         {
-            immunityTimer -= Time.deltaTime;
+            immunityTimer -= Time.deltaTime * 2;
         }
         else
         {
@@ -139,12 +141,16 @@ public class HitManager_FF : MonoBehaviour
         }
     }
 
-    void TakeDamage(float damage)
+
+    void TakeDamage(Properties_FF damageProperties)
     {
         if (immunityTimer <= 0)
         {
-            GetComponent<UIManager_FF>().ChangeHealth(-damage);
-            GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damage * XPMultiplier);
+            GetComponent<UIManager_FF>().ChangeHealth(-damageProperties.damage);
+            if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.Kick)
+            {
+                GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damageProperties.damage * XPMultiplier);
+            }
             immunityTimer = 1f;
         }
     }

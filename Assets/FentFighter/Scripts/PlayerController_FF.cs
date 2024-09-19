@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController_FF : MonoBehaviour
 {
+    public GameObject proyectile;
     public GameObject fist;
     public GameObject foot;
     public GameObject otherPlayer;
@@ -228,9 +229,17 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A + B
-                    if (GetComponent<UIManager_FF>().RemoveXP(25))
+                    if (Input.GetButtonDown("A" + player) || Input.GetButtonDown("B" + player))
                     {
-                        Debug.Log("Habilidad");
+                        if (GetComponent<UIManager_FF>().RemoveXP(100))
+                        {
+                            Debug.Log("Ulti");
+                            GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform);
+                            temp.transform.parent = null;
+                            temp.transform.localScale *= 2.5f;
+                            temp.GetComponent<Properties_FF>().damage *= 2;
+                            temp.GetComponent<Properties_FF>().type = DamageType.Ulti;
+                        }
                     }
                 }
             }
@@ -243,7 +252,7 @@ public class PlayerController_FF : MonoBehaviour
                 //A
                 if (Input.GetButtonDown("A" + player))
                 {
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0))
+                    if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
                         fist.SetActive(true);
                         animator.SetTrigger("Punch");
@@ -257,9 +266,13 @@ public class PlayerController_FF : MonoBehaviour
             if (Input.GetButton("C" + player))
             {
                 //B + C
-                if (GetComponent<UIManager_FF>().RemoveXP(100))
+                if (Input.GetButtonDown("B" + player) || Input.GetButtonDown("C" + player))
                 {
-                    Debug.Log("Ulti");
+                    if (GetComponent<UIManager_FF>().RemoveXP(25))
+                    {
+                        Debug.Log("Habilidad");
+                        Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform).transform.parent = null;
+                    }
                 }
             }
             else
@@ -267,7 +280,7 @@ public class PlayerController_FF : MonoBehaviour
                 //B
                 if (Input.GetButtonDown("B" + player))
                 {
-                    if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0))
+                    if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
                         foot.SetActive(true);
                         animator.SetTrigger("Kick");
@@ -280,7 +293,7 @@ public class PlayerController_FF : MonoBehaviour
             //C
             if (Input.GetButtonDown("C" + player))
             {
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0))
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                 {
                     animator.SetBool("holdBlock", true);
                     hitManager.blocking = true;

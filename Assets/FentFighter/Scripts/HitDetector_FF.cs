@@ -11,6 +11,7 @@ public class HitDetector_FF : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
         {
             hitManager.hColliders[colNumber] = GetComponent<Collider>();
+            hitManager.damageProperties = other.GetComponent<Properties_FF>();
         }
     }
 }

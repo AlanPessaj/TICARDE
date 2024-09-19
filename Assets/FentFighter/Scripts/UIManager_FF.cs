@@ -13,7 +13,7 @@ public class UIManager_FF : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UI.transform.GetChild(1).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxXP, XP)), -38.4f, 0);
+        
     }
 
     // Update is called once per frame
@@ -46,8 +46,9 @@ public class UIManager_FF : MonoBehaviour
         if (value <= XP)
         {
             XP = Mathf.Clamp(XP - value, 0, maxXP);
+            UI.transform.GetChild(1).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxXP, XP)), -38.4f, 0);
+            return true;
         }
-        UI.transform.GetChild(1).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxXP, XP)), -38.4f, 0);
-        return value <= XP;
+        return false;
     }
 }
