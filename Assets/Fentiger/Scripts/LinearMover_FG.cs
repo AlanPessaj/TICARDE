@@ -14,13 +14,27 @@ public class LinearMover_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.z < 18)
+        if (!transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
         {
-            transform.Translate(0,0,speed);
+            if (transform.position.z < 18)
+            {
+                transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {
-            Destroy(gameObject);
+            if (transform.position.z > -18)
+            {
+                transform.Translate(0, 0, -speed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

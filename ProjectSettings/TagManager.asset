@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Zone
+  - Undefined
+  - RandomSpawnSide
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Player
   - Hit
   - Out
-  - 
+  - Transport
   - 
   - 
   - 

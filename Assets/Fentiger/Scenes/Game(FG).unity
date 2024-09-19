@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 287369561}
-  immortal: 1
+  immortal: 0
 --- !u!136 &1220741842
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 287369561}
-  immortal: 1
+  immortal: 0
 --- !u!136 &1863136298
 CapsuleCollider:
   m_ObjectHideFlags: 0

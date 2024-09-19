@@ -39,6 +39,13 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
             }
+
+            if (transform.position.z > 13f || transform.position.z < -13f)
+            {
+                //Perder vida
+                SceneManager.LoadScene(gameObject.scene.name);
+            }
+
         }
         else
         {
@@ -68,10 +75,26 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 10f, LayerMask.GetMask("Out")) && !immortal)
+        Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 10f);
+        if (hit.collider == null)
+        {
+            return;
+        }
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
+        {
+            transform.parent = hit.transform;
+            return;
+        }
+        else
+        {
+            transform.parent = null;
+        }
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
             //perder vida
             SceneManager.LoadScene(gameObject.scene.name);
+            return;
         }
     }
 

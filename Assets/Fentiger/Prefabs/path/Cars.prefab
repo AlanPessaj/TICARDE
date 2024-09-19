@@ -106,7 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thing: {fileID: 5276149425105017193, guid: d2b505a18e0885d419c13ba6423a6bd0, type: 3}
-  spawnRate: 2
+  spawnRate: 3
+  randomSpawnSide: 1
 --- !u!1 &5229564640536918918
 GameObject:
   m_ObjectHideFlags: 0
