@@ -6,6 +6,7 @@ public class Generator_FG : MonoBehaviour
 {
     public GameObject[] sections;
     public GameObject grass;
+    public bool side = false;
     public int distance = 0;
     public int difficulty = 1;
     public int despawnRadius;
