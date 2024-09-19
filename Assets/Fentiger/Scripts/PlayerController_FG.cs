@@ -8,6 +8,7 @@ public class PlayerController_FG : MonoBehaviour
     public Generator_FG generator;
     bool isPlayer1;
     public bool immortal;
+    public GameObject otherPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,17 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                if (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) >= 15)
+                {
+                    if (transform.position.x <= otherPlayer.transform.position.x)
+                    {
+                        transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                    }
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                }
                 if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
                 {
                     generator.GenerateZones();
@@ -29,7 +40,18 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0)
             {
-                transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                Debug.Log(transform.position.x >= otherPlayer.transform.position.x);
+                if (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) >= 15)
+                {
+                    if (transform.position.x >= otherPlayer.transform.position.x)
+                    {
+                        transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                    }
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                }
             }
             if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f)
             {
@@ -51,7 +73,18 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                Debug.Log(transform.position.x >= otherPlayer.transform.position.x);
+                if (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15)
+                {
+                    if (transform.position.x <= otherPlayer.transform.position.x)
+                    {
+                        transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                    }
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                }
                 if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
                 {
                     generator.GenerateZones();
@@ -59,7 +92,18 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0)
             {
-                transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                if (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15)
+                {
+                    Debug.Log(transform.position.x >= otherPlayer.transform.position.x);
+                    if (transform.position.x >= otherPlayer.transform.position.x)
+                    {
+                        transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                    }
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                }
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f)
             {
@@ -75,7 +119,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
+        //Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
         Physics.Raycast(transform.position + new Vector3(0, 0, -1), Vector3.down, out RaycastHit hit, 10f);
         Physics.Raycast(transform.position + new Vector3(0, 0, 1), Vector3.down, out RaycastHit hit2, 10f);
         if (hit.collider == null || hit2.collider == null)

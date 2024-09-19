@@ -15,7 +15,6 @@ public class LinearSpawner_FG : MonoBehaviour
         if (randomSpawnSide)
         {
             changedSide = Random.Range(0, 2) == 1;
-            Debug.Log(changedSide);
         }
     }
 
