@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -211,17 +211,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sections:
-  - {fileID: 5873325583378978193, guid: 8267a4810620e26439a884a97cd1680b, type: 3}
   - {fileID: 4167764292532976631, guid: d26d65c93eaa4a848ba90209b016aa35, type: 3}
   - {fileID: 5873325583378978193, guid: 4c2c65955e56d2547976d8e7baf8858e, type: 3}
-  - {fileID: 5873325583378978193, guid: 58878af3f5707414cae442bde93a7b8c, type: 3}
   - {fileID: 5873325583378978193, guid: 7c6017503b332fb449e369ac25845f7b, type: 3}
+  - {fileID: 5873325583378978193, guid: 8267a4810620e26439a884a97cd1680b, type: 3}
+  - {fileID: 5873325583378978193, guid: 58878af3f5707414cae442bde93a7b8c, type: 3}
   grass: {fileID: 4787763905658012092, guid: 4b8a130b54878db45b4756b9c49247e1, type: 3}
   side: 0
   distance: 0
   difficulty: 1
   despawnRadius: 50
-  difficultyScalar: 100
+  difficultyScalar: 50
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0
