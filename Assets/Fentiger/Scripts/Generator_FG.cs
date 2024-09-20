@@ -6,11 +6,11 @@ public class Generator_FG : MonoBehaviour
 {
     public GameObject[] sections;
     public GameObject grass;
+    GameObject lastSection;
     public bool side = false;
     public int distance = 0;
     public int difficulty = 1;
     public int despawnRadius;
-    bool rapidGeneration = false;
     public int difficultyScalar = 100;
     bool initialSpawn = true;
     // Start is called before the first frame update
@@ -27,41 +27,23 @@ public class Generator_FG : MonoBehaviour
     void Update()
     {
         difficulty = (int)Mathf.Clamp(Mathf.Floor(distance / difficultyScalar), 1f, Mathf.Infinity);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GenerateZones();
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            InvokeRepeating(nameof(GenerateZones), 0, 0.5f);
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            CancelInvoke();
-        }
-        if (rapidGeneration)
-        {
-            GenerateZones();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            rapidGeneration = true;
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            rapidGeneration = false;
-        }
     }
     public void GenerateZones()
     {
         NextZone();
         DespawnZones();
     }
-    GameObject lastSection;
     void NextZone()
     {
         Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
         distance++;
+        /* SECCIONES:
+         * [0] = BrokenLogs
+         * [1] = Cars
+         * [2] = Field
+         * [3] = LilyPads
+         * [4] = Logs
+         */
         GameObject section = sections[Random.Range(0, sections.Length)];
         bool isRepated = false;
         do
