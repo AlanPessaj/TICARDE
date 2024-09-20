@@ -85,6 +85,10 @@ public class PlayerController_FG : MonoBehaviour
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
         {
             transform.parent = hit.transform;
+            if (hit.collider.gameObject.name == "nenufar(Clone)")
+            {
+                transform.Translate(0, 0, 0);
+            }
             return;
         }
         else

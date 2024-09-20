@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 5853922980339253125}
   - component: {fileID: 5853922980340023205}
   - component: {fileID: 5853922980341022053}
-  m_Layer: 0
+  - component: {fileID: 64642901443988702}
+  - component: {fileID: 6608213020523404964}
+  m_Layer: 13
   m_Name: nenufar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,3 +79,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &64642901443988702
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853922980339016613}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 5c9cc0a3b372c5547a8276ed141ff234, type: 3}
+--- !u!114 &6608213020523404964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853922980339016613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230b37709722de7429801425a395f356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  destroyable: 1

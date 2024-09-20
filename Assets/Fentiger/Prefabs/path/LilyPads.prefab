@@ -1,22 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3412031534339407745
-MonoBehaviour:
+--- !u!65 &903495437457628208
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3679004371485421334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50b80fcf8cd780a4585abc879775e3d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thing: {fileID: 5853922980339016613, guid: e8881f9bc08a571429f025c0c48e88b3, type: 3}
-  generator: {fileID: 0}
-  spawnRate: 3
-  changedSide: 0
-  randomSpawnSide: 0
+  serializedVersion: 2
+  m_Size: {x: 2.0000098, y: 1.915519, z: 2.0680187}
+  m_Center: {x: 0.000004540763, y: -0.042240728, z: -0.08808229}
 --- !u!1 &5873325583378978193
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,8 +24,8 @@ GameObject:
   - component: {fileID: 5626706216527908181}
   - component: {fileID: 5409240520631932790}
   - component: {fileID: 7356976296332531973}
-  - component: {fileID: 3122087857389851046}
-  m_Layer: 0
+  - component: {fileID: 11207984513393825}
+  m_Layer: 12
   m_Name: LilyPads
   m_TagString: Zone
   m_Icon: {fileID: 0}
@@ -96,19 +92,23 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3122087857389851046
-BoxCollider:
+--- !u!114 &11207984513393825
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5873325583378978193}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b80fcf8cd780a4585abc879775e3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thing: {fileID: 5853922980339016613, guid: e8881f9bc08a571429f025c0c48e88b3, type: 3}
+  generator: {fileID: 0}
+  spawnRate: 3
+  changedSide: 0
+  randomSpawnSide: 0
 --- !u!1001 &6706574144922503206
 PrefabInstance:
   m_ObjectHideFlags: 0
