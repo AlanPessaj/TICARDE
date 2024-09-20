@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2378211375668383493}
   - component: {fileID: 462104554920615053}
   - component: {fileID: 2378211375669349829}
-  - component: {fileID: 64338497544920014}
+  - component: {fileID: 64859722255748436}
   m_Layer: 13
   m_Name: log
   m_TagString: Untagged
@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  destroyable: 0
 --- !u!23 &2378211375669349829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +93,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64338497544920014
+--- !u!64 &64859722255748436
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

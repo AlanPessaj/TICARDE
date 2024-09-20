@@ -41,7 +41,6 @@ public class LinearMover_FG : MonoBehaviour
             }
         }
 
-
         if (gameObject.name == "nenufar(Clone)")
         {
             transform.Rotate(0, rotation, 0);
