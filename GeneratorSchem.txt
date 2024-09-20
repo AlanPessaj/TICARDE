@@ -1,0 +1,10 @@
+ESCALA DE SPAWNEO						N=1
+								100
+Campo: RATE: --(1) CANTIDAD: ++					15	
+Autos: RATE: +-(2) CANTIDAD: +-					50	
+Agua:  RATE: ++(3) CANTIDAD: +- (LOGS, NENUFARES, LOGS ROTOS)	35	
+
+EXTRAS:
+Gaviotas
+Lasers
+Portales
