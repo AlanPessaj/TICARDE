@@ -87,7 +87,8 @@ public class PlayerController_FG : MonoBehaviour
             transform.parent = hit.transform;
             if (hit.collider.gameObject.name == "nenufar(Clone)")
             {
-                transform.Translate(0, 0, 0);
+                Debug.Log("nenufar");
+                transform.localPosition = new Vector3(0, Mathf.Abs(transform.position.y), 0);
             }
             return;
         }

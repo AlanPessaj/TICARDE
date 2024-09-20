@@ -6,17 +6,18 @@ public class LinearMover_FG : MonoBehaviour
 {
     public float speed;
     public bool destroyable;
-    float rotatioN;
-    float time = 3f;
-    // Start is called before the first frame update
+    private float rotation;
+    private float time = 3f;
+    private Coroutine timerCoroutine;
+
     void Start()
     {
-         rotatioN = Random.Range(-1f, 1f);
+        rotation = Random.Range(-1f, 1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
+
         if (!transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
         {
             if (transform.position.z < 18)
@@ -39,30 +40,34 @@ public class LinearMover_FG : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+
         if (gameObject.name == "nenufar(Clone)")
         {
-            transform.Rotate(0, rotatioN, 0);
-        }
-
-        if (transform.childCount > 0 && gameObject.name == "nenufar(Clone)")
-        {
-            StartCoroutine(timer());
-        }
-        else
-        {
-            StopCoroutine(timer());
+            transform.Rotate(0, rotation, 0);
+            if (transform.childCount > 0)
+            {
+                if (time == 3f && timerCoroutine == null)
+                {
+                    timerCoroutine = StartCoroutine(Timer());
+                }
+                else if (time <= 0)
+                {
+                    transform.GetChild(0).parent = null;
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
-    IEnumerator timer()
+    private IEnumerator Timer()
     {
-        while(time > 0)
+        while (time > 0)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSecondsRealtime(1f);
             time--;
-            Debug.Log("-1s " + time);
+            //Animacion y sonido de irse rompiendo
         }
-        transform.GetChild(0).parent = null;
-        Destroy(gameObject);
+        timerCoroutine = null;
     }
 }
