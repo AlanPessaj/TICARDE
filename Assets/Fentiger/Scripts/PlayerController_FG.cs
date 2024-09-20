@@ -84,11 +84,17 @@ public class PlayerController_FG : MonoBehaviour
         }
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
         {
-            transform.parent = hit.transform;
             if (hit.collider.gameObject.name == "nenufar(Clone)")
             {
-                Debug.Log("nenufar");
-                transform.localPosition = new Vector3(0, Mathf.Abs(transform.position.y), 0);
+                if (hit.transform.childCount == 0)
+                {
+                    transform.parent = hit.transform;
+                    transform.localPosition = new Vector3(0, Mathf.Abs(transform.position.y), 0);
+                }
+            }
+            else
+            {
+                transform.parent = hit.transform;
             }
             return;
         }
