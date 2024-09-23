@@ -7,6 +7,10 @@ public class Level_FG : ScriptableObject
 {
     //{Field, Cars, Water}
     public float[] tiles = new float[3];
+    //{Field, Cars, Water}
+    public float[] minSize = new float[3];
+    //{Field, Cars, Water}
+    public float[] maxSize = new float[3];
     //{Lions, Sapos, Canguros}
     public float[] enemys = new float[3];
     //{Logs, LilyPads, BrokenLogs}
