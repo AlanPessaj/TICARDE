@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thing: {fileID: 2378211375671546629, guid: 3beb5d3c9c42aa74383238d7ce0588e9, type: 3}
   generator: {fileID: 0}
-  spawnRate: 5
+  spawnRate: 10
   changedSide: 0
   randomSpawnSide: 0
 --- !u!65 &2510572123619460387
