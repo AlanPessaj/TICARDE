@@ -8,6 +8,7 @@ public class PlayerController_FG : MonoBehaviour
     public Generator_FG generator;
     bool isPlayer1;
     public bool immortal;
+    public GameObject otherPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,48 +20,55 @@ public class PlayerController_FG : MonoBehaviour
     {
         if (isPlayer1)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x))
             {
-                transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                 if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
                 {
                     generator.GenerateZones();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0)
+            if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x))
             {
-                transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
             }
             if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
             if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
+
+            if (transform.position.z > 13f || transform.position.z < -13f)
+            {
+                //Perder vida
+                SceneManager.LoadScene(gameObject.scene.name);
+            }
+
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x))
             {
-                transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                 if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
                 {
                     generator.GenerateZones();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0)
+            if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x))
             {
-                transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
         }
         CheckTile();
@@ -68,10 +76,37 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 10f, LayerMask.GetMask("Out")) && !immortal)
+        Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 10f);
+        if (hit.collider == null)
+        {
+            return;
+        }
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
+        {
+            if (hit.collider.gameObject.name == "nenufar(Clone)")
+            {
+                if (hit.transform.childCount == 0)
+                {
+                    transform.parent = hit.transform;
+                    transform.localPosition = new Vector3(0, Mathf.Abs(transform.position.y), 0);
+                }
+            }
+            else
+            {
+                transform.parent = hit.transform;
+            }
+            return;
+        }
+        else
+        {
+            transform.parent = null;
+        }
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
             //perder vida
             SceneManager.LoadScene(gameObject.scene.name);
+            return;
         }
     }
 

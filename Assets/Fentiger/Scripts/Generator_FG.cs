@@ -6,12 +6,15 @@ public class Generator_FG : MonoBehaviour
 {
     public GameObject[] sections;
     public GameObject grass;
+    bool? lastSection;
+    public bool side = false;
     public int distance = 0;
     public int difficulty = 1;
     public int despawnRadius;
-    bool rapidGeneration = false;
-    public int difficultyScalar = 100;
+    public int difficultyScalar;
     bool initialSpawn = true;
+    public Level_FG[] Levels;
+    int Level = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,66 +29,113 @@ public class Generator_FG : MonoBehaviour
     void Update()
     {
         difficulty = (int)Mathf.Clamp(Mathf.Floor(distance / difficultyScalar), 1f, Mathf.Infinity);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GenerateZones();
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            InvokeRepeating(nameof(GenerateZones), 0, 0.5f);
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            CancelInvoke();
-        }
-        if (rapidGeneration)
-        {
-            GenerateZones();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            rapidGeneration = true;
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            rapidGeneration = false;
-        }
     }
     public void GenerateZones()
     {
         NextZone();
         DespawnZones();
     }
-    GameObject lastSection;
+    bool? Percenter(float[] percentages)
+    {
+        float percentage1Interval = percentages[0];
+        float percentage2Interval = percentages[0] + percentages[1];
+        float percentage3Interval = percentage2Interval + percentages[2];
+        float number = Random.Range(1f, 100f);
+        if (number <= percentage1Interval)
+        {
+            return null;
+        }
+        else if (number <= percentage2Interval)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     void NextZone()
     {
-        Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
-        distance++;
-        GameObject section = sections[Random.Range(0, sections.Length)];
-        bool isRepated = false;
-        do
+        /*
+         * SECCIONES:
+         * [0] = Cars               
+         * [1] = Logs               \
+         * [2] = LilyPads            ) -> Water
+         * [3] = BrokenLogs         /
+         * [4] = Lions              \
+         * [5] = Froggs              ) -> Field
+         * [6] = Kangaroo           /
+         */
+        List<GameObject> section = new List<GameObject>();
+        bool? winner = Percenter(Levels[Level].tiles);
+        bool isRepated = winner == lastSection;
+        float tileValue = 0;
+        if (!isRepated)
         {
-            isRepated = section == lastSection;
-            if (!isRepated)
+            Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
+            distance++;
+            lastSection = winner;
+            switch (winner)
             {
-                GenerateSection(section);
-                lastSection = section;
+                case null:
+                    tileValue = Random.Range(Levels[Level].maxSize[0], Levels[Level].minSize[0]);
+                    for (int i = 0; i < tileValue; i++)
+                    {
+                        switch (Percenter(Levels[Level].enemies))
+                        {
+                            case null:
+                                section.Add(sections[4]);
+                            break;
+                            case false:
+                                section.Add(sections[5]);
+                            break;
+                            case true:
+                                section.Add(sections[6]);
+                            break;
+                        }
+                    }
+                break;
+                case false:
+                    tileValue = Random.Range(Levels[Level].maxSize[1], Levels[Level].minSize[1]);
+                    for (int i = 0; i < tileValue; i++)
+                    {
+                        section.Add(sections[0]);
+                    }
+                break;
+                case true:
+                    tileValue = Random.Range(Levels[Level].maxSize[2], Levels[Level].minSize[2]);
+                    for (int i = 0; i < tileValue; i++)
+                    {
+                        switch (Percenter(Levels[Level].floaters))
+                        {
+                            case null:
+                                section.Add(sections[1]);
+                            break;
+                            case false:
+                                section.Add(sections[2]);
+                            break;
+                            case true:
+                                section.Add(sections[3]);
+                            break;
+                        }
+                    }
+                break;
             }
-            else
-            {
-                section = sections[Random.Range(0, sections.Length)];
-            }
-        } while (isRepated);
+            GenerateSection(section);
+        }
+        else
+        {
+            NextZone();
+        }
     }
 
-    void GenerateSection(GameObject section)
+    void GenerateSection(List<GameObject> section)
     {
-        int amount = Random.Range(difficulty, difficulty + 4);
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < section.Count; i++)
         {
             if (!initialSpawn || distance < despawnRadius)
             {
-                Instantiate(section, new Vector3(distance, 0, 0), Quaternion.identity);
+                Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity);
                 distance++;
             }
         }
@@ -102,4 +152,11 @@ public class Generator_FG : MonoBehaviour
             }
         }
     }
+}
+
+public enum TileType
+{
+    Cars,
+    Water,
+    Field
 }
