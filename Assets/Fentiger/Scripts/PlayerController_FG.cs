@@ -9,6 +9,7 @@ public class PlayerController_FG : MonoBehaviour
     bool isPlayer1;
     public bool immortal;
     public GameObject otherPlayer;
+    bool onLog = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +35,47 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                if (!onLog)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                }
+                else
+                {
+                    if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                    }
+                    else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                    }
+                }
             }
             if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                if (!onLog)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                }
+                else
+                {
+                    if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                    }
+                    else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                    }
+                }
             }
 
             if (transform.position.z > 13f || transform.position.z < -13f)
@@ -64,11 +101,47 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                if (!onLog)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                }
+                else
+                {
+                    if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                    }
+                    else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                    }
+                }
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                if (!onLog)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                }
+                else
+                {
+                    if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                    }
+                    else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                    }
+                }
             }
         }
         CheckTile();
@@ -76,7 +149,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
+        //Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 10f);
         if (hit.collider == null)
         {
@@ -95,6 +168,7 @@ public class PlayerController_FG : MonoBehaviour
             else
             {
                 transform.parent = hit.transform;
+                onLog = true;
                 transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
             }
             return;
@@ -103,6 +177,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             transform.parent = null;
             transform.position = new Vector3(transform.position.x, -2, transform.position.z);
+            onLog = false;
         }
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {

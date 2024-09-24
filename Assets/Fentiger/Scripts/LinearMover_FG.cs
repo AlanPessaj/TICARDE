@@ -9,16 +9,17 @@ public class LinearMover_FG : MonoBehaviour
     private float rotation;
     private float time = 3f;
     private Coroutine timerCoroutine;
+    private bool movingForward;
 
     void Start()
     {
         rotation = Random.Range(-1f, 1f);
+        movingForward = !transform.parent.GetComponent<LinearSpawner_FG>().changedSide;
     }
 
     void Update()
     {
-
-        if (!transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
+        if (movingForward)
         {
             if (transform.position.z < 18)
             {
