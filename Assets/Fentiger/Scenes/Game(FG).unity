@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -215,7 +215,7 @@ MonoBehaviour:
   - {fileID: 5873325583378978193, guid: 7c6017503b332fb449e369ac25845f7b, type: 3}
   - {fileID: 5873325583378978193, guid: 58878af3f5707414cae442bde93a7b8c, type: 3}
   - {fileID: 5873325583378978193, guid: 8267a4810620e26439a884a97cd1680b, type: 3}
-  - {fileID: 5873325583378978193, guid: 4c2c65955e56d2547976d8e7baf8858e, type: 3}
+  - {fileID: 5873325583378978193, guid: d3ac737326b15174e9af316bd37b7a01, type: 3}
   - {fileID: 5873325583378978193, guid: c7a7781f5bc6d07429593ae331fa5838, type: 3}
   - {fileID: 5873325583378978193, guid: 29639986ccfaf8142ac3e5eed28fd71c, type: 3}
   grass: {fileID: 4787763905658012092, guid: 4b8a130b54878db45b4756b9c49247e1, type: 3}
@@ -235,6 +235,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f4bd52b218982d44a7e3529ecc84c72, type: 2}
   - {fileID: 11400000, guid: 94fdd82fd2d427d4dbfc17218595af28, type: 2}
   - {fileID: 11400000, guid: fe05495eac9d5ac45afd1bc6dfb121d5, type: 2}
+  Level: 0
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0

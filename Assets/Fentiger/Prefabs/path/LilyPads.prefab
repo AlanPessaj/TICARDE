@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 5626706216527908181}
   - component: {fileID: 5409240520631932790}
   - component: {fileID: 7356976296332531973}
-  - component: {fileID: 11207984513393825}
+  - component: {fileID: 114806802215351686}
   m_Layer: 12
   m_Name: LilyPads
   m_TagString: Zone
@@ -92,7 +92,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &11207984513393825
+--- !u!114 &114806802215351686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b80fcf8cd780a4585abc879775e3d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thing: {fileID: 5853922980339016613, guid: e8881f9bc08a571429f025c0c48e88b3, type: 3}
+  thing: {fileID: 7216818711589203257, guid: 0f685adb5c183994387913e59fd4207f, type: 3}
   generator: {fileID: 0}
   spawnRate: 6
   changedSide: 0

@@ -41,10 +41,10 @@ public class LinearMover_FG : MonoBehaviour
             }
         }
 
-        if (gameObject.name == "nenufar(Clone)")
+        if (gameObject.name == "LillyPad(Clone)")
         {
             transform.Rotate(0, rotation, 0);
-            if (transform.childCount > 0)
+            if (transform.childCount > 1)
             {
                 if (time == 3f && timerCoroutine == null)
                 {
@@ -52,7 +52,7 @@ public class LinearMover_FG : MonoBehaviour
                 }
                 else if (time <= 0)
                 {
-                    transform.GetChild(0).parent = null;
+                    transform.GetChild(1).parent = null;
                     Destroy(gameObject);
                 }
             }

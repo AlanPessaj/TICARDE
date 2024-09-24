@@ -84,23 +84,25 @@ public class PlayerController_FG : MonoBehaviour
         }
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
         {
-            if (hit.collider.gameObject.name == "nenufar(Clone)")
+            if (hit.collider.gameObject.name == "LillyPad(Clone)")
             {
-                if (hit.transform.childCount == 0)
+                if (hit.transform.childCount == 1)
                 {
                     transform.parent = hit.transform;
-                    transform.localPosition = new Vector3(0, Mathf.Abs(transform.position.y), 0);
+                    transform.localPosition = new Vector3(0, 1, 0);
                 }
             }
             else
             {
                 transform.parent = hit.transform;
+                transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
             }
             return;
         }
         else
         {
             transform.parent = null;
+            transform.position = new Vector3(transform.position.x, -2, transform.position.z);
         }
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
