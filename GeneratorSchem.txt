@@ -70,3 +70,6 @@ CAMPO= 30% [Leones 20%; Sapos 15%; Canguros 15%]		| 8 - 12
 AUTOS= 35%							| 6 - 8
 AGUA=  35% [Logs 20%; Nenufares 40%; BrokenLogs 40%]		| 6 - 8
 ESPECIALES: Gaviotas 25%; Lasers 20%; Portales 15%
+
+
+50% DE ENEMIGOS MENOS EN EL SPAWNER DE CAMPO!!!!

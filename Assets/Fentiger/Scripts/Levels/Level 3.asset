@@ -25,8 +25,8 @@ MonoBehaviour:
   - 6
   - 6
   enemies:
-  - 40
-  - 10
+  - 80
+  - 20
   - 0
   floaters:
   - 25
