@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 002f6dd177877d34ca5f14898a6c4852, type: 3}
-  m_Name: Level 5
+  m_Name: Level 7
   m_EditorClassIdentifier: 
   tiles:
-  - 25
-  - 37.5
-  - 37.5
+  - 30
+  - 35
+  - 35
   minSize:
+  - 6
   - 5
-  - 4
-  - 4
+  - 5
   maxSize:
+  - 10
   - 8
-  - 7
-  - 7
+  - 8
   enemies:
-  - 25
-  - 12.5
-  - 12.5
+  - 20
+  - 15
+  - 15
   floaters:
   - 33.3
   - 33.3
   - 33.4
   special:
-  - 10
+  - 15
+  - 13
   - 8
-  - 3
