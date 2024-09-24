@@ -43,7 +43,14 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
                     {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        if (transform.localPosition.z > 0.2f)
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        }
                     }
                     else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
                     {
@@ -65,7 +72,14 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
                     {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        if (transform.localPosition.z <= 0.2f)
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        }
                     }
                     else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
                     {
@@ -109,7 +123,14 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
                     {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        if (transform.localPosition.z > 0.2f)
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        }
                     }
                     else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
                     {
@@ -131,7 +152,14 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
                     {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        if (transform.localPosition.z <= 0.2f)
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        }
                     }
                     else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
                     {
