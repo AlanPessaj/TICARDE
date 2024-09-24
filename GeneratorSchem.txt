@@ -11,61 +11,61 @@ Portales
 
 CAMBIOS POR INTERVALO DE NIVELES:
 
-NIVEL 1 - 10:
+NIVEL 1://
 CAMPO= 5% [Leones 50%; Sapos 0%; Canguros 0%]			| 4 - 6
 AUTOS= 55%							| 3 - 5
 AGUA= 40% [Logs 75%;Nenufares 25%;BrokenLogs 0%]		| 3 - 5
 ESPECIALES: 0%	
 
-NIVEL 10 - 20:
+NIVEL 2://
 CAMPO= 8% [Leones 50%; Sapos 0%; Canguros 0%]			| 4 - 6
 AUTOS= 52%							| 3 - 5
 AGUA= 40% [Logs 50%;Nenufares 32,5%;BrokenLogs 7,5%]		| 3 - 5
 ESPECIALES: Gaviotas 1%; Lasers 0%; Portales 0%
 
-NIVEL 20 - 30:
+NIVEL 3://
 CAMPO= 15% [Leones 40%; Sapos 10%; Canguros 0%]			| 5 - 7
 AUTOS= 45%							| 4 - 6
 AGUA= 40% [Logs 25%;Nenufares 50%;BrokenLogs 25%]		| 4 - 6
 ESPECIALES: Gaviotas 5%; Lasers 1%; Portales 0%
 
-NIVEL 30 - 40:
+NIVEL 4://
 CAMPO= 20% [Leones 35%; Sapos 10%; Canguros 5%]			| 5 - 8
 AUTOS= 40%							| 4 - 7
 AGUA= 40% [Logs 33,3%;Nenufares 33,3%;BrokenLogs 33,3%]		| 4 - 7
 ESPECIALES: Gaviotas 8%; Lasers 5%; Portales 1%
 
-NIVEL 40 - 50:
+NIVEL 5:
 CAMPO= 25% [Leones 25%; Sapos 12,5%; Canguros 12,5%]		| 5 - 8
 AUTOS= 37,5%							| 4 - 7
 AGUA= 37,5% [Logs 33,3%;Nenufares 33,3%;BrokenLogs 33,3%]	| 4 - 7
 ESPECIALES: Gaviotas 10%; Lasers 8%; Portales 3%
 
-NIVEL 50 - 60:
+NIVEL 6:
 CAMPO= 30% [Leones 20%; Sapos 15%; Canguros 15%]		| 5 - 8
 AUTOS= 35%							| 4 - 7
 AGUA=  35% [Logs 33,3%;Nenufares 33,3%;BrokenLogs 33,3%]	| 4 - 7
 ESPECIALES: Gaviotas 13%; Lasers 10%; Portales 5%
 
-NIVEL 60 - 70:
+NIVEL 7:
 CAMPO= 30% [Leones 20%; Sapos 15%; Canguros 15%]		| 6 - 10
 AUTOS= 35%							| 5 - 8
 AGUA=  35% [Logs 33,3%;Nenufares 33,3%;BrokenLogs 33,3%]	| 5 - 8
 ESPECIALES: Gaviotas 15%; Lasers 13%; Portales 8%
 
-NIVEL 70 - 80:
+NIVEL 8:
 CAMPO= 30% [Leones 20%; Sapos 15%; Canguros 15%]		| 6 - 10
 AUTOS= 42,5%							| 5 - 8
 AGUA= 42,5% [Logs 30%; Nenufares 35%; BrokenLogs 35%]		| 5 - 8
 ESPECIALES: Gaviotas 18%; Lasers 15%; Portales 10%
 
-NIVEL 80 - 90:
+NIVEL 9:
 CAMPO= 30% [Leones 20%; Sapos 15%; Canguros 15%]		| 8 - 12
 AUTOS= 35%							| 6 - 8
 AGUA=  35% [Logs 25%;Nenufares 37,5%;BrokenLogs 37,5%]	| 6 - 8
 ESPECIALES: Gaviotas 20%; Lasers 18%; Portales 10%
 
-NIVEL 90 - 100:
+NIVEL 10:
 CAMPO= 30% [Leones 20%; Sapos 15%; Canguros 15%]		| 8 - 12
 AUTOS= 35%							| 6 - 8
 AGUA=  35% [Logs 20%; Nenufares 40% ;BrokenLogs 40%]		| 6 - 8
