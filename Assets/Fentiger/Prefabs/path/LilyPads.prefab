@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thing: {fileID: 5853922980339016613, guid: e8881f9bc08a571429f025c0c48e88b3, type: 3}
   generator: {fileID: 0}
-  spawnRate: 3
+  spawnRate: 6
   changedSide: 0
   randomSpawnSide: 0
 --- !u!1001 &6706574144922503206
