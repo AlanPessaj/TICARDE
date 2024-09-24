@@ -5,22 +5,68 @@ using UnityEngine;
 public class LinearMover_FG : MonoBehaviour
 {
     public float speed;
-    // Start is called before the first frame update
+    public bool destroyable;
+    private float rotation;
+    private float time = 3f;
+    private Coroutine timerCoroutine;
+
     void Start()
     {
-
+        rotation = Random.Range(-1f, 1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (transform.position.z < 18)
+
+        if (!transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
         {
-            transform.Translate(0,0,speed);
+            if (transform.position.z < 18)
+            {
+                transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {
-            Destroy(gameObject);
+            if (transform.position.z > -18)
+            {
+                transform.Translate(0, 0, -speed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
+
+        if (gameObject.name == "nenufar(Clone)")
+        {
+            transform.Rotate(0, rotation, 0);
+            if (transform.childCount > 0)
+            {
+                if (time == 3f && timerCoroutine == null)
+                {
+                    timerCoroutine = StartCoroutine(Timer());
+                }
+                else if (time <= 0)
+                {
+                    transform.GetChild(0).parent = null;
+                    Destroy(gameObject);
+                }
+            }
+        }
+    }
+
+    private IEnumerator Timer()
+    {
+        while (time > 0)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            time--;
+            //Animacion y sonido de irse rompiendo
+        }
+        timerCoroutine = null;
     }
 }
