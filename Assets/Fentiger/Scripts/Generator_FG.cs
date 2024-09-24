@@ -14,7 +14,7 @@ public class Generator_FG : MonoBehaviour
     public int difficultyScalar;
     bool initialSpawn = true;
     public Level_FG[] Levels;
-    int Level = 0;
+    public int Level = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +29,10 @@ public class Generator_FG : MonoBehaviour
     void Update()
     {
         difficulty = (int)Mathf.Clamp(Mathf.Floor(distance / difficultyScalar), 1f, Mathf.Infinity);
+        if (difficulty >= 10 && difficulty <= 100 && difficulty%10 == 0)
+        {
+            Level = difficulty / 10;
+        }
     }
     public void GenerateZones()
     {
@@ -152,11 +156,4 @@ public class Generator_FG : MonoBehaviour
             }
         }
     }
-}
-
-public enum TileType
-{
-    Cars,
-    Water,
-    Field
 }

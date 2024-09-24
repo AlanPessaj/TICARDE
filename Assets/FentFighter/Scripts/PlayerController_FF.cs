@@ -311,7 +311,7 @@ public class PlayerController_FF : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
