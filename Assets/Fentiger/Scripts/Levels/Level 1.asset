@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - 5
-  - 55
-  - 40
+  - 60
+  - 35
   minSize:
   - 4
   - 3
   - 3
   maxSize:
-  - 6
   - 5
-  - 5
+  - 4
+  - 4
   enemies:
   - 100
   - 0

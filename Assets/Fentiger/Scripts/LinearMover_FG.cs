@@ -10,6 +10,8 @@ public class LinearMover_FG : MonoBehaviour
     private float time = 3f;
     private Coroutine timerCoroutine;
     private bool movingForward;
+    public Generator_FG generator;
+    public LinearSpawner_FG spawner;
 
     void Start()
     {
@@ -23,7 +25,7 @@ public class LinearMover_FG : MonoBehaviour
         {
             if (transform.position.z < 18)
             {
-                transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
+                transform.Translate(0, 0, (speed + spawner.difficulty/10) * Time.deltaTime, Space.World);
             }
             else
             {
@@ -34,7 +36,7 @@ public class LinearMover_FG : MonoBehaviour
         {
             if (transform.position.z > -18)
             {
-                transform.Translate(0, 0, -speed * Time.deltaTime, Space.World);
+                transform.Translate(0, 0, (speed + generator.difficulty / 10) * -Time.deltaTime, Space.World);
             }
             else
             {
@@ -69,5 +71,10 @@ public class LinearMover_FG : MonoBehaviour
             //Animacion y sonido de irse rompiendo
         }
         timerCoroutine = null;
+    }
+
+    private void Awake()
+    {
+        generator = GameObject.Find("GAMEMANAGER").GetComponent<Generator_FG>();
     }
 }
