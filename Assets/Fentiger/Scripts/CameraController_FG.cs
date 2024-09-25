@@ -7,19 +7,12 @@ public class CameraController_FG : MonoBehaviour
     public Transform player1;
     public Transform player2;
     public Generator_FG generator;
-    public float initialStepSize;
     public float snapThreshold;
-    float stepSize;
+    public float stepSize;
     Vector3 targetPosition;
     Vector3 previousTarget;
     Vector3 previusPosition;
     float step;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        stepSize = initialStepSize;
-    }
 
     // Update is called once per frame
     void Update()

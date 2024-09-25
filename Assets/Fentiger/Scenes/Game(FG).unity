@@ -349,6 +349,8 @@ MonoBehaviour:
   player1: {fileID: 1863136301}
   player2: {fileID: 1220741845}
   generator: {fileID: 287369561}
+  snapThreshold: 0.1
+  stepSize: 2
 --- !u!1 &1220741840
 GameObject:
   m_ObjectHideFlags: 0
