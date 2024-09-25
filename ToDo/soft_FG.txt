@@ -1,0 +1,17 @@
+canguros
+leones
+sapos
+lasers
+gaviotas
+portales
+arboles
+vidas
+modo singleplayer (y transferencia a multiplayer)
+animacion de muerte
+que pueda seguir uno solo cuando muere el otro
+animacion de perder
+
+50% DE ENEMIGOS MENOS EN EL SPAWNER DE CAMPO
+AUTOS YA SPAWNEADOS AL EMPEZAR
+AJUSTAR VALORES DE LOS NIVELES
+DEPENDIENDO DEL NIVEL, CAMBIAR ASPECTO DE GRASS
