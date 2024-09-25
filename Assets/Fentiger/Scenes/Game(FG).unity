@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -223,7 +223,7 @@ MonoBehaviour:
   distance: 0
   difficulty: 1
   despawnRadius: 50
-  difficultyScalar: 50
+  difficultyScalar: 5
   Levels:
   - {fileID: 11400000, guid: b40f50ff5ee55be4dba25a311824a9cf, type: 2}
   - {fileID: 11400000, guid: 41f1cef1c4987084e8731dead1e6af36, type: 2}
