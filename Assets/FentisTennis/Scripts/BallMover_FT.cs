@@ -173,7 +173,9 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
-                    bounced = true;
+                    //Punto para p2
+                    gameManager.AddPoint(gameManager.player2);
+                    bounced = false;
                 }
             }
             else
@@ -186,7 +188,9 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
-                    bounced = true;
+                    //Punto para p1
+                    gameManager.AddPoint(gameManager.player1);
+                    bounced = false;
                 }
             }
         }
