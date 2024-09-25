@@ -43,7 +43,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
                     {
-                        if (transform.localPosition.z > 0.2f)
+                        if (transform.localPosition.z > 0.3f)
                         {
                             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
                         }
@@ -72,7 +72,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
                     {
-                        if (transform.localPosition.z <= 0.2f)
+                        if (transform.localPosition.z <= 0.3f)
                         {
                             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
                         }
@@ -123,7 +123,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
                     {
-                        if (transform.localPosition.z > 0.2f)
+                        if (transform.localPosition.z > 0.3f)
                         {
                             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
                         }
@@ -152,7 +152,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
                     {
-                        if (transform.localPosition.z <= 0.2f)
+                        if (transform.localPosition.z <= 0.3f)
                         {
                             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
                         }

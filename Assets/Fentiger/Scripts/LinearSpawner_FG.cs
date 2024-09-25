@@ -10,9 +10,11 @@ public class LinearSpawner_FG : MonoBehaviour
     public float spawnRate;
     public bool changedSide = false;
     public bool randomSpawnSide;
+    public int difficulty;
 
     void Start()
     {
+        difficulty = generator.difficulty;
         timer = Random.Range(0f, 1f);
         if (randomSpawnSide)
         {
@@ -31,11 +33,11 @@ public class LinearSpawner_FG : MonoBehaviour
         {
             if (changedSide)
             {
-                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform);
+                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
             else
             {
-                Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform);
+                Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
 
             timer = Random.Range(spawnRate / 4, spawnRate);
