@@ -5,9 +5,8 @@ using UnityEngine;
 public class LinearMover_FG : MonoBehaviour
 {
     public float speed;
-    public bool destroyable;
     private float rotation;
-    private float time = 3f;
+    public float time;
     private Coroutine timerCoroutine;
     private bool movingForward;
     public Generator_FG generator;
@@ -17,6 +16,14 @@ public class LinearMover_FG : MonoBehaviour
     {
         rotation = Random.Range(-1f, 1f);
         movingForward = !transform.parent.GetComponent<LinearSpawner_FG>().changedSide;
+        if (gameObject.name == "LillyPad(Clone)")
+        {
+            time = 3f;
+        }
+        else
+        {
+            time = Random.Range(2f, 4f);
+        }
     }
 
     void Update()
@@ -49,28 +56,25 @@ public class LinearMover_FG : MonoBehaviour
             transform.Rotate(0, rotation, 0);
             if (transform.childCount > 1)
             {
-                if (time == 3f && timerCoroutine == null)
-                {
-                    timerCoroutine = StartCoroutine(Timer());
-                }
-                else if (time <= 0)
-                {
-                    transform.GetChild(1).parent = null;
-                    Destroy(gameObject);
-                }
+                time -= Time.deltaTime;
             }
         }
-    }
-
-    private IEnumerator Timer()
-    {
-        while (time > 0)
+        else if(gameObject.name == "BrokenLog(Clone)")
         {
-            yield return new WaitForSecondsRealtime(1f);
-            time--;
-            //Animacion y sonido de irse rompiendo
+            if (transform.childCount > 1)
+            {
+                time -= Time.deltaTime;
+            }
         }
-        timerCoroutine = null;
+        if (time <= 0)
+        {
+            if (transform.childCount > 2)
+            {
+                transform.GetChild(1).parent = null;
+            }
+            transform.GetChild(1).parent = null;
+            Destroy(gameObject);
+        }
     }
 
     private void Awake()
