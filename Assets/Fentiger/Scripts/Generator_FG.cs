@@ -15,6 +15,7 @@ public class Generator_FG : MonoBehaviour
     bool initialSpawn = true;
     public Level_FG[] Levels;
     public int Level = 0;
+    public Transform camara;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +29,8 @@ public class Generator_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        difficulty = (int)Mathf.Clamp(Mathf.Floor(distance / difficultyScalar), 1f, Mathf.Infinity);
-        if (difficulty >= 10 && ((difficulty.ToString()[1] == '0' && difficulty.ToString().Length == 2) || difficulty == 100))/*&& difficulty <= 100 && difficulty%10 == 0*/
+        difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
+        if (difficulty >= 10 && ((difficulty.ToString()[1] == '0' && difficulty.ToString().Length == 2) || difficulty == 100))
         {
             Level = difficulty / 10;
         }
