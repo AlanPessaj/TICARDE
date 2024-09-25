@@ -1,7 +1,7 @@
 moverse agachado
 bloqueo agachado
 moverse bloqueando
-xp al bloquear
+xp al bloquear (consultar a alan)
 knockback
 stun
 golpe martillo (tira al enemigo hacia al suelo desde el aire)
