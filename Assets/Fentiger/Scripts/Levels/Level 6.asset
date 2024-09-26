@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Level 6
   m_EditorClassIdentifier: 
   tiles:
-  - 30
-  - 35
+  - 25
+  - 40
   - 35
   minSize:
   - 5

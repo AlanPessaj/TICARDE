@@ -10,14 +10,12 @@ modo singleplayer (y transferencia a multiplayer)
 animacion de muerte
 que pueda seguir uno solo cuando muere el otro
 animacion de perder
-
 50% DE ENEMIGOS MENOS EN EL SPAWNER DE CAMPO
-AUTOS YA SPAWNEADOS AL EMPEZAR
-AJUSTAR VALORES DE LOS NIVELES
+AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 DEPENDIENDO DEL NIVEL, CAMBIAR ASPECTO DE GRASS
 ESCENA DE GAMEOVER, CONTINUAR, ETC
 BAJAR TIEMPO DE DESPAWNEO DE LOS BREAKABLES DEPENDIENDO DE LA DIFICULTAD
 
-
+-----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
 AUTO MAX = initial/2.5
