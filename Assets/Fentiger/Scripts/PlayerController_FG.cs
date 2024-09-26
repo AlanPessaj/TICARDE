@@ -95,7 +95,7 @@ public class PlayerController_FG : MonoBehaviour
             if (transform.position.z > 13f || transform.position.z < -13f)
             {
                 //Perder vida
-                SceneManager.LoadScene(gameObject.scene.name);
+                SceneManager.LoadScene("MENU");
             }
 
         }
@@ -210,7 +210,7 @@ public class PlayerController_FG : MonoBehaviour
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
             //perder vida
-            SceneManager.LoadScene(gameObject.scene.name);
+            SceneManager.LoadScene("MENU");
             return;
         }
     }
@@ -220,7 +220,7 @@ public class PlayerController_FG : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
             //perder vida
-            SceneManager.LoadScene("Game(FG)");
+            SceneManager.LoadScene("MENU");
             //BORRAME >:(
         }
     }
