@@ -198,7 +198,7 @@ GameObject:
   m_Layer: 11
   m_Name: Foot
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -849,7 +849,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 2812461466333098468, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1034,7 +1035,7 @@ GameObject:
   m_Layer: 11
   m_Name: Foot
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -1989,7 +1990,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 2812461466333098468, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
       propertyPath: m_LocalPosition.x
