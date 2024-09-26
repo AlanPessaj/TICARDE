@@ -5,14 +5,15 @@ using UnityEngine;
 public class HitManager_FF : MonoBehaviour
 {
     public Collider[] hColliders = new Collider[3];
-    public Properties_FF damageProperties = null;
+    public Damage_FF damageProperties = null;
     public bool blocking;
-    float immunityTimer;
     public float XPMultiplier;
+    bool detectedHit;
+    bool detectedBlock;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -21,6 +22,8 @@ public class HitManager_FF : MonoBehaviour
         for (int i = 0; i < hColliders.Length; i++)
         {
             bool collided = false;
+            if (damageProperties == null){break; }
+            if (damageProperties.owner == gameObject) { break; }
             if (hColliders[i] == null) {continue;}
             for (int o = i + 1; o < hColliders.Length; o++)
             {
@@ -49,6 +52,12 @@ public class HitManager_FF : MonoBehaviour
                             if (blocking)
                             {
                                 Debug.Log("(block cabeza pecho)");
+                                if (!detectedBlock)
+                                {
+                                    GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                                    detectedBlock = true;
+                                    damageProperties.disableAction = ResetDetection;
+                                }
                             }
                             else
                             {
@@ -98,6 +107,12 @@ public class HitManager_FF : MonoBehaviour
                     if (blocking)
                     {
                         Debug.Log("(block cabeza)");
+                        if (!detectedBlock)
+                        {
+                            GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                            detectedBlock = true;
+                            damageProperties.disableAction = ResetDetection;
+                        }
                     }
                     else
                     {
@@ -109,6 +124,12 @@ public class HitManager_FF : MonoBehaviour
                     if (blocking)
                     {
                         Debug.Log("(block pecho)");
+                        if (!detectedBlock)
+                        {
+                            GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                            detectedBlock = true;
+                            damageProperties.disableAction = ResetDetection;
+                        }
                     }
                     else
                     {
@@ -120,6 +141,12 @@ public class HitManager_FF : MonoBehaviour
                     if (blocking)
                     {
                         Debug.Log("(block piernas)");
+                        if (!detectedBlock)
+                        {
+                            GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                            detectedBlock = true;
+                            damageProperties.disableAction = ResetDetection;
+                        }
                     }
                     else
                     {
@@ -131,27 +158,26 @@ public class HitManager_FF : MonoBehaviour
         }
         hColliders = new Collider[3];
         damageProperties = null;
-        if (immunityTimer > 0)
-        {
-            immunityTimer -= Time.deltaTime * 2;
-        }
-        else
-        {
-            immunityTimer = 0;
-        }
     }
 
 
-    void TakeDamage(Properties_FF damageProperties)
+    void ResetDetection()
     {
-        if (immunityTimer <= 0)
+        detectedBlock = false;
+        detectedHit = false;
+    }
+
+    void TakeDamage(Damage_FF damageProperties)
+    {
+        if (!detectedHit)
         {
             GetComponent<UIManager_FF>().ChangeHealth(-damageProperties.damage);
             if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.Kick)
             {
                 GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damageProperties.damage * XPMultiplier);
             }
-            immunityTimer = 1f;
+            detectedHit = true;
+            damageProperties.disableAction = ResetDetection;
         }
     }
 }
