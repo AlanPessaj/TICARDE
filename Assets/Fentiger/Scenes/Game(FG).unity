@@ -212,16 +212,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sections:
   - {fileID: 4167764292532976631, guid: d26d65c93eaa4a848ba90209b016aa35, type: 3}
-  - {fileID: 5873325583378978193, guid: 4c2c65955e56d2547976d8e7baf8858e, type: 3}
   - {fileID: 5873325583378978193, guid: 7c6017503b332fb449e369ac25845f7b, type: 3}
-  - {fileID: 5873325583378978193, guid: 8267a4810620e26439a884a97cd1680b, type: 3}
   - {fileID: 5873325583378978193, guid: 58878af3f5707414cae442bde93a7b8c, type: 3}
+  - {fileID: 5873325583378978193, guid: 302e0adfca148a9448d3a1df84715418, type: 3}
+  - {fileID: 5873325583378978193, guid: d3ac737326b15174e9af316bd37b7a01, type: 3}
+  - {fileID: 5873325583378978193, guid: c7a7781f5bc6d07429593ae331fa5838, type: 3}
+  - {fileID: 5873325583378978193, guid: 29639986ccfaf8142ac3e5eed28fd71c, type: 3}
   grass: {fileID: 4787763905658012092, guid: 4b8a130b54878db45b4756b9c49247e1, type: 3}
   side: 0
   distance: 0
   difficulty: 1
   despawnRadius: 50
-  difficultyScalar: 50
+  difficultyScalar: 5
+  Levels:
+  - {fileID: 11400000, guid: b40f50ff5ee55be4dba25a311824a9cf, type: 2}
+  - {fileID: 11400000, guid: 41f1cef1c4987084e8731dead1e6af36, type: 2}
+  - {fileID: 11400000, guid: 9dd49ad7f696b3f4cacd7eaad3a1c76a, type: 2}
+  - {fileID: 11400000, guid: 28e5ffd7821703f4195fb98f0f48487b, type: 2}
+  - {fileID: 11400000, guid: 07c151b9520018e428f362374b8f01d0, type: 2}
+  - {fileID: 11400000, guid: 19d1ded7d7c427c41bfbc301fb72b413, type: 2}
+  - {fileID: 11400000, guid: 415ae41111a117b43b7295194c18ac26, type: 2}
+  - {fileID: 11400000, guid: 4f4bd52b218982d44a7e3529ecc84c72, type: 2}
+  - {fileID: 11400000, guid: 94fdd82fd2d427d4dbfc17218595af28, type: 2}
+  - {fileID: 11400000, guid: fe05495eac9d5ac45afd1bc6dfb121d5, type: 2}
+  Level: 0
+  camara: {fileID: 534669905}
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0
@@ -334,6 +349,8 @@ MonoBehaviour:
   player1: {fileID: 1863136301}
   player2: {fileID: 1220741845}
   generator: {fileID: 287369561}
+  snapThreshold: 0.1
+  stepSize: 2
 --- !u!1 &1220741840
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 287369561}
-  immortal: 0
+  immortal: 1
   otherPlayer: {fileID: 1863136296}
 --- !u!136 &1220741842
 CapsuleCollider:
@@ -475,7 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 287369561}
-  immortal: 0
+  immortal: 1
   otherPlayer: {fileID: 1220741840}
 --- !u!136 &1863136298
 CapsuleCollider:

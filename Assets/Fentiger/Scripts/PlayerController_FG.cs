@@ -9,6 +9,7 @@ public class PlayerController_FG : MonoBehaviour
     bool isPlayer1;
     public bool immortal;
     public GameObject otherPlayer;
+    bool onLog = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,17 +35,67 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                if (!onLog)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                }
+                else
+                {
+                    if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
+                    {
+                        if (transform.localPosition.z > 0.3f)
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        }
+                    }
+                    else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                    }
+                }
             }
             if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                if (!onLog)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                }
+                else
+                {
+                    if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
+                    {
+                        if (transform.localPosition.z <= 0.3f)
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        }
+                    }
+                    else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                    }
+                }
             }
 
             if (transform.position.z > 13f || transform.position.z < -13f)
             {
                 //Perder vida
-                SceneManager.LoadScene(gameObject.scene.name);
+                SceneManager.LoadScene("MENU");
             }
 
         }
@@ -64,11 +115,61 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                if (!onLog)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                }
+                else
+                {
+                    if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
+                    {
+                        if (transform.localPosition.z > 0.3f)
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        }
+                    }
+                    else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                    }
+                }
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                if (!onLog)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                }
+                else
+                {
+                    if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
+                    {
+                        if (transform.localPosition.z <= 0.3f)
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                        }
+                    }
+                    else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
+                    {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                    }
+                }
             }
         }
         CheckTile();
@@ -76,7 +177,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
+        //Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 10f);
         if (hit.collider == null)
         {
@@ -84,28 +185,32 @@ public class PlayerController_FG : MonoBehaviour
         }
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
         {
-            if (hit.collider.gameObject.name == "nenufar(Clone)")
+            if (hit.collider.gameObject.name == "LillyPad(Clone)")
             {
-                if (hit.transform.childCount == 0)
+                if (hit.transform.childCount == 1)
                 {
                     transform.parent = hit.transform;
-                    transform.localPosition = new Vector3(0, Mathf.Abs(transform.position.y), 0);
+                    transform.localPosition = new Vector3(0, 1, 0);
                 }
             }
             else
             {
                 transform.parent = hit.transform;
+                onLog = true;
+                transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
             }
             return;
         }
         else
         {
             transform.parent = null;
+            transform.position = new Vector3(transform.position.x, -2, transform.position.z);
+            onLog = false;
         }
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
             //perder vida
-            SceneManager.LoadScene(gameObject.scene.name);
+            SceneManager.LoadScene("MENU");
             return;
         }
     }
@@ -115,7 +220,7 @@ public class PlayerController_FG : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
             //perder vida
-            SceneManager.LoadScene("Game(FG)");
+            SceneManager.LoadScene("MENU");
             //BORRAME >:(
         }
     }

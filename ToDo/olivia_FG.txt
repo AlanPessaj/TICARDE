@@ -1,0 +1,2 @@
+peon con cara de personaje
+animacion de moverse

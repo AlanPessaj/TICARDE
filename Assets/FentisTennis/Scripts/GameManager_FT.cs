@@ -101,7 +101,9 @@ public class GameManager_FT : MonoBehaviour
 
     public void EndServe()
     {
+        ballHeight = 0;
         serve = 0;
+        stepSize = initialStepSize;
         ballmover.active = true;
         ballmover.transform.parent = null;
         serving = false;

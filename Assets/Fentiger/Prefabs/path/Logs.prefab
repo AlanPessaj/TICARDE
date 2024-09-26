@@ -91,9 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b80fcf8cd780a4585abc879775e3d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thing: {fileID: 2378211375671546629, guid: 3beb5d3c9c42aa74383238d7ce0588e9, type: 3}
+  thing: {fileID: 4487408806782928594, guid: 12da297ef4a68bd409b91d9398ff063a, type: 3}
   generator: {fileID: 0}
-  spawnRate: 5
+  spawnRate: 10
   changedSide: 0
   randomSpawnSide: 0
 --- !u!65 &2510572123619460387
