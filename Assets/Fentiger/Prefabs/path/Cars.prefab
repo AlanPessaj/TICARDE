@@ -122,9 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thing: {fileID: 5276149425105017193, guid: d2b505a18e0885d419c13ba6423a6bd0, type: 3}
   generator: {fileID: 0}
-  spawnRate: 6
+  spawnRate: 5
   changedSide: 0
   randomSpawnSide: 1
+  difficulty: 0
 --- !u!64 &7608153860882065845
 MeshCollider:
   m_ObjectHideFlags: 0
