@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 12
   type: 1
+  owner: {fileID: 788796811}
 --- !u!1 &83951991
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 6
   type: 0
+  owner: {fileID: 788796811}
 --- !u!1 &218919179
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +461,7 @@ GameObject:
   - component: {fileID: 247732173}
   - component: {fileID: 247732175}
   - component: {fileID: 247732174}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 301456837}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -967,7 +969,7 @@ GameObject:
   - component: {fileID: 508380206}
   - component: {fileID: 508380208}
   - component: {fileID: 508380207}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,6 +1124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 12
   type: 1
+  owner: {fileID: 1779018765}
 --- !u!1 &535542124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1468,7 @@ GameObject:
   - component: {fileID: 692374582}
   - component: {fileID: 692374584}
   - component: {fileID: 692374583}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1730,6 +1733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 6
   type: 0
+  owner: {fileID: 1779018765}
 --- !u!1 &1142081132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,7 +2184,7 @@ GameObject:
   - component: {fileID: 1300781177}
   - component: {fileID: 1300781179}
   - component: {fileID: 1300781178}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2271,7 +2275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1402965515}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2326,7 +2330,7 @@ GameObject:
   - component: {fileID: 1426130728}
   - component: {fileID: 1426130730}
   - component: {fileID: 1426130729}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2486,7 +2490,7 @@ GameObject:
   - component: {fileID: 1638716664}
   - component: {fileID: 1638716666}
   - component: {fileID: 1638716665}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
