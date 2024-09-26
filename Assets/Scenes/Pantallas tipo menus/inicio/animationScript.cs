@@ -16,11 +16,14 @@ public class animationScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (index == -1)
+        if (index < 0)
         {
             canvas.SetActive(true);
             Destroy(gameObject);
         }
-        GetComponent<SpriteRenderer>().sprite = sprites[index];
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = sprites[index];
+        }
     }
 }

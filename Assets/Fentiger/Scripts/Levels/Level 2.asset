@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - 5
-  - 55
-  - 40
+  - 60
+  - 35
   minSize:
   - 4
   - 3
