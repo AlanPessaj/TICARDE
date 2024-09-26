@@ -32,7 +32,7 @@ public class Generator_FG : MonoBehaviour
         difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
         if (difficulty >= 10 && ((difficulty.ToString()[1] == '0' && difficulty.ToString().Length == 2) || difficulty == 100))
         {
-            Level = difficulty / 10;
+            Level = Mathf.Clamp(difficulty / 10, 0, 9);
         }
     }
     public void GenerateZones()
