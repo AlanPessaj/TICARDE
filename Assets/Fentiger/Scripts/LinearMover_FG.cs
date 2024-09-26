@@ -52,7 +52,7 @@ public class LinearMover_FG : MonoBehaviour
         {
             if (transform.position.z > -18)
             {
-                transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed*2.5f) * -Time.deltaTime, Space.World);
+                transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed*3f) * -Time.deltaTime, Space.World);
             }
             else
             {
