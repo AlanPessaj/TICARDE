@@ -11,10 +11,12 @@ public class LinearSpawner_FG : MonoBehaviour
     public bool changedSide = false;
     public bool randomSpawnSide;
     public int difficulty;
+    float initialSpawnRate;
     float time;
 
     void Start()
     {
+        initialSpawnRate = spawnRate;
         time = (spawnRate - generator.difficulty / 10);
         difficulty = generator.difficulty;
         timer = Random.Range(0f, 1f);
@@ -45,7 +47,7 @@ public class LinearSpawner_FG : MonoBehaviour
             {
                 Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
-            timer = Random.Range(time/4, time);
+            timer = Mathf.Clamp(Random.Range(time/4, time), initialSpawnRate / 2.5f, Mathf.Infinity);
         }
         timer -= Time.deltaTime;
     }

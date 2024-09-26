@@ -93,9 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thing: {fileID: 4487408806782928594, guid: 12da297ef4a68bd409b91d9398ff063a, type: 3}
   generator: {fileID: 0}
-  spawnRate: 10
+  spawnRate: 8
   changedSide: 0
   randomSpawnSide: 0
+  difficulty: 0
 --- !u!65 &2510572123619460387
 BoxCollider:
   m_ObjectHideFlags: 0
