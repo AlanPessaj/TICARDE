@@ -8,6 +8,8 @@ public class PlayerController_FF : MonoBehaviour
     public GameObject fist;
     public GameObject foot;
     public GameObject otherPlayer;
+    public GameObject colliders;
+    public GameObject cColliders;
     public HitManager_FF hitManager;
     public int movementForce;
     public int movementSpeed;
@@ -41,26 +43,19 @@ public class PlayerController_FF : MonoBehaviour
             facingLeft = true;
             animator.SetTrigger("turnAround");
         }
-        int movDirection = 0;
+        float movDirection = 0;
         if (isPlayer1)
         {
             if (Input.GetKey(KeyCode.D))
             {
-                if (airborne)
+                movDirection += 1;
+                if (facingLeft)
                 {
-                    gameObject.GetComponent<Rigidbody>().AddForce(movementForce, 0, 0);
+                    animator.SetBool("runb", true);
                 }
                 else
                 {
-                    movDirection += 1;
-                    if (facingLeft)
-                    {
-                        animator.SetBool("runb", true);
-                    }
-                    else
-                    {
-                        animator.SetBool("run", true);
-                    }
+                    animator.SetBool("run", true);
                 }
             }
             else
@@ -76,21 +71,14 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.A))
             {
-                if (airborne)
+                movDirection -= 1;
+                if (!facingLeft)
                 {
-                    gameObject.GetComponent<Rigidbody>().AddForce(-movementForce, 0, 0);
+                    animator.SetBool("runb", true);
                 }
                 else
                 {
-                    movDirection -= 1;
-                    if (!facingLeft)
-                    {
-                        animator.SetBool("runb", true);
-                    }
-                    else
-                    {
-                        animator.SetBool("run", true);
-                    }
+                    animator.SetBool("run", true);
                 }
             }
             else
@@ -105,6 +93,25 @@ public class PlayerController_FF : MonoBehaviour
                 }
             }
             animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S));
+            if (Input.GetKey(KeyCode.S))
+            {
+                if (hitManager.blocking)
+                {
+                    movDirection = 0;
+                }
+                movDirection /= 2;
+                colliders.SetActive(false);
+                cColliders.SetActive(true);
+            }
+            else
+            {
+                colliders.SetActive(true);
+                cColliders.SetActive(false);
+            }
+            if (hitManager.blocking)
+            {
+                movDirection = movDirection / 2;
+            }
             if (Input.GetKeyDown(KeyCode.W))
             {
                 if (!airborne)
@@ -114,30 +121,19 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetTrigger("jump");
                 }
             }
-            if (Input.GetKey(KeyCode.S))
-            {
-                movDirection = 0;
-            }
         }
         else
         {
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                if (airborne)
+                movDirection += 1;
+                if (facingLeft)
                 {
-                    gameObject.GetComponent<Rigidbody>().AddForce(movementForce, 0, 0);
+                    animator.SetBool("runb", true);
                 }
                 else
                 {
-                    movDirection += 1;
-                    if (facingLeft)
-                    {
-                        animator.SetBool("runb", true);
-                    }
-                    else
-                    {
-                        animator.SetBool("run", true);
-                    }
+                    animator.SetBool("run", true);
                 }
             }
             else
@@ -153,21 +149,14 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                if (airborne)
+                movDirection -= 1;
+                if (!facingLeft)
                 {
-                    gameObject.GetComponent<Rigidbody>().AddForce(-movementForce, 0, 0);
+                    animator.SetBool("runb", true);
                 }
                 else
                 {
-                    movDirection -= 1;
-                    if (!facingLeft)
-                    {
-                        animator.SetBool("runb", true);
-                    }
-                    else
-                    {
-                        animator.SetBool("run", true);
-                    }
+                    animator.SetBool("run", true);
                 }
             }
             else
@@ -182,6 +171,25 @@ public class PlayerController_FF : MonoBehaviour
                 }
             }
             animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow));
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                if (hitManager.blocking)
+                {
+                    movDirection = 0;
+                }
+                movDirection /= 2;
+                colliders.SetActive(false);
+                cColliders.SetActive(true);
+            }
+            else
+            {
+                colliders.SetActive(true);
+                cColliders.SetActive(false);
+            }
+            if (hitManager.blocking)
+            {
+                movDirection /= 2;
+            }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (!airborne)
@@ -191,24 +199,27 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetTrigger("jump");
                 }
             }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                movDirection = 0;
-            }
         }
         CheckButtons();
         if (isColliding)
         {
             if (transform.position.x > otherPlayer.transform.position.x)
             {
-                movDirection = (int)Mathf.Clamp(movDirection, 0, Mathf.Infinity);
+                movDirection = Mathf.Clamp(movDirection, 0, Mathf.Infinity);
             }
             else
             {
-                movDirection = (int)Mathf.Clamp(movDirection, Mathf.NegativeInfinity, 0);
+                movDirection = Mathf.Clamp(movDirection, Mathf.NegativeInfinity, 0);
             }
         }
-        transform.Translate(movDirection * movementSpeed * Time.deltaTime, 0, 0, Space.World);
+        if (!airborne)
+        {
+            transform.Translate(movDirection * movementSpeed * Time.deltaTime, 0, 0, Space.World);
+        }
+        else
+        {
+            gameObject.GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
+        }
     }
 
     void CheckButtons()
