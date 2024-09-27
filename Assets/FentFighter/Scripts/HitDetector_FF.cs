@@ -7,7 +7,7 @@ public class HitDetector_FF : MonoBehaviour
     public HitManager_FF hitManager;
     public int colNumber;
     public PlayerController_FF playerController;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
         {

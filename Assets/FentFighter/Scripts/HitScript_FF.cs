@@ -9,19 +9,11 @@ public class HitScript_FF : StateMachineBehaviour
     {
         if (stateInfo.IsName("punch"))
         {
-            if (animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction != null)
-            {
-                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction();
-                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
-            }
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
         }
         else
         {
-            if (animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().disableAction != null)
-            {
-                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().disableAction();
-                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
-            }
+            animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(true);
         }
     }
 

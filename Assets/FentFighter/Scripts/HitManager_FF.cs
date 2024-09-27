@@ -10,6 +10,7 @@ public class HitManager_FF : MonoBehaviour
     public float XPMultiplier;
     bool detectedHit;
     bool detectedBlock;
+    bool wasSpecial;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,9 +55,16 @@ public class HitManager_FF : MonoBehaviour
                                 Debug.Log("(block cabeza pecho)");
                                 if (!detectedBlock)
                                 {
-                                    GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                                    detectedBlock = true;
-                                    damageProperties.disableAction = ResetDetection;
+                                    if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
+                                    {
+                                        TakeDamage(damageProperties);
+                                    }
+                                    else
+                                    {
+                                        GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                                        detectedBlock = true;
+                                        damageProperties.disableAction = ResetDetection;
+                                    }
                                 }
                             }
                             else
@@ -106,12 +114,19 @@ public class HitManager_FF : MonoBehaviour
                 case 0:
                     if (blocking)
                     {
-                        Debug.Log("(block cabeza)");
-                        if (!detectedBlock)
+                        if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
                         {
-                            GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                            detectedBlock = true;
-                            damageProperties.disableAction = ResetDetection;
+                            TakeDamage(damageProperties);
+                        }
+                        else
+                        {
+                            Debug.Log("(block cabeza)");
+                            if (!detectedBlock)
+                            {
+                                GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                                detectedBlock = true;
+                                damageProperties.disableAction = ResetDetection;
+                            }
                         }
                     }
                     else
@@ -123,12 +138,19 @@ public class HitManager_FF : MonoBehaviour
                 case 1:
                     if (blocking)
                     {
-                        Debug.Log("(block pecho)");
-                        if (!detectedBlock)
+                        if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
                         {
-                            GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                            detectedBlock = true;
-                            damageProperties.disableAction = ResetDetection;
+                            TakeDamage(damageProperties);
+                        }
+                        else
+                        {
+                            Debug.Log("(block pecho)");
+                            if (!detectedBlock)
+                            {
+                                GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                                detectedBlock = true;
+                                damageProperties.disableAction = ResetDetection;
+                            }
                         }
                     }
                     else
@@ -138,23 +160,15 @@ public class HitManager_FF : MonoBehaviour
                     }
                     break;
                 case 2:
-                    if (blocking)
-                    {
-                        Debug.Log("(block piernas)");
-                        if (!detectedBlock)
-                        {
-                            GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                            detectedBlock = true;
-                            damageProperties.disableAction = ResetDetection;
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("pego en piernas");
-                        TakeDamage(damageProperties);
-                    }
+                    Debug.Log("pego en piernas");
+                    TakeDamage(damageProperties);
                     break;
             }
+        }
+        if (detectedHit && damageProperties == null && wasSpecial)
+        {
+            detectedHit = false;
+            wasSpecial = false;
         }
         hColliders = new Collider[3];
         damageProperties = null;
@@ -175,6 +189,10 @@ public class HitManager_FF : MonoBehaviour
             if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.Kick)
             {
                 GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damageProperties.damage * XPMultiplier);
+            }
+            else
+            {
+                wasSpecial = true;
             }
             detectedHit = true;
             damageProperties.disableAction = ResetDetection;

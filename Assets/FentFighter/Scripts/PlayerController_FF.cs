@@ -255,7 +255,6 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
-                        fist.SetActive(true);
                         animator.SetTrigger("Punch");
                     }
                 }
@@ -285,7 +284,6 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
-                        foot.SetActive(true);
                         animator.SetTrigger("Kick");
                     }
                 }
