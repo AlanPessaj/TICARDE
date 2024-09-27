@@ -8,14 +8,16 @@ public class SeagullController : MonoBehaviour
     public GameObject[] players = new GameObject[2];
     void Start()
     {
-        
+        players[0] = GameObject.Find("Player1");
+        players[1] = GameObject.Find("Player2");
     }
 
     void Update()
     {
         if (firstTime && (players[0].transform.position.x == transform.position.x-3 || players[1].transform.position.x == transform.position.x - 3))
         {
-            //Spawnear
+            firstTime = false;
+            gameObject.GetComponent<LinearMover_FG>().enabled = true;
         }
     }
 }
