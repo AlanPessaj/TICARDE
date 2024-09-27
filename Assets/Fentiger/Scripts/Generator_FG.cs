@@ -16,6 +16,7 @@ public class Generator_FG : MonoBehaviour
     public Level_FG[] Levels;
     public int Level = 0;
     public Transform camara;
+    public GameObject Seagull;
     // Start is called before the first frame update
     void Start()
     {
