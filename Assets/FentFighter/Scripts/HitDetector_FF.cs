@@ -13,7 +13,6 @@ public class HitDetector_FF : MonoBehaviour
         {
             hitManager.hColliders[colNumber] = GetComponent<Collider>();
             hitManager.damageProperties = other.GetComponent<Damage_FF>();
-            Debug.Log(colNumber);
         }
     }
 }

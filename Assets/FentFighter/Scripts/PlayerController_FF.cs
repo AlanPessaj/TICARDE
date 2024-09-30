@@ -26,6 +26,7 @@ public class PlayerController_FF : MonoBehaviour
     }
     bool facingLeft;
     bool isPlayer1;
+    public float movDirection = 0;
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +44,6 @@ public class PlayerController_FF : MonoBehaviour
             facingLeft = true;
             animator.SetTrigger("turnAround");
         }
-        float movDirection = 0;
         if (isPlayer1)
         {
             if (Input.GetKey(KeyCode.D))
@@ -114,7 +114,11 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (!airborne)
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch"))
+                {
+                    animator.SetBool("UpperCut", true);
+                }
+                else if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -192,7 +196,11 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (!airborne)
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch"))
+                {
+                    animator.SetBool("UpperCut", true);
+                }
+                else if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -220,6 +228,7 @@ public class PlayerController_FF : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
+        movDirection = 0;
     }
 
     void CheckButtons()

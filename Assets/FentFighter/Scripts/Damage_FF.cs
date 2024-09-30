@@ -9,12 +9,21 @@ public class Damage_FF : MonoBehaviour
     public GameObject owner;
 
     public System.Action disableAction;
+
+    private void OnDestroy()
+    {
+        if (type == DamageType.Ability || type == DamageType.Ulti)
+        {
+            disableAction();
+        }
+    }
 }
 
 public enum DamageType
 {
     Punch,
     Kick,
+    UpperCut,
     Ability,
     Ulti
 }

@@ -10,7 +10,6 @@ public class HitManager_FF : MonoBehaviour
     public float XPMultiplier;
     bool detectedHit;
     bool detectedBlock;
-    bool wasSpecial;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +36,12 @@ public class HitManager_FF : MonoBehaviour
                         {
                             if (blocking)
                             {
-                                Debug.Log("pego en piernas (block pecho cabeza)");
+                                //Debug.Log("pego en piernas (block pecho cabeza)");
                                 TakeDamage(damageProperties);
                             }
                             else
                             {
-                                Debug.Log("pego en cabeza, pecho y piernas");
+                                //Debug.Log("pego en cabeza, pecho y piernas");
                                 TakeDamage(damageProperties);
                             }
                             collided = true;
@@ -52,7 +51,7 @@ public class HitManager_FF : MonoBehaviour
                         {
                             if (blocking)
                             {
-                                Debug.Log("(block cabeza pecho)");
+                                //Debug.Log("(block cabeza pecho)");
                                 if (!detectedBlock)
                                 {
                                     if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
@@ -69,7 +68,7 @@ public class HitManager_FF : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("pego en cabeza y pecho");
+                                //Debug.Log("pego en cabeza y pecho");
                                 TakeDamage(damageProperties);
                             }
                             collided = true;
@@ -79,12 +78,12 @@ public class HitManager_FF : MonoBehaviour
                     {
                         if (blocking)
                         {
-                            Debug.Log("pego en piernas (block cabeza)");
+                            //Debug.Log("pego en piernas (block cabeza)");
                             TakeDamage(damageProperties);
                         }
                         else
                         {
-                            Debug.Log("pego en cabeza y piernas");
+                            //Debug.Log("pego en cabeza y piernas");
                             TakeDamage(damageProperties);
                         }
                         collided = true;
@@ -94,12 +93,12 @@ public class HitManager_FF : MonoBehaviour
                 {
                     if (blocking)
                     {
-                        Debug.Log("pego en piernas (block pecho)");
+                        //Debug.Log("pego en piernas (block pecho)");
                         TakeDamage(damageProperties);
                     }
                     else
                     {
-                        Debug.Log("pego en pecho y piernas");
+                        //Debug.Log("pego en pecho y piernas");
                         TakeDamage(damageProperties);
                     }
                     collided = true;
@@ -120,7 +119,7 @@ public class HitManager_FF : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("(block cabeza)");
+                            //Debug.Log("(block cabeza)");
                             if (!detectedBlock)
                             {
                                 GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
@@ -131,7 +130,7 @@ public class HitManager_FF : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("pego en cabeza");
+                        //Debug.Log("pego en cabeza");
                         TakeDamage(damageProperties);
                     }
                     break;
@@ -144,7 +143,7 @@ public class HitManager_FF : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("(block pecho)");
+                            //Debug.Log("(block pecho)");
                             if (!detectedBlock)
                             {
                                 GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
@@ -155,20 +154,15 @@ public class HitManager_FF : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("pego en pecho");
+                        //Debug.Log("pego en pecho");
                         TakeDamage(damageProperties);
                     }
                     break;
                 case 2:
-                    Debug.Log("pego en piernas");
+                    //Debug.Log("pego en piernas");
                     TakeDamage(damageProperties);
                     break;
             }
-        }
-        if (detectedHit && damageProperties == null && wasSpecial)
-        {
-            detectedHit = false;
-            wasSpecial = false;
         }
         hColliders = new Collider[3];
         damageProperties = null;
@@ -186,13 +180,23 @@ public class HitManager_FF : MonoBehaviour
         if (!detectedHit)
         {
             GetComponent<UIManager_FF>().ChangeHealth(-damageProperties.damage);
-            if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.Kick)
+            if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.Kick || damageProperties.type == DamageType.UpperCut)
             {
                 GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damageProperties.damage * XPMultiplier);
-            }
-            else
-            {
-                wasSpecial = true;
+                if (damageProperties.type == DamageType.Punch)
+                {
+                    //animacion de me pego un puñetazo + stun
+                }
+                if (damageProperties.type == DamageType.Kick)
+                {
+                    //animacion de me pego una patada + stun
+                }
+                if (damageProperties.type == DamageType.UpperCut)
+                {
+                    gameObject.GetComponent<Rigidbody>().velocity = new Vector3(gameObject.GetComponent<PlayerController_FF>().movementSpeed * -gameObject.GetComponent<PlayerController_FF>().movDirection, 0, 0);
+                    gameObject.GetComponent<Rigidbody>().AddForce(0, gameObject.GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
+                    //animacion de me pego un gancho + stun
+                }
             }
             detectedHit = true;
             damageProperties.disableAction = ResetDetection;
