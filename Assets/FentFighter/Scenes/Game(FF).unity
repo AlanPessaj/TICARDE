@@ -1029,10 +1029,30 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: fb165c30cfdd6ef46aa73ad143dd5c22, type: 2}
+    - target: {fileID: 3122816385031972356, guid: 167f9603c54231440866e0bb0da02a47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122816385031972360, guid: 167f9603c54231440866e0bb0da02a47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122816385031972362, guid: 167f9603c54231440866e0bb0da02a47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3122816385031972736, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
       propertyPath: m_Name
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122816385031972738, guid: 167f9603c54231440866e0bb0da02a47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3122816385031972741, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
@@ -1069,6 +1089,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122816385031972746, guid: 167f9603c54231440866e0bb0da02a47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3122816385032272800, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
@@ -2305,10 +2330,25 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: fb165c30cfdd6ef46aa73ad143dd5c22, type: 2}
+    - target: {fileID: 3122816385031972356, guid: 167f9603c54231440866e0bb0da02a47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122816385031972360, guid: 167f9603c54231440866e0bb0da02a47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3122816385031972736, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
       propertyPath: m_Name
       value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3122816385031972738, guid: 167f9603c54231440866e0bb0da02a47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3122816385031972741, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
