@@ -114,7 +114,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch"))
+                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && fist.GetComponent<Damage_FF>().disableAction == null)
                 {
                     animator.SetBool("UpperCut", true);
                 }
@@ -196,7 +196,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch"))
+                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && fist.GetComponent<Damage_FF>().disableAction == null)
                 {
                     animator.SetBool("UpperCut", true);
                 }
