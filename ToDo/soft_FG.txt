@@ -12,7 +12,6 @@ que pueda seguir uno solo cuando muere el otro
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 DEPENDIENDO DEL NIVEL, CAMBIAR ASPECTO DE GRASS
 ESCENA DE GAMEOVER, CONTINUAR, ETC
-BAJAR TIEMPO DE DESPAWNEO DE LOS BREAKABLES DEPENDIENDO DE LA DIFICULTAD
 SUBIR PROBABILIDAD DE GAVIOTA
 
 -----------------------------------------------------------------------------
