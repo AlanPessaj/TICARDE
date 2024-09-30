@@ -13,6 +13,7 @@ public class LinearSpawner_FG : MonoBehaviour
     public int difficulty;
     float initialSpawnRate;
     float time;
+    float intervalTime;
 
     void Start()
     {
@@ -33,27 +34,25 @@ public class LinearSpawner_FG : MonoBehaviour
 
     void Update()
     {
+        intervalTime = Mathf.Clamp(Random.Range(time / 4, time), initialSpawnRate / 2.5f, Mathf.Infinity);
+        Debug.Log(intervalTime);
         if (timer <= 0)
         {
-            if (changedSide && gameObject.name == "Cars(Clone)")
+            if(changedSide)
             {
                 Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), Quaternion.Euler(thing.transform.eulerAngles + new Vector3(0, 180, 0)), transform).GetComponent<LinearMover_FG>().spawner = this;
-            }
-            else if(changedSide)
-            {
-                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
             else
             {
                 Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
-            if (Mathf.Clamp(Random.Range(time / 4, time), initialSpawnRate / 2.5f, Mathf.Infinity) == 2.5f)
+            if (intervalTime < 2.5f)
             {
                 timer = Random.Range(2f, 2.5f);
             }
             else
             {
-                timer = Mathf.Clamp(Random.Range(time / 4, time), initialSpawnRate / 2.5f, Mathf.Infinity);
+                timer = intervalTime;
             }
         }
         timer -= Time.deltaTime;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeagullController : MonoBehaviour
+public class SeagullController_FG : MonoBehaviour
 {
     bool firstShit = true;
     public bool leftSide;
@@ -22,14 +22,9 @@ public class SeagullController : MonoBehaviour
 
     void Update()
     {
-        /*if ((players[0].transform.position.x >= transform.position.x - 4 || players[1].transform.position.x >= transform.position.x - 4))
-        {
-            gameObject.GetComponent<LinearMover_FG>().enabled = true;
-        }*/
         if (firstShit && Physics.Raycast(transform.position, Vector3.down, 100f, LayerMask.GetMask("Player")))
         {
             //Cagar
-            Debug.Log("Garco");
             Instantiate(shit, transform.position, shit.transform.rotation);
             firstShit = false;
         }

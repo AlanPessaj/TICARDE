@@ -177,7 +177,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
+        //Debug.DrawRay(transform.position, Vector3.down * 10, Color.red, 0.5f, false);
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 10f);
         if (hit.collider != null)
         {
