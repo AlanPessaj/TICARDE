@@ -35,7 +35,6 @@ public class LinearSpawner_FG : MonoBehaviour
     void Update()
     {
         intervalTime = Mathf.Clamp(Random.Range(time / 4, time), initialSpawnRate / 2.5f, Mathf.Infinity);
-        Debug.Log(intervalTime);
         if (timer <= 0)
         {
             if(changedSide)

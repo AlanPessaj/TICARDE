@@ -37,7 +37,7 @@ public class Generator_FG : MonoBehaviour
         }
 
         difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
-        if (difficulty >= 10 && ((difficulty.ToString()[1] == '0' && difficulty.ToString().Length == 2) || difficulty == 100))
+        if (difficulty >= 10 && difficulty % 10 == 0)
         {
             Level = Mathf.Clamp(difficulty / 10, 0, 9);
         }

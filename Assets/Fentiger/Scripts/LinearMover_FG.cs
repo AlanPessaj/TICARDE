@@ -26,20 +26,22 @@ public class LinearMover_FG : MonoBehaviour
         }
         if (gameObject.name == "LillyPad(Clone)")
         {
-            time = 3f;
+            time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 6;
+            Debug.Log(time);
         }
         else
         {
             time = Random.Range(2f, 4f);
         }
     }
-
+    public float anashei;
     void Update()
     {
         if (movingForward)
         {
             if (transform.position.z < 18 && gameObject.name != "Seagull(Clone)")
             {
+                anashei = Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f);
                 transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f) * Time.deltaTime, Space.World);
             }
             else if (gameObject.name == "Seagull(Clone)" && transform.position.z < 18)
@@ -63,6 +65,7 @@ public class LinearMover_FG : MonoBehaviour
         {
             if (transform.position.z > -18 && gameObject.name != "Seagull(Clone)")
             {
+                anashei = Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f);
                 transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed*3f) * -Time.deltaTime, Space.World);
             }
             else if (gameObject.name == "Seagull(Clone)" && transform.position.z > -18)
