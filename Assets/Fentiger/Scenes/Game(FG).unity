@@ -169,6 +169,9 @@ MonoBehaviour:
   Level: 0
   camara: {fileID: 534669905}
   Seagull: {fileID: 4333055094429083658, guid: a801072b7f235cd4bb2c48818b375afb, type: 3}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0

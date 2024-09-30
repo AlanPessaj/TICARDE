@@ -7,6 +7,7 @@ public class SeagullController : MonoBehaviour
     bool firstShit = true;
     public bool leftSide;
     public GameObject[] players = new GameObject[2];
+    public GameObject shit;
     void Start()
     {
         players[0] = GameObject.Find("Player1");
@@ -29,6 +30,7 @@ public class SeagullController : MonoBehaviour
         {
             //Cagar
             Debug.Log("Garco");
+            Instantiate(shit, transform.position, shit.transform.rotation);
             firstShit = false;
         }
 

@@ -313,6 +313,7 @@ MonoBehaviour:
   players:
   - {fileID: 0}
   - {fileID: 0}
+  shit: {fileID: 6856380309705174939, guid: 9e7a1331021d9e54fb58c522d1fea34e, type: 3}
 --- !u!114 &114600146781603430
 MonoBehaviour:
   m_ObjectHideFlags: 0
