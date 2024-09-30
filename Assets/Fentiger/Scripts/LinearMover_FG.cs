@@ -61,7 +61,7 @@ public class LinearMover_FG : MonoBehaviour
         }
         else
         {
-            if (transform.position.z > -18)
+            if (transform.position.z > -18 && gameObject.name != "Seagull(Clone)")
             {
                 transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed*3f) * -Time.deltaTime, Space.World);
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SeagullController : MonoBehaviour
 {
-    bool firstTime;
+    bool firstShit = true;
     public bool leftSide;
     public GameObject[] players = new GameObject[2];
     void Start()
@@ -21,10 +21,16 @@ public class SeagullController : MonoBehaviour
 
     void Update()
     {
-        if (firstTime && (players[0].transform.position.x == transform.position.x-3 || players[1].transform.position.x == transform.position.x - 3))
+        if ((players[0].transform.position.x >= transform.position.x - 4 || players[1].transform.position.x >= transform.position.x - 4))
         {
-            firstTime = false;
             gameObject.GetComponent<LinearMover_FG>().enabled = true;
         }
+        if (firstShit && Physics.Raycast(transform.position, Vector3.down, 100f, LayerMask.GetMask("Player")))
+        {
+            //Cagar
+            Debug.Log("Garco");
+            firstShit = false;
+        }
+
     }
 }

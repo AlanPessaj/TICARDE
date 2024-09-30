@@ -32,7 +32,7 @@ public class Generator_FG : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(Seagull, new Vector3(distance, 3, 18), Quaternion.identity);
+            Instantiate(Seagull, new Vector3(distance-40, 3, 18), Quaternion.identity);
         }
 
         difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
