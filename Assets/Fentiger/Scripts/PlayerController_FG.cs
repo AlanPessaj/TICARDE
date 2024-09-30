@@ -177,41 +177,40 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        //Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
+        Debug.DrawRay(transform.position, Vector3.down * 12, Color.red, 1, false);
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 10f);
-        if (hit.collider == null)
+        if (hit.collider != null)
         {
-            return;
-        }
-        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
-        {
-            if (hit.collider.gameObject.name == "LillyPad(Clone)")
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
             {
-                if (hit.transform.childCount == 1)
+                if (hit.collider.gameObject.name == "LillyPad(Clone)")
+                {
+                    if (hit.transform.childCount == 1)
+                    {
+                        transform.parent = hit.transform;
+                        transform.localPosition = new Vector3(0, 1, 0);
+                    }
+                }
+                else
                 {
                     transform.parent = hit.transform;
-                    transform.localPosition = new Vector3(0, 1, 0);
+                    onLog = true;
+                    transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
                 }
+                return;
             }
             else
             {
-                transform.parent = hit.transform;
-                onLog = true;
-                transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
+                transform.parent = null;
+                transform.position = new Vector3(transform.position.x, -2, transform.position.z);
+                onLog = false;
             }
-            return;
-        }
-        else
-        {
-            transform.parent = null;
-            transform.position = new Vector3(transform.position.x, -2, transform.position.z);
-            onLog = false;
-        }
-        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
-        {
-            //perder vida
-            SceneManager.LoadScene("MENU");
-            return;
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
+            {
+                //perder vida
+                SceneManager.LoadScene("MENU");
+                return;
+            }
         }
     }
 

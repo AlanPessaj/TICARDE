@@ -11,8 +11,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0000098, y: 1.915519, z: 2.0680187}
-  m_Center: {x: 0.000004540763, y: -0.042240728, z: -0.08808229}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5873325583378978193
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   spawnRate: 6
   changedSide: 0
   randomSpawnSide: 0
+  difficulty: 0
 --- !u!1001 &6706574144922503206
 PrefabInstance:
   m_ObjectHideFlags: 0
