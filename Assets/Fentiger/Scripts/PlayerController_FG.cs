@@ -223,5 +223,12 @@ public class PlayerController_FG : MonoBehaviour
             SceneManager.LoadScene("MENU");
             //BORRAME >:(
         }
+        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Seagull") && !immortal)
+        {
+            //perder vida
+            SceneManager.LoadScene("MENU");
+            Destroy(other.gameObject);
+            //BORRAME >:(
+        }
     }
 }
