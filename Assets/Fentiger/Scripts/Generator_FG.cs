@@ -17,6 +17,7 @@ public class Generator_FG : MonoBehaviour
     public int Level = 0;
     public Transform camara;
     public GameObject Seagull;
+    public GameObject[] players = new GameObject[2];
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,7 @@ public class Generator_FG : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(Seagull, new Vector3(distance-40, 3, 18), Quaternion.identity);
+            Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1,5), 3, 18), Quaternion.identity);
         }
 
         difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
@@ -52,7 +53,7 @@ public class Generator_FG : MonoBehaviour
         float number = Random.Range(1f, 100f);
         if (number <= Levels[Level].special[0])
         {
-            Instantiate(Seagull, new Vector3(distance, 3, 18), Quaternion.identity);
+            Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
         }
     }
     bool? Percenter(float[] percentages)
@@ -171,5 +172,10 @@ public class Generator_FG : MonoBehaviour
                 Destroy(zone);
             }
         }
+    }
+    private void Awake()
+    {
+        players[0] = GameObject.Find("Player1");
+        players[1] = GameObject.Find("Player2");
     }
 }

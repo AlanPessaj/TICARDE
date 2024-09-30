@@ -21,10 +21,10 @@ public class SeagullController : MonoBehaviour
 
     void Update()
     {
-        if ((players[0].transform.position.x >= transform.position.x - 4 || players[1].transform.position.x >= transform.position.x - 4))
+        /*if ((players[0].transform.position.x >= transform.position.x - 4 || players[1].transform.position.x >= transform.position.x - 4))
         {
             gameObject.GetComponent<LinearMover_FG>().enabled = true;
-        }
+        }*/
         if (firstShit && Physics.Raycast(transform.position, Vector3.down, 100f, LayerMask.GetMask("Player")))
         {
             //Cagar
