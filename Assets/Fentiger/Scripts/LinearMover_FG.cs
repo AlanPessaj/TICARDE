@@ -31,7 +31,7 @@ public class LinearMover_FG : MonoBehaviour
         }
         else
         {
-            time = Random.Range(2f, 4f);
+            time = Random.Range(Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 9, Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 4.5f);
         }
     }
     public float anashei;
