@@ -30,6 +30,11 @@ public class Generator_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(Seagull, new Vector3(distance, 3, 18), Quaternion.identity);
+        }
+
         difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
         if (difficulty >= 10 && ((difficulty.ToString()[1] == '0' && difficulty.ToString().Length == 2) || difficulty == 100))
         {
@@ -39,7 +44,16 @@ public class Generator_FG : MonoBehaviour
     public void GenerateZones()
     {
         NextZone();
+        SpecialSpawner();
         DespawnZones();
+    }
+    void SpecialSpawner()
+    {
+        float number = Random.Range(1f, 100f);
+        if (number <= Levels[Level].special[0])
+        {
+            Instantiate(Seagull, new Vector3(distance, 3, 18), Quaternion.identity);
+        }
     }
     bool? Percenter(float[] percentages)
     {
