@@ -18,7 +18,7 @@ public class LinearMover_FG : MonoBehaviour
         rotation = Random.Range(-1f, 1f);
         if (gameObject.name == "Seagull(Clone)")
         {
-            movingForward = !transform.GetComponent<SeagullController>().leftSide;
+            movingForward = !transform.GetComponent<SeagullController_FG>().leftSide;
         }
         else
         {
