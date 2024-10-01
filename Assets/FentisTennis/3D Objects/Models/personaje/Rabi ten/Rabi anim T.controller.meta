@@ -1,13 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Fentiger/Prefabs/path/EmptyField.prefab.meta
-guid: 7e1facc35eee3a4459fca702d732c26b
-PrefabImporter:
-========
-guid: a9b027dc65c0bd84b874f209329e19ca
+guid: 34e5e9389a3f6e64dac5469591b0af36
 NativeFormatImporter:
->>>>>>>> a493a67c8cacdc433df55e684203233ae90f77bd:Assets/FentisTennis/3D Objects/Models/personaje/Rabi ten/Rabi anim T.controller.meta
   externalObjects: {}
-  mainObjectFileID: 9100000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
