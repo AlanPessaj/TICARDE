@@ -10,10 +10,10 @@ animacion de muerte
 que pueda seguir uno solo cuando muere el otro
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
-SUBIR PROBABILIDAD DE GAVIOTA
-hacer despawnear arboles y soretes
-revisar soretes sobre arboles
 -----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
 AUTO MAX = initial/2.5
 50% DE ENEMIGOS MENOS EN EL SPAWNER DE CAMPO
+
+EXTRA:
+NIVEL CAGADA: Nivel con arboles y muchas gaviotas

@@ -14,7 +14,7 @@ public class TreeSpawner_FG : MonoBehaviour
         {
             if (generator.treeSpawn)
             {
-                Instantiate(tree, new Vector3(transform.position.x, transform.position.y - 2, generator.treeSeparator), Quaternion.identity);
+                Instantiate(tree, new Vector3(transform.position.x, transform.position.y - 2, generator.treeSeparator), Quaternion.identity, transform);
                 generator.treeSeparator = treeRange;
             }
             generator.treeSpawn = !generator.treeSpawn;
