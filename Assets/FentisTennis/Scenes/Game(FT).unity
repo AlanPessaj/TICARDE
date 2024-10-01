@@ -8210,12 +8210,12 @@ PrefabInstance:
         'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
         'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
         'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Dwarf Idle'\n\tFrom
-        animation clip 'Standing Jump'\n\tFrom animation clip 'Crouched Walking'\n\tFrom
-        animation clip 'Mma Kick'\n\tFrom animation clip '180 Turn W_ Briefcase'\n\tFrom
-        animation clip 'Punching'\n\tFrom animation clip 'Body Block'\n\tFrom animation
-        clip 'Running Backward'\n\tFrom animation clip 'Slow Run'\n\tFrom animation
-        clip 'Standing To Crouched'\n\tand more ..."
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Standing Jump'\n\tFrom
+        animation clip 'Crouched Walking'\n\tFrom animation clip 'Mma Kick'\n\tFrom
+        animation clip '180 Turn W_ Briefcase'\n\tFrom animation clip 'Punching'\n\tFrom
+        animation clip 'Body Block'\n\tFrom animation clip 'Running Backward'\n\tFrom
+        animation clip 'Slow Run'\n\tFrom animation clip 'Standing To Crouched'\n\tFrom
+        animation clip 'Crouched To Standing'\n\tand more ..."
       objectReference: {fileID: 0}
     - target: {fileID: 2989084739823161647, guid: 5225b173b4cd761498d120fe3b2e2306,
         type: 3}
@@ -8226,6 +8226,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193012125591766665, guid: 5225b173b4cd761498d120fe3b2e2306,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1966282fc2c71d441b3b5a05a59b9f92, type: 2}
+    - target: {fileID: 3193012125591766665, guid: 5225b173b4cd761498d120fe3b2e2306,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193012125601589615, guid: 5225b173b4cd761498d120fe3b2e2306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193012125601589615, guid: 5225b173b4cd761498d120fe3b2e2306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4898886628337584288, guid: 5225b173b4cd761498d120fe3b2e2306,
         type: 3}

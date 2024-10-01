@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7301996228226801292
 Transform:
@@ -103,14 +103,13 @@ GameObject:
   - component: {fileID: 5626706216527908181}
   - component: {fileID: 5409240520631932790}
   - component: {fileID: 7356976296332531973}
-  - component: {fileID: 3122087857389851046}
   - component: {fileID: 114742677494916804}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5626706216527908181
 Transform:
@@ -172,19 +171,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3122087857389851046
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5873325583378978193}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114742677494916804
 MonoBehaviour:
   m_ObjectHideFlags: 0

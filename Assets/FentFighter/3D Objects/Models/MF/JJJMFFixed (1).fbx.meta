@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 73445e5cd3470e14abfd566f61e1a237
+guid: b2594eefd048c6b40803493164c484f5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -145,11 +145,11 @@ ModelImporter:
     400136: mixamorig:Spine2
     400138: Pantalon
     400140: Persona
-    2100000: Material
-    4300000: Persona
-    4300002: Pantalon
-    4300004: camisa
-    4300006: 'cinturon '
+    2100000: Material.001
+    4300000: camisa
+    4300002: 'cinturon '
+    4300004: Persona
+    4300006: Pantalon
     4300008: 'cuello '
     9500000: //RootNode
     13700000: camisa

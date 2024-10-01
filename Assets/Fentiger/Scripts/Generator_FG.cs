@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Generator_FG : MonoBehaviour
@@ -20,6 +19,7 @@ public class Generator_FG : MonoBehaviour
     public GameObject[] players = new GameObject[2];
     public int treeSeparator;
     public bool treeSpawn;
+    public BakeNavMesh baker;
     // Start is called before the first frame update
     void Start()
     {
@@ -150,6 +150,7 @@ public class Generator_FG : MonoBehaviour
             NextZone();
         }
     }
+    List<GameObject> toBake = new List<GameObject>();
 
     void GenerateSection(List<GameObject> section)
     {
@@ -157,9 +158,21 @@ public class Generator_FG : MonoBehaviour
         {
             if (!initialSpawn || distance < despawnRadius)
             {
-                Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity);
+                
+                if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6])
+                {
+                    toBake.Add(Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
+                }
+                else
+                {
+                    Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity);
+                }
                 distance++;
             }
+        }
+        if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6])
+        {
+            baker.Bake(toBake.ToArray());
         }
     }
 
@@ -170,6 +183,10 @@ public class Generator_FG : MonoBehaviour
         {
             if (zone.transform.position.x < distance - despawnRadius)
             {
+                if (zone.name == "Lion(Clone)" || zone.name == "Kangaroo(Clone)" || zone.name == "Frog(Clone)")
+                {
+                    toBake.Remove(zone.transform.GetChild(0).gameObject);
+                }
                 Destroy(zone);
             }
         }
