@@ -212,6 +212,13 @@ public class PlayerController_FG : MonoBehaviour
                 return;
             }
         }
+
+
+        if (Physics.Raycast(transform.position - new Vector3(0, 0, 2), transform.forward, 3f, LayerMask.GetMask("Tree")) || Physics.Raycast(transform.position - new Vector3(2, 0, 0), transform.right, 3f, LayerMask.GetMask("Tree")))
+        {
+            Debug.Log("¡Se ha tocado un árbol!");
+            //ARBOL
+        }
     }
 
     private void OnCollisionEnter(Collision other)

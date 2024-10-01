@@ -18,6 +18,8 @@ public class Generator_FG : MonoBehaviour
     public Transform camara;
     public GameObject Seagull;
     public GameObject[] players = new GameObject[2];
+    public int treeSeparator;
+    public bool treeSpawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,11 +33,6 @@ public class Generator_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) /*+ Random.Range(1,5)*/, 3, 18), Quaternion.identity);
-        }
-
         difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
         if (difficulty >= 10 && difficulty % 10 == 0)
         {

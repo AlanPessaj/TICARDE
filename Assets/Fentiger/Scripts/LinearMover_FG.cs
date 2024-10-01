@@ -27,7 +27,6 @@ public class LinearMover_FG : MonoBehaviour
         if (gameObject.name == "LillyPad(Clone)")
         {
             time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 6;
-            Debug.Log(time);
         }
         else
         {
