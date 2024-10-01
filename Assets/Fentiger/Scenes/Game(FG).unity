@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.56452316, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645233, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -150,6 +150,7 @@ MonoBehaviour:
   - {fileID: 5873325583378978193, guid: d3ac737326b15174e9af316bd37b7a01, type: 3}
   - {fileID: 5873325583378978193, guid: c7a7781f5bc6d07429593ae331fa5838, type: 3}
   - {fileID: 5873325583378978193, guid: 29639986ccfaf8142ac3e5eed28fd71c, type: 3}
+  - {fileID: 5873325583378978193, guid: 7e1facc35eee3a4459fca702d732c26b, type: 3}
   grass: {fileID: 4787763905658012092, guid: 4b8a130b54878db45b4756b9c49247e1, type: 3}
   side: 0
   distance: 0

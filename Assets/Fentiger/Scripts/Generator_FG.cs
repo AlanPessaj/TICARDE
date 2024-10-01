@@ -87,6 +87,7 @@ public class Generator_FG : MonoBehaviour
          * [4] = Lions              \
          * [5] = Froggs              ) -> Field
          * [6] = Kangaroo           /
+         * [7] = EmptyField
          */
         List<GameObject> section = new List<GameObject>();
         bool? winner = Percenter(Levels[Level].tiles);
@@ -115,6 +116,7 @@ public class Generator_FG : MonoBehaviour
                                 section.Add(sections[6]);
                             break;
                         }
+                        section.Add(sections[7]);
                     }
                 break;
                 case false:
@@ -157,8 +159,7 @@ public class Generator_FG : MonoBehaviour
         for (int i = 0; i < section.Count; i++)
         {
             if (!initialSpawn || distance < despawnRadius)
-            {
-                
+            {                
                 if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6])
                 {
                     toBake.Add(Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
