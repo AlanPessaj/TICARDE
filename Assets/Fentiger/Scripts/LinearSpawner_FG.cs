@@ -37,9 +37,13 @@ public class LinearSpawner_FG : MonoBehaviour
         intervalTime = Mathf.Clamp(Random.Range(time / 4, time), initialSpawnRate / 2.5f, Mathf.Infinity);
         if (timer <= 0)
         {
-            if(changedSide)
+            if (changedSide && gameObject.name == "Cars(Clone)")
             {
                 Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), Quaternion.Euler(thing.transform.eulerAngles + new Vector3(0, 180, 0)), transform).GetComponent<LinearMover_FG>().spawner = this;
+            }
+            else if (changedSide)
+            {
+                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
             else
             {
