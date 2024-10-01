@@ -102,11 +102,15 @@ public class PlayerController_FF : MonoBehaviour
                 movDirection /= 2;
                 colliders.SetActive(false);
                 cColliders.SetActive(true);
+                GetComponent<CapsuleCollider>().height = 0.72f;
+                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
             }
             else
             {
                 colliders.SetActive(true);
                 cColliders.SetActive(false);
+                GetComponent<CapsuleCollider>().height = 0.95f;
+                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
             }
             if (hitManager.blocking)
             {
@@ -184,11 +188,15 @@ public class PlayerController_FF : MonoBehaviour
                 movDirection /= 2;
                 colliders.SetActive(false);
                 cColliders.SetActive(true);
+                GetComponent<CapsuleCollider>().height = 0.72f;
+                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
             }
             else
             {
                 colliders.SetActive(true);
                 cColliders.SetActive(false);
+                GetComponent<CapsuleCollider>().height = 0.95f;
+                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
             }
             if (hitManager.blocking)
             {
