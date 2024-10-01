@@ -3,13 +3,14 @@ leones
 sapos
 lasers
 portales
-arboles
 vidas
 modo singleplayer (y transferencia a multiplayer)
 animacion de muerte
 que pueda seguir uno solo cuando muere el otro
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
+BAJAR PORCENTAJE NENUFAR
+INTERCALAR CAMPO VACIO Y CAMPO CON ENEMIGO
 -----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
 AUTO MAX = initial/2.5
