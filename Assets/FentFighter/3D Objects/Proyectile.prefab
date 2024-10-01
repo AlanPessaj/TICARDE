@@ -131,4 +131,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
-  type: 2
+  type: 3
+  owner: {fileID: 0}
