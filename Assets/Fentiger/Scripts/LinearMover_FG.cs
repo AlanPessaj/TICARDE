@@ -6,7 +6,7 @@ public class LinearMover_FG : MonoBehaviour
 {
     public float speed;
     private float rotation;
-    public float time;
+    public float time = 100;
     private bool movingForward;
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
@@ -28,19 +28,17 @@ public class LinearMover_FG : MonoBehaviour
         {
             time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 6;
         }
-        else
+        else if (gameObject.name == "BrokenLog(Clone)")
         {
             time = Random.Range(Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 9, Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 4.5f);
         }
     }
-    public float anashei;
     void Update()
     {
         if (movingForward)
         {
             if (transform.position.z < 18 && gameObject.name != "Seagull(Clone)")
             {
-                anashei = Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f);
                 transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f) * Time.deltaTime, Space.World);
             }
             else if (gameObject.name == "Seagull(Clone)" && transform.position.z < 18)
@@ -64,7 +62,6 @@ public class LinearMover_FG : MonoBehaviour
         {
             if (transform.position.z > -18 && gameObject.name != "Seagull(Clone)")
             {
-                anashei = Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f);
                 transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed*3f) * -Time.deltaTime, Space.World);
             }
             else if (gameObject.name == "Seagull(Clone)" && transform.position.z > -18)

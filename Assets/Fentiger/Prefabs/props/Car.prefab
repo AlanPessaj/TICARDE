@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  time: 0
+  time: 100
   generator: {fileID: 0}
   spawner: {fileID: 0}
 --- !u!65 &65950358195407088

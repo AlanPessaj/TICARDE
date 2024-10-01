@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8635934210543244520}
   - component: {fileID: 1801677936192510642}
   m_Layer: 13
-  m_Name: Log
+  m_Name: log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
-  destroyable: 0
+  time: 100
+  generator: {fileID: 0}
+  spawner: {fileID: 0}
+  anashei: 0
 --- !u!65 &1801677936192510642
 BoxCollider:
   m_ObjectHideFlags: 0
