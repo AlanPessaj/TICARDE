@@ -10,6 +10,10 @@ public class PlayerController_FG : MonoBehaviour
     public bool immortal;
     public GameObject otherPlayer;
     bool onLog = false;
+    bool facingTreeRight;
+    bool facingTreeLeft;
+    bool facingTreeUp;
+    bool facingTreeDown;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,7 @@ public class PlayerController_FG : MonoBehaviour
     {
         if (isPlayer1)
         {
-            if (Input.GetKeyDown(KeyCode.W) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x))
+            if (Input.GetKeyDown(KeyCode.W) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) && !facingTreeDown)
             {
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                 if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
@@ -29,11 +33,11 @@ public class PlayerController_FG : MonoBehaviour
                     generator.GenerateZones();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x))
+            if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) && !facingTreeUp)
             {
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
             }
-            if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f)
+            if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f && !facingTreeRight)
             {
                 if (!onLog)
                 {
@@ -62,7 +66,7 @@ public class PlayerController_FG : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f)
+            if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f && !facingTreeLeft)
             {
                 if (!onLog)
                 {
@@ -101,7 +105,7 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) && !facingTreeDown)
             {
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                 if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
@@ -109,11 +113,11 @@ public class PlayerController_FG : MonoBehaviour
                     generator.GenerateZones();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x))
+            if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) && !facingTreeUp)
             {
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f && !facingTreeRight)
             {
                 if (!onLog)
                 {
@@ -142,7 +146,7 @@ public class PlayerController_FG : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f && !facingTreeLeft)
             {
                 if (!onLog)
                 {
@@ -214,10 +218,45 @@ public class PlayerController_FG : MonoBehaviour
         }
 
 
-        if (Physics.Raycast(transform.position - new Vector3(0, 0, 2), transform.forward, 3f, LayerMask.GetMask("Tree")) || Physics.Raycast(transform.position - new Vector3(2, 0, 0), transform.right, 3f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(transform.position, transform.forward, 1f, LayerMask.GetMask("Tree")))
         {
-            Debug.Log("¡Se ha tocado un árbol!");
-            //ARBOL
+            Debug.Log("Derecha");
+            facingTreeRight = true;
+            //Derecha
+        }
+        else
+        {
+            facingTreeRight = false;
+        }
+        if (Physics.Raycast(transform.position, -transform.forward, 1f, LayerMask.GetMask("Tree")))
+        {
+            Debug.Log("Izquierda");
+            facingTreeLeft = true;
+            //Izquierda
+        }
+        else
+        {
+            facingTreeLeft = false;
+        }
+        if (Physics.Raycast(transform.position, transform.right, 1f, LayerMask.GetMask("Tree")))
+        {
+            Debug.Log("Abajo");
+            facingTreeDown = true;
+            //Abajo
+        }
+        else
+        {
+            facingTreeDown = false;
+        }
+        if (Physics.Raycast(transform.position, -transform.right, 1f, LayerMask.GetMask("Tree")))
+        {
+            Debug.Log("Arriba");
+            facingTreeUp = true;
+            //Arriba
+        }
+        else
+        {
+            facingTreeUp = false;
         }
     }
 
