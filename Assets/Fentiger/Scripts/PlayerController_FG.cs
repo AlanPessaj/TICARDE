@@ -10,6 +10,10 @@ public class PlayerController_FG : MonoBehaviour
     public bool immortal;
     public GameObject otherPlayer;
     bool onLog = false;
+    public bool facingTreeRight;
+    public bool facingTreeLeft;
+    public bool facingTreeUp;
+    public bool facingTreeDown;
     // Start is called before the first frame update
     void Start()
     {
@@ -211,13 +215,6 @@ public class PlayerController_FG : MonoBehaviour
                 SceneManager.LoadScene("MENU");
                 return;
             }
-        }
-
-
-        if (Physics.Raycast(transform.position - new Vector3(0, 0, 2), transform.forward, 3f, LayerMask.GetMask("Tree")) || Physics.Raycast(transform.position - new Vector3(2, 0, 0), transform.right, 3f, LayerMask.GetMask("Tree")))
-        {
-            Debug.Log("¡Se ha tocado un árbol!");
-            //ARBOL
         }
     }
 
