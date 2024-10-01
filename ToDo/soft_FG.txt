@@ -17,3 +17,6 @@ revisar soretes sobre arboles
 AUTO TARDA 35s cada 1 speed
 AUTO MAX = initial/2.5
 50% DE ENEMIGOS MENOS EN EL SPAWNER DE CAMPO
+
+EXTRA:
+NIVEL CAGADA: Nivel con arboles y muchas gaviotas
