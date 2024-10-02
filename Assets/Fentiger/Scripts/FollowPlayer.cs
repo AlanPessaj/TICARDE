@@ -7,6 +7,7 @@ public class FollowPlayer : MonoBehaviour
 {
     GameObject[] players = new GameObject[2];
     public NavMeshAgent agent;
+    public bool leftSpawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +19,25 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position))
+        if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
         {
-            agent.destination = players[0].transform.position;
+            if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position))
+            {
+                agent.destination = players[0].transform.position;
+            }
+            else
+            {
+                agent.destination = players[1].transform.position;
+            }
+        }
+        else if (leftSpawn)
+        {
+            agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+            // bajar velocidad
         }
         else
         {
-            agent.destination = players[1].transform.position;
+            agent.destination = transform.parent.position - new Vector3(0, 0, -11);
         }
     }
 }

@@ -17,11 +17,11 @@ public class EnemieSpawner : MonoBehaviour
 
     void Update()
     {
-        if (spawn && firstTime && (players[0].transform.position.x >= transform.position.x-6 || players[1].transform.position.x >= transform.position.x-6))
+        if (spawn && firstTime)
         {
             if (Random.Range(0, 2) == 1)
             {
-                Instantiate(enemie, new Vector3(transform.position.x, -2, 12), Quaternion.identity, transform);
+                Instantiate(enemie, new Vector3(transform.position.x, -2, 12), Quaternion.identity, transform).GetComponent<FollowPlayer>().leftSpawn = true;
             }
             else
             {
