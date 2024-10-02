@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rabi oficial.
       objectReference: {fileID: 0}
+    - target: {fileID: 100134, guid: ad54f6253ad6e404fbdfe3dccb7c1445, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400134, guid: ad54f6253ad6e404fbdfe3dccb7c1445, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3
