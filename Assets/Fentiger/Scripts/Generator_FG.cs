@@ -160,7 +160,7 @@ public class Generator_FG : MonoBehaviour
         {
             if (!initialSpawn || distance < despawnRadius)
             {                
-                if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6])
+                if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
                 {
                     toBake.Add(Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
                 }
@@ -171,7 +171,7 @@ public class Generator_FG : MonoBehaviour
                 distance++;
             }
         }
-        if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6])
+        if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
         {
             baker.Bake(toBake.ToArray());
         }
@@ -184,7 +184,7 @@ public class Generator_FG : MonoBehaviour
         {
             if (zone.transform.position.x < distance - despawnRadius)
             {
-                if (zone.name == "Lion(Clone)" || zone.name == "Kangaroo(Clone)" || zone.name == "Frog(Clone)")
+                if (zone.name == "Lion(Clone)" || zone.name == "Kangaroo(Clone)" || zone.name == "Frog(Clone)" || zone.name == "EmptyField(Clone)")
                 {
                     toBake.Remove(zone.transform.GetChild(0).gameObject);
                 }
