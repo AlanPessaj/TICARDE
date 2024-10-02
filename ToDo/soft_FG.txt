@@ -1,5 +1,4 @@
 canguros
-leones
 sapos
 lasers
 portales
@@ -9,8 +8,6 @@ animacion de muerte
 que pueda seguir uno solo cuando muere el otro
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
-BALANCEAR LIONS (TAMAÑO VELOCIDAD)
-HACER SISTEMA DE STOPINGDISTANCE MANUAL
 bug arbol raycast?
 -----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
