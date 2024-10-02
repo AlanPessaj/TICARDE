@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FollowPlayer : MonoBehaviour
+public class FollowPlayer_FG : MonoBehaviour
 {
     GameObject[] players = new GameObject[2];
     public NavMeshAgent agent;

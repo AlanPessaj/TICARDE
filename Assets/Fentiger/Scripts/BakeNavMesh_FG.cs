@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BakeNavMesh : MonoBehaviour
+public class BakeNavMesh_FG : MonoBehaviour
 {
     public void Bake(GameObject[] objectsToInclude)
     {

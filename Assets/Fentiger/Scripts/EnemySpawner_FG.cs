@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemieSpawner : MonoBehaviour
+public class EnemySpawner_FG : MonoBehaviour
 {
     public Generator_FG generator;
-    public GameObject enemie;
+    public GameObject enemy;
     bool firstTime = true;
     GameObject[] players = new GameObject[2];
     bool spawn;
@@ -21,11 +21,11 @@ public class EnemieSpawner : MonoBehaviour
         {
             if (Random.Range(0, 2) == 1)
             {
-                Instantiate(enemie, new Vector3(transform.position.x, -2, 12), Quaternion.identity, transform).GetComponent<FollowPlayer>().leftSpawn = true;
+                Instantiate(enemy, new Vector3(transform.position.x, -2, 12), Quaternion.identity, transform).GetComponent<FollowPlayer_FG>().leftSpawn = true;
             }
             else
             {
-                Instantiate(enemie, new Vector3(transform.position.x, -2, -12), Quaternion.identity, transform);
+                Instantiate(enemy, new Vector3(transform.position.x, -2, -12), Quaternion.identity, transform);
             }
             firstTime = false;
         }

@@ -19,7 +19,7 @@ public class Generator_FG : MonoBehaviour
     public GameObject[] players = new GameObject[2];
     public int treeSeparator;
     public bool treeSpawn;
-    public BakeNavMesh baker;
+    public BakeNavMesh_FG baker;
     // Start is called before the first frame update
     void Start()
     {
