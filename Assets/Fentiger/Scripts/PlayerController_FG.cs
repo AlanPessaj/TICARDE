@@ -220,7 +220,6 @@ public class PlayerController_FG : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, 1f, LayerMask.GetMask("Tree")))
         {
-            Debug.Log("Derecha");
             facingTreeRight = true;
             //Derecha
         }
@@ -230,7 +229,6 @@ public class PlayerController_FG : MonoBehaviour
         }
         if (Physics.Raycast(transform.position, -transform.forward, 1f, LayerMask.GetMask("Tree")))
         {
-            Debug.Log("Izquierda");
             facingTreeLeft = true;
             //Izquierda
         }
@@ -240,7 +238,6 @@ public class PlayerController_FG : MonoBehaviour
         }
         if (Physics.Raycast(transform.position, transform.right, 1f, LayerMask.GetMask("Tree")))
         {
-            Debug.Log("Abajo");
             facingTreeDown = true;
             //Abajo
         }
@@ -250,7 +247,6 @@ public class PlayerController_FG : MonoBehaviour
         }
         if (Physics.Raycast(transform.position, -transform.right, 1f, LayerMask.GetMask("Tree")))
         {
-            Debug.Log("Arriba");
             facingTreeUp = true;
             //Arriba
         }
