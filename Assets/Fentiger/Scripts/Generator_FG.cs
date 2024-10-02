@@ -184,8 +184,9 @@ public class Generator_FG : MonoBehaviour
         {
             if (zone.transform.position.x < distance - despawnRadius)
             {
-                if (zone.name == "Lion(Clone)" || zone.name == "Kangaroo(Clone)" || zone.name == "Frog(Clone)" || zone.name == "EmptyField(Clone)")
+                if (zone.name == "Lions(Clone)" || zone.name == "Kangaroos(Clone)" || zone.name == "Frogs(Clone)" || zone.name == "EmptyField(Clone)")
                 {
+                    Debug.Log(zone.name);
                     toBake.Remove(zone.transform.GetChild(0).gameObject);
                 }
                 Destroy(zone);
