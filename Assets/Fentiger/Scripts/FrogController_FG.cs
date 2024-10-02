@@ -10,21 +10,24 @@ public class FrogController_FG : MonoBehaviour
     Vector3 startPos;
     Vector3 targetPos;
     public bool takenSpot;
-    public float jumpHeight = 2f;
-    public float jumpSpeed = 2f;
-    public float jumpDelay = 1f;
+    public float jumpHeight;
+    public float jumpSpeed;
+    public float jumpDelay;
+    public float rotationSpeed;
     private float jumpProgress = 0f;
     private float delayTimer = 0f;
     private bool isJumping = false;
+    private bool isRotating = false;
     public GameObject checker;
 
     private void Start()
     {
         checker.transform.parent = null;
     }
+
     void Update()
     {
-        if (!isJumping)
+        if (!isJumping && !isRotating)
         {
             delayTimer += Time.deltaTime;
             if (delayTimer >= jumpDelay)
@@ -51,15 +54,35 @@ public class FrogController_FG : MonoBehaviour
                 }
                 while (!FreeSpot(targetPos));
 
-                startPos = transform.position;
-                isJumping = true;
-                jumpProgress = 0f;
-                delayTimer = 0f;
+                if (FreeSpot(targetPos))
+                {
+                    startPos = transform.position;
+                    isRotating = true;
+                    jumpProgress = 0f;
+                    delayTimer = 0f;
+                }
             }
         }
-        else
+        else if (isRotating)
+        {
+            RotateTowardsChecker();
+        }
+        else if (isJumping)
         {
             JumpToPosition(targetPos);
+        }
+    }
+
+    void RotateTowardsChecker()
+    {
+        Vector3 directionToChecker = (checker.transform.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(directionToChecker);
+        float angle = Vector3.SignedAngle(transform.forward, directionToChecker, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
+        {
+            isRotating = false;
+            isJumping = true;
         }
     }
 
