@@ -21,6 +21,7 @@ public class FollowPlayer : MonoBehaviour
     {
         if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
         {
+            GetComponent<NavMeshAgent>().speed = 3;
             if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position))
             {
                 agent.destination = players[0].transform.position;
@@ -32,11 +33,12 @@ public class FollowPlayer : MonoBehaviour
         }
         else if (leftSpawn)
         {
+            GetComponent<NavMeshAgent>().speed = 1.5f;
             agent.destination = transform.parent.position - new Vector3(0, 0, 11);
-            // bajar velocidad
         }
         else
         {
+            GetComponent<NavMeshAgent>().speed = 1.5f;
             agent.destination = transform.parent.position - new Vector3(0, 0, -11);
         }
     }
