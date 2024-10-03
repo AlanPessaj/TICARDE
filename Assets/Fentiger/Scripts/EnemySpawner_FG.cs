@@ -19,15 +19,31 @@ public class EnemySpawner_FG : MonoBehaviour
     {
         if (spawn && firstTime)
         {
-            if (Random.Range(0, 2) == 1)
+            if (enemy.layer == LayerMask.NameToLayer("Transport"))
             {
-                Instantiate(enemy, new Vector3(transform.position.x, -2, 12), Quaternion.identity, transform).GetComponent<FollowPlayer_FG>().leftSpawn = true;
+                Debug.Log("Rana");
+                if (Random.Range(0, 2) == 1)
+                {
+                    Instantiate(enemy, new Vector3(transform.position.x, -2.58f, 12), Quaternion.identity, transform).GetComponent<FollowPlayer_FG>().leftSpawn = true;
+                }
+                else
+                {
+                    Instantiate(enemy, new Vector3(transform.position.x, -2.58f, -12), Quaternion.identity, transform);
+                }
+                firstTime = false;
             }
             else
             {
-                Instantiate(enemy, new Vector3(transform.position.x, -2, -12), Quaternion.identity, transform);
+                if (Random.Range(0, 2) == 1)
+                {
+                    Instantiate(enemy, new Vector3(transform.position.x, -2, 12), Quaternion.identity, transform).GetComponent<FollowPlayer_FG>().leftSpawn = true;
+                }
+                else
+                {
+                    Instantiate(enemy, new Vector3(transform.position.x, -2, -12), Quaternion.identity, transform);
+                }
+                firstTime = false;
             }
-            firstTime = false;
         }
     }
 

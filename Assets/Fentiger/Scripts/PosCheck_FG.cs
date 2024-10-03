@@ -10,6 +10,14 @@ public class PosCheck_FG : MonoBehaviour
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Field") && (other.gameObject.layer == LayerMask.NameToLayer("Tree") || other.gameObject.layer == LayerMask.NameToLayer("Transport")))
         {
+            if (other.gameObject.layer != LayerMask.NameToLayer("Field"))
+            {
+                Debug.Log("No toca campo");
+            }
+            else
+            {
+                Debug.Log("toca rana o arbol");
+            }
             controller.takenSpot = true;
         }
     }

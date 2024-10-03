@@ -8,6 +8,8 @@ animacion de muerte
 que pueda seguir uno solo cuando muere el otro
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
+REVISAR BIEN LA ALTURA QUE SIGUEN LOS LEONES AL NO TENER TARGER
+RESOLVER DE UNA VEZ EL BUG DE LOS LEONES Y EL SPAWN DE LA NAVEGATION
 bug arbol raycast?
 -----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
