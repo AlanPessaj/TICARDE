@@ -199,4 +199,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 0}
-  enemie: {fileID: 2312736959693983240, guid: 546ba464221461d4bb2dde232004e362, type: 3}
+  enemy: {fileID: 2312736959693983240, guid: 546ba464221461d4bb2dde232004e362, type: 3}

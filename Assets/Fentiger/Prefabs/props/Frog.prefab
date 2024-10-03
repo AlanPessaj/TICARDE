@@ -353,6 +353,7 @@ GameObject:
   - component: {fileID: 8408725497419410867}
   - component: {fileID: 8274095318126099269}
   - component: {fileID: 3697654331467575306}
+  - component: {fileID: 3213398127146832262}
   m_Layer: 13
   m_Name: Frog
   m_TagString: Untagged
@@ -369,7 +370,7 @@ Transform:
   m_GameObject: {fileID: 4728768719251889690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 2714887506562956595}
   - {fileID: 7208639725085194572}
@@ -405,6 +406,24 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3213398127146832262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4728768719251889690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08591b49fa788c14585e442f4625dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takenSpot: 0
+  jumpHeight: 4
+  jumpSpeed: 0.5
+  jumpDelay: 1
+  rotationSpeed: 100
+  checker: {fileID: 8384010284787111329}
 --- !u!1 &8384010284787111329
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +435,7 @@ GameObject:
   - component: {fileID: 7208639725085194572}
   - component: {fileID: 7175790123920854914}
   - component: {fileID: 7244087185444264669}
+  - component: {fileID: 2929429526768112583}
   m_Layer: 13
   m_Name: JumpSpot
   m_TagString: Untagged
@@ -466,3 +486,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2, z: 3.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2929429526768112583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384010284787111329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e812f8118844454188f573289e1cfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 3213398127146832262}
