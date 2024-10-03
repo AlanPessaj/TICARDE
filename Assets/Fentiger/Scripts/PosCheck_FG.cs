@@ -7,7 +7,6 @@ public class PosCheck_FG : MonoBehaviour
     public FrogController_FG controller;
     private bool inTreeOrTransport = false;
     private bool inField = false;
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Tree") || other.gameObject.layer == LayerMask.NameToLayer("Transport"))
@@ -38,6 +37,9 @@ public class PosCheck_FG : MonoBehaviour
 
     void UpdateCondition()
     {
-        controller.takenSpot = inTreeOrTransport && !inField;
+        bool isInValidZRange = transform.position.z >= -11 && transform.position.z <= 11;
+
+        controller.takenSpot = inTreeOrTransport && !inField && isInValidZRange;
     }
 }
+
