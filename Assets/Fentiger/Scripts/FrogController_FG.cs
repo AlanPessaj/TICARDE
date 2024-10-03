@@ -54,13 +54,10 @@ public class FrogController_FG : MonoBehaviour
                 }
                 while (!FreeSpot(targetPos));
 
-                if (FreeSpot(targetPos))
-                {
-                    startPos = transform.position;
-                    isRotating = true;
-                    jumpProgress = 0f;
-                    delayTimer = 0f;
-                }
+                startPos = transform.position;
+                isRotating = true;
+                jumpProgress = 0f;
+                delayTimer = 0f;
             }
         }
         else if (isRotating)
@@ -102,15 +99,9 @@ public class FrogController_FG : MonoBehaviour
     bool FreeSpot(Vector3 pos)
     {
         checker.transform.position = pos;
-        if (!takenSpot)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return !takenSpot;
     }
+
 
     private void Awake()
     {

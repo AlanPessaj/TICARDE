@@ -86,8 +86,8 @@ public class Generator_FG : MonoBehaviour
          * [3] = BrokenLogs         /
          * [4] = Lions              \
          * [5] = Froggs              ) -> Field
-         * [6] = Kangaroo           /
-         * [7] = EmptyField
+         * [6] = Kangaroos          /
+         * [7] = EmptyFields
          */
         List<GameObject> section = new List<GameObject>();
         bool? winner = Percenter(Levels[Level].tiles);
