@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b2594eefd048c6b40803493164c484f5
+guid: 256590a9594b4ab46b7b4bf78628347d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -151,6 +151,7 @@ ModelImporter:
     4300004: Persona
     4300006: Pantalon
     4300008: 'cuello '
+    7400000: mixamo.com
     9500000: //RootNode
     13700000: camisa
     13700002: 'cinturon '
