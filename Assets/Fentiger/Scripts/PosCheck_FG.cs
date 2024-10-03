@@ -5,28 +5,39 @@ using UnityEngine;
 public class PosCheck_FG : MonoBehaviour
 {
     public FrogController_FG controller;
+    private bool inTreeOrTransport = false;
+    private bool inField = false;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Field") && (other.gameObject.layer == LayerMask.NameToLayer("Tree") || other.gameObject.layer == LayerMask.NameToLayer("Transport")))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Tree") || other.gameObject.layer == LayerMask.NameToLayer("Transport"))
         {
-            if (other.gameObject.layer != LayerMask.NameToLayer("Field"))
-            {
-                Debug.Log("No toca campo");
-            }
-            else
-            {
-                Debug.Log("toca rana o arbol");
-            }
-            controller.takenSpot = true;
+            inTreeOrTransport = true;
+            UpdateCondition();
+        }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Field"))
+        {
+            inField = true;
+            UpdateCondition();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Field") || other.gameObject.layer == LayerMask.NameToLayer("Tree") || other.gameObject.layer == LayerMask.NameToLayer("Transport"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Tree") || other.gameObject.layer == LayerMask.NameToLayer("Transport"))
         {
-            controller.takenSpot = false;
+            inTreeOrTransport = false;
+            UpdateCondition();
         }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Field"))
+        {
+            inField = false;
+            UpdateCondition();
+        }
+    }
+
+    void UpdateCondition()
+    {
+        controller.takenSpot = inTreeOrTransport && !inField;
     }
 }
