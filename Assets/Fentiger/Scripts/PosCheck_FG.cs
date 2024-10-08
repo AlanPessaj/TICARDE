@@ -9,7 +9,7 @@ public class PosCheck_FG : MonoBehaviour
     private bool inField = false;
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Tree") || other.gameObject.layer == LayerMask.NameToLayer("Transport"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Tree") || (other.gameObject.layer == LayerMask.NameToLayer("Transport") && other.gameObject != controller.gameObject))
         {
             inTreeOrTransport = true;
             UpdateCondition();
@@ -37,9 +37,12 @@ public class PosCheck_FG : MonoBehaviour
 
     void UpdateCondition()
     {
-        bool isInValidZRange = transform.position.z >= -11 && transform.position.z <= 11;
-        Debug.Log($"updated condition, tree: {inTreeOrTransport}, field: {inField}, range: {isInValidZRange}");
+        bool isInValidZRange = transform.position.z >= -12 && transform.position.z <= 12;
         controller.takenSpot = inTreeOrTransport || !inField || !isInValidZRange;
+        if (controller.takenSpot)
+        {
+            Debug.Log($"updated condition, tree: {inTreeOrTransport}, field: {inField}, range: {isInValidZRange}, POS: {transform.position}");
+        }
     }
 }
 

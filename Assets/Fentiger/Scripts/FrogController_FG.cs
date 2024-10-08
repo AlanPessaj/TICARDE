@@ -9,7 +9,7 @@ public class FrogController_FG : MonoBehaviour
     int direction;
     Vector3 startPos;
     Vector3 targetPos;
-    public bool takenSpot;
+    public bool takenSpot = true;
     public float jumpHeight;
     public float jumpSpeed;
     public float jumpDelay;
@@ -28,7 +28,7 @@ public class FrogController_FG : MonoBehaviour
         checker.transform.parent = null;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isJumping && !isRotating)
         {
@@ -64,7 +64,7 @@ public class FrogController_FG : MonoBehaviour
                 if (!foundValidSpot)
                 {
                     //DELETE ME
-                    Destroy(this);
+                    this.enabled = false;
                     return;
                 }
 
@@ -115,14 +115,6 @@ public class FrogController_FG : MonoBehaviour
     bool FreeSpot()
     {
         StartCoroutine(WaitForCollisionDetection());
-        if (takenSpot)
-        {
-            Debug.Log("Posicion invalida " + checker.transform.position);
-        }
-        else
-        {
-            Debug.Log("Salta rey");
-        }
         return !takenSpot;
     }
 
