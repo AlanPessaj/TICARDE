@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645233, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -168,7 +168,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f4bd52b218982d44a7e3529ecc84c72, type: 2}
   - {fileID: 11400000, guid: 94fdd82fd2d427d4dbfc17218595af28, type: 2}
   - {fileID: 11400000, guid: fe05495eac9d5ac45afd1bc6dfb121d5, type: 2}
-  Level: 9
+  Level: 0
   camara: {fileID: 534669905}
   Seagull: {fileID: 4333055094429083658, guid: a801072b7f235cd4bb2c48818b375afb, type: 3}
   players:
@@ -177,7 +177,7 @@ MonoBehaviour:
   treeSeparator: 0
   treeSpawn: 0
   baker: {fileID: 287369563}
-  startingLevel: 0
+  startingLevel: 9
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0

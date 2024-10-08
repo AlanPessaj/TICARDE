@@ -23,23 +23,14 @@ public class PosCheck_FG : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Tree") || other.gameObject.layer == LayerMask.NameToLayer("Transport"))
-        {
-            inTreeOrTransport = false;
-            UpdateCondition();
-        }
-        if (other.gameObject.layer == LayerMask.NameToLayer("Field"))
-        {
-            inField = false;
-            UpdateCondition();
-        }
+        controller.takenSpot = null;
     }
 
     void UpdateCondition()
     {
-        bool isInValidZRange = transform.position.z >= -12 && transform.position.z <= 12;
+        bool isInValidZRange = transform.position.z > -12.1f && transform.position.z < 12.1f;
         controller.takenSpot = inTreeOrTransport || !inField || !isInValidZRange;
-        if (controller.takenSpot)
+        if (controller.takenSpot == true)
         {
             Debug.Log($"updated condition, tree: {inTreeOrTransport}, field: {inField}, range: {isInValidZRange}, POS: {transform.position}");
         }

@@ -9,7 +9,7 @@ public class FrogController_FG : MonoBehaviour
     int direction;
     Vector3 startPos;
     Vector3 targetPos;
-    public bool takenSpot = true;
+    public bool? takenSpot = null;
     public float jumpHeight;
     public float jumpSpeed;
     public float jumpDelay;
@@ -55,16 +55,27 @@ public class FrogController_FG : MonoBehaviour
                             targetPos = transform.position + transform.right * -distance;
                             break;
                     }
-
+                    if (targetPos.z < -12.1f || targetPos.z > 12.1f)
+                    {
+                        attemptCount++;
+                        continue;
+                    }
                     checker.transform.position = targetPos;
-                    foundValidSpot = FreeSpot();
-
+                    if (takenSpot != null)
+                    {
+                        foundValidSpot = !(bool)takenSpot;
+                    }
+                    else
+                    {
+                        break;
+                    }
                     attemptCount++;
                 }
-                if (!foundValidSpot)
+                attemptCount = 0;
+                if (!foundValidSpot && takenSpot != null)
                 {
                     //DELETE ME
-                    this.enabled = false;
+                    Debug.LogError($"no encontre, {transform.localPosition}");
                     return;
                 }
 
@@ -72,7 +83,6 @@ public class FrogController_FG : MonoBehaviour
                 isRotating = true;
                 jumpProgress = 0f;
                 delayTimer = 0f;
-                attemptCount = 0;
             }
         }
         else if (isRotating)
@@ -112,21 +122,14 @@ public class FrogController_FG : MonoBehaviour
         }
     }
 
-    bool FreeSpot()
-    {
-        StartCoroutine(WaitForCollisionDetection());
-        return !takenSpot;
-    }
-
-    IEnumerator WaitForCollisionDetection()
-    {
-        // Espera un frame
-        yield return new WaitForEndOfFrame();
-    }
-
     private void Awake()
     {
         players[0] = GameObject.Find("Player1");
         players[1] = GameObject.Find("Player2");
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(checker.gameObject);
     }
 }

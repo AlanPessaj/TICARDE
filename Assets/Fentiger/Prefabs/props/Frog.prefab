@@ -419,7 +419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08591b49fa788c14585e442f4625dc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  takenSpot: 0
   jumpHeight: 4
   jumpSpeed: 2
   jumpDelay: 1.5
@@ -505,7 +504,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2, z: 3.5}
+  m_Size: {x: 1.9, y: 1.9, z: 1.9}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2929429526768112583
 MonoBehaviour:

@@ -24,6 +24,7 @@ public class Generator_FG : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Level = startingLevel;
         while (distance < despawnRadius)
         {
             GenerateZones();
