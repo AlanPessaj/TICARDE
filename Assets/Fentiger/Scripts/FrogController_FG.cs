@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class FrogController_FG : MonoBehaviour
 {
-    GameObject[] players = new GameObject[2];
-    int distance;
-    int direction;
-    Vector3 startPos;
-    Vector3 targetPos;
-    public bool? takenSpot = null;
     public float jumpHeight;
     public float jumpSpeed;
     public float jumpDelay;
     public float rotationSpeed;
-    private float jumpProgress = 0f;
-    private float delayTimer = 0f;
-    private bool isJumping = false;
-    private bool isRotating = false;
     public GameObject checker;
     public bool leftSpawn;
-    public int attemptCount = 0;
-    public int maxAttempts = 10;
+    public int maxAttempts;
+    int attemptCount = 0;
+    float jumpProgress = 0f;
+    float delayTimer = 0f;
+    bool isJumping = false;
+    bool isRotating = false;
+    int distance;
+    int direction;
+    Vector3 startPos;
+    Vector3 targetPos;
+    GameObject[] players = new GameObject[2];
 
     private void Start()
     {
@@ -55,24 +54,22 @@ public class FrogController_FG : MonoBehaviour
                             targetPos = transform.position + transform.right * -distance;
                             break;
                     }
-                    if (targetPos.z < -12.1f || targetPos.z > 12.1f)
+                    Debug.DrawRay(targetPos + new Vector3(0, 2, 0), Vector3.down * 5, Color.red, 1);
+                    if (targetPos.z < -12.1f || targetPos.z > 12.1f || !Physics.Raycast(targetPos + new Vector3(0, 2, 0), Vector3.down, out RaycastHit hit, 5, Physics.AllLayers, QueryTriggerInteraction.Collide))
                     {
                         attemptCount++;
                         continue;
                     }
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Field"))
+                    {
+                        Debug.DrawRay(transform.position, (targetPos - transform.position).normalized, Color.green, Vector3.Distance(targetPos, transform.position));
+                        foundValidSpot = !Physics.Raycast(transform.position, (targetPos - transform.position).normalized, out hit, Vector3.Distance(targetPos, transform.position), Physics.AllLayers, QueryTriggerInteraction.Collide);
+                    }
                     checker.transform.position = targetPos;
-                    if (takenSpot != null)
-                    {
-                        foundValidSpot = !(bool)takenSpot;
-                    }
-                    else
-                    {
-                        break;
-                    }
                     attemptCount++;
                 }
                 attemptCount = 0;
-                if (!foundValidSpot && takenSpot != null)
+                if (!foundValidSpot)
                 {
                     //DELETE ME
                     Debug.LogError($"no encontre, {transform.localPosition}");
