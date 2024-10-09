@@ -21,6 +21,7 @@ public class Generator_FG : MonoBehaviour
     public bool treeSpawn;
     public BakeNavMesh_FG baker;
     public int startingLevel;
+    public List<GameObject> section = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -87,17 +88,17 @@ public class Generator_FG : MonoBehaviour
          * [2] = LilyPads            ) -> Water
          * [3] = BrokenLogs         /
          * [4] = Lions              \
-         * [5] = Froggs              ) -> Field
-         * [6] = Kangaroos          /
-         * [7] = EmptyFields
+         * [5] = Froggs              \ -> Field
+         * [6] = Kangaroos           /
+         * [7] = EmptyFields        /
          */
-        List<GameObject> section = new List<GameObject>();
         bool? winner = Percenter(Levels[Level].tiles);
         bool isRepated = winner == lastSection;
-        float tileValue = 0;
+        float tileValue;
         if (!isRepated)
         {
-            Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
+            //Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
+            section.Add(grass);
             distance++;
             lastSection = winner;
             switch (winner)
@@ -147,7 +148,7 @@ public class Generator_FG : MonoBehaviour
                     }
                 break;
             }
-            GenerateSection(section);
+            GenerateSection();
         }
         else
         {
@@ -156,23 +157,22 @@ public class Generator_FG : MonoBehaviour
     }
     List<GameObject> toBake = new List<GameObject>();
 
-    void GenerateSection(List<GameObject> section)
+    void GenerateSection()
     {
-        for (int i = 0; i < section.Count; i++)
+        while ((!initialSpawn || distance < despawnRadius) && section.Count != 0)
         {
-            if (!initialSpawn || distance < despawnRadius)
-            {                
-                if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
-                {
-                    toBake.Add(Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
-                }
-                else
-                {
-                    Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity);
-                }
-                distance++;
+            if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
+            {
+                toBake.Add(Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
             }
+            else
+            {
+                Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity);
+            }
+            section.RemoveAt(0);
+            distance++;
         }
+
         if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
         {
             baker.Bake(toBake.ToArray());
