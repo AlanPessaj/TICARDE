@@ -13,6 +13,7 @@ RESOLVER DE UNA VEZ EL BUG DE LOS LEONES Y EL SPAWN DE LA NAVEGATION
 RANA SE METE BAJO EL PISO
 HACER SALTOS MAS LARGOS RANA
 bug arbol raycast?
+que cuando te bajas de un transport (detecta grass o field) te alinee a la grid
 -----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
 AUTO MAX = initial/2.5

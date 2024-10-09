@@ -99,7 +99,6 @@ public class Generator_FG : MonoBehaviour
         {
             //Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
             section.Add(grass);
-            distance++;
             lastSection = winner;
             switch (winner)
             {
@@ -159,9 +158,11 @@ public class Generator_FG : MonoBehaviour
 
     void GenerateSection()
     {
+        bool isField = false;
         while ((!initialSpawn || distance < despawnRadius) && section.Count != 0)
         {
-            if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
+            isField = section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7];
+            if (isField)
             {
                 toBake.Add(Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
             }
@@ -169,13 +170,18 @@ public class Generator_FG : MonoBehaviour
             {
                 Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity);
             }
+            bool doBreak = section[0] == grass;
             section.RemoveAt(0);
             distance++;
+            if (doBreak) break;
         }
-
-        if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
+        if (isField)
         {
             baker.Bake(toBake.ToArray());
+        }
+        if ((!initialSpawn || distance < despawnRadius) && section.Count != 0)
+        {
+            GenerateSection();
         }
     }
 
