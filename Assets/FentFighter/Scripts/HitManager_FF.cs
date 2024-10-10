@@ -22,12 +22,12 @@ public class HitManager_FF : MonoBehaviour
         for (int i = 0; i < hColliders.Length; i++)
         {
             bool collided = false;
-            if (damageProperties == null){break; }
-            if (damageProperties.owner == gameObject) { break; }
-            if (hColliders[i] == null) {continue;}
+            if (damageProperties == null) break;
+            if (damageProperties.owner == gameObject) break;
+            if (hColliders[i] == null) continue;
             for (int o = i + 1; o < hColliders.Length; o++)
             {
-                if (hColliders[o] == null) {continue;}
+                if (hColliders[o] == null) continue;
                 if (i == 0)
                 {
                     if (o == 1)
@@ -169,10 +169,14 @@ public class HitManager_FF : MonoBehaviour
     }
 
 
-    void ResetDetection()
+    void ResetDetection(Damage_FF damageProperties)
     {
         detectedBlock = false;
         detectedHit = false;
+        if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.UpperCut)
+        {
+            damageProperties.owner.GetComponent<PlayerController_FF>().punchHit = false;
+        }
     }
 
     void TakeDamage(Damage_FF damageProperties)

@@ -14,6 +14,7 @@ public class PlayerController_FF : MonoBehaviour
     public int movementForce;
     public int movementSpeed;
     public int jumpForce;
+    public bool punchHit;
     bool airborne;
     bool isColliding;
     Animator animator;
@@ -28,7 +29,7 @@ public class PlayerController_FF : MonoBehaviour
     bool isPlayer1;
     public float movDirection = 0;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (otherPlayer.transform.position.x > transform.position.x && facingLeft)
         {
@@ -118,7 +119,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && fist.GetComponent<Damage_FF>().disableAction == null)
+                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && !punchHit)
                 {
                     animator.SetBool("UpperCut", true);
                 }
@@ -204,7 +205,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && fist.GetComponent<Damage_FF>().disableAction == null)
+                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && !punchHit)
                 {
                     animator.SetBool("UpperCut", true);
                 }

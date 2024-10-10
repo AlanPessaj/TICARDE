@@ -15,4 +15,15 @@ public class HitDetector_FF : MonoBehaviour
             hitManager.damageProperties = other.GetComponent<Damage_FF>();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
+        {
+            if (other.GetComponent<Damage_FF>().type == DamageType.Punch)
+            {
+                other.GetComponent<Damage_FF>().owner.GetComponent<PlayerController_FF>().punchHit = true;
+            }
+        }
+    }
 }

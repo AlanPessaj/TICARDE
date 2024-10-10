@@ -8,13 +8,13 @@ public class Damage_FF : MonoBehaviour
     public DamageType type;
     public GameObject owner;
 
-    public System.Action disableAction;
+    public System.Action<Damage_FF> disableAction;
 
     private void OnDestroy()
     {
         if (type == DamageType.Ability || type == DamageType.Ulti)
         {
-            disableAction();
+            disableAction(this);
         }
     }
 }

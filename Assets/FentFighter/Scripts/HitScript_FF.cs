@@ -27,8 +27,12 @@ public class HitScript_FF : StateMachineBehaviour
     {
         if (animator.GetBool("UpperCut"))
         {
-            animator.CrossFade("upperCut", 0f, layerIndex, stateInfo.normalizedTime);
+            if (!animator.GetComponent<PlayerController_FF>().punchHit)  animator.CrossFade("upperCut", 0f, layerIndex, stateInfo.normalizedTime);
             animator.SetBool("UpperCut", false);
+        }
+        if (stateInfo.IsName("UpperCut") && animator.GetComponent<PlayerController_FF>().punchHit)
+        {
+            animator.GetComponent<UIManager_FF>().ChangeHealth(animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage / 1.5f);
         }
     }
 
@@ -41,7 +45,7 @@ public class HitScript_FF : StateMachineBehaviour
             {
                 if (animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction != null)
                 {
-                    animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction();
+                    animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction(animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>());
                     animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
                 }
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(false);
@@ -56,7 +60,7 @@ public class HitScript_FF : StateMachineBehaviour
         {
             if (animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().disableAction != null)
             {
-                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().disableAction();
+                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().disableAction(animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>());
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
             }
             animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(false);
