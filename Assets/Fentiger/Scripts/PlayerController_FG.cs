@@ -37,6 +37,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (!rana.isJumping)
                     {
+                        transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                         onFrog = false;
                     }
@@ -56,6 +57,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (!rana.isJumping)
                     {
+                        transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
                         onFrog = false;
                     }
@@ -93,6 +95,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (!rana.isJumping)
                     {
+                        transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
                         onFrog = false;
                     }
@@ -130,6 +133,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (!rana.isJumping)
                     {
+                        transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
                         onFrog = false;
                     }
@@ -155,6 +159,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (!rana.isJumping)
                     {
+                        transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                         onFrog = false;
                     }
@@ -174,6 +179,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (!rana.isJumping)
                     {
+                        transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
                         onFrog = false;
                     }
@@ -211,6 +217,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (!rana.isJumping)
                     {
+                        transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
                         onFrog = false;
                     }
@@ -248,6 +255,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     if (!rana.isJumping)
                     {
+                        transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
                         onFrog = false;
                     }
@@ -275,7 +283,7 @@ public class PlayerController_FG : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.name == "Frog(Clone)")
                 {
-                    if (!hit.transform.gameObject.GetComponent<FrogController_FG>().isJumping)
+                    if (!hit.transform.gameObject.GetComponent<FrogController_FG>().isJumping && hit.transform.childCount == 1)
                     {
                         rana = hit.transform.gameObject.GetComponent<FrogController_FG>();
                         transform.parent = hit.transform;
