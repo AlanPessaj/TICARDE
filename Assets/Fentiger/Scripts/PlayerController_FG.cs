@@ -16,6 +16,7 @@ public class PlayerController_FG : MonoBehaviour
     bool facingTreeDown;
     bool onFrog;
     FrogController_FG rana;
+    public Vector3 raycastPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -267,7 +268,6 @@ public class PlayerController_FG : MonoBehaviour
             }
         }
         CheckTile();
-        Debug.Log("Check");
     }
 
     void CheckTile()
@@ -318,13 +318,13 @@ public class PlayerController_FG : MonoBehaviour
                 return;
             }
         }
+        raycastPos = transform.TransformPoint(Vector3.zero);
+        Debug.DrawRay(raycastPos, Vector3.forward * 1.3f, Color.red, 1, false);   // Derecha
+        Debug.DrawRay(raycastPos, -Vector3.forward * 1.3f, Color.blue, 1, false); // Izquierda
+        Debug.DrawRay(raycastPos, Vector3.right * 1.3f, Color.green, 1, false);   // Abajo
+        Debug.DrawRay(raycastPos, -Vector3.right * 1.3f, Color.yellow, 1, false);  // Arriba
 
-        Debug.DrawRay(transform.position, Vector3.forward * 1.3f, Color.red);   // Derecha
-        Debug.DrawRay(transform.position, -Vector3.forward * 1.3f, Color.blue); // Izquierda
-        Debug.DrawRay(transform.position, Vector3.right * 1.3f, Color.green);   // Abajo
-        Debug.DrawRay(transform.position, -Vector3.right * 1.3f, Color.yellow);  // Arriba
-
-        if (Physics.Raycast(transform.position, Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(raycastPos, Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
         {
             facingTreeRight = true;
             //Derecha
@@ -333,7 +333,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             facingTreeRight = false;
         }
-        if (Physics.Raycast(transform.position, -Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(raycastPos, -Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
         {
             facingTreeLeft = true;
             //Izquierda
@@ -342,7 +342,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             facingTreeLeft = false;
         }
-        if (Physics.Raycast(transform.position, Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(raycastPos, Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
         {
             facingTreeDown = true;
             //Abajo
@@ -351,7 +351,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             facingTreeDown = false;
         }
-        if (Physics.Raycast(transform.position, -Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(raycastPos, -Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
         {
             facingTreeUp = true;
             //Arriba
