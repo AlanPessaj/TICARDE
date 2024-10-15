@@ -206,7 +206,8 @@ public class PlayerController_FG : MonoBehaviour
             else
             {
                 transform.parent = null;
-                transform.position = new Vector3(transform.position.x, -2, transform.position.z);
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), -2, Mathf.RoundToInt(transform.position.z));
+
                 onLog = false;
             }
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
