@@ -10,11 +10,6 @@ public class HitScript_FF : StateMachineBehaviour
         if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut"))
         {
             animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
-            if (stateInfo.IsName("upperCut"))
-            {
-                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.UpperCut;
-                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage *= 1.5f;
-            }
         }
         else
         {
@@ -23,38 +18,22 @@ public class HitScript_FF : StateMachineBehaviour
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (animator.GetBool("UpperCut"))
-        {
-            if (!animator.GetComponent<PlayerController_FF>().punchHit)  animator.CrossFade("upperCut", 0f, layerIndex, stateInfo.normalizedTime);
-            animator.SetBool("UpperCut", false);
-        }
-        if (stateInfo.IsName("UpperCut") && animator.GetComponent<PlayerController_FF>().punchHit)
-        {
-            animator.GetComponent<UIManager_FF>().ChangeHealth(animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage / 1.5f);
-        }
-    }
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //
+    //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut"))
         {
-            if (!animator.GetNextAnimatorStateInfo(0).IsName("upperCut"))
+            if (animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction != null)
             {
-                if (animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction != null)
-                {
-                    animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction(animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>());
-                    animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
-                }
-                animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(false);
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction(animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>());
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
             }
-            if (stateInfo.IsName("upperCut"))
-            {
-                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Punch;
-                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage /= 1.5f;
-            }
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(false);
         }
         else
         {
@@ -65,6 +44,7 @@ public class HitScript_FF : StateMachineBehaviour
             }
             animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(false);
         }
+        Debug.Log(stateInfo.shortNameHash);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

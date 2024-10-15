@@ -7,23 +7,13 @@ public class HitDetector_FF : MonoBehaviour
     public HitManager_FF hitManager;
     public int colNumber;
     public PlayerController_FF playerController;
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
-        {
-            hitManager.hColliders[colNumber] = GetComponent<Collider>();
-            hitManager.damageProperties = other.GetComponent<Damage_FF>();
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Hit"))
         {
-            if (other.GetComponent<Damage_FF>().type == DamageType.Punch)
-            {
-                other.GetComponent<Damage_FF>().owner.GetComponent<PlayerController_FF>().punchHit = true;
-            }
+            hitManager.hColliders[colNumber] = GetComponent<Collider>();
+            hitManager.damageProperties = other.GetComponent<Damage_FF>();
         }
     }
 }

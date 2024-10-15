@@ -119,11 +119,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && !punchHit)
-                {
-                    animator.SetBool("UpperCut", true);
-                }
-                else if (!airborne)
+                if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -205,11 +201,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && !punchHit)
-                {
-                    animator.SetBool("UpperCut", true);
-                }
-                else if (!airborne)
+                if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);

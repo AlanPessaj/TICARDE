@@ -173,10 +173,6 @@ public class HitManager_FF : MonoBehaviour
     {
         detectedBlock = false;
         detectedHit = false;
-        if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.UpperCut)
-        {
-            damageProperties.owner.GetComponent<PlayerController_FF>().punchHit = false;
-        }
     }
 
     void TakeDamage(Damage_FF damageProperties)
