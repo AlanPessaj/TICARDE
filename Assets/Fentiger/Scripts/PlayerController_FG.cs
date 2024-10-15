@@ -134,7 +134,9 @@ public class PlayerController_FG : MonoBehaviour
                     if (!rana.isJumping)
                     {
                         transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+                        //transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+
                         onFrog = false;
                     }
                 }
@@ -256,18 +258,20 @@ public class PlayerController_FG : MonoBehaviour
                     if (!rana.isJumping)
                     {
                         transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                        //transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
                         onFrog = false;
                     }
                 }
             }
         }
         CheckTile();
+        Debug.Log("Check");
     }
 
     void CheckTile()
     {
-        Debug.DrawRay(transform.position + Vector3.up * 2, Vector3.down, Color.red, 0.5f, false);
+        //Debug.DrawRay(transform.position + Vector3.up * 2, Vector3.down, Color.red, 0.5f, false);
         Physics.Raycast(transform.position + Vector3.up * 2, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers - LayerMask.GetMask("Tree", "Player"));
         if (hit.collider != null)
         {
@@ -314,38 +318,46 @@ public class PlayerController_FG : MonoBehaviour
             }
         }
 
+        Debug.DrawRay(transform.position, Vector3.forward * 1.3f, Color.red);   // Derecha
+        Debug.DrawRay(transform.position, -Vector3.forward * 1.3f, Color.blue); // Izquierda
+        Debug.DrawRay(transform.position, Vector3.right * 1.3f, Color.green);   // Abajo
+        Debug.DrawRay(transform.position, -Vector3.right * 1.3f, Color.yellow);  // Arriba
 
-        if (Physics.Raycast(transform.position, transform.forward, 1f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(transform.position, Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
         {
             facingTreeRight = true;
             //Derecha
+            Debug.Log("Arbol izquierda");
         }
         else
         {
             facingTreeRight = false;
         }
-        if (Physics.Raycast(transform.position, -transform.forward, 1f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(transform.position, -Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
         {
             facingTreeLeft = true;
             //Izquierda
+            Debug.Log("Arbol derecha");
         }
         else
         {
             facingTreeLeft = false;
         }
-        if (Physics.Raycast(transform.position, transform.right, 1f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(transform.position, Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
         {
             facingTreeDown = true;
             //Abajo
+            Debug.Log("Arbol arriba");
         }
         else
         {
             facingTreeDown = false;
         }
-        if (Physics.Raycast(transform.position, -transform.right, 1f, LayerMask.GetMask("Tree")))
+        if (Physics.Raycast(transform.position, -Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
         {
             facingTreeUp = true;
             //Arriba
+            Debug.Log("Arbol abajo");
         }
         else
         {
