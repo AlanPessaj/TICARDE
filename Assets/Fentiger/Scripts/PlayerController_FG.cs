@@ -25,6 +25,7 @@ public class PlayerController_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("onFrog: " + onFrog);
         if (isPlayer1)
         {
             if (Input.GetKeyDown(KeyCode.W) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) && !facingTreeDown)
@@ -327,7 +328,6 @@ public class PlayerController_FG : MonoBehaviour
         {
             facingTreeRight = true;
             //Derecha
-            Debug.Log("Arbol izquierda");
         }
         else
         {
@@ -337,7 +337,6 @@ public class PlayerController_FG : MonoBehaviour
         {
             facingTreeLeft = true;
             //Izquierda
-            Debug.Log("Arbol derecha");
         }
         else
         {
@@ -347,7 +346,6 @@ public class PlayerController_FG : MonoBehaviour
         {
             facingTreeDown = true;
             //Abajo
-            Debug.Log("Arbol arriba");
         }
         else
         {
@@ -357,7 +355,6 @@ public class PlayerController_FG : MonoBehaviour
         {
             facingTreeUp = true;
             //Arriba
-            Debug.Log("Arbol abajo");
         }
         else
         {
