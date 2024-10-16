@@ -250,7 +250,7 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A + B
-                    if (Input.GetButtonDown("A" + player) || Input.GetButtonDown("B" + player))
+                    if (DetectCombo("A", "C", player))
                     {
                         if (GetComponent<UIManager_FF>().RemoveXP(100))
                         {
@@ -268,7 +268,7 @@ public class PlayerController_FF : MonoBehaviour
             else if (Input.GetButton("C" + player))
             {
                 //A + C
-                if (Input.GetButtonDown("A" + player) || Input.GetButtonDown("C" + player))
+                if (DetectCombo("A", "C", player))
                 {
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
@@ -294,7 +294,7 @@ public class PlayerController_FF : MonoBehaviour
             if (Input.GetButton("C" + player))
             {
                 //B + C
-                if (Input.GetButtonDown("B" + player) || Input.GetButtonDown("C" + player))
+                if (DetectCombo("B", "C", player))
                 {
                     if (GetComponent<UIManager_FF>().RemoveXP(25))
                     {
@@ -338,6 +338,13 @@ public class PlayerController_FF : MonoBehaviour
         {
             //NONE
         }
+    }
+
+    bool DetectCombo(string button1, string button2, string player)
+    {
+        button1 += player;
+        button2 += player;
+        return Input.GetButtonDown(button1) || Input.GetButtonDown(button2);
     }
 
     private void OnCollisionStay(Collision other)
