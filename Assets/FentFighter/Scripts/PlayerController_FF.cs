@@ -268,6 +268,13 @@ public class PlayerController_FF : MonoBehaviour
             else if (Input.GetButton("C" + player))
             {
                 //A + C
+                if (Input.GetButtonDown("A" + player) || Input.GetButtonDown("C" + player))
+                {
+                    if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        animator.SetTrigger("upperCut");
+                    }
+                }
             }
             else
             {
@@ -276,7 +283,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
-                        animator.SetTrigger("Punch");
+                        animator.SetTrigger("punch");
                     }
                 }
             }
@@ -305,7 +312,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
-                        animator.SetTrigger("Kick");
+                        animator.SetTrigger("kick");
                     }
                 }
             }

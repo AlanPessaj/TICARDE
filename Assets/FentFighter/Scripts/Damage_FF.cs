@@ -12,7 +12,7 @@ public class Damage_FF : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (type == DamageType.Ability || type == DamageType.Ulti)
+        if ((type == DamageType.Ability || type == DamageType.Ulti) && disableAction != null)
         {
             disableAction(this);
         }

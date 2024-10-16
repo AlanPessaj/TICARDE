@@ -10,6 +10,11 @@ public class HitScript_FF : StateMachineBehaviour
         if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut"))
         {
             animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
+            if (stateInfo.IsName("upperCut"))
+            {
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage *= 1.5f;
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.UpperCut;
+            }
         }
         else
         {
@@ -34,6 +39,11 @@ public class HitScript_FF : StateMachineBehaviour
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
             }
             animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(false);
+            if (stateInfo.IsName("upperCut"))
+            {
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage /= 1.5f;
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Punch;
+            }
         }
         else
         {
