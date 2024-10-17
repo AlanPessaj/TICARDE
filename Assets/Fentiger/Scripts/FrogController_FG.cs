@@ -21,10 +21,23 @@ public class FrogController_FG : MonoBehaviour
     Vector3 startPos;
     Vector3 targetPos;
     GameObject[] players = new GameObject[2];
+    public GameObject outCollider;
 
     private void Start()
     {
         checker.transform.parent = null;
+    }
+
+    private void Update()
+    {
+        if (isJumping && jumpProgress >= 0.5f)
+        {
+            outCollider.layer = LayerMask.NameToLayer("Out");
+        }
+        else
+        {
+            outCollider.layer = LayerMask.NameToLayer("Default");
+        }
     }
 
     void FixedUpdate()

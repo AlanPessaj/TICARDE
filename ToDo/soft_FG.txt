@@ -8,8 +8,6 @@ animacion de muerte
 que pueda seguir uno solo cuando muere el otro
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
-HACER SALTOS MAS LARGOS RANA ----> poder perder pisado
-HACER MOVIMIENTO DIGITAL SOBRE LA RANA 
 -----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
 AUTO MAX = initial/2.5
