@@ -119,11 +119,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && !punchHit)
-                {
-                    animator.SetBool("UpperCut", true);
-                }
-                else if (!airborne)
+                if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -205,11 +201,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && !punchHit)
-                {
-                    animator.SetBool("UpperCut", true);
-                }
-                else if (!airborne)
+                if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -258,7 +250,7 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A + B
-                    if (Input.GetButtonDown("A" + player) || Input.GetButtonDown("B" + player))
+                    if (DetectCombo("A", "C", player))
                     {
                         if (GetComponent<UIManager_FF>().RemoveXP(100))
                         {
@@ -276,6 +268,13 @@ public class PlayerController_FF : MonoBehaviour
             else if (Input.GetButton("C" + player))
             {
                 //A + C
+                if (DetectCombo("A", "C", player))
+                {
+                    if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        animator.SetTrigger("upperCut");
+                    }
+                }
             }
             else
             {
@@ -284,7 +283,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
-                        animator.SetTrigger("Punch");
+                        animator.SetTrigger("punch");
                     }
                 }
             }
@@ -295,7 +294,7 @@ public class PlayerController_FF : MonoBehaviour
             if (Input.GetButton("C" + player))
             {
                 //B + C
-                if (Input.GetButtonDown("B" + player) || Input.GetButtonDown("C" + player))
+                if (DetectCombo("B", "C", player))
                 {
                     if (GetComponent<UIManager_FF>().RemoveXP(25))
                     {
@@ -313,7 +312,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
-                        animator.SetTrigger("Kick");
+                        animator.SetTrigger("kick");
                     }
                 }
             }
@@ -339,6 +338,13 @@ public class PlayerController_FF : MonoBehaviour
         {
             //NONE
         }
+    }
+
+    bool DetectCombo(string button1, string button2, string player)
+    {
+        button1 += player;
+        button2 += player;
+        return Input.GetButtonDown(button1) || Input.GetButtonDown(button2);
     }
 
     private void OnCollisionStay(Collision other)

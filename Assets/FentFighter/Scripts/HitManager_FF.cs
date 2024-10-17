@@ -10,6 +10,7 @@ public class HitManager_FF : MonoBehaviour
     public float XPMultiplier;
     bool detectedHit;
     bool detectedBlock;
+    bool detectedAbility;
     // Start is called before the first frame update
     void Start()
     {
@@ -171,20 +172,23 @@ public class HitManager_FF : MonoBehaviour
 
     void ResetDetection(Damage_FF damageProperties)
     {
-        detectedBlock = false;
-        detectedHit = false;
-        if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.UpperCut)
+        if (damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti)
         {
-            damageProperties.owner.GetComponent<PlayerController_FF>().punchHit = false;
+            detectedBlock = false;
+            detectedHit = false;
+        }
+        else
+        {
+            detectedAbility = false;
         }
     }
 
     void TakeDamage(Damage_FF damageProperties)
     {
-        if (!detectedHit)
+        if ((!detectedHit && damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti) || (!detectedAbility && (damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.Ulti)))
         {
             GetComponent<UIManager_FF>().ChangeHealth(-damageProperties.damage);
-            if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.Kick || damageProperties.type == DamageType.UpperCut)
+            if (damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti)
             {
                 GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damageProperties.damage * XPMultiplier);
                 if (damageProperties.type == DamageType.Punch)
@@ -201,8 +205,12 @@ public class HitManager_FF : MonoBehaviour
                     gameObject.GetComponent<Rigidbody>().AddForce(0, gameObject.GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
                     //animacion de me pego un gancho + stun
                 }
+                detectedHit = true;
             }
-            detectedHit = true;
+            else
+            {
+                detectedAbility = true;
+            }
             damageProperties.disableAction = ResetDetection;
         }
     }

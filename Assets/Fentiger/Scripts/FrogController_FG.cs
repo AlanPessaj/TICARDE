@@ -14,7 +14,7 @@ public class FrogController_FG : MonoBehaviour
     int attemptCount = 0;
     float jumpProgress = 0f;
     float delayTimer = 0f;
-    bool isJumping = false;
+    public bool isJumping = false;
     bool isRotating = false;
     int distance;
     int direction;
