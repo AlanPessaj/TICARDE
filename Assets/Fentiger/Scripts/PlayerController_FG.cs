@@ -26,7 +26,6 @@ public class PlayerController_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("onFrog: " + onFrog);
         if (isPlayer1)
         {
             if (Input.GetKeyDown(KeyCode.W) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) && !facingTreeDown)
@@ -136,7 +135,6 @@ public class PlayerController_FG : MonoBehaviour
                     if (!rana.isJumping)
                     {
                         transform.rotation = Quaternion.identity;
-                        //transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
                         transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
 
                         onFrog = false;
@@ -261,7 +259,6 @@ public class PlayerController_FG : MonoBehaviour
                     {
                         transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-                        //transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
                         onFrog = false;
                     }
                 }
@@ -302,7 +299,6 @@ public class PlayerController_FG : MonoBehaviour
                     onLog = true;
                     transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
                 }
-                return;
             }
             else
             {
