@@ -171,6 +171,7 @@ MonoBehaviour:
   Level: 0
   camara: {fileID: 534669905}
   Seagull: {fileID: 4333055094429083658, guid: a801072b7f235cd4bb2c48818b375afb, type: 3}
+  Ovni: {fileID: 1372851121789842606, guid: 17c0f0212b639004dab7cbe6b569ae02, type: 3}
   players:
   - {fileID: 0}
   - {fileID: 0}

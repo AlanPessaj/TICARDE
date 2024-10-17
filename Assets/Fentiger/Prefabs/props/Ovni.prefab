@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3534760518379244119}
   - component: {fileID: 6393306096993831502}
   - component: {fileID: 9049052715781213399}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8666380701882244967}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Ovni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7685611256828765633}
   - component: {fileID: 1419804638678560071}
   - component: {fileID: 5679833882373479780}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
