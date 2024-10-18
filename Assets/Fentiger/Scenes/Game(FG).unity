@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c926f775b350f745a5888c374a5149e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiplayer: 1
   sections:
   - {fileID: 4167764292532976631, guid: d26d65c93eaa4a848ba90209b016aa35, type: 3}
   - {fileID: 5873325583378978193, guid: 7c6017503b332fb449e369ac25845f7b, type: 3}

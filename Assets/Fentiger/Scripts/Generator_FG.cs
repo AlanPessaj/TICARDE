@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Generator_FG : MonoBehaviour
 {
+    public bool multiplayer;
     public GameObject[] sections;
     public GameObject grass;
     bool? lastSection;
