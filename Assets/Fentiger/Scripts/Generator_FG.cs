@@ -86,7 +86,19 @@ public class Generator_FG : MonoBehaviour
         float number = Random.Range(1f, 100f);
         if (number <= Levels[Level].special[0])
         {
-            Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
+            if (multiplayer)
+            {
+                Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
+            }
+            else if(player1Alive)
+            {
+                Instantiate(Seagull, new Vector3(players[0].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(Seagull, new Vector3(players[1].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
+            }
+            
         }
         if (number <= Levels[Level].special[1])
         {
