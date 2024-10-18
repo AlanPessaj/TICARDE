@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Generator_FG : MonoBehaviour
 {
+    public bool multiplayer;
     public GameObject[] sections;
     public GameObject grass;
     bool? lastSection;
@@ -16,6 +17,7 @@ public class Generator_FG : MonoBehaviour
     public int Level = 0;
     public Transform camara;
     public GameObject Seagull;
+    public GameObject Ovni;
     public GameObject[] players = new GameObject[2];
     public int treeSeparator;
     public bool treeSpawn;
@@ -54,10 +56,20 @@ public class Generator_FG : MonoBehaviour
     }
     void SpecialSpawner()
     {
+        /*
+         * Especiales:
+         * [0] = Gaviota
+         * [1] = Laser
+         * [2] = Portales
+         */
         float number = Random.Range(1f, 100f);
         if (number <= Levels[Level].special[0])
         {
             Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
+        }
+        if (number <= Levels[Level].special[1])
+        {
+            Instantiate(Ovni, camara.position - Vector3.down*-10, Quaternion.identity);
         }
     }
     bool? Percenter(float[] percentages)

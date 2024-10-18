@@ -1,5 +1,4 @@
 canguros
-sapos
 lasers
 portales
 vidas
