@@ -33,7 +33,25 @@ public class CameraController_FG : MonoBehaviour
         }
         else
         {
-            //Sistema singleplayer
+            if (Vector3.Distance(player1.position, transform.position) <= snapThreshold && Vector3.Distance(player1.position, transform.position) != 0)
+            {
+                if (generator.player1Alive)
+                {
+                    transform.position = player1.position;
+                }
+                else
+                {
+                    transform.position = player2.position;
+                }
+            }
+            else
+            {
+                targetPosition = new Vector3(player1.position.x - 5.4f, transform.position.y, transform.position.z);
+                previusPosition = transform.position;
+                step = 0;
+                step += stepSize * Time.deltaTime;
+                MoveCamera(step);
+            }
         }
     }
 
