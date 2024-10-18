@@ -34,16 +34,19 @@ public class FollowPlayer_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (generator.multiplayer && ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5)))
+        if (generator.multiplayer)
         {
-            GetComponent<NavMeshAgent>().speed = speed;
-            if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position))
+            if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
             {
-                agent.destination = players[0].transform.position;
-            }
-            else
-            {
-                agent.destination = players[1].transform.position;
+                GetComponent<NavMeshAgent>().speed = speed;
+                if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position))
+                {
+                    agent.destination = players[0].transform.position;
+                }
+                else
+                {
+                    agent.destination = players[1].transform.position;
+                }
             }
         }
         else if (leftSpawn && generator.multiplayer)
