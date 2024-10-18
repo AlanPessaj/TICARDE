@@ -347,6 +347,7 @@ MonoBehaviour:
   immortal: 1
   otherPlayer: {fileID: 1863136296}
   raycastPos: {x: 0, y: 0, z: 0}
+  ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
 --- !u!136 &1220741842
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -473,6 +474,7 @@ MonoBehaviour:
   immortal: 1
   otherPlayer: {fileID: 1220741840}
   raycastPos: {x: 0, y: 0, z: 0}
+  ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
 --- !u!136 &1863136298
 CapsuleCollider:
   m_ObjectHideFlags: 0

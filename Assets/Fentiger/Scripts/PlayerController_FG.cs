@@ -17,6 +17,7 @@ public class PlayerController_FG : MonoBehaviour
     bool onFrog;
     FrogController_FG rana;
     public Vector3 raycastPos;
+    public GameObject ghost;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,7 +81,7 @@ public class PlayerController_FG : MonoBehaviour
         if (transform.position.z > 13f || transform.position.z < -13f)
         {
             //Perder vida
-            SceneManager.LoadScene("MENU");
+            Die();
         }
         CheckTile();
     }
@@ -202,6 +203,12 @@ public class PlayerController_FG : MonoBehaviour
         }
     }
 
+    void Die()
+    {
+        Instantiate(ghost, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
     void CheckTile()
     {
         //Debug.DrawRay(transform.position + Vector3.up * 2, Vector3.down, Color.red, 0.5f, false);
@@ -245,7 +252,7 @@ public class PlayerController_FG : MonoBehaviour
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
             {
                 //perder vida
-                SceneManager.LoadScene("MENU");
+                Die();
                 return;
             }
         }
@@ -298,15 +305,13 @@ public class PlayerController_FG : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
             //perder vida
-            SceneManager.LoadScene("MENU");
-            //BORRAME >:(
+            Die();
         }
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Seagull") && !immortal)
         {
             //perder vida
-            SceneManager.LoadScene("MENU");
+            Die();
             Destroy(other.gameObject);
-            //BORRAME >:(
         }
     }
 }

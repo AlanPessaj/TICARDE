@@ -2,7 +2,6 @@ canguros
 lasers
 portales
 vidas
-modo singleplayer (y transferencia a multiplayer)
 animacion de muerte
 que pueda seguir uno solo cuando muere el otro
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
