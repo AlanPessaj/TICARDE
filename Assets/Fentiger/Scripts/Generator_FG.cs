@@ -130,7 +130,6 @@ public class Generator_FG : MonoBehaviour
         float tileValue;
         if (!isRepated)
         {
-            //Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
             section.Add(grass);
             lastSection = winner;
             switch (winner)
