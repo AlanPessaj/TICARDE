@@ -50,11 +50,6 @@ public class PlayerController_FG : MonoBehaviour
             {
                 MoveRight();
             }
-            if (transform.position.z > 13f || transform.position.z < -13f)
-            {
-                //Perder vida
-                SceneManager.LoadScene("MENU");
-            }
         }
         else
         {
@@ -80,6 +75,12 @@ public class PlayerController_FG : MonoBehaviour
             {
                 MoveRight();
             }
+        }
+
+        if (transform.position.z > 13f || transform.position.z < -13f)
+        {
+            //Perder vida
+            SceneManager.LoadScene("MENU");
         }
         CheckTile();
     }
