@@ -67,7 +67,7 @@ public class FrogController_FG : MonoBehaviour
                             targetPos = transform.position + transform.right * -distance;
                             break;
                     }
-                    Debug.DrawRay(targetPos + new Vector3(0, 2, 0), Vector3.down * 5, Color.red, 1);
+                    //Debug.DrawRay(targetPos + new Vector3(0, 2, 0), Vector3.down * 5, Color.red, 1);
                     if (targetPos.z < -12.1f || targetPos.z > 12.1f || !Physics.Raycast(targetPos + new Vector3(0, 2, 0), Vector3.down, out RaycastHit hit, 5, Physics.AllLayers, QueryTriggerInteraction.Collide))
                     {
                         attemptCount++;
@@ -75,7 +75,7 @@ public class FrogController_FG : MonoBehaviour
                     }
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Field"))
                     {
-                        Debug.DrawRay(transform.position, (targetPos - transform.position).normalized, Color.green, Vector3.Distance(targetPos, transform.position));
+                        //Debug.DrawRay(transform.position, (targetPos - transform.position).normalized, Color.green, Vector3.Distance(targetPos, transform.position));
                         foundValidSpot = !Physics.Raycast(transform.position, (targetPos - transform.position).normalized, out hit, Vector3.Distance(targetPos, transform.position), Physics.AllLayers, QueryTriggerInteraction.Collide);
                     }
                     checker.transform.position = targetPos;
@@ -85,7 +85,7 @@ public class FrogController_FG : MonoBehaviour
                 if (!foundValidSpot)
                 {
                     //DELETE ME
-                    Debug.LogError($"no encontre, {transform.localPosition}");
+                    Debug.LogWarning($"no encontre, {transform.localPosition}");
                     return;
                 }
 

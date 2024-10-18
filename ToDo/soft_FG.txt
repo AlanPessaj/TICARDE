@@ -2,8 +2,6 @@ canguros
 lasers
 portales
 vidas
-animacion de muerte
-que pueda seguir uno solo cuando muere el otro
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
 -----------------------------------------------------------------------------
