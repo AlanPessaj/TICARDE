@@ -181,6 +181,7 @@ MonoBehaviour:
   baker: {fileID: 287369563}
   startingLevel: 9
   section: []
+  player1Alive: 0
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0
