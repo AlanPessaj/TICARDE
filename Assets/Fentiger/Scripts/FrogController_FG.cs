@@ -85,7 +85,7 @@ public class FrogController_FG : MonoBehaviour
                 if (!foundValidSpot)
                 {
                     //DELETE ME
-                    Debug.LogWarning($"no encontre, {transform.localPosition}");
+                    Debug.LogWarning($"Posicion invalida en {transform.localPosition}");
                     return;
                 }
 
