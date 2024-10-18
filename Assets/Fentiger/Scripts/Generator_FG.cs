@@ -24,6 +24,9 @@ public class Generator_FG : MonoBehaviour
     public BakeNavMesh_FG baker;
     public int startingLevel;
     public List<GameObject> section = new List<GameObject>();
+    bool isTherePlayer1 = false;
+    bool isTherePlayer2 = false;
+    public bool player1Alive;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,14 +41,32 @@ public class Generator_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
-        }
+        }*/
+        isTherePlayer1 = GameObject.Find("Player1") != null;
+        isTherePlayer2 = GameObject.Find("Player2") != null;
         difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
         if (difficulty >= 10 && difficulty % 10 == 0)
         {
             Level = Mathf.Clamp(difficulty / 10, 0 + startingLevel, 9);
+        }
+
+        if (isTherePlayer1 && isTherePlayer2)
+        {
+            multiplayer = true;
+        }
+        else if (isTherePlayer1)
+        {
+            multiplayer = false;
+            player1Alive = true;
+            
+        }
+        else
+        {
+            multiplayer = false;
+            player1Alive = false;
         }
     }
     public void GenerateZones()

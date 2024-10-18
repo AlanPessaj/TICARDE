@@ -28,243 +28,177 @@ public class PlayerController_FG : MonoBehaviour
     {
         if (isPlayer1)
         {
-            if (Input.GetKeyDown(KeyCode.W) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) && !facingTreeDown)
+            if (Input.GetKeyDown(KeyCode.W) && !facingTreeDown)
             {
-                if (!onFrog)
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
-                }
-                else
-                {
-                    if (!rana.isJumping)
-                    {
-                        transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
-                        onFrog = false;
-                    }
-                }
-                if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
-                {
-                    generator.GenerateZones();
+                    MoveForward();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) && !facingTreeUp)
+            if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
             {
-                if (!onFrog)
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
-                }
-                else
-                {
-                    if (!rana.isJumping)
-                    {
-                        transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
-                        onFrog = false;
-                    }
+                    MoveBackward();
                 }
             }
             if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f && !facingTreeRight)
             {
-                if (!onLog && !onFrog)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
-                }
-                else if(onLog)
-                {
-                    if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
-                    {
-                        if (transform.localPosition.z > 0.3f)
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
-                        }
-                        else
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-                        }
-                    }
-                    else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
-                    {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
-                    }
-                }
-                else
-                {
-                    if (!rana.isJumping)
-                    {
-                        transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
-                        onFrog = false;
-                    }
-                }
+                MoveLeft();
             }
             if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f && !facingTreeLeft)
             {
-                if (!onLog && !onFrog)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-                }
-                else if (onLog)
-                {
-                    if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
-                    {
-                        if (transform.localPosition.z <= 0.3f)
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
-                        }
-                        else
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-                        }
-                    }
-                    else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
-                    {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-                    }
-                }
-                else
-                {
-                    if (!rana.isJumping)
-                    {
-                        transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-
-                        onFrog = false;
-                    }
-                }
+                MoveRight();
             }
-
             if (transform.position.z > 13f || transform.position.z < -13f)
             {
                 //Perder vida
                 SceneManager.LoadScene("MENU");
             }
-
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) && !facingTreeDown)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !facingTreeDown)
             {
-                if (!onFrog)
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
-                }
-                else
-                {
-                    if (!rana.isJumping)
-                    {
-                        transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
-                        onFrog = false;
-                    }
-                }
-                if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
-                {
-                    generator.GenerateZones();
+                    MoveForward();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) && !facingTreeUp)
+            if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
             {
-                if (!onFrog)
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
-                }
-                else
-                {
-                    if (!rana.isJumping)
-                    {
-                        transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
-                        onFrog = false;
-                    }
+                    MoveBackward();
                 }
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f && !facingTreeRight)
             {
-                if (!onLog && !onFrog)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
-                }
-                else if (onLog)
-                {
-                    if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
-                    {
-                        if (transform.localPosition.z > 0.3f)
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
-                        }
-                        else
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-                        }
-                    }
-                    else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
-                    {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
-                    }
-                }
-                else
-                {
-                    if (!rana.isJumping)
-                    {
-                        transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
-                        onFrog = false;
-                    }
-                }
+                MoveLeft();
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f && !facingTreeLeft)
             {
-                if (!onLog && !onFrog)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-                }
-                else if (onLog)
-                {
-                    if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
-                    {
-                        if (transform.localPosition.z <= 0.3f)
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
-                        }
-                        else
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-                        }
-                    }
-                    else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
-                    {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-                    }
-                }
-                else
-                {
-                    if (!rana.isJumping)
-                    {
-                        transform.rotation = Quaternion.identity;
-                        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-                        onFrog = false;
-                    }
-                }
+                MoveRight();
             }
         }
         CheckTile();
+    }
+
+    void MoveForward()
+    {
+        if (!onFrog)
+        {
+            transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            if (!rana.isJumping)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
+                onFrog = false;
+            }
+        }
+        if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
+        {
+            generator.GenerateZones();
+        }
+    }
+
+    void MoveBackward()
+    {
+        if (!onFrog)
+        {
+            transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            if (!rana.isJumping)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+                onFrog = false;
+            }
+        }
+    }
+
+    void MoveLeft()
+    {
+        if (!onLog && !onFrog)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+        }
+        else if (onLog)
+        {
+            if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
+            {
+                if (transform.localPosition.z > 0.3f)
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                }
+                else
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                }
+            }
+            else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+            }
+        }
+        else
+        {
+            if (!rana.isJumping)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                onFrog = false;
+            }
+        }
+    }
+
+    void MoveRight()
+    {
+        if (!onLog && !onFrog)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+        }
+        else if (onLog)
+        {
+            if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
+            {
+                if (transform.localPosition.z <= 0.3f)
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                }
+                else
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                }
+            }
+            else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+            }
+        }
+        else
+        {
+            if (!rana.isJumping)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+
+                onFrog = false;
+            }
+        }
     }
 
     void CheckTile()

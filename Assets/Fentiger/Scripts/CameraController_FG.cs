@@ -35,7 +35,14 @@ public class CameraController_FG : MonoBehaviour
         {
             if (Vector3.Distance(player1.position, transform.position) <= snapThreshold && Vector3.Distance(player1.position, transform.position) != 0)
             {
-                transform.position = player1.position;
+                if (generator.player1Alive)
+                {
+                    transform.position = player1.position;
+                }
+                else
+                {
+                    transform.position = player2.position;
+                }
             }
             else
             {
