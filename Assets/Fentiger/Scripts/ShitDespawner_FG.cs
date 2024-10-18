@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShitDespawner : MonoBehaviour
+public class ShitDespawner_FG : MonoBehaviour
 {
     float timer = 2f;
     bool timerOn;
