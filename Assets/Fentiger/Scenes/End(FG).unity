@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -673,7 +673,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 207248196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 407603696}
+        m_MethodName: PlayAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &207248196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,6 +730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 407603697}
   - component: {fileID: 407603696}
+  - component: {fileID: 407603698}
   m_Layer: 0
   m_Name: GAMEMANAGER
   m_TagString: Untagged
@@ -744,7 +756,6 @@ MonoBehaviour:
   player2Score: 0
   player1Canvas: {fileID: 1512517264}
   player2Canvas: {fileID: 895611157}
-  topName: 
   topScore: 0
 --- !u!4 &407603697
 Transform:
@@ -760,6 +771,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &407603698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407603695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8cbf2b041961b43877e94d8c163259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAgain: {fileID: 207248195}
+  menu: {fileID: 566188171}
 --- !u!1 &566188169
 GameObject:
   m_ObjectHideFlags: 0
