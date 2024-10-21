@@ -18,6 +18,8 @@ public class PlayerController_FG : MonoBehaviour
     FrogController_FG rana;
     public Vector3 raycastPos;
     public GameObject ghost;
+    public string player1Name = "Player1";
+    public string player2Name = "Player2";
     float player1Score;
     float player2Score;
     // Start is called before the first frame update
@@ -218,7 +220,7 @@ public class PlayerController_FG : MonoBehaviour
             }
             Instantiate(ghost, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            
+
         }
         else
         {
@@ -232,7 +234,13 @@ public class PlayerController_FG : MonoBehaviour
             }
             Instantiate(ghost, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            //Escena perder
+            SceneManager.LoadScene("End(FG)", LoadSceneMode.Additive);
+            Scene end = SceneManager.GetSceneByName("End(FG)");
+            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player1Name = player1Name;
+            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player2Name = player2Name;
+            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player1Score = player1Score;
+            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player2Score = player2Score;
+            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().UpdateValues();
         }
     }
 
