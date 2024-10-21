@@ -81,7 +81,6 @@ public class PlayerController_FG : MonoBehaviour
         if (transform.position.z > 13f || transform.position.z < -13f)
         {
             //Perder vida
-            Debug.Log(gameObject.name + " range");
             Die();
         }
         CheckTile();
@@ -260,7 +259,6 @@ public class PlayerController_FG : MonoBehaviour
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
             {
                 //perder vida
-                Debug.Log(gameObject.name + " raycast out");
                 Die();
                 return;
             }
@@ -314,13 +312,11 @@ public class PlayerController_FG : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
         {
             //perder vida
-            Debug.Log(gameObject.name + " collider out");
             Die();
         }
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Seagull") && !immortal)
         {
             //perder vida
-            Debug.Log(gameObject.name + " collider seagull");
             Die();
             Destroy(other.gameObject);
         }

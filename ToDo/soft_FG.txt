@@ -2,6 +2,7 @@ canguros
 lasers
 portales
 vidas
+arreglar sombra del ghost
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
 -----------------------------------------------------------------------------
