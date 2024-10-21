@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FentFighter/Scenes/END(FF).unity
     guid: e35d00c0f37d4da40b9eca8e1d63accf
+  - enabled: 1
+    path: Assets/Fentiger/Scenes/End(FG).unity
+    guid: b90dd898db9753542a4f1cb9e32f1fed
   m_configObjects: {}
