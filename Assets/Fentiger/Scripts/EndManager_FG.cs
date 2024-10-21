@@ -20,9 +20,9 @@ public class EndManager_FG : MonoBehaviour
     {
         Debug.Log(player1Name + player1Score + player2Name + player2Score);
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name;
-        player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = player1Score.ToString();
+        player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "SCORE: " + player1Score.ToString();
         player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player2Name;
-        player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = player2Score.ToString();
+        player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "SCORE: " + player2Score.ToString();
     }
 
     public void Menu()
