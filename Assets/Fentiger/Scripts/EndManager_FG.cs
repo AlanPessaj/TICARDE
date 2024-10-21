@@ -28,4 +28,9 @@ public class EndManager_FG : MonoBehaviour
     {
         SceneManager.LoadScene("MENU");
     }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("Game(FG)");
+    }
 }
