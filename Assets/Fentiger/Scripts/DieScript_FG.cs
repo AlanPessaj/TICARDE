@@ -17,13 +17,18 @@ public class DieScript_FG : MonoBehaviour
             {
                 GameOver();
             }
-            Destroy(gameObject);
         }
     }
 
     void GameOver()
     {
         SceneManager.LoadScene("End(FG)", LoadSceneMode.Additive);
+        StartCoroutine(WaitAndExecute());
+    }
+
+    private IEnumerator WaitAndExecute()
+    {
+        yield return null;
         Scene end = SceneManager.GetSceneByName("End(FG)");
         end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player1Name = generator.player1Name;
         end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player2Name = generator.player2Name;
@@ -31,6 +36,7 @@ public class DieScript_FG : MonoBehaviour
         end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player2Score = generator.player2Score;
         end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().UpdateValues();
         SceneManager.UnloadSceneAsync(gameObject.scene);
+
     }
 
     private void Awake()
