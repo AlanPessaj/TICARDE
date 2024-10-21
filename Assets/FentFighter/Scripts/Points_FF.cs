@@ -14,7 +14,7 @@ public class Points_FF : MonoBehaviour
     public string player1Name;
     public string player2Name;
     // Start is called before the first frame update
-    void UpdateScore(float player1Score, float player2Score)
+    public void UpdateScore(float player1Score, float player2Score)
     {
         txtPlayer1Score.text = player1Score.ToString();
         txtPlayer2Score.text = player2Score.ToString();

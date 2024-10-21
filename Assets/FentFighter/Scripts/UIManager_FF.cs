@@ -9,7 +9,8 @@ public class UIManager_FF : MonoBehaviour
     public float health;
     public float maxHealth;
     public float maxXP;
-    public float XP; 
+    public float XP;
+    bool calledCorutine = false;
 
     // Update is called once per frame
     void Update()
@@ -19,10 +20,27 @@ public class UIManager_FF : MonoBehaviour
             UI.transform.GetChild(0).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxHealth, health)), 0, 0);
             UI.transform.GetChild(1).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxXP, XP)), -38.4f, 0);
         }
-        if (health <= 0)
+        if (health <= 0 && !calledCorutine)
         {
-            SceneManager.LoadScene(gameObject.scene.name);
+            calledCorutine = true;
+            SceneManager.LoadScene("END(FF)", LoadSceneMode.Additive);
+            StartCoroutine(SetScore());
         }
+    }
+
+    IEnumerator SetScore()
+    {
+        yield return null;
+        Scene end = SceneManager.GetSceneByName("END(FF)");
+        if (GetComponent<PlayerController_FF>().isPlayer1)
+        {
+            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(100 - GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().health, 100 - health);
+        }
+        else
+        {
+            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(100 - health, 100 - GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().health);
+        }
+        SceneManager.UnloadScene(gameObject.scene);
     }
 
     public void ChangeHealth(float value)
