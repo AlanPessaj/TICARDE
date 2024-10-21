@@ -3,6 +3,7 @@ lasers
 portales
 vidas
 HACER MAS FACIL EL AGUA
+ARREGLAR AVANCE DE NIVELES, DESDE EL INITIAL GENERATION
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
 -----------------------------------------------------------------------------
