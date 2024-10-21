@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Deactivator_FG : MonoBehaviour
 {
@@ -9,12 +10,19 @@ public class Deactivator_FG : MonoBehaviour
         if (GameObject.Find("Player1") == null && GameObject.Find("Player2") == null)
         {
             MonoBehaviour[] allScripts = FindObjectsOfType<MonoBehaviour>();
+            NavMeshAgent[] allAgents = FindObjectsOfType<NavMeshAgent>();
+            
             foreach (MonoBehaviour script in allScripts)
             {
                 if (script != this && !(script is DieScript_FG) && !(script is Generator_FG))
                 {
                     script.enabled = false;
                 }
+            }
+
+            foreach (NavMeshAgent item in allAgents)
+            {
+                
             }
         }
     }
