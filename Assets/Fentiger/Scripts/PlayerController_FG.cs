@@ -18,8 +18,6 @@ public class PlayerController_FG : MonoBehaviour
     FrogController_FG rana;
     public Vector3 raycastPos;
     public GameObject ghost;
-    float player1Score;
-    float player2Score;
     // Start is called before the first frame update
     void Start()
     {
@@ -206,34 +204,16 @@ public class PlayerController_FG : MonoBehaviour
     }
     void Die()
     {
-        if (generator.multiplayer)
+        if (isPlayer1)
         {
-            if (isPlayer1)
-            {
-                player1Score = transform.position.x;
-            }
-            else
-            {
-                player2Score = transform.position.x;
-            }
-            Instantiate(ghost, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            
+            generator.player1Score = transform.position.x;
         }
         else
         {
-            if (isPlayer1)
-            {
-                player1Score = transform.position.x;
-            }
-            else
-            {
-                player2Score = transform.position.x;
-            }
-            Instantiate(ghost, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            //Escena perder
+            generator.player2Score = transform.position.x;
         }
+        Instantiate(ghost, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     void CheckTile()
