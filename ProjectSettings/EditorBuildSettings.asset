@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MENU/Scenes/MENU.unity
     guid: e8b80d1254f97ea49aa05161382dd8e9
+  - enabled: 1
+    path: Assets/FentFighter/Scenes/END(FF).unity
+    guid: e35d00c0f37d4da40b9eca8e1d63accf
   m_configObjects: {}
