@@ -24,9 +24,13 @@ public class Generator_FG : MonoBehaviour
     public BakeNavMesh_FG baker;
     public int startingLevel;
     public List<GameObject> section = new List<GameObject>();
-    bool isTherePlayer1 = false;
-    bool isTherePlayer2 = false;
+    public bool isTherePlayer1 = false;
+    public bool isTherePlayer2 = false;
     public bool player1Alive;
+    public float player1Score;
+    public float player2Score;
+    public string player1Name = "Player1";
+    public string player2Name = "Player2";
     // Start is called before the first frame update
     void Start()
     {

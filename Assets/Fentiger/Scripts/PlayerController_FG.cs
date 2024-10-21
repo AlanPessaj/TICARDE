@@ -18,10 +18,6 @@ public class PlayerController_FG : MonoBehaviour
     FrogController_FG rana;
     public Vector3 raycastPos;
     public GameObject ghost;
-    public string player1Name = "Player1";
-    public string player2Name = "Player2";
-    float player1Score;
-    float player2Score;
     // Start is called before the first frame update
     void Start()
     {
@@ -208,40 +204,16 @@ public class PlayerController_FG : MonoBehaviour
     }
     void Die()
     {
-        if (generator.multiplayer)
+        if (isPlayer1)
         {
-            if (isPlayer1)
-            {
-                player1Score = transform.position.x;
-            }
-            else
-            {
-                player2Score = transform.position.x;
-            }
-            Instantiate(ghost, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-
+            generator.player1Score = transform.position.x;
         }
         else
         {
-            if (isPlayer1)
-            {
-                player1Score = transform.position.x;
-            }
-            else
-            {
-                player2Score = transform.position.x;
-            }
-            Instantiate(ghost, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            SceneManager.LoadScene("End(FG)", LoadSceneMode.Additive);
-            Scene end = SceneManager.GetSceneByName("End(FG)");
-            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player1Name = player1Name;
-            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player2Name = player2Name;
-            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player1Score = player1Score;
-            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player2Score = player2Score;
-            end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().UpdateValues();
+            generator.player2Score = transform.position.x;
         }
+        Instantiate(ghost, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     void CheckTile()
