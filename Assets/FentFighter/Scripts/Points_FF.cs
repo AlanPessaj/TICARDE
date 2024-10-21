@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class Points_FF : MonoBehaviour
@@ -24,5 +25,15 @@ public class Points_FF : MonoBehaviour
             txtWinner.text = player1Name;
         else
             txtWinner.text = player2Name;
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("MENU");
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("Game(FF)");
     }
 }
