@@ -18,7 +18,6 @@ public class EndManager_FG : MonoBehaviour
 
     public void UpdateValues()
     {
-        Debug.Log(player1Name + player1Score + player2Name + player2Score);
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name;
         player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "SCORE: " + player1Score.ToString();
         player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player2Name;
@@ -28,5 +27,10 @@ public class EndManager_FG : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene("MENU");
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("Game(FG)");
     }
 }
