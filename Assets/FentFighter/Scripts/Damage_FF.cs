@@ -10,6 +10,14 @@ public class Damage_FF : MonoBehaviour
 
     public System.Action<Damage_FF> disableAction;
 
+    private void Update()
+    {
+        if (((transform.position.x > owner.GetComponent<PlayerController_FF>().otherPlayer.transform.position.x + 1 && transform.eulerAngles.y == 0) || (transform.position.x < owner.GetComponent<PlayerController_FF>().otherPlayer.transform.position.x - 1 && transform.eulerAngles.y != 0)) && disableAction != null)
+        {
+            disableAction(this);
+        }
+    }
+
     private void OnDestroy()
     {
         if ((type == DamageType.Ability || type == DamageType.Ulti) && disableAction != null)

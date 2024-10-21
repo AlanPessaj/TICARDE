@@ -54,7 +54,6 @@ public class HitScript_FF : StateMachineBehaviour
             }
             animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(false);
         }
-        Debug.Log(stateInfo.shortNameHash);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
