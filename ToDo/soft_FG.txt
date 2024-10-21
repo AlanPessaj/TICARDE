@@ -2,8 +2,7 @@ canguros
 lasers
 portales
 vidas
-arreglar sombra del ghost
-leones se mueven despues del deactivator
+HACER MAS FACIL EL AGUA
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
 -----------------------------------------------------------------------------
