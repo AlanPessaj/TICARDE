@@ -20,9 +20,9 @@ public class Deactivator_FG : MonoBehaviour
                 }
             }
 
-            foreach (NavMeshAgent item in allAgents)
+            foreach (NavMeshAgent agent in allAgents)
             {
-                
+                agent.enabled = false;
             }
         }
     }
