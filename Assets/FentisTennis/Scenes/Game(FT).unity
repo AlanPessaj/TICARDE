@@ -5781,6 +5781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tenis prototipo
       objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 4b35d0a36f0258b438aed1c61613e599, type: 3}
       propertyPath: m_Layer
       value: 12
