@@ -61,10 +61,28 @@ public class Generator_FG : MonoBehaviour
                 Instantiate(Seagull, new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
             }
         }
-
         isTherePlayer1 = GameObject.Find("Player1") != null;
         isTherePlayer2 = GameObject.Find("Player2") != null;
-        difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
+        float difficultyPosition = 0; //reemplazo de camara.position.x
+        if (isTherePlayer1 || isTherePlayer2)
+        {
+            if (multiplayer)
+            {
+                difficultyPosition = (players[0].transform.position.x + players[1].transform.position.x) / 2;
+            }
+            else
+            {
+                if (player1Alive)
+                {
+                    difficultyPosition = players[0].transform.position.x;
+                }
+                else
+                {
+                    difficultyPosition = players[1].transform.position.x;
+                }
+            }
+        }
+        difficulty = (int)Mathf.Clamp(Mathf.Floor(difficultyPosition / difficultyScalar), 1f, Mathf.Infinity);
         if (difficulty >= 10 && difficulty % 10 == 0)
         {
             Level = Mathf.Clamp(difficulty / 10, 0 + startingLevel, 9);
