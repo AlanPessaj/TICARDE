@@ -102,17 +102,24 @@ public class PlayerController_FF : MonoBehaviour
                     movDirection = 0;
                 }
                 movDirection /= 2;
-                colliders.SetActive(false);
-                cColliders.SetActive(true);
-                GetComponent<CapsuleCollider>().height = 0.72f;
-                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                if (colliders.activeSelf)
+                {
+                    colliders.SetActive(false);
+                    cColliders.SetActive(true);
+                    GetComponent<CapsuleCollider>().height = 0.72f;
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                }
+                DetectCombo(KeyCode.S.ToString(), "B", "", SlideKick, isBtn1: false);
             }
             else
             {
-                colliders.SetActive(true);
-                cColliders.SetActive(false);
-                GetComponent<CapsuleCollider>().height = 0.95f;
-                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                if (cColliders.activeSelf)
+                {
+                    colliders.SetActive(true);
+                    cColliders.SetActive(false);
+                    GetComponent<CapsuleCollider>().height = 0.95f;
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                }
             }
             if (hitManager.blocking)
             {
@@ -184,17 +191,24 @@ public class PlayerController_FF : MonoBehaviour
                     movDirection = 0;
                 }
                 movDirection /= 2;
-                colliders.SetActive(false);
-                cColliders.SetActive(true);
-                GetComponent<CapsuleCollider>().height = 0.72f;
-                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                if (colliders.activeSelf)
+                {
+                    colliders.SetActive(false);
+                    cColliders.SetActive(true);
+                    GetComponent<CapsuleCollider>().height = 0.72f;
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                }
+                DetectCombo(KeyCode.DownArrow.ToString(), "B", "2", SlideKick, isBtn1: false);
             }
             else
             {
-                colliders.SetActive(true);
-                cColliders.SetActive(false);
-                GetComponent<CapsuleCollider>().height = 0.95f;
-                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                if (cColliders.activeSelf)
+                {
+                    colliders.SetActive(true);
+                    cColliders.SetActive(false);
+                    GetComponent<CapsuleCollider>().height = 0.95f;
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                }
             }
             if (hitManager.blocking)
             {
@@ -340,11 +354,47 @@ public class PlayerController_FF : MonoBehaviour
                 removeQueue.Enqueue(item);
                 continue;
             }
-            if (Input.GetButton(item[0]) && Input.GetButtonDown(item[1]))
+            if (bool.Parse(item[4]))
             {
-                Invoke(item[3], 0);
-                removeQueue.Enqueue(item);
-                continue;
+                if (bool.Parse(item[5]))
+                {
+                    if (Input.GetButton(item[0]) && Input.GetButtonDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Input.GetButton(item[0]) && Input.GetKeyDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                if (bool.Parse(item[5]))
+                {
+                    if (Input.GetKey(item[0]) && Input.GetButtonDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Input.GetKey(item[0]) && Input.GetKeyDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
             }
             item[2] = (float.Parse(item[2]) - Time.deltaTime).ToString();
         }
@@ -354,12 +404,22 @@ public class PlayerController_FF : MonoBehaviour
         }
     }
     List<string[]> combos = new List<string[]>();
-    void DetectCombo(string button1, string button2, string player, System.Action func)
+    void DetectCombo(string button1, string button2, string player, System.Action func, bool isBtn1 = true, bool isBtn2 = true)
     {
-        button1 += player;
-        button2 += player;
-        if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name })) 
-            combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name });
+        if (isBtn1)
+            button1 += player;
+        if (isBtn2)
+            button2 += player;
+        if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() })) 
+            combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() });
+    }
+
+    void SlideKick()
+    {
+        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("couching") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("crouching"))
+        {
+            animator.SetTrigger("slideKick");
+        }
     }
 
     void UpperCut()

@@ -32,6 +32,7 @@ public enum DamageType
     Punch,
     Kick,
     UpperCut,
+    SlideKick,
     Ability,
     Ulti
 }

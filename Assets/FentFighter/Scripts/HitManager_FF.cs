@@ -37,12 +37,12 @@ public class HitManager_FF : MonoBehaviour
                         {
                             if (blocking)
                             {
-                                Debug.Log("pego en piernas (block pecho cabeza)");
+                                //Debug.Log("pego en piernas (block pecho cabeza)");
                                 TakeDamage(damageProperties);
                             }
                             else
                             {
-                                Debug.Log("pego en cabeza, pecho y piernas");
+                                //Debug.Log("pego en cabeza, pecho y piernas");
                                 TakeDamage(damageProperties);
                             }
                             collided = true;
@@ -52,7 +52,7 @@ public class HitManager_FF : MonoBehaviour
                         {
                             if (blocking)
                             {
-                                Debug.Log("(block cabeza pecho)");
+                                //Debug.Log("(block cabeza pecho)");
                                 if (!detectedBlock)
                                 {
                                     if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
@@ -69,7 +69,7 @@ public class HitManager_FF : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("pego en cabeza y pecho");
+                                //Debug.Log("pego en cabeza y pecho");
                                 TakeDamage(damageProperties);
                             }
                             collided = true;
@@ -79,12 +79,12 @@ public class HitManager_FF : MonoBehaviour
                     {
                         if (blocking)
                         {
-                            Debug.Log("pego en piernas (block cabeza)");
+                            //Debug.Log("pego en piernas (block cabeza)");
                             TakeDamage(damageProperties);
                         }
                         else
                         {
-                            Debug.Log("pego en cabeza y piernas");
+                            //Debug.Log("pego en cabeza y piernas");
                             TakeDamage(damageProperties);
                         }
                         collided = true;
@@ -94,12 +94,12 @@ public class HitManager_FF : MonoBehaviour
                 {
                     if (blocking)
                     {
-                        Debug.Log("pego en piernas (block pecho)");
+                        //Debug.Log("pego en piernas (block pecho)");
                         TakeDamage(damageProperties);
                     }
                     else
                     {
-                        Debug.Log("pego en pecho y piernas");
+                        //Debug.Log("pego en pecho y piernas");
                         TakeDamage(damageProperties);
                     }
                     collided = true;
@@ -120,7 +120,7 @@ public class HitManager_FF : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("(block cabeza)");
+                            //Debug.Log("(block cabeza)");
                             if (!detectedBlock)
                             {
                                 GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
@@ -131,7 +131,7 @@ public class HitManager_FF : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("pego en cabeza");
+                        //Debug.Log("pego en cabeza");
                         TakeDamage(damageProperties);
                     }
                     break;
@@ -144,7 +144,7 @@ public class HitManager_FF : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("(block pecho)");
+                            //Debug.Log("(block pecho)");
                             if (!detectedBlock)
                             {
                                 GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
@@ -155,12 +155,12 @@ public class HitManager_FF : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("pego en pecho");
+                        //Debug.Log("pego en pecho");
                         TakeDamage(damageProperties);
                     }
                     break;
                 case 2:
-                    Debug.Log("pego en piernas");
+                    //Debug.Log("pego en piernas");
                     TakeDamage(damageProperties);
                     break;
             }
