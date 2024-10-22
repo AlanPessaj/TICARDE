@@ -6,6 +6,7 @@ SPAWNRATE DE AGUA MUY BAJO, AJUSTAR ALGORITMO DE SPAWN
 RANA TE HACE INMUNE A LEON Y CANGURO
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
+REVISAR SPAWN DE LEONES
 -----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
 AUTO MAX = initial/2.5
