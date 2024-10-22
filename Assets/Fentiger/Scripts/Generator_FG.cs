@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Generator_FG : MonoBehaviour
@@ -40,6 +41,21 @@ public class Generator_FG : MonoBehaviour
             GenerateZones();
         }
         initialSpawn = false;
+        StartCoroutine(TimeSprint(20, 50, false));
+    }
+    
+    private IEnumerator TimeSprint(float seconds, float rate, bool real = true)
+    {
+        Time.timeScale = rate;
+        if (real)
+        {
+            yield return new WaitForSecondsRealtime(seconds);
+        }
+        else
+        {
+            yield return new WaitForSeconds(seconds);
+        }
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
