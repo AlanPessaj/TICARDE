@@ -11,14 +11,11 @@ public class LinearMover_FG : MonoBehaviour
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
     float initialSpeed;
-    float finalSpeed;
+    public float finalSpeed;
 
     void Start()
     {
         initialSpeed = speed;
-        finalSpeed = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, spawner.spawnRate));
-        //                                ^    ^                      ^     ^
-        //                       minSpeed |    |maxSpeed  minSpawnrate|     | maxSpawnrate
         rotation = Random.Range(-1f, 1f);
         if (gameObject.name == "Seagull(Clone)")
         {
