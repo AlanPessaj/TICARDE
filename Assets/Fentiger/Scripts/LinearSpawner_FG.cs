@@ -34,28 +34,34 @@ public class LinearSpawner_FG : MonoBehaviour
 
     void Update()
     {
-        intervalTime = Mathf.Clamp(Random.Range(time / 4, time), initialSpawnRate / 2.5f, Mathf.Infinity);
+        intervalTime = Random.Range(time / 4, time);
         if (timer <= 0)
         {
             if (changedSide && gameObject.name == "Cars(Clone)")
             {
-                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), Quaternion.Euler(thing.transform.eulerAngles + new Vector3(0, 180, 0)), transform).GetComponent<LinearMover_FG>().spawner = this;
+                LinearMover_FG iThing = Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), Quaternion.Euler(thing.transform.eulerAngles + new Vector3(0, 180, 0)), transform).GetComponent<LinearMover_FG>();
+                iThing.spawner = this;
+                iThing.finalSpeed = Mathf.LerpUnclamped(1f, 10f, Mathf.InverseLerp(1f, 10f, spawnRate));
             }
             else if (changedSide)
             {
-                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
+                LinearMover_FG iThing = Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>();
+                iThing.spawner = this;
+                iThing.finalSpeed = Mathf.LerpUnclamped(1f, 10f, Mathf.InverseLerp(1f, 10f, spawnRate));
             }
             else
             {
-                Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
+                LinearMover_FG iThing = Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>();
+                iThing.spawner = this;
+                iThing.finalSpeed = Mathf.LerpUnclamped(1f, 10f, Mathf.InverseLerp(1f, 10f, spawnRate));
+                //                                      ^    ^                      ^     ^
+                //                             minSpeed |    |maxSpeed  minSpawnrate|     | maxSpawnrate
             }
             if (intervalTime < 2.5f)
             {
                 timer = Random.Range(2f, 2.5f);
             }
-            else
             {
-                timer = intervalTime;
             }
         }
         timer -= Time.deltaTime;
