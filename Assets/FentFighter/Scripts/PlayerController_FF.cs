@@ -109,7 +109,6 @@ public class PlayerController_FF : MonoBehaviour
                     GetComponent<CapsuleCollider>().height = 0.72f;
                     GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
                 }
-                DetectCombo(KeyCode.S.ToString(), "B", "", SlideKick, isBtn1: false);
             }
             else
             {
@@ -198,7 +197,6 @@ public class PlayerController_FF : MonoBehaviour
                     GetComponent<CapsuleCollider>().height = 0.72f;
                     GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
                 }
-                DetectCombo(KeyCode.DownArrow.ToString(), "B", "2", SlideKick, isBtn1: false);
             }
             else
             {
@@ -287,7 +285,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("A", "B", player, Ulti);
                     DetectCombo("A", "C", player, UpperCut);
-                    if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+                    if (InState("idle"))
                     {
                         animator.SetTrigger("punch");
                     }
@@ -312,7 +310,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("B", "C", player, Ability);
                     DetectCombo("B", "A", player, Ulti);
-                    if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+                    if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch"))
                     {
                         animator.SetTrigger("kick");
                     }
@@ -326,7 +324,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 DetectCombo("C", "B", player, Ability);
                 DetectCombo("C", "A", player, UpperCut);
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+                if (InState("idle"))
                 {
                     animator.SetBool("holdBlock", true);
                     hitManager.blocking = true;
@@ -414,17 +412,9 @@ public class PlayerController_FF : MonoBehaviour
             combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() });
     }
 
-    void SlideKick()
-    {
-        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("couching") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("crouching"))
-        {
-            animator.SetTrigger("slideKick");
-        }
-    }
-
     void UpperCut()
     {
-        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+        if (InState("idle"))
         {
             animator.SetTrigger("upperCut");
         }
@@ -451,6 +441,11 @@ public class PlayerController_FF : MonoBehaviour
             temp.GetComponent<Damage_FF>().type = DamageType.Ulti;
             temp.GetComponent<Damage_FF>().owner = gameObject;
         }
+    }
+
+    bool InState(string name)
+    {
+        return (animator.GetCurrentAnimatorStateInfo(0).IsName(name) && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName(name);
     }
 
     private void OnCollisionStay(Collision other)
