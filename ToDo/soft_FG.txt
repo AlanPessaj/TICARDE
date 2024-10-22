@@ -1,18 +1,11 @@
 canguros
-sapos
 lasers
 portales
 vidas
-modo singleplayer (y transferencia a multiplayer)
-animacion de muerte
-que pueda seguir uno solo cuando muere el otro
+SPAWNRATE DE AGUA MUY BAJO, AJUSTAR ALGORITMO DE SPAWN
+RANA TE HACE INMUNE A LEON Y CANGURO
 AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
-REVISAR BIEN LA ALTURA QUE SIGUEN LOS LEONES AL NO TENER TARGER
-RESOLVER DE UNA VEZ EL BUG DE LOS LEONES Y EL SPAWN DE LA NAVEGATION
-RANA SE METE BAJO EL PISO
-HACER SALTOS MAS LARGOS RANA
-bug arbol raycast?
 -----------------------------------------------------------------------------
 AUTO TARDA 35s cada 1 speed
 AUTO MAX = initial/2.5

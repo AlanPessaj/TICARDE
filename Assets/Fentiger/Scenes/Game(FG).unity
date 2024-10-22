@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.56452316, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 287369562}
   - component: {fileID: 287369561}
   - component: {fileID: 287369563}
+  - component: {fileID: 287369564}
   m_Layer: 0
   m_Name: GAMEMANAGER
   m_TagString: Untagged
@@ -142,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c926f775b350f745a5888c374a5149e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiplayer: 1
   sections:
   - {fileID: 4167764292532976631, guid: d26d65c93eaa4a848ba90209b016aa35, type: 3}
   - {fileID: 5873325583378978193, guid: 7c6017503b332fb449e369ac25845f7b, type: 3}
@@ -155,8 +157,8 @@ MonoBehaviour:
   side: 0
   distance: 0
   difficulty: 1
-  despawnRadius: 50
-  difficultyScalar: 5
+  despawnRadius: 100
+  difficultyScalar: 4
   Levels:
   - {fileID: 11400000, guid: b40f50ff5ee55be4dba25a311824a9cf, type: 2}
   - {fileID: 11400000, guid: 41f1cef1c4987084e8731dead1e6af36, type: 2}
@@ -171,13 +173,22 @@ MonoBehaviour:
   Level: 0
   camara: {fileID: 534669905}
   Seagull: {fileID: 4333055094429083658, guid: a801072b7f235cd4bb2c48818b375afb, type: 3}
+  Ovni: {fileID: 1372851121789842606, guid: 17c0f0212b639004dab7cbe6b569ae02, type: 3}
   players:
   - {fileID: 0}
   - {fileID: 0}
   treeSeparator: 0
   treeSpawn: 0
   baker: {fileID: 287369563}
-  startingLevel: 9
+  startingLevel: 0
+  section: []
+  isTherePlayer1: 0
+  isTherePlayer2: 0
+  player1Alive: 0
+  player1Score: 0
+  player2Score: 0
+  player1Name: Player1
+  player2Name: Player2
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0
@@ -191,6 +202,7 @@ Transform:
   m_Children:
   - {fileID: 8217202078532864652}
   - {fileID: 5626514478703160869}
+  - {fileID: 1228161970}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -204,6 +216,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b57dc7d9c62c824fa03bdceff327fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &287369564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287369560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59a8813e2237574eb0e01e889b767e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &534669902
@@ -342,6 +366,8 @@ MonoBehaviour:
   generator: {fileID: 287369561}
   immortal: 1
   otherPlayer: {fileID: 1863136296}
+  raycastPos: {x: 0, y: 0, z: 0}
+  ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
 --- !u!136 &1220741842
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -431,6 +457,75 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &1228161969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1228161970}
+  - component: {fileID: 1228161971}
+  m_Layer: 0
+  m_Name: GhostLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1228161970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228161969}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 287369562}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!108 &1228161971
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228161969}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 131072
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1863136296
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +562,8 @@ MonoBehaviour:
   generator: {fileID: 287369561}
   immortal: 1
   otherPlayer: {fileID: 1220741840}
+  raycastPos: {x: 0, y: 0, z: 0}
+  ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
 --- !u!136 &1863136298
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -498,7 +595,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 42297c25fdaabf44f9f1977c82c9cf7e, type: 2}
+  - {fileID: 2100000, guid: 2138fef20f756dd4eb5204c5fa8c8c18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

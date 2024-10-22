@@ -14,6 +14,8 @@ public class PlayerController_FF : MonoBehaviour
     public int movementForce;
     public int movementSpeed;
     public int jumpForce;
+    public float comboTime;
+    public bool punchHit;
     bool airborne;
     bool isColliding;
     Animator animator;
@@ -25,7 +27,7 @@ public class PlayerController_FF : MonoBehaviour
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
     }
     bool facingLeft;
-    bool isPlayer1;
+    public bool isPlayer1;
     public float movDirection = 0;
     // Update is called once per frame
     void Update()
@@ -37,7 +39,7 @@ public class PlayerController_FF : MonoBehaviour
             facingLeft = false;
             animator.SetTrigger("turnAround");
         }
-        else if(otherPlayer.transform.position.x < transform.position.x && !facingLeft)
+        else if (otherPlayer.transform.position.x < transform.position.x && !facingLeft)
         {
             //Cambiar a izquierda
             transform.Rotate(0, 180, 0, Space.World);
@@ -118,11 +120,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && fist.GetComponent<Damage_FF>().disableAction == null)
-                {
-                    animator.SetBool("UpperCut", true);
-                }
-                else if (!airborne)
+                if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -204,11 +202,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (((animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("punch")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.33f && fist.GetComponent<Damage_FF>().disableAction == null)
-                {
-                    animator.SetBool("UpperCut", true);
-                }
-                else if (!airborne)
+                if (!airborne)
                 {
                     gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                     gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -237,6 +231,7 @@ public class PlayerController_FF : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
         movDirection = 0;
+        UpdateCombo();
     }
 
     void CheckButtons()
@@ -257,33 +252,30 @@ public class PlayerController_FF : MonoBehaviour
                 else
                 {
                     //A + B
-                    if (Input.GetButtonDown("A" + player) || Input.GetButtonDown("B" + player))
+                    if (Input.GetButtonDown("A" + player) && Input.GetButtonDown("B" + player))
                     {
-                        if (GetComponent<UIManager_FF>().RemoveXP(100))
-                        {
-                            Debug.Log("Ulti");
-                            GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform);
-                            temp.transform.parent = null;
-                            temp.transform.localScale *= 2.5f;
-                            temp.GetComponent<Damage_FF>().damage *= 2;
-                            temp.GetComponent<Damage_FF>().type = DamageType.Ulti;
-                            temp.GetComponent<Damage_FF>().owner = gameObject;
-                        }
+                        Ulti();
                     }
                 }
             }
             else if (Input.GetButton("C" + player))
             {
                 //A + C
+                if (Input.GetButtonDown("A" + player) && Input.GetButtonDown("C" + player))
+                {
+                    UpperCut();
+                }
             }
             else
             {
                 //A
                 if (Input.GetButtonDown("A" + player))
                 {
+                    DetectCombo("A", "B", player, Ulti);
+                    DetectCombo("A", "C", player, UpperCut);
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
-                        animator.SetTrigger("Punch");
+                        animator.SetTrigger("punch");
                     }
                 }
             }
@@ -294,15 +286,9 @@ public class PlayerController_FF : MonoBehaviour
             if (Input.GetButton("C" + player))
             {
                 //B + C
-                if (Input.GetButtonDown("B" + player) || Input.GetButtonDown("C" + player))
+                if (Input.GetButtonDown("B" + player) && Input.GetButtonDown("C" + player))
                 {
-                    if (GetComponent<UIManager_FF>().RemoveXP(25))
-                    {
-                        Debug.Log("Habilidad");
-                        GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform);
-                        temp.transform.parent = null;
-                        temp.GetComponent<Damage_FF>().owner = gameObject;
-                    }
+                    Ability();
                 }
             }
             else
@@ -310,9 +296,11 @@ public class PlayerController_FF : MonoBehaviour
                 //B
                 if (Input.GetButtonDown("B" + player))
                 {
+                    DetectCombo("B", "C", player, Ability);
+                    DetectCombo("B", "A", player, Ulti);
                     if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                     {
-                        animator.SetTrigger("Kick");
+                        animator.SetTrigger("kick");
                     }
                 }
             }
@@ -322,6 +310,8 @@ public class PlayerController_FF : MonoBehaviour
             //C
             if (Input.GetButtonDown("C" + player))
             {
+                DetectCombo("C", "B", player, Ability);
+                DetectCombo("C", "A", player, UpperCut);
                 if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
                 {
                     animator.SetBool("holdBlock", true);
@@ -337,6 +327,69 @@ public class PlayerController_FF : MonoBehaviour
         if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //NONE
+        }
+    }
+
+    void UpdateCombo()
+    {
+        Queue<string[]> removeQueue = new Queue<string[]>();
+        foreach (var item in combos)
+        {
+            if (float.Parse(item[2]) <= 0)
+            {
+                removeQueue.Enqueue(item);
+                continue;
+            }
+            if (Input.GetButton(item[0]) && Input.GetButtonDown(item[1]))
+            {
+                Invoke(item[3], 0);
+                removeQueue.Enqueue(item);
+                continue;
+            }
+            item[2] = (float.Parse(item[2]) - Time.deltaTime).ToString();
+        }
+        while (removeQueue.Count > 0)
+        {
+            combos.Remove(removeQueue.Dequeue());
+        }
+    }
+    List<string[]> combos = new List<string[]>();
+    void DetectCombo(string button1, string button2, string player, System.Action func)
+    {
+        button1 += player;
+        button2 += player;
+        if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name })) 
+            combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name });
+    }
+
+    void UpperCut()
+    {
+        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+        {
+            animator.SetTrigger("upperCut");
+        }
+    }
+
+    void Ability()
+    {
+        if (GetComponent<UIManager_FF>().RemoveXP(25))
+        {
+            GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform);
+            temp.transform.parent = null;
+            temp.GetComponent<Damage_FF>().owner = gameObject;
+        }
+    }
+
+    void Ulti()
+    {
+        if (GetComponent<UIManager_FF>().RemoveXP(100))
+        {
+            GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform);
+            temp.transform.parent = null;
+            temp.transform.localScale *= 2.5f;
+            temp.GetComponent<Damage_FF>().damage *= 2;
+            temp.GetComponent<Damage_FF>().type = DamageType.Ulti;
+            temp.GetComponent<Damage_FF>().owner = gameObject;
         }
     }
 

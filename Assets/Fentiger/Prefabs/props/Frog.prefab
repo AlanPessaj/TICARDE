@@ -108,6 +108,7 @@ Transform:
   - {fileID: 2714887506562956599}
   - {fileID: 2714887506562956597}
   - {fileID: 2714887506562956603}
+  - {fileID: 1336079305212648473}
   m_Father: {fileID: 8408725497419410867}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -342,6 +343,50 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &3624894703973710101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336079305212648473}
+  - component: {fileID: 1174864919570102408}
+  m_Layer: 0
+  m_Name: Out
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1336079305212648473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624894703973710101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2714887506562956595}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1174864919570102408
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624894703973710101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25, y: 25, z: 1}
+  m_Center: {x: 0, y: 0, z: -11}
 --- !u!1 &4728768719251889690
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,15 +464,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08591b49fa788c14585e442f4625dc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  takenSpot: 0
-  jumpHeight: 4
-  jumpSpeed: 2
-  jumpDelay: 1.5
+  jumpHeight: 8
+  jumpSpeed: 1.5
+  jumpDelay: 1
   rotationSpeed: 100
   checker: {fileID: 8384010284787111329}
   leftSpawn: 0
-  attemptCount: 0
   maxAttempts: 100
+  isJumping: 0
+  outCollider: {fileID: 3624894703973710101}
 --- !u!54 &54671867849565790
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -455,8 +500,6 @@ GameObject:
   - component: {fileID: 7208639725085194572}
   - component: {fileID: 7175790123920854914}
   - component: {fileID: 7244087185444264669}
-  - component: {fileID: 2929429526768112583}
-  - component: {fileID: 6738310512474483702}
   m_Layer: 13
   m_Name: JumpSpot
   m_TagString: Untagged
@@ -505,34 +548,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2, z: 3.5}
+  m_Size: {x: 1.9, y: 1.9, z: 1.9}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2929429526768112583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8384010284787111329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e812f8118844454188f573289e1cfd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3213398127146832262}
---- !u!54 &6738310512474483702
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8384010284787111329}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0

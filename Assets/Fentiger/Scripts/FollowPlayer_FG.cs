@@ -8,37 +8,79 @@ public class FollowPlayer_FG : MonoBehaviour
     GameObject[] players = new GameObject[2];
     public NavMeshAgent agent;
     public bool leftSpawn;
+    public Generator_FG generator;
+    public float speed = 3;
     // Start is called before the first frame update
     void Start()
     {
+        generator = GameObject.Find("GAMEMANAGER").GetComponent<Generator_FG>();
         agent = GetComponent<NavMeshAgent>();
-        players[0] = GameObject.Find("Player1");
-        players[1] = GameObject.Find("Player2");
+        if (generator.multiplayer)
+        {
+            players[0] = GameObject.Find("Player1");
+            players[1] = GameObject.Find("Player2");
+        }
+        else if (generator.player1Alive)
+        {
+            players[0] = GameObject.Find("Player1");
+        }
+        else
+        {
+            players[1] = GameObject.Find("Player2");
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
+        if (generator.multiplayer)
         {
-            GetComponent<NavMeshAgent>().speed = 3;
-            if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position))
+            if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
             {
-                agent.destination = players[0].transform.position;
-            }
-            else
-            {
-                agent.destination = players[1].transform.position;
+                GetComponent<NavMeshAgent>().speed = speed;
+                if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position))
+                {
+                    agent.destination = players[0].transform.position;
+                }
+                else
+                {
+                    agent.destination = players[1].transform.position;
+                }
             }
         }
-        else if (leftSpawn)
+        else if (leftSpawn && generator.multiplayer)
         {
-            GetComponent<NavMeshAgent>().speed = 1.5f;
+            GetComponent<NavMeshAgent>().speed = speed/2;
             agent.destination = transform.parent.position - new Vector3(0, 0, 11);
         }
-        else
+        else if(generator.multiplayer)
         {
-            GetComponent<NavMeshAgent>().speed = 1.5f;
+            GetComponent<NavMeshAgent>().speed = speed/2;
+            agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+        }
+
+        if (!generator.multiplayer && generator.player1Alive)
+        {
+            if (players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5)
+            {
+                GetComponent<NavMeshAgent>().speed = speed;
+                agent.destination = players[0].transform.position;
+            }
+        }
+        else if(!generator.multiplayer && !generator.player1Alive)
+        {
+            GetComponent<NavMeshAgent>().speed = speed;
+            agent.destination = players[1].transform.position;
+        }
+        else if(!generator.multiplayer && leftSpawn)
+        {
+            GetComponent<NavMeshAgent>().speed = speed/2;
+            agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+        }
+        else if(!generator.multiplayer)
+        {
+            GetComponent<NavMeshAgent>().speed = speed/2;
             agent.destination = transform.parent.position - new Vector3(0, 0, -11);
         }
     }

@@ -1,6 +1,3 @@
-moverse agachado
-bloqueo agachado
-moverse bloqueando
 xp al bloquear (consultar a alan)
 knockback
 stun

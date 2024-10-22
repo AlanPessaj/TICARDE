@@ -16,33 +16,31 @@ public class EnemySpawner_FG : MonoBehaviour
 
     void Update()
     {
-        if (spawn && firstTime)
+        if (firstTime)
         {
             if (enemy.layer == LayerMask.NameToLayer("Transport"))
             {
-                Debug.Log("Rana");
                 if (Random.Range(0, 2) == 1)
                 {
-                    Instantiate(enemy, new Vector3(transform.position.x, -2.58f, 12), Quaternion.identity, transform).GetComponent<FrogController_FG>().leftSpawn = true;
+                    Instantiate(enemy, new Vector3(transform.position.x, -2.4f, 10), Quaternion.identity, transform).GetComponent<FrogController_FG>().leftSpawn = true;
                 }
                 else
                 {
-                    Instantiate(enemy, new Vector3(transform.position.x, -2.58f, -12), Quaternion.identity, transform);
+                    Instantiate(enemy, new Vector3(transform.position.x, -2.4f, -10), Quaternion.identity, transform);
                 }
-                firstTime = false;
             }
-            else
+            else if (spawn)
             {
                 if (Random.Range(0, 2) == 1)
                 {
-                    Instantiate(enemy, new Vector3(transform.position.x, -2, 12), Quaternion.identity, transform).GetComponent<FollowPlayer_FG>().leftSpawn = true;
+                    Instantiate(enemy, new Vector3(transform.position.x, -2, 10), Quaternion.identity, transform).GetComponent<FollowPlayer_FG>().leftSpawn = true;
                 }
                 else
                 {
-                    Instantiate(enemy, new Vector3(transform.position.x, -2, -12), Quaternion.identity, transform);
+                    Instantiate(enemy, new Vector3(transform.position.x, -2, -10), Quaternion.identity, transform);
                 }
-                firstTime = false;
             }
+            firstTime = false;
         }
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Generator_FG : MonoBehaviour
 {
+    public bool multiplayer;
     public GameObject[] sections;
     public GameObject grass;
     bool? lastSection;
@@ -16,14 +17,24 @@ public class Generator_FG : MonoBehaviour
     public int Level = 0;
     public Transform camara;
     public GameObject Seagull;
+    public GameObject Ovni;
     public GameObject[] players = new GameObject[2];
     public int treeSeparator;
     public bool treeSpawn;
     public BakeNavMesh_FG baker;
     public int startingLevel;
+    public List<GameObject> section = new List<GameObject>();
+    public bool isTherePlayer1 = false;
+    public bool isTherePlayer2 = false;
+    public bool player1Alive;
+    public float player1Score;
+    public float player2Score;
+    public string player1Name = "Player1";
+    public string player2Name = "Player2";
     // Start is called before the first frame update
     void Start()
     {
+        Level = startingLevel;
         while (distance < despawnRadius)
         {
             GenerateZones();
@@ -34,14 +45,63 @@ public class Generator_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
+            if (multiplayer)
+            {
+                Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
+            }
+            else if (player1Alive)
+            {
+                Instantiate(Seagull, new Vector3(players[0].transform.position.x, 3, 18), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(Seagull, new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
+            }
         }
-        difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
+        isTherePlayer1 = GameObject.Find("Player1") != null;
+        isTherePlayer2 = GameObject.Find("Player2") != null;
+        float difficultyPosition = 0; //reemplazo de camara.position.x
+        if (isTherePlayer1 || isTherePlayer2)
+        {
+            if (multiplayer)
+            {
+                difficultyPosition = (players[0].transform.position.x + players[1].transform.position.x) / 2;
+            }
+            else
+            {
+                if (player1Alive)
+                {
+                    difficultyPosition = players[0].transform.position.x;
+                }
+                else
+                {
+                    difficultyPosition = players[1].transform.position.x;
+                }
+            }
+        }
+        difficulty = (int)Mathf.Clamp(Mathf.Floor(difficultyPosition / difficultyScalar), 1f, Mathf.Infinity);
         if (difficulty >= 10 && difficulty % 10 == 0)
         {
             Level = Mathf.Clamp(difficulty / 10, 0 + startingLevel, 9);
+        }
+
+        if (isTherePlayer1 && isTherePlayer2)
+        {
+            multiplayer = true;
+        }
+        else if (isTherePlayer1)
+        {
+            multiplayer = false;
+            player1Alive = true;
+            
+        }
+        else
+        {
+            multiplayer = false;
+            player1Alive = false;
         }
     }
     public void GenerateZones()
@@ -52,10 +112,32 @@ public class Generator_FG : MonoBehaviour
     }
     void SpecialSpawner()
     {
+        /*
+         * Especiales:
+         * [0] = Gaviota
+         * [1] = Laser
+         * [2] = Portales
+         */
         float number = Random.Range(1f, 100f);
         if (number <= Levels[Level].special[0])
         {
-            Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
+            if (multiplayer)
+            {
+                Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
+            }
+            else if(player1Alive)
+            {
+                Instantiate(Seagull, new Vector3(players[0].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(Seagull, new Vector3(players[1].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
+            }
+            
+        }
+        if (number <= Levels[Level].special[1])
+        {
+            Instantiate(Ovni, camara.position - Vector3.down*-10, Quaternion.identity);
         }
     }
     bool? Percenter(float[] percentages)
@@ -86,18 +168,16 @@ public class Generator_FG : MonoBehaviour
          * [2] = LilyPads            ) -> Water
          * [3] = BrokenLogs         /
          * [4] = Lions              \
-         * [5] = Froggs              ) -> Field
-         * [6] = Kangaroos          /
-         * [7] = EmptyFields
+         * [5] = Froggs              \ -> Field
+         * [6] = Kangaroos           /
+         * [7] = EmptyFields        /
          */
-        List<GameObject> section = new List<GameObject>();
         bool? winner = Percenter(Levels[Level].tiles);
         bool isRepated = winner == lastSection;
-        float tileValue = 0;
+        float tileValue;
         if (!isRepated)
         {
-            Instantiate(grass, new Vector3(distance, 0, 0), Quaternion.identity);
-            distance++;
+            section.Add(grass);
             lastSection = winner;
             switch (winner)
             {
@@ -146,7 +226,7 @@ public class Generator_FG : MonoBehaviour
                     }
                 break;
             }
-            GenerateSection(section);
+            GenerateSection();
         }
         else
         {
@@ -155,26 +235,32 @@ public class Generator_FG : MonoBehaviour
     }
     List<GameObject> toBake = new List<GameObject>();
 
-    void GenerateSection(List<GameObject> section)
+    void GenerateSection()
     {
-        for (int i = 0; i < section.Count; i++)
+        bool isField = false;
+        while ((!initialSpawn || distance < despawnRadius) && section.Count != 0)
         {
-            if (!initialSpawn || distance < despawnRadius)
-            {                
-                if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
-                {
-                    toBake.Add(Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
-                }
-                else
-                {
-                    Instantiate(section[i], new Vector3(distance, 0, 0), Quaternion.identity);
-                }
-                distance++;
+            isField = section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7];
+            if (isField)
+            {
+                toBake.Add(Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
             }
+            else
+            {
+                Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity);
+            }
+            bool doBreak = section[0] == grass;
+            section.RemoveAt(0);
+            distance++;
+            if (doBreak) break;
         }
-        if (section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7])
+        if (isField)
         {
             baker.Bake(toBake.ToArray());
+        }
+        if ((!initialSpawn || distance < despawnRadius) && section.Count != 0)
+        {
+            GenerateSection();
         }
     }
 

@@ -4,31 +4,43 @@ using UnityEngine;
 
 public class FrogController_FG : MonoBehaviour
 {
-    GameObject[] players = new GameObject[2];
-    int distance;
-    int direction;
-    Vector3 startPos;
-    Vector3 targetPos;
-    public bool takenSpot;
     public float jumpHeight;
     public float jumpSpeed;
     public float jumpDelay;
     public float rotationSpeed;
-    private float jumpProgress = 0f;
-    private float delayTimer = 0f;
-    private bool isJumping = false;
-    private bool isRotating = false;
     public GameObject checker;
     public bool leftSpawn;
-    public int attemptCount = 0;
-    public int maxAttempts = 10;
+    public int maxAttempts;
+    int attemptCount = 0;
+    float jumpProgress = 0f;
+    float delayTimer = 0f;
+    public bool isJumping = false;
+    bool isRotating = false;
+    int distance;
+    int direction;
+    Vector3 startPos;
+    Vector3 targetPos;
+    GameObject[] players = new GameObject[2];
+    public GameObject outCollider;
 
     private void Start()
     {
         checker.transform.parent = null;
     }
 
-    void Update()
+    private void Update()
+    {
+        if (isJumping && jumpProgress >= 0.5f)
+        {
+            outCollider.layer = LayerMask.NameToLayer("Out");
+        }
+        else
+        {
+            outCollider.layer = LayerMask.NameToLayer("Default");
+        }
+    }
+
+    void FixedUpdate()
     {
         if (!isJumping && !isRotating)
         {
@@ -55,16 +67,25 @@ public class FrogController_FG : MonoBehaviour
                             targetPos = transform.position + transform.right * -distance;
                             break;
                     }
-
+                    //Debug.DrawRay(targetPos + new Vector3(0, 2, 0), Vector3.down * 5, Color.red, 1);
+                    if (targetPos.z < -12.1f || targetPos.z > 12.1f || !Physics.Raycast(targetPos + new Vector3(0, 2, 0), Vector3.down, out RaycastHit hit, 5, Physics.AllLayers, QueryTriggerInteraction.Collide))
+                    {
+                        attemptCount++;
+                        continue;
+                    }
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Field"))
+                    {
+                        //Debug.DrawRay(transform.position, (targetPos - transform.position).normalized, Color.green, Vector3.Distance(targetPos, transform.position));
+                        foundValidSpot = !Physics.Raycast(transform.position, (targetPos - transform.position).normalized, out hit, Vector3.Distance(targetPos, transform.position), Physics.AllLayers, QueryTriggerInteraction.Collide);
+                    }
                     checker.transform.position = targetPos;
-                    foundValidSpot = FreeSpot();
-
                     attemptCount++;
                 }
+                attemptCount = 0;
                 if (!foundValidSpot)
                 {
                     //DELETE ME
-                    Destroy(this);
+                    Debug.LogWarning($"Posicion invalida en {transform.localPosition}");
                     return;
                 }
 
@@ -72,7 +93,6 @@ public class FrogController_FG : MonoBehaviour
                 isRotating = true;
                 jumpProgress = 0f;
                 delayTimer = 0f;
-                attemptCount = 0;
             }
         }
         else if (isRotating)
@@ -112,29 +132,14 @@ public class FrogController_FG : MonoBehaviour
         }
     }
 
-    bool FreeSpot()
-    {
-        StartCoroutine(WaitForCollisionDetection());
-        if (takenSpot)
-        {
-            Debug.Log("Posicion invalida " + checker.transform.position);
-        }
-        else
-        {
-            Debug.Log("Salta rey");
-        }
-        return !takenSpot;
-    }
-
-    IEnumerator WaitForCollisionDetection()
-    {
-        // Espera un frame
-        yield return new WaitForEndOfFrame();
-    }
-
     private void Awake()
     {
         players[0] = GameObject.Find("Player1");
         players[1] = GameObject.Find("Player2");
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(checker.gameObject);
     }
 }
