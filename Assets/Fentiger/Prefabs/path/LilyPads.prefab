@@ -106,10 +106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thing: {fileID: 7216818711589203257, guid: 0f685adb5c183994387913e59fd4207f, type: 3}
   generator: {fileID: 0}
-  spawnRate: 4.5
+  spawnRate: 3.5
   changedSide: 0
   randomSpawnSide: 0
   difficulty: 0
+  time: 0
 --- !u!1001 &6706574144922503206
 PrefabInstance:
   m_ObjectHideFlags: 0

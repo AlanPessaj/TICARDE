@@ -8,9 +8,14 @@ AUTOS YA SPAWNEADOS AL EMPEZAR(singletone)
 ESCENA DE GAMEOVER, CONTINUAR, ETC
 REVISAR SPAWN DE LEONES
 -----------------------------------------------------------------------------
-AUTO TARDA 35s cada 1 speed
-AUTO MAX = initial/2.5
+tiempo = 24(ancho)/speed
+troncos en pantalla = 4
+nenufares en pantalla = 7
+autos en pantalla = 3
+1 auto = 8s
+1 nenufar = 3,5s
+1 tronco = 6s
+SPAWNRATE = spawnratebase/velocidad
 50% DE ENEMIGOS MENOS EN EL SPAWNER DE CAMPO
-
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas

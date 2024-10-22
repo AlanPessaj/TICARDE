@@ -10,11 +10,9 @@ public class LinearMover_FG : MonoBehaviour
     private bool movingForward;
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
-    float initialSpeed;
 
     void Start()
     {
-        initialSpeed = speed;
         rotation = Random.Range(-1f, 1f);
         if (gameObject.name == "Seagull(Clone)")
         {
@@ -23,25 +21,23 @@ public class LinearMover_FG : MonoBehaviour
         else
         {
             movingForward = !transform.parent.GetComponent<LinearSpawner_FG>().changedSide;
+            speed = spawner.spawnRate / spawner.time;
+
         }
         if (gameObject.name == "LillyPad(Clone)")
         {
-            time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 6;
+            time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 6;
         }
         else if (gameObject.name == "BrokenLog(Clone)")
         {
-            time = Random.Range(Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 9, Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 4.5f);
+            time = Random.Range(Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 9, Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 4.5f);
         }
     }
     void Update()
     {
         if (movingForward)
         {
-            if (transform.position.z < 18 && gameObject.name != "Seagull(Clone)")
-            {
-                transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f) * Time.deltaTime, Space.World);
-            }
-            else if (gameObject.name == "Seagull(Clone)" && transform.position.z < 18)
+            if (transform.position.z < 18)
             {
                 transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
             }
@@ -60,11 +56,7 @@ public class LinearMover_FG : MonoBehaviour
         }
         else
         {
-            if (transform.position.z > -18 && gameObject.name != "Seagull(Clone)")
-            {
-                transform.Translate(0, 0, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed*3f) * -Time.deltaTime, Space.World);
-            }
-            else if (gameObject.name == "Seagull(Clone)" && transform.position.z > -18)
+            if (transform.position.z > -18)
             {
                 transform.Translate(0, 0, speed * -Time.deltaTime, Space.World);
             }

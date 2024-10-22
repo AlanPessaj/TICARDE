@@ -97,6 +97,7 @@ MonoBehaviour:
   changedSide: 0
   randomSpawnSide: 0
   difficulty: 0
+  time: 0
 --- !u!65 &2510572123619460387
 BoxCollider:
   m_ObjectHideFlags: 0

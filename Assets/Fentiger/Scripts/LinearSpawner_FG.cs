@@ -12,14 +12,14 @@ public class LinearSpawner_FG : MonoBehaviour
     public bool randomSpawnSide;
     public int difficulty;
     float initialSpawnRate;
-    float time;
+    public float time;
     float intervalTime;
 
     void Start()
     {
         initialSpawnRate = spawnRate;
-        time = (spawnRate - generator.difficulty / 10);
-        difficulty = generator.difficulty;
+        difficulty = generator.difficulty + 25;
+        time = Mathf.Clamp((spawnRate - difficulty / 10), 0.1f, Mathf.Infinity);
         timer = Random.Range(0f, 1f);
         if (randomSpawnSide)
         {
@@ -34,7 +34,7 @@ public class LinearSpawner_FG : MonoBehaviour
 
     void Update()
     {
-        intervalTime = Mathf.Clamp(Random.Range(time / 4, time), initialSpawnRate / 2.5f, Mathf.Infinity);
+        intervalTime = Mathf.Clamp(Random.Range(time - time/6, time + time/6), initialSpawnRate / 2.5f, Mathf.Infinity);
         if (timer <= 0)
         {
             if (changedSide && gameObject.name == "Cars(Clone)")
