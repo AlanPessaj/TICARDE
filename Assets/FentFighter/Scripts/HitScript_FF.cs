@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HitScript_FF : StateMachineBehaviour
 {
+    public float slideSpeed;
+    bool facingLeft;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -22,15 +25,26 @@ public class HitScript_FF : StateMachineBehaviour
             if (stateInfo.IsName("slideKick"))
             {
                 animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.SlideKick;
+                facingLeft = animator.GetComponent<PlayerController_FF>().facingLeft;
             }
         }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (stateInfo.IsName("slideKick") && !animator.IsInTransition(0))
+        {
+            if (facingLeft)
+            {
+                animator.transform.Translate(Vector3.left * slideSpeed * Time.deltaTime * stateInfo.speed, Space.World);
+            }
+            else
+            {
+                animator.transform.Translate(Vector3.right * slideSpeed * Time.deltaTime * stateInfo.speed, Space.World);
+            }
+        }
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

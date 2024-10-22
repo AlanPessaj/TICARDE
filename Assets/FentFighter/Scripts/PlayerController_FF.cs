@@ -26,7 +26,7 @@ public class PlayerController_FF : MonoBehaviour
         animator = GetComponent<Animator>();
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
     }
-    bool facingLeft;
+    public bool facingLeft;
     public bool isPlayer1;
     public float movDirection = 0;
     // Update is called once per frame
