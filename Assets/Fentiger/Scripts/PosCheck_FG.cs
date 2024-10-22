@@ -38,8 +38,8 @@ public class PosCheck_FG : MonoBehaviour
     void UpdateCondition()
     {
         bool isInValidZRange = transform.position.z >= -11 && transform.position.z <= 11;
-
-        controller.takenSpot = inTreeOrTransport && !inField && isInValidZRange;
+        Debug.Log($"updated condition, tree: {inTreeOrTransport}, field: {inField}, range: {isInValidZRange}");
+        controller.takenSpot = inTreeOrTransport || !inField || !isInValidZRange;
     }
 }
 

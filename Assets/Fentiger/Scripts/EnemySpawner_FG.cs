@@ -7,7 +7,6 @@ public class EnemySpawner_FG : MonoBehaviour
     public Generator_FG generator;
     public GameObject enemy;
     bool firstTime = true;
-    GameObject[] players = new GameObject[2];
     bool spawn;
 
     void Start()
@@ -24,7 +23,7 @@ public class EnemySpawner_FG : MonoBehaviour
                 Debug.Log("Rana");
                 if (Random.Range(0, 2) == 1)
                 {
-                    Instantiate(enemy, new Vector3(transform.position.x, -2.58f, 12), Quaternion.identity, transform).GetComponent<FollowPlayer_FG>().leftSpawn = true;
+                    Instantiate(enemy, new Vector3(transform.position.x, -2.58f, 12), Quaternion.identity, transform).GetComponent<FrogController_FG>().leftSpawn = true;
                 }
                 else
                 {
@@ -50,7 +49,5 @@ public class EnemySpawner_FG : MonoBehaviour
     private void Awake()
     {
         generator = GameObject.Find("GAMEMANAGER").GetComponent<Generator_FG>();
-        players[0] = GameObject.Find("Player1");
-        players[1] = GameObject.Find("Player2");
     }
 }

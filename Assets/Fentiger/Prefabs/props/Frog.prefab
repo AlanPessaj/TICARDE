@@ -425,8 +425,9 @@ MonoBehaviour:
   jumpDelay: 1.5
   rotationSpeed: 100
   checker: {fileID: 8384010284787111329}
+  leftSpawn: 0
   attemptCount: 0
-  maxAttempts: 10
+  maxAttempts: 100
 --- !u!54 &54671867849565790
 Rigidbody:
   m_ObjectHideFlags: 0

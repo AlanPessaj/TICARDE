@@ -20,6 +20,7 @@ public class Generator_FG : MonoBehaviour
     public int treeSeparator;
     public bool treeSpawn;
     public BakeNavMesh_FG baker;
+    public int startingLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +41,7 @@ public class Generator_FG : MonoBehaviour
         difficulty = (int)Mathf.Clamp(Mathf.Floor(camara.position.x / difficultyScalar), 1f, Mathf.Infinity);
         if (difficulty >= 10 && difficulty % 10 == 0)
         {
-            Level = Mathf.Clamp(difficulty / 10, 0, 9);
+            Level = Mathf.Clamp(difficulty / 10, 0 + startingLevel, 9);
         }
     }
     public void GenerateZones()
@@ -186,7 +187,6 @@ public class Generator_FG : MonoBehaviour
             {
                 if (zone.name == "Lions(Clone)" || zone.name == "Kangaroos(Clone)" || zone.name == "Frogs(Clone)" || zone.name == "EmptyField(Clone)")
                 {
-                    Debug.Log(zone.name);
                     toBake.Remove(zone.transform.GetChild(0).gameObject);
                 }
                 Destroy(zone);

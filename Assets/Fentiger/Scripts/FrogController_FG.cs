@@ -19,7 +19,7 @@ public class FrogController_FG : MonoBehaviour
     private bool isJumping = false;
     private bool isRotating = false;
     public GameObject checker;
-
+    public bool leftSpawn;
     public int attemptCount = 0;
     public int maxAttempts = 10;
 
@@ -35,7 +35,6 @@ public class FrogController_FG : MonoBehaviour
             delayTimer += Time.deltaTime;
             if (delayTimer >= jumpDelay)
             {
-                attemptCount = 0;
                 bool foundValidSpot = false;
                 while (!foundValidSpot && attemptCount < maxAttempts)
                 {
@@ -73,6 +72,7 @@ public class FrogController_FG : MonoBehaviour
                 isRotating = true;
                 jumpProgress = 0f;
                 delayTimer = 0f;
+                attemptCount = 0;
             }
         }
         else if (isRotating)
@@ -129,7 +129,7 @@ public class FrogController_FG : MonoBehaviour
     IEnumerator WaitForCollisionDetection()
     {
         // Espera un frame
-        yield return null;
+        yield return new WaitForEndOfFrame();
     }
 
     private void Awake()
