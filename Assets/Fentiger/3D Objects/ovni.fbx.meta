@@ -1,0 +1,276 @@
+fileFormatVersion: 2
+guid: 7c789b03be1dced42b7ee143c6c9d087
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: BTN 1
+    100002: BTN 2
+    100004: BTN 3
+    100006: BTN 4
+    100008: BTN 5
+    100010: BTN 6
+    100012: BTN 7
+    100014: BTN 8
+    100016: CUERPO OVNI
+    100018: //RootNode
+    100020: PARTE DE ARRIBA OVNI
+    100022: PATAS
+    400000: BTN 1
+    400002: BTN 2
+    400004: BTN 3
+    400006: BTN 4
+    400008: BTN 5
+    400010: BTN 6
+    400012: BTN 7
+    400014: BTN 8
+    400016: CUERPO OVNI
+    400018: //RootNode
+    400020: PARTE DE ARRIBA OVNI
+    400022: PATAS
+    2100000: Material.001
+    2300000: BTN 1
+    2300002: BTN 2
+    2300004: BTN 3
+    2300006: BTN 4
+    2300008: BTN 5
+    2300010: BTN 6
+    2300012: BTN 7
+    2300014: BTN 8
+    2300016: CUERPO OVNI
+    2300018: PARTE DE ARRIBA OVNI
+    2300020: PATAS
+    3300000: BTN 1
+    3300002: BTN 2
+    3300004: BTN 3
+    3300006: BTN 4
+    3300008: BTN 5
+    3300010: BTN 6
+    3300012: BTN 7
+    3300014: BTN 8
+    3300016: CUERPO OVNI
+    3300018: PARTE DE ARRIBA OVNI
+    3300020: PATAS
+    4300000: BTN 1
+    4300002: BTN 2
+    4300004: BTN 3
+    4300006: BTN 4
+    4300008: BTN 5
+    4300010: BTN 6
+    4300012: BTN 7
+    4300014: BTN 8
+    4300016: PARTE DE ARRIBA OVNI
+    4300018: CUERPO OVNI
+    4300020: PATAS
+    7400000: BTN 1|BTN 1Action
+    7400002: BTN 1|BTN 2Action
+    7400004: BTN 1|BTN 3Action
+    7400006: BTN 1|BTN 4Action
+    7400008: BTN 1|BTN 5Action
+    7400010: BTN 1|BTN 6Action
+    7400012: BTN 1|BTN 7Action
+    7400014: BTN 1|BTN 8Action
+    7400016: BTN 1|CUERPO OVNIAction
+    7400018: BTN 1|PARTE DE ARRIBA OVNIAction
+    7400020: BTN 1|PATASAction
+    7400022: BTN 2|BTN 1Action
+    7400024: BTN 2|BTN 2Action
+    7400026: BTN 2|BTN 3Action
+    7400028: BTN 2|BTN 4Action
+    7400030: BTN 2|BTN 5Action
+    7400032: BTN 2|BTN 6Action
+    7400034: BTN 2|BTN 7Action
+    7400036: BTN 2|BTN 8Action
+    7400038: BTN 2|CUERPO OVNIAction
+    7400040: BTN 2|PARTE DE ARRIBA OVNIAction
+    7400042: BTN 2|PATASAction
+    7400044: BTN 3|BTN 1Action
+    7400046: BTN 3|BTN 2Action
+    7400048: BTN 3|BTN 3Action
+    7400050: BTN 3|BTN 4Action
+    7400052: BTN 3|BTN 5Action
+    7400054: BTN 3|BTN 6Action
+    7400056: BTN 3|BTN 7Action
+    7400058: BTN 3|BTN 8Action
+    7400060: BTN 3|CUERPO OVNIAction
+    7400062: BTN 3|PARTE DE ARRIBA OVNIAction
+    7400064: BTN 3|PATASAction
+    7400066: BTN 4|BTN 1Action
+    7400068: BTN 4|BTN 2Action
+    7400070: BTN 4|BTN 3Action
+    7400072: BTN 4|BTN 4Action
+    7400074: BTN 4|BTN 5Action
+    7400076: BTN 4|BTN 6Action
+    7400078: BTN 4|BTN 7Action
+    7400080: BTN 4|BTN 8Action
+    7400082: BTN 4|CUERPO OVNIAction
+    7400084: BTN 4|PARTE DE ARRIBA OVNIAction
+    7400086: BTN 4|PATASAction
+    7400088: BTN 5|BTN 1Action
+    7400090: BTN 5|BTN 2Action
+    7400092: BTN 5|BTN 3Action
+    7400094: BTN 5|BTN 4Action
+    7400096: BTN 5|BTN 5Action
+    7400098: BTN 5|BTN 6Action
+    7400100: BTN 5|BTN 7Action
+    7400102: BTN 5|BTN 8Action
+    7400104: BTN 5|CUERPO OVNIAction
+    7400106: BTN 5|PARTE DE ARRIBA OVNIAction
+    7400108: BTN 5|PATASAction
+    7400110: BTN 6|BTN 1Action
+    7400112: BTN 6|BTN 2Action
+    7400114: BTN 6|BTN 3Action
+    7400116: BTN 6|BTN 4Action
+    7400118: BTN 6|BTN 5Action
+    7400120: BTN 6|BTN 6Action
+    7400122: BTN 6|BTN 7Action
+    7400124: BTN 6|BTN 8Action
+    7400126: BTN 6|CUERPO OVNIAction
+    7400128: BTN 6|PARTE DE ARRIBA OVNIAction
+    7400130: BTN 6|PATASAction
+    7400132: BTN 7|BTN 1Action
+    7400134: BTN 7|BTN 2Action
+    7400136: BTN 7|BTN 3Action
+    7400138: BTN 7|BTN 4Action
+    7400140: BTN 7|BTN 5Action
+    7400142: BTN 7|BTN 6Action
+    7400144: BTN 7|BTN 7Action
+    7400146: BTN 7|BTN 8Action
+    7400148: BTN 7|CUERPO OVNIAction
+    7400150: BTN 7|PARTE DE ARRIBA OVNIAction
+    7400152: BTN 7|PATASAction
+    7400154: BTN 8|BTN 1Action
+    7400156: BTN 8|BTN 2Action
+    7400158: BTN 8|BTN 3Action
+    7400160: BTN 8|BTN 4Action
+    7400162: BTN 8|BTN 5Action
+    7400164: BTN 8|BTN 6Action
+    7400166: BTN 8|BTN 7Action
+    7400168: BTN 8|BTN 8Action
+    7400170: BTN 8|CUERPO OVNIAction
+    7400172: BTN 8|PARTE DE ARRIBA OVNIAction
+    7400174: BTN 8|PATASAction
+    7400176: PARTE DE ARRIBA OVNI|BTN 1Action
+    7400178: PARTE DE ARRIBA OVNI|BTN 2Action
+    7400180: PARTE DE ARRIBA OVNI|BTN 3Action
+    7400182: PARTE DE ARRIBA OVNI|BTN 4Action
+    7400184: PARTE DE ARRIBA OVNI|BTN 5Action
+    7400186: PARTE DE ARRIBA OVNI|BTN 6Action
+    7400188: PARTE DE ARRIBA OVNI|BTN 7Action
+    7400190: PARTE DE ARRIBA OVNI|BTN 8Action
+    7400192: PARTE DE ARRIBA OVNI|CUERPO OVNIAction
+    7400194: PARTE DE ARRIBA OVNI|PARTE DE ARRIBA OVNIAction
+    7400196: PARTE DE ARRIBA OVNI|PATASAction
+    7400198: CUERPO OVNI|BTN 1Action
+    7400200: CUERPO OVNI|BTN 2Action
+    7400202: CUERPO OVNI|BTN 3Action
+    7400204: CUERPO OVNI|BTN 4Action
+    7400206: CUERPO OVNI|BTN 5Action
+    7400208: CUERPO OVNI|BTN 6Action
+    7400210: CUERPO OVNI|BTN 7Action
+    7400212: CUERPO OVNI|BTN 8Action
+    7400214: CUERPO OVNI|CUERPO OVNIAction
+    7400216: CUERPO OVNI|PARTE DE ARRIBA OVNIAction
+    7400218: CUERPO OVNI|PATASAction
+    7400220: PATAS|BTN 1Action
+    7400222: PATAS|BTN 2Action
+    7400224: PATAS|BTN 3Action
+    7400226: PATAS|BTN 4Action
+    7400228: PATAS|BTN 5Action
+    7400230: PATAS|BTN 6Action
+    7400232: PATAS|BTN 7Action
+    7400234: PATAS|BTN 8Action
+    7400236: PATAS|CUERPO OVNIAction
+    7400238: PATAS|PARTE DE ARRIBA OVNIAction
+    7400240: PATAS|PATASAction
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 646ee31f514d93046872a17453bf546c, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
