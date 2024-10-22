@@ -19,6 +19,10 @@ public class HitScript_FF : StateMachineBehaviour
         else
         {
             animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(true);
+            if (stateInfo.IsName("slideKick"))
+            {
+                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.SlideKick;
+            }
         }
     }
 
@@ -49,10 +53,14 @@ public class HitScript_FF : StateMachineBehaviour
         {
             if (animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().disableAction != null)
             {
-                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().disableAction(animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>());
+                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().disableAction(animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>());
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
             }
             animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(false);
+            if (stateInfo.IsName("slideKick"))
+            {
+                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.SlideKick;
+            }
         }
     }
 

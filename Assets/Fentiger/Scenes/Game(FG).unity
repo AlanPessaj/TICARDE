@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.56452405, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.56452316, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -158,7 +158,7 @@ MonoBehaviour:
   distance: 0
   difficulty: 1
   despawnRadius: 100
-  difficultyScalar: 5
+  difficultyScalar: 4
   Levels:
   - {fileID: 11400000, guid: b40f50ff5ee55be4dba25a311824a9cf, type: 2}
   - {fileID: 11400000, guid: 41f1cef1c4987084e8731dead1e6af36, type: 2}
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 287369561}
-  immortal: 0
+  immortal: 1
   otherPlayer: {fileID: 1863136296}
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 287369561}
-  immortal: 0
+  immortal: 1
   otherPlayer: {fileID: 1220741840}
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
