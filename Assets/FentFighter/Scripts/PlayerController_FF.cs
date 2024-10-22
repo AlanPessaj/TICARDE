@@ -26,7 +26,7 @@ public class PlayerController_FF : MonoBehaviour
         animator = GetComponent<Animator>();
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
     }
-    bool facingLeft;
+    public bool facingLeft;
     public bool isPlayer1;
     public float movDirection = 0;
     // Update is called once per frame
@@ -102,17 +102,23 @@ public class PlayerController_FF : MonoBehaviour
                     movDirection = 0;
                 }
                 movDirection /= 2;
-                colliders.SetActive(false);
-                cColliders.SetActive(true);
-                GetComponent<CapsuleCollider>().height = 0.72f;
-                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                if (colliders.activeSelf)
+                {
+                    colliders.SetActive(false);
+                    cColliders.SetActive(true);
+                    GetComponent<CapsuleCollider>().height = 0.72f;
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                }
             }
             else
             {
-                colliders.SetActive(true);
-                cColliders.SetActive(false);
-                GetComponent<CapsuleCollider>().height = 0.95f;
-                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                if (cColliders.activeSelf)
+                {
+                    colliders.SetActive(true);
+                    cColliders.SetActive(false);
+                    GetComponent<CapsuleCollider>().height = 0.95f;
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                }
             }
             if (hitManager.blocking)
             {
@@ -184,17 +190,23 @@ public class PlayerController_FF : MonoBehaviour
                     movDirection = 0;
                 }
                 movDirection /= 2;
-                colliders.SetActive(false);
-                cColliders.SetActive(true);
-                GetComponent<CapsuleCollider>().height = 0.72f;
-                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                if (colliders.activeSelf)
+                {
+                    colliders.SetActive(false);
+                    cColliders.SetActive(true);
+                    GetComponent<CapsuleCollider>().height = 0.72f;
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                }
             }
             else
             {
-                colliders.SetActive(true);
-                cColliders.SetActive(false);
-                GetComponent<CapsuleCollider>().height = 0.95f;
-                GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                if (cColliders.activeSelf)
+                {
+                    colliders.SetActive(true);
+                    cColliders.SetActive(false);
+                    GetComponent<CapsuleCollider>().height = 0.95f;
+                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                }
             }
             if (hitManager.blocking)
             {
@@ -273,7 +285,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("A", "B", player, Ulti);
                     DetectCombo("A", "C", player, UpperCut);
-                    if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+                    if (InState("idle"))
                     {
                         animator.SetTrigger("punch");
                     }
@@ -298,7 +310,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("B", "C", player, Ability);
                     DetectCombo("B", "A", player, Ulti);
-                    if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+                    if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch"))
                     {
                         animator.SetTrigger("kick");
                     }
@@ -312,7 +324,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 DetectCombo("C", "B", player, Ability);
                 DetectCombo("C", "A", player, UpperCut);
-                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+                if (InState("idle"))
                 {
                     animator.SetBool("holdBlock", true);
                     hitManager.blocking = true;
@@ -340,11 +352,47 @@ public class PlayerController_FF : MonoBehaviour
                 removeQueue.Enqueue(item);
                 continue;
             }
-            if (Input.GetButton(item[0]) && Input.GetButtonDown(item[1]))
+            if (bool.Parse(item[4]))
             {
-                Invoke(item[3], 0);
-                removeQueue.Enqueue(item);
-                continue;
+                if (bool.Parse(item[5]))
+                {
+                    if (Input.GetButton(item[0]) && Input.GetButtonDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Input.GetButton(item[0]) && Input.GetKeyDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                if (bool.Parse(item[5]))
+                {
+                    if (Input.GetKey(item[0]) && Input.GetButtonDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Input.GetKey(item[0]) && Input.GetKeyDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
             }
             item[2] = (float.Parse(item[2]) - Time.deltaTime).ToString();
         }
@@ -354,17 +402,19 @@ public class PlayerController_FF : MonoBehaviour
         }
     }
     List<string[]> combos = new List<string[]>();
-    void DetectCombo(string button1, string button2, string player, System.Action func)
+    void DetectCombo(string button1, string button2, string player, System.Action func, bool isBtn1 = true, bool isBtn2 = true)
     {
-        button1 += player;
-        button2 += player;
-        if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name })) 
-            combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name });
+        if (isBtn1)
+            button1 += player;
+        if (isBtn2)
+            button2 += player;
+        if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() })) 
+            combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() });
     }
 
     void UpperCut()
     {
-        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName("idle"))
+        if (InState("idle"))
         {
             animator.SetTrigger("upperCut");
         }
@@ -391,6 +441,11 @@ public class PlayerController_FF : MonoBehaviour
             temp.GetComponent<Damage_FF>().type = DamageType.Ulti;
             temp.GetComponent<Damage_FF>().owner = gameObject;
         }
+    }
+
+    bool InState(string name)
+    {
+        return (animator.GetCurrentAnimatorStateInfo(0).IsName(name) && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName(name);
     }
 
     private void OnCollisionStay(Collision other)
