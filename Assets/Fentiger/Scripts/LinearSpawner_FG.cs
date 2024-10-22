@@ -34,34 +34,28 @@ public class LinearSpawner_FG : MonoBehaviour
 
     void Update()
     {
-        intervalTime = Random.Range(time / 4, time);
+        intervalTime = Mathf.Clamp(Random.Range(time / 4, time), initialSpawnRate / 2.5f, Mathf.Infinity);
         if (timer <= 0)
         {
             if (changedSide && gameObject.name == "Cars(Clone)")
             {
-                LinearMover_FG iThing = Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), Quaternion.Euler(thing.transform.eulerAngles + new Vector3(0, 180, 0)), transform).GetComponent<LinearMover_FG>();
-                iThing.spawner = this;
-                iThing.finalSpeed = Mathf.LerpUnclamped(1f, 10f, Mathf.InverseLerp(1f, 10f, spawnRate));
+                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), Quaternion.Euler(thing.transform.eulerAngles + new Vector3(0, 180, 0)), transform).GetComponent<LinearMover_FG>().spawner = this;
             }
             else if (changedSide)
             {
-                LinearMover_FG iThing = Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>();
-                iThing.spawner = this;
-                iThing.finalSpeed = Mathf.LerpUnclamped(1f, 10f, Mathf.InverseLerp(1f, 10f, spawnRate));
+                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
             else
             {
-                LinearMover_FG iThing = Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>();
-                iThing.spawner = this;
-                iThing.finalSpeed = Mathf.LerpUnclamped(1f, 10f, Mathf.InverseLerp(1f, 10f, spawnRate));
-                //                                      ^    ^                      ^     ^
-                //                             minSpeed |    |maxSpeed  minSpawnrate|     | maxSpawnrate
+                Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
             if (intervalTime < 2.5f)
             {
                 timer = Random.Range(2f, 2.5f);
             }
+            else
             {
+                timer = intervalTime;
             }
         }
         timer -= Time.deltaTime;

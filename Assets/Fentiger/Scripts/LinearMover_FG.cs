@@ -11,7 +11,6 @@ public class LinearMover_FG : MonoBehaviour
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
     float initialSpeed;
-    public float finalSpeed;
 
     void Start()
     {
@@ -27,11 +26,11 @@ public class LinearMover_FG : MonoBehaviour
         }
         if (gameObject.name == "LillyPad(Clone)")
         {
-            time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, finalSpeed)) / 6;
+            time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 6;
         }
         else if (gameObject.name == "BrokenLog(Clone)")
         {
-            time = Random.Range(Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, finalSpeed)) / 9, Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, finalSpeed)) / 4.5f);
+            time = Random.Range(Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 9, Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, Mathf.Clamp((speed + spawner.difficulty / 10), 0f, initialSpeed * 3f))) / 4.5f);
         }
     }
     void Update()
