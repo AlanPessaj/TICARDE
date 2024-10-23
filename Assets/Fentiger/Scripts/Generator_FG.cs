@@ -40,7 +40,7 @@ public class Generator_FG : MonoBehaviour
             GenerateZones();
         }
         initialSpawn = false;
-        StartCoroutine(TimeSprint(20, 50, false));
+        StartCoroutine(TimeSprint(10, 10, false));
     }
     
     private IEnumerator TimeSprint(float seconds, float rate, bool real = true)
@@ -60,6 +60,23 @@ public class Generator_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isTherePlayer1 = GameObject.Find("Player1") != null;
+        isTherePlayer2 = GameObject.Find("Player2") != null;
+        if (isTherePlayer1 && isTherePlayer2)
+        {
+            multiplayer = true;
+        }
+        else if (isTherePlayer1)
+        {
+            multiplayer = false;
+            player1Alive = true;
+
+        }
+        else
+        {
+            multiplayer = false;
+            player1Alive = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -76,9 +93,12 @@ public class Generator_FG : MonoBehaviour
                 Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
             }
         }
-        isTherePlayer1 = GameObject.Find("Player1") != null;
-        isTherePlayer2 = GameObject.Find("Player2") != null;
+
         float difficultyPosition = 0; //reemplazo de camara.position.x
+        if (difficulty >= 10 && difficulty % 10 == 0)
+        {
+            Level = Mathf.Clamp(difficulty / 10, 0 + startingLevel, 9);
+        }
         if (isTherePlayer1 || isTherePlayer2)
         {
             if (multiplayer)
@@ -98,26 +118,6 @@ public class Generator_FG : MonoBehaviour
             }
         }
         difficulty = (int)Mathf.Clamp(Mathf.Floor(difficultyPosition / difficultyScalar), 1f, Mathf.Infinity);
-        if (difficulty >= 10 && difficulty % 10 == 0)
-        {
-            Level = Mathf.Clamp(difficulty / 10, 0 + startingLevel, 9);
-        }
-
-        if (isTherePlayer1 && isTherePlayer2)
-        {
-            multiplayer = true;
-        }
-        else if (isTherePlayer1)
-        {
-            multiplayer = false;
-            player1Alive = true;
-            
-        }
-        else
-        {
-            multiplayer = false;
-            player1Alive = false;
-        }
     }
     public void GenerateZones()
     {
@@ -153,7 +153,7 @@ public class Generator_FG : MonoBehaviour
         }
         if (number <= Levels[Level].special[1])
         {
-            Instantiate(specials[1], camara.position - Vector3.down*-10, Quaternion.identity);
+            Instantiate(specials[1], camara.position - Vector3.down*-10, Quaternion.identity, camara);
         }
     }
     bool? Percenter(float[] percentages)

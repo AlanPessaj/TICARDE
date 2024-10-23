@@ -14,12 +14,13 @@ public class LinearSpawner_FG : MonoBehaviour
     float initialSpawnRate;
     public float time;
     float intervalTime;
+    public bool logTimeDiference;
 
     void Start()
     {
         initialSpawnRate = spawnRate;
         difficulty = generator.difficulty + 25;
-        time = Mathf.Clamp((spawnRate - difficulty / 10), 0.1f, Mathf.Infinity);
+        time = Mathf.Clamp(spawnRate / (difficulty / 10), 0.1f, Mathf.Infinity);
         timer = Random.Range(0f, 1f);
         if (randomSpawnSide)
         {
@@ -34,7 +35,6 @@ public class LinearSpawner_FG : MonoBehaviour
 
     void Update()
     {
-        intervalTime = Mathf.Clamp(Random.Range(time - time/6, time + time/6), initialSpawnRate / 2.5f, Mathf.Infinity);
         if (timer <= 0)
         {
             if (changedSide && gameObject.name == "Cars(Clone)")
@@ -49,16 +49,19 @@ public class LinearSpawner_FG : MonoBehaviour
             {
                 Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
             }
-            if (intervalTime < 2.5f)
+            timer = time;
+            if (logTimeDiference)
             {
-                timer = Random.Range(2f, 2.5f);
-            }
-            else
-            {
-                timer = intervalTime;
+                StartCoroutine(Test());
             }
         }
         timer -= Time.deltaTime;
+    }
+
+    IEnumerator Test()
+    {
+        yield return new WaitForSecondsRealtime(time);
+        Debug.Log(time - timer);
     }
 
     private void Awake()

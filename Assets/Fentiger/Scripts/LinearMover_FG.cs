@@ -10,6 +10,7 @@ public class LinearMover_FG : MonoBehaviour
     private bool movingForward;
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
+    public float thingsInScreen;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class LinearMover_FG : MonoBehaviour
         else
         {
             movingForward = !transform.parent.GetComponent<LinearSpawner_FG>().changedSide;
-            speed = spawner.spawnRate / spawner.time;
+            speed = 24 / (thingsInScreen / spawner.time);
 
         }
         if (gameObject.name == "LillyPad(Clone)")
