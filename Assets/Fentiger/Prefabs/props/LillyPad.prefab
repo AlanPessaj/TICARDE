@@ -49,6 +49,7 @@ MonoBehaviour:
   time: 0
   generator: {fileID: 0}
   spawner: {fileID: 0}
+  thingsInScreen: 7
 --- !u!65 &5349478754648369568
 BoxCollider:
   m_ObjectHideFlags: 0
