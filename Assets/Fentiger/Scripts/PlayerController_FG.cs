@@ -202,19 +202,52 @@ public class PlayerController_FG : MonoBehaviour
             }
         }
     }
+
     void Die()
     {
-        if (isPlayer1)
+        if (transform.GetChild(0).gameObject.activeSelf)
         {
-            generator.player1Score = transform.position.x;
+            transform.GetChild(0).gameObject.SetActive(false);
+            int tries = 1;
+            bool foundGrass = false;
+
+            while (tries < 20 && !foundGrass)
+            {
+                if (Physics.Raycast(transform.position + new Vector3(tries, 0, 0), Vector3.down, out RaycastHit hit, 10f))
+                {
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Grass"))
+                    {
+                        foundGrass = true;
+                    }
+                }
+                tries++;
+            }
+            
+            if (foundGrass)
+            {
+                transform.position = new Vector3(transform.position.x + tries - 1, -2, 0);
+            }
+            else
+            {
+                Debug.Log("No se encontró pasto después de 20 intentos.");
+            }
         }
         else
         {
-            generator.player2Score = transform.position.x;
+            if (isPlayer1)
+            {
+                generator.player1Score = transform.position.x;
+            }
+            else
+            {
+                generator.player2Score = transform.position.x;
+            }
+
+            Instantiate(ghost, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
-        Instantiate(ghost, transform.position, Quaternion.identity);
-        Destroy(gameObject);
     }
+
 
     void CheckTile()
     {

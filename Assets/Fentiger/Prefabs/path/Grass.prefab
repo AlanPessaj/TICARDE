@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 8367770028055423719}
   - component: {fileID: 6500896831008131810}
   - component: {fileID: 842722437915119700}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Grass
   m_TagString: Zone
   m_Icon: {fileID: 0}
@@ -101,6 +101,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: fddc972739b4e294d8db3b754aa44892, type: 3}
       propertyPath: m_Name
       value: pasto
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fddc972739b4e294d8db3b754aa44892, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fddc972739b4e294d8db3b754aa44892, type: 3}
       propertyPath: m_LocalPosition.x
