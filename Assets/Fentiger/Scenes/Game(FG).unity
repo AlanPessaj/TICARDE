@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 999159269}
   - component: {fileID: 999159268}
   - component: {fileID: 999159267}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 4556746980918518959}
   - component: {fileID: 4556746980917388911}
   - component: {fileID: 4092191095505202497}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -926,7 +926,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 359223
+    m_Bits: 883511
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -981,7 +981,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 376631
+    m_Bits: 900919
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
