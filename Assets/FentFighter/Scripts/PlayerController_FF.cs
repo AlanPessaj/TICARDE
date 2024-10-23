@@ -50,14 +50,15 @@ public class PlayerController_FF : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.D))
             {
-                movDirection += 1;
-                if (facingLeft)
+                if (facingLeft && otherPlayer.transform.localPosition.x > transform.localPosition.x - 16)
                 {
                     animator.SetBool("runb", true);
+                    movDirection += 1;
                 }
                 else
                 {
                     animator.SetBool("run", true);
+                    movDirection += 1;
                 }
             }
             else
@@ -73,14 +74,15 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.A))
             {
-                movDirection -= 1;
-                if (!facingLeft)
+                if (!facingLeft && otherPlayer.transform.localPosition.x < transform.localPosition.x + 16)
                 {
                     animator.SetBool("runb", true);
+                    movDirection -= 1;
                 }
                 else
                 {
                     animator.SetBool("run", true);
+                    movDirection -= 1;
                 }
             }
             else
@@ -196,7 +198,7 @@ public class PlayerController_FF : MonoBehaviour
                 movDirection /= 2;
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    DetectCombo(KeyCode.DownArrow.ToString(), "A", "2", Smash, false);
+                    DetectCombo("down", "A", "2", Smash, false);
                 }
                 if (colliders.activeSelf)
                 {
@@ -297,7 +299,7 @@ public class PlayerController_FF : MonoBehaviour
                     }
                     else
                     {
-                        DetectCombo("A", KeyCode.DownArrow.ToString(), "2", Smash, isBtn2: false);
+                        DetectCombo("A", "down", "2", Smash, isBtn2: false);
                     }
                     DetectCombo("A", "B", player, Ulti);
                     DetectCombo("A", "C", player, UpperCut);
@@ -422,12 +424,8 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (isBtn1)
             button1 += player;
-        else
-            button1.ToLower();
         if (isBtn2)
             button2 += player;
-        else
-            button2.ToLower();
         if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() })) 
             combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() });
     }
