@@ -17,4 +17,8 @@ public class Level_FG : ScriptableObject
     public float[] floaters = new float[3];
     //{Seagull, Lasers, Portal}
     public float[] special = new float[3];
+    //{Logs, LilyPads, Cars}
+    public float[] speed = new float[3];
+    //{Logs, LilyPads, Cars}
+    public float[] spawnRate = new float[3];
 }
