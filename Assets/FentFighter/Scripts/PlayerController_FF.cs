@@ -50,7 +50,7 @@ public class PlayerController_FF : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.D))
             {
-                if (facingLeft && otherPlayer.transform.localPosition.x > transform.localPosition.x - 16)
+                if (facingLeft)
                 {
                     animator.SetBool("runb", true);
                     movDirection += 1;
@@ -74,7 +74,7 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.A))
             {
-                if (!facingLeft && otherPlayer.transform.localPosition.x < transform.localPosition.x + 16)
+                if (!facingLeft)
                 {
                     animator.SetBool("runb", true);
                     movDirection -= 1;
