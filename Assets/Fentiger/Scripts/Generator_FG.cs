@@ -17,9 +17,8 @@ public class Generator_FG : MonoBehaviour
     public Level_FG[] Levels;
     public int Level = 0;
     public Transform camara;
-    public GameObject Seagull;
-    public GameObject Ovni;
     public GameObject[] players = new GameObject[2];
+    public GameObject[] specials = new GameObject[4];
     public int treeSeparator;
     public bool treeSpawn;
     public BakeNavMesh_FG baker;
@@ -66,15 +65,15 @@ public class Generator_FG : MonoBehaviour
         {
             if (multiplayer)
             {
-                Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
+                Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
             }
             else if (player1Alive)
             {
-                Instantiate(Seagull, new Vector3(players[0].transform.position.x, 3, 18), Quaternion.identity);
+                Instantiate(specials[0], new Vector3(players[0].transform.position.x, 3, 18), Quaternion.identity);
             }
             else
             {
-                Instantiate(Seagull, new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
+                Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
             }
         }
         isTherePlayer1 = GameObject.Find("Player1") != null;
@@ -133,27 +132,28 @@ public class Generator_FG : MonoBehaviour
          * [0] = Gaviota
          * [1] = Laser
          * [2] = Portales
+         * [3] = Vida
          */
         float number = Random.Range(1f, 100f);
         if (number <= Levels[Level].special[0])
         {
             if (multiplayer)
             {
-                Instantiate(Seagull, new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
+                Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
             }
             else if(player1Alive)
             {
-                Instantiate(Seagull, new Vector3(players[0].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
+                Instantiate(specials[0], new Vector3(players[0].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
             }
             else
             {
-                Instantiate(Seagull, new Vector3(players[1].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
+                Instantiate(specials[0], new Vector3(players[1].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
             }
             
         }
         if (number <= Levels[Level].special[1])
         {
-            Instantiate(Ovni, camara.position - Vector3.down*-10, Quaternion.identity);
+            Instantiate(specials[1], camara.position - Vector3.down*-10, Quaternion.identity);
         }
     }
     bool? Percenter(float[] percentages)
@@ -253,6 +253,12 @@ public class Generator_FG : MonoBehaviour
 
     void GenerateSection()
     {
+        if (Random.Range(1,100) <= 5) //BAJAR PROBABILIDAD
+        {
+            //Vida
+            Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11f,11f)), Quaternion.identity);
+        }
+
         bool isField = false;
         while ((!initialSpawn || distance < despawnRadius) && section.Count != 0)
         {
