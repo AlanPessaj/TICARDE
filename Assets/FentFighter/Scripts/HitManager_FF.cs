@@ -6,15 +6,17 @@ public class HitManager_FF : MonoBehaviour
 {
     public Collider[] hColliders = new Collider[3];
     public Damage_FF damageProperties = null;
+    public Animator animator;
     public bool blocking;
     public float XPMultiplier;
+    public float smashForce;
     bool detectedHit;
     bool detectedBlock;
     bool detectedAbility;
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -201,9 +203,16 @@ public class HitManager_FF : MonoBehaviour
                 }
                 if (damageProperties.type == DamageType.UpperCut)
                 {
-                    gameObject.GetComponent<Rigidbody>().velocity = new Vector3(gameObject.GetComponent<PlayerController_FF>().movementSpeed * -gameObject.GetComponent<PlayerController_FF>().movDirection, 0, 0);
-                    gameObject.GetComponent<Rigidbody>().AddForce(0, gameObject.GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<PlayerController_FF>().movementSpeed * -GetComponent<PlayerController_FF>().movDirection, 0, 0);
+                    GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerController_FF>().jumpForce, ForceMode.Impulse);
                     //animacion de me pego un gancho + stun
+                }
+                if (damageProperties.type == DamageType.Smash)
+                {
+                    if (GetComponent<PlayerController_FF>().airborne)
+                    {
+                        GetComponent<Rigidbody>().AddForce(Vector3.down * smashForce, ForceMode.Impulse);
+                    }
                 }
                 detectedHit = true;
             }

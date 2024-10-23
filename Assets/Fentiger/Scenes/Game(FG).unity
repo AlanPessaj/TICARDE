@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.56452316, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -177,13 +177,13 @@ MonoBehaviour:
   - {fileID: 0}
   specials:
   - {fileID: 4333055094429083658, guid: a801072b7f235cd4bb2c48818b375afb, type: 3}
-  - {fileID: 1372851121789842606, guid: 17c0f0212b639004dab7cbe6b569ae02, type: 3}
+  - {fileID: 6903385497561135094, guid: 17c0f0212b639004dab7cbe6b569ae02, type: 3}
   - {fileID: 0}
   - {fileID: 5285254102257641245, guid: 15676c245ee0f5644847149aad6b8e41, type: 3}
   treeSeparator: 0
   treeSpawn: 0
   baker: {fileID: 287369563}
-  startingLevel: 0
+  startingLevel: 9
   section: []
   isTherePlayer1: 0
   isTherePlayer2: 0
@@ -312,7 +312,8 @@ Transform:
   m_LocalRotation: {x: 0.40557975, y: 0.579228, z: -0.40557975, w: 0.579228}
   m_LocalPosition: {x: 2.5, y: 14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1478893108}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 70, y: 90, z: 0}
@@ -627,6 +628,36 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1478893107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478893108}
+  m_Layer: 10
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1478893108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478893107}
+  m_LocalRotation: {x: -0.46695754, y: 0.47568393, z: -0.3330774, w: 0.6668845}
+  m_LocalPosition: {x: 0, y: 0.7, z: 8.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 534669905}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863136296
 GameObject:
   m_ObjectHideFlags: 0

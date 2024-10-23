@@ -1,10 +1,13 @@
-xp al bloquear (consultar a alan)
 knockback
 stun
-golpe martillo (tira al enemigo hacia al suelo desde el aire)
-gancho
-patada deslizante
-animacion de golpe en cada seccion
+ |
+animacion de golpe en cada seccion 
 sonido
 hardware
+
+
+
+----------  +- ---------
+
 animacion de ganar
+patada deslizante

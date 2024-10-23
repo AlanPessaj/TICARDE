@@ -151,9 +151,9 @@ public class Generator_FG : MonoBehaviour
             }
             
         }
-        if (number <= Levels[Level].special[1])
+        if (number <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1)
         {
-            Instantiate(specials[1], camara.position - Vector3.down*-10, Quaternion.identity);
+            Instantiate(specials[1], camara.GetChild(0).position - Vector3.down*-10, Quaternion.identity, camara.GetChild(0));
         }
     }
     bool? Percenter(float[] percentages)

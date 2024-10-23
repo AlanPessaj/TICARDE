@@ -16,7 +16,7 @@ public class PlayerController_FF : MonoBehaviour
     public int jumpForce;
     public float comboTime;
     public bool punchHit;
-    bool airborne;
+    public bool airborne;
     bool isColliding;
     Animator animator;
     // Start is called before the first frame update
@@ -102,6 +102,10 @@ public class PlayerController_FF : MonoBehaviour
                     movDirection = 0;
                 }
                 movDirection /= 2;
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    DetectCombo("s", "A", "", Smash, false);
+                }
                 if (colliders.activeSelf)
                 {
                     colliders.SetActive(false);
@@ -128,8 +132,8 @@ public class PlayerController_FF : MonoBehaviour
             {
                 if (!airborne)
                 {
-                    gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
-                    gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
+                    GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
                     animator.SetTrigger("jump");
                 }
             }
@@ -190,6 +194,10 @@ public class PlayerController_FF : MonoBehaviour
                     movDirection = 0;
                 }
                 movDirection /= 2;
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    DetectCombo(KeyCode.DownArrow.ToString(), "A", "2", Smash, false);
+                }
                 if (colliders.activeSelf)
                 {
                     colliders.SetActive(false);
@@ -216,8 +224,8 @@ public class PlayerController_FF : MonoBehaviour
             {
                 if (!airborne)
                 {
-                    gameObject.GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
-                    gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
+                    GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
                     animator.SetTrigger("jump");
                 }
             }
@@ -240,7 +248,7 @@ public class PlayerController_FF : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
+            GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
         movDirection = 0;
         UpdateCombo();
@@ -283,6 +291,14 @@ public class PlayerController_FF : MonoBehaviour
                 //A
                 if (Input.GetButtonDown("A" + player))
                 {
+                    if (isPlayer1)
+                    {
+                        DetectCombo("A", "s", "", Smash, isBtn2: false);
+                    }
+                    else
+                    {
+                        DetectCombo("A", KeyCode.DownArrow.ToString(), "2", Smash, isBtn2: false);
+                    }
                     DetectCombo("A", "B", player, Ulti);
                     DetectCombo("A", "C", player, UpperCut);
                     if (InState("idle"))
@@ -406,18 +422,26 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (isBtn1)
             button1 += player;
+        else
+            button1.ToLower();
         if (isBtn2)
             button2 += player;
+        else
+            button2.ToLower();
         if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() })) 
             combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() });
     }
 
+    void Smash()
+    {
+        if (airborne)
+            animator.SetTrigger("smash");
+    }
+
     void UpperCut()
     {
-        if (InState("idle"))
-        {
+        if ((InState("idle") || InState("jumping")) && (!airborne || (airborne && GetComponent<Rigidbody>().velocity.y > 9)))
             animator.SetTrigger("upperCut");
-        }
     }
 
     void Ability()
@@ -443,7 +467,7 @@ public class PlayerController_FF : MonoBehaviour
         }
     }
 
-    bool InState(string name)
+    public bool InState(string name)
     {
         return (animator.GetCurrentAnimatorStateInfo(0).IsName(name) && !animator.IsInTransition(0)) || animator.GetNextAnimatorStateInfo(0).IsName(name);
     }
