@@ -40,7 +40,7 @@ public class UIManager_FF : MonoBehaviour
         {
             end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(100 - health, 100 - GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().health);
         }
-        SceneManager.UnloadScene(gameObject.scene);
+        SceneManager.UnloadSceneAsync(gameObject.scene);
     }
 
     public void ChangeHealth(float value)
