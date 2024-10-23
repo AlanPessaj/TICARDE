@@ -30,8 +30,9 @@ public class Damage_FF : MonoBehaviour
 public enum DamageType
 {
     Punch,
-    Kick,
     UpperCut,
+    Smash,
+    Kick,
     SlideKick,
     Ability,
     Ulti

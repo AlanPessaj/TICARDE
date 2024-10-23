@@ -1015,7 +1015,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 2812461466333098468, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1702,6 +1703,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e425fa3a0a307c946b260cf2533e068a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &788796815 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3122816385022481474, guid: 167f9603c54231440866e0bb0da02a47,
+    type: 3}
+  m_PrefabInstance: {fileID: 1222680957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &788796816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3122816385032272800, guid: 167f9603c54231440866e0bb0da02a47,
@@ -1725,8 +1732,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   damageProperties: {fileID: 0}
+  animator: {fileID: 788796815}
   blocking: 0
   XPMultiplier: 1.5
+  smashForce: 15
 --- !u!114 &788796818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2597,7 +2606,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 2812461466333098468, guid: 167f9603c54231440866e0bb0da02a47,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3238,6 +3248,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e425fa3a0a307c946b260cf2533e068a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1779018769 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3122816385022481474, guid: 167f9603c54231440866e0bb0da02a47,
+    type: 3}
+  m_PrefabInstance: {fileID: 492112473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1779018770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3122816385032272800, guid: 167f9603c54231440866e0bb0da02a47,
@@ -3261,8 +3277,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   damageProperties: {fileID: 0}
+  animator: {fileID: 1779018769}
   blocking: 0
   XPMultiplier: 1.5
+  smashForce: 15
 --- !u!114 &1779018772
 MonoBehaviour:
   m_ObjectHideFlags: 0
