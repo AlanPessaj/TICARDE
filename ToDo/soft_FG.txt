@@ -6,3 +6,15 @@ SCRIPTABLE OBJECT GENERATOR
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
+
+LogsInScreen = 5
+LillyPadsInScreen = 7
+CarsInScreen = 4
+
+FORMULAS:
+T(All) = 24 / N . V
+T(Logs) = 24 / N . 0,74 . V
+
+T= SpawnRate(time)
+V = Velocidad
+N = Objetos en pantalla

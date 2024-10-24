@@ -10,7 +10,6 @@ public class LinearMover_FG : MonoBehaviour
     private bool movingForward;
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
-    public float thingsInScreen;
 
     void Start()
     {
@@ -22,9 +21,12 @@ public class LinearMover_FG : MonoBehaviour
         else
         {
             movingForward = !transform.parent.GetComponent<LinearSpawner_FG>().changedSide;
-            speed = 25 / (thingsInScreen / spawner.time);
 
         }
+    }
+    void Update()
+    {
+        speed = generator.Level + 1;
         if (gameObject.name == "LillyPad(Clone)")
         {
             time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 6;
@@ -33,14 +35,18 @@ public class LinearMover_FG : MonoBehaviour
         {
             time = Random.Range(Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 9, Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 4.5f);
         }
-    }
-    void Update()
-    {
         if (movingForward)
         {
             if (transform.position.z < 18)
             {
-                transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
+                if(gameObject.name != "Seagull(Clone)")
+                {
+                    transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    transform.Translate(0, 0, 5 * Time.deltaTime, Space.World);
+                }
             }
             else
             {
@@ -54,12 +60,20 @@ public class LinearMover_FG : MonoBehaviour
                 }
                 Destroy(gameObject);
             }
+
         }
         else
         {
             if (transform.position.z > -18)
             {
-                transform.Translate(0, 0, speed * -Time.deltaTime, Space.World);
+                if (gameObject.name != "Seagull(Clone)")
+                {
+                    transform.Translate(0, 0, speed * -Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    transform.Translate(0, 0, 5 * -Time.deltaTime, Space.World);
+                }
             }
             else
             {
