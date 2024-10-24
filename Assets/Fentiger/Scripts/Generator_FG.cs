@@ -17,6 +17,7 @@ public class Generator_FG : MonoBehaviour
     public Level_FG[] Levels;
     public int Level = 0;
     public Transform camara;
+    public Transform ovniSpawn;
     public GameObject[] players = new GameObject[2];
     public GameObject[] specials = new GameObject[4];
     public int treeSeparator;
@@ -80,7 +81,11 @@ public class Generator_FG : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (multiplayer)
+            if (camara.GetChild(0).childCount < 1)
+            {
+                Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
+            }
+            /*if (multiplayer)
             {
                 Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
             }
@@ -91,7 +96,7 @@ public class Generator_FG : MonoBehaviour
             else
             {
                 Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
-            }
+            }*/
         }
 
         float difficultyPosition = 0; //reemplazo de camara.position.x
@@ -153,7 +158,7 @@ public class Generator_FG : MonoBehaviour
         }
         if (number <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1)
         {
-            Instantiate(specials[1], camara.GetChild(0).position - Vector3.down*-10, Quaternion.identity, camara.GetChild(0));
+            Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
         }
     }
     bool? Percenter(float[] percentages)

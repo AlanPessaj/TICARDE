@@ -172,6 +172,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe05495eac9d5ac45afd1bc6dfb121d5, type: 2}
   Level: 0
   camara: {fileID: 534669905}
+  ovniSpawn: {fileID: 1478893108}
   players:
   - {fileID: 0}
   - {fileID: 0}
@@ -638,7 +639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478893108}
   m_Layer: 10
-  m_Name: GameObject
+  m_Name: OvniSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -651,7 +652,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478893107}
-  m_LocalRotation: {x: -0.46695754, y: 0.47568393, z: -0.3330774, w: 0.6668845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.7, z: 8.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

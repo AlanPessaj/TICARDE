@@ -1030,8 +1030,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54f74cee39d7be4489e2b40bc2fcf78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitSpeed: 50
-  orbitDuration: 3
+  orbitSpeed: 100
+  orbitDuration: 7.5
+  movingDelay: 5
 --- !u!1001 &6919098911763282014
 PrefabInstance:
   m_ObjectHideFlags: 0
