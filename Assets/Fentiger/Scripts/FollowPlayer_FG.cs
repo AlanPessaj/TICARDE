@@ -39,49 +39,62 @@ public class FollowPlayer_FG : MonoBehaviour
             if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
             {
                 GetComponent<NavMeshAgent>().speed = speed;
-                if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position))
+                if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position) && players[0].transform.parent == null)
                 {
                     agent.destination = players[0].transform.position;
                 }
-                else
+                else if(players[1].transform.parent == null)
                 {
                     agent.destination = players[1].transform.position;
                 }
+                else if (leftSpawn)
+                {
+                    GetComponent<NavMeshAgent>().speed = speed / 2;
+                    agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                }
+                else
+                {
+                    GetComponent<NavMeshAgent>().speed = speed / 2;
+                    agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                }
             }
-        }
-        else if (leftSpawn && generator.multiplayer)
-        {
-            GetComponent<NavMeshAgent>().speed = speed/2;
-            agent.destination = transform.parent.position - new Vector3(0, 0, 11);
-        }
-        else if(generator.multiplayer)
-        {
-            GetComponent<NavMeshAgent>().speed = speed/2;
-            agent.destination = transform.parent.position - new Vector3(0, 0, -11);
         }
 
         if (!generator.multiplayer && generator.player1Alive)
         {
-            if (players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5)
+            if (players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5 && players[0].transform.parent == null)
             {
                 GetComponent<NavMeshAgent>().speed = speed;
                 agent.destination = players[0].transform.position;
             }
+            else if (leftSpawn)
+            {
+                GetComponent<NavMeshAgent>().speed = speed / 2;
+                agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+            }
+            else
+            {
+                GetComponent<NavMeshAgent>().speed = speed / 2;
+                agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+            }
         }
         else if(!generator.multiplayer && !generator.player1Alive)
         {
-            GetComponent<NavMeshAgent>().speed = speed;
-            agent.destination = players[1].transform.position;
-        }
-        else if(!generator.multiplayer && leftSpawn)
-        {
-            GetComponent<NavMeshAgent>().speed = speed/2;
-            agent.destination = transform.parent.position - new Vector3(0, 0, 11);
-        }
-        else if(!generator.multiplayer)
-        {
-            GetComponent<NavMeshAgent>().speed = speed/2;
-            agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+            if (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5 && players[1].transform.parent == null)
+            {
+                GetComponent<NavMeshAgent>().speed = speed;
+                agent.destination = players[1].transform.position;
+            }
+            else if (leftSpawn)
+            {
+                GetComponent<NavMeshAgent>().speed = speed / 2;
+                agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+            }
+            else
+            {
+                GetComponent<NavMeshAgent>().speed = speed / 2;
+                agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+            }
         }
     }
 }
