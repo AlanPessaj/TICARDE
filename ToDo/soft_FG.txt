@@ -3,6 +3,8 @@ lasers
 portales
 RANA TE HACE INMUNE A LEON Y CANGURO
 SCRIPTABLE OBJECT GENERATOR
+AJUSTAR DESPAWN DE DESTRUIBLES
+AJUSTAR VALORES DE AGUA
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas

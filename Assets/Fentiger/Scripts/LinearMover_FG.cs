@@ -26,7 +26,7 @@ public class LinearMover_FG : MonoBehaviour
     }
     void Update()
     {
-        speed = generator.Level + 1;
+        speed = generator.Levels[generator.Level].speed;
         if (gameObject.name == "LillyPad(Clone)")
         {
             time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 6;
