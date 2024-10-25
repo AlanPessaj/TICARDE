@@ -14,6 +14,10 @@ public class OvniController_FG : MonoBehaviour
     private bool oscillate = false;
     private float t = 0f;
     public float oscillateSpeed = 2f;
+    public Material yellow;
+    public Material red;
+    GameObject laser;
+    bool firstTime = true;
 
     private void Update()
     {
@@ -45,6 +49,27 @@ public class OvniController_FG : MonoBehaviour
         {
             t += Time.deltaTime * oscillateSpeed;
             transform.localPosition = Vector3.Lerp(new Vector3(11.4f, 6.15f, 9f), new Vector3(8.5f, -6.61f, 4.84f), Mathf.PingPong(t, 1f));
+            if (firstTime)
+            {
+                StartCoroutine(Laser());
+                firstTime = false;
+            }
         }
+    }
+
+    private IEnumerator Laser()
+    {
+        yield return new WaitForSeconds(4f);
+        laser = transform.GetChild(1).gameObject;
+        laser.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        laser.GetComponent<Renderer>().material = yellow;
+        yield return new WaitForSeconds(4f);
+        laser.GetComponent<Renderer>().material = red;
+        laser.layer = LayerMask.NameToLayer("Seagull");
+        yield return new WaitForSeconds(1f);
+        laser.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        //Irse
     }
 }

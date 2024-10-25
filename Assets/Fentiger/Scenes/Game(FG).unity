@@ -470,6 +470,7 @@ MonoBehaviour:
   otherPlayer: {fileID: 1863136296}
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
+  ghostMaterial: {fileID: 2100000, guid: 0cc81a99cc18e584785945dbd57e85ec, type: 2}
 --- !u!136 &1220741842
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -697,6 +698,7 @@ MonoBehaviour:
   otherPlayer: {fileID: 1220741840}
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
+  ghostMaterial: {fileID: 2100000, guid: 0cc81a99cc18e584785945dbd57e85ec, type: 2}
 --- !u!136 &1863136298
 CapsuleCollider:
   m_ObjectHideFlags: 0

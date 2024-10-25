@@ -18,10 +18,13 @@ public class PlayerController_FG : MonoBehaviour
     FrogController_FG rana;
     public Vector3 raycastPos;
     public GameObject ghost;
+    public Material ghostMaterial;
+    Material material;
     // Start is called before the first frame update
     void Start()
     {
         isPlayer1 = name == "Player1";
+        material = GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
@@ -226,10 +229,7 @@ public class PlayerController_FG : MonoBehaviour
             if (foundGrass)
             {
                 transform.position = new Vector3(transform.position.x + tries - 1, -2, 0);
-            }
-            else
-            {
-                Debug.Log("No se encontró pasto después de 20 intentos.");
+                StartCoroutine(Invulnerability());
             }
         }
         else
@@ -351,7 +351,23 @@ public class PlayerController_FG : MonoBehaviour
         {
             //perder vida
             Die();
-            Destroy(other.gameObject);
+            if (other.transform.name.Contains("Shit"))
+            {
+                Destroy(other.gameObject);
+            }
         }
+    }
+
+    private IEnumerator Invulnerability()
+    {
+        immortal = true;
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            GetComponent<Renderer>().material = ghostMaterial;
+            yield return new WaitForSeconds(0.3f);
+            GetComponent<Renderer>().material = material;
+        }
+        immortal = false;
     }
 }
