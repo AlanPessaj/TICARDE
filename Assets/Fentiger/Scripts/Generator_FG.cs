@@ -41,20 +41,13 @@ public class Generator_FG : MonoBehaviour
             GenerateZones();
         }
         initialSpawn = false;
-        StartCoroutine(TimeSprint(3, 50, true));
+        StartCoroutine(TimeSprint(1, 50));
     }
     
-    private IEnumerator TimeSprint(float seconds, float rate, bool real = true)
+    private IEnumerator TimeSprint(float seconds, float rate)
     {
         Time.timeScale = rate;
-        if (real)
-        {
-            yield return new WaitForSecondsRealtime(seconds);
-        }
-        else
-        {
-            yield return new WaitForSeconds(seconds);
-        }
+        yield return new WaitForSecondsRealtime(seconds);
         Time.timeScale = 1;
     }
 
