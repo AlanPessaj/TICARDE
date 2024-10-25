@@ -142,4 +142,12 @@ public class FrogController_FG : MonoBehaviour
     {
         Destroy(checker.gameObject);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

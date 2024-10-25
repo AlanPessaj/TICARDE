@@ -97,4 +97,12 @@ public class FollowPlayer_FG : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
