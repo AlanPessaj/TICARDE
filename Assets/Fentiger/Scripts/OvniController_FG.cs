@@ -14,6 +14,11 @@ public class OvniController_FG : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log(transform.position.ToString());
+            Debug.Log("Posicion de spawn: " + transform.parent.position);
+        }
         if (isOrbiting)
         {
             transform.RotateAround(transform.parent.position, Vector3.up, orbitSpeed * Time.deltaTime);
@@ -29,7 +34,7 @@ public class OvniController_FG : MonoBehaviour
         {
             movingTime += Time.deltaTime;
             float t = Mathf.Clamp01(movingTime / movingDelay);
-            transform.position = Vector3.Lerp(transform.position, new Vector3(8.3f, 0f, -10f), t);
+            transform.position = Vector3.Lerp(transform.position, transform.parent.position + new Vector3(2.4f, -6.6f, -10), t);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(-1.9f, 102.2f, 308f)), t);
             if (t >= 1f)
             {
