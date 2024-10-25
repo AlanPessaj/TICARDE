@@ -12,8 +12,8 @@ public class EndManager_FG : MonoBehaviour
     public float player2Score;
     public GameObject player1Canvas;
     public GameObject player2Canvas;
+    public float topScore;
 
-     public float topScore;
 
 
     public void UpdateValues()

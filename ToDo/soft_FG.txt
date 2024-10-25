@@ -2,7 +2,6 @@ portales
 sonidos
 interaccion con hardware
 canguros
-PROBAR SHIT
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
