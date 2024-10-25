@@ -952,6 +952,7 @@ GameObject:
   - component: {fileID: 830018487772060073}
   - component: {fileID: 8972119798249769999}
   - component: {fileID: 6959137196452638785}
+  - component: {fileID: 647951620333858894}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -968,7 +969,7 @@ Transform:
   m_GameObject: {fileID: 7466651869720704928}
   m_LocalRotation: {x: -0.6508625, y: 0.30488628, z: -0.67773765, w: -0.15522279}
   m_LocalPosition: {x: -14, y: -18, z: -5}
-  m_LocalScale: {x: 0.20000008, y: 24.000061, z: 0.20000008}
+  m_LocalScale: {x: 0.2, y: 24.000061, z: 0.2}
   m_Children:
   - {fileID: 8322963421465983195}
   m_Father: {fileID: 8851868205325533869}
@@ -1045,6 +1046,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d451eae4a541b4fb79bece60c23ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &647951620333858894
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466651869720704928}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.000004, y: 2.0000005, z: 11.206458}
+  m_Center: {x: 0.0000067815636, y: -0.000000075933656, z: 5.103216}
 --- !u!1 &8395969601383316400
 GameObject:
   m_ObjectHideFlags: 0
