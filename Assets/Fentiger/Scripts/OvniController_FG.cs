@@ -12,12 +12,16 @@ public class OvniController_FG : MonoBehaviour
     public float movingDelay;
     private float movingTime = 0f;
     private bool oscillate = false;
+    bool leave = false;
     private float t = 0f;
     public float oscillateSpeed = 2f;
     public Material yellow;
     public Material red;
     GameObject laser;
     bool firstTime = true;
+    float leaveTime = 0f;
+    Vector3 leaveRotation;
+    Vector3 leavePos;
 
     private void Update()
     {
@@ -55,6 +59,18 @@ public class OvniController_FG : MonoBehaviour
                 firstTime = false;
             }
         }
+
+        if (leave)
+        {
+            leaveTime += Time.deltaTime;
+            float t = Mathf.Clamp01(leaveTime / 2);
+            transform.localPosition = Vector3.Lerp(leavePos, new Vector3(-20, 10, 0), t);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), t);
+            if (transform.localPosition.x < -19)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     private IEnumerator Laser()
@@ -69,7 +85,8 @@ public class OvniController_FG : MonoBehaviour
         laser.layer = LayerMask.NameToLayer("Seagull");
         yield return new WaitForSeconds(1f);
         laser.SetActive(false);
-        yield return new WaitForSeconds(2f);
-        //Irse
+        leave = true;
+        leavePos = transform.localPosition;
+        leaveRotation = transform.rotation.eulerAngles;
     }
 }
