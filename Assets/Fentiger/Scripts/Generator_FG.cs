@@ -139,7 +139,7 @@ public class Generator_FG : MonoBehaviour
          * [2] = Portales
          * [3] = Vida
          */
-        float number = Random.Range(1f, 100f);
+        float number = Random.Range(1, 101);
         if (number <= Levels[Level].special[0])
         {
             if (multiplayer)
