@@ -473,6 +473,7 @@ MonoBehaviour:
   maxAttempts: 100
   isJumping: 0
   outCollider: {fileID: 3624894703973710101}
+  ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
 --- !u!54 &54671867849565790
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class FollowPlayer_FG : MonoBehaviour
     public bool leftSpawn;
     public Generator_FG generator;
     public float speed = 3;
+    public GameObject ghost;
     // Start is called before the first frame update
     void Start()
     {
@@ -104,5 +105,10 @@ public class FollowPlayer_FG : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
     }
 }

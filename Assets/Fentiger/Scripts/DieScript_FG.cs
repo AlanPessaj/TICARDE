@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DieScript_FG : MonoBehaviour
 {
+    public bool playerGhost;
     public Generator_FG generator;
     void Update()
     {
@@ -13,9 +14,13 @@ public class DieScript_FG : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
         if (transform.position.y >= 15)
         {
-            if (!generator.isTherePlayer1 && !generator.isTherePlayer2)
+            if (!generator.isTherePlayer1 && !generator.isTherePlayer2 && playerGhost)
             {
                 GameOver();
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
     }
