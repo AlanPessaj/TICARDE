@@ -14,7 +14,7 @@ public class LaserScaler_FG : MonoBehaviour
         {
             Debug.Log(hit.transform.position.ToString());
             toDivide = 24 / hit.distance * 2;
-            transform.localPosition = new Vector3(-14, -18 / toDivide, -5);
+            transform.position = transform.GetChild(0).position + transform.up * (hit.distance / 2f);
             transform.localScale = new Vector3(0.2f, 24 / toDivide, 0.2f);
         }
         else
