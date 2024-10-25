@@ -22,12 +22,4 @@ public class LaserScaler_FG : MonoBehaviour
             transform.localScale = new Vector3(0.1f, 24, 0.1f);
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            Debug.Log(collision.gameObject.name);
-        }
-    }
 }
