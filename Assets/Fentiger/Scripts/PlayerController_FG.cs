@@ -252,7 +252,7 @@ public class PlayerController_FG : MonoBehaviour
     void CheckTile()
     {
         //Debug.DrawRay(transform.position + Vector3.up * 2, Vector3.down, Color.red, 0.5f, false);
-        Physics.Raycast(transform.position + Vector3.up * 2, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers - LayerMask.GetMask("Tree", "Player"));
+        Physics.Raycast(transform.position + Vector3.up * 2, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers - LayerMask.GetMask("Tree", "Player", "Lion"));
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
@@ -342,8 +342,9 @@ public class PlayerController_FG : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
+        if ((other.collider.gameObject.layer == LayerMask.NameToLayer("Lion") || other.collider.gameObject.layer == LayerMask.NameToLayer("Out")) && !immortal && !onFrog)
         {
+            Debug.Log(onFrog);
             //perder vida
             Die();
         }
