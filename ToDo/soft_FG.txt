@@ -1,7 +1,5 @@
 canguros
 portales
-AJUSTAR DESPAWN DE DESTRUIBLES
-AJUSTAR VALORES DE AGUA
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas

@@ -6,13 +6,15 @@ public class LinearMover_FG : MonoBehaviour
 {
     public float speed;
     private float rotation;
-    public float time = 100;
+    public float time = 3;
     private bool movingForward;
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
+    public bool debugTest;
 
     void Start()
     {
+        speed = generator.Levels[generator.Level].speed;
         rotation = Random.Range(-1f, 1f);
         if (gameObject.name == "Seagull(Clone)")
         {
@@ -23,23 +25,25 @@ public class LinearMover_FG : MonoBehaviour
             movingForward = !transform.parent.GetComponent<LinearSpawner_FG>().changedSide;
 
         }
+
+        if (gameObject.name == "LillyPad(Clone)")
+        {
+            time = 3 / speed;
+        }
+        else if (gameObject.name == "BrokenLog(Clone)")
+        {
+            time = Random.Range((3 / speed) - 0.2f, (3 / speed) + 0.5f);
+        }
+
     }
     void Update()
     {
         speed = generator.Levels[generator.Level].speed;
-        if (gameObject.name == "LillyPad(Clone)")
-        {
-            time = Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 6;
-        }
-        else if (gameObject.name == "BrokenLog(Clone)")
-        {
-            time = Random.Range(Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 9, Mathf.LerpUnclamped(18f, 9f, Mathf.InverseLerp(1.2f, 3.6f, speed)) / 4.5f);
-        }
         if (movingForward)
         {
             if (transform.position.z < 18)
             {
-                if(gameObject.name != "Seagull(Clone)")
+                if (gameObject.name != "Seagull(Clone)")
                 {
                     transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
                 }
@@ -97,7 +101,7 @@ public class LinearMover_FG : MonoBehaviour
                 time -= Time.deltaTime;
             }
         }
-        else if(gameObject.name == "BrokenLog(Clone)")
+        else if (gameObject.name == "BrokenLog(Clone)")
         {
             if (transform.childCount > 1)
             {
@@ -106,11 +110,10 @@ public class LinearMover_FG : MonoBehaviour
         }
         if (time <= 0)
         {
-            if (transform.childCount > 2)
+            if (transform.childCount > 1)
             {
                 transform.GetChild(1).parent = null;
             }
-            transform.GetChild(1).parent = null;
             Destroy(gameObject);
         }
     }
