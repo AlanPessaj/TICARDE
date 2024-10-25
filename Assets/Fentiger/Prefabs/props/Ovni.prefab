@@ -936,7 +936,7 @@ MonoBehaviour:
   orbitSpeed: 100
   orbitDuration: 7.5
   movingDelay: 5
-  oscillateSpeed: 1
+  oscillateSpeed: 0.5
   yellow: {fileID: 2100000, guid: b7cbd62024b77d842944f0afbfda34a5, type: 2}
   red: {fileID: 2100000, guid: 9f5a62a67c2373d44ae337194fcc2d1c, type: 2}
 --- !u!1 &7466651869720704928
