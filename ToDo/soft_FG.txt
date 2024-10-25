@@ -3,6 +3,7 @@ lasers
 portales
 AJUSTAR DESPAWN DE DESTRUIBLES
 AJUSTAR VALORES DE AGUA
+REVISAR SPAWN LEONES
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
