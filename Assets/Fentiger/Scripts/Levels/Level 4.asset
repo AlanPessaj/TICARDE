@@ -29,9 +29,9 @@ MonoBehaviour:
   - 20
   - 10
   floaters:
+  - 50
   - 33.3
-  - 33.3
-  - 33.4
+  - 16.7
   special:
   - 25
   - 3
