@@ -141,14 +141,14 @@ public class FrogController_FG : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
         Destroy(checker.gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull") && Application.IsPlaying(this))
         {
+            Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
             Destroy(gameObject);
         }
     }

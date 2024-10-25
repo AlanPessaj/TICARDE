@@ -103,12 +103,8 @@ public class FollowPlayer_FG : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
         {
+            Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
             Destroy(gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
     }
 }
