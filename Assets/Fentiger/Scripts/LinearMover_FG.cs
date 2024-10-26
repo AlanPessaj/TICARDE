@@ -10,7 +10,13 @@ public class LinearMover_FG : MonoBehaviour
     private bool movingForward;
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
-    public bool debugTest;
+    bool hippoRotating;
+    Vector3 hippoInitialPosition;
+    Quaternion hippoFinalRotation;
+    Vector3 hippoFinalPosition;
+    Quaternion hippoInitialRotation;
+    float hippoTime;
+    bool hippoResuming;
 
     void Start()
     {
@@ -22,7 +28,7 @@ public class LinearMover_FG : MonoBehaviour
         }
         else
         {
-            movingForward = !transform.parent.GetComponent<LinearSpawner_FG>().changedSide;
+            movingForward = !spawner.changedSide;
 
         }
 
@@ -34,15 +40,73 @@ public class LinearMover_FG : MonoBehaviour
         {
             time = Random.Range((5 / speed) - 0.2f, (5 / speed) + 0.5f);
         }
+        hippoTime = 0;
 
     }
     void Update()
     {
         speed = generator.Levels[generator.Level].speed;
+
+
+        if (hippoRotating)
+        {
+            if (hippoTime < 1f)
+            {
+                hippoTime += Time.deltaTime * speed/2;
+                transform.position = Vector3.Lerp(hippoInitialPosition, hippoFinalPosition, hippoTime);
+                transform.rotation = Quaternion.Lerp(hippoInitialRotation, hippoFinalRotation, hippoTime);
+                return;
+            }
+            else
+            {
+                Debug.Log("0.5");
+                //llego
+                hippoRotating = false;
+                hippoResuming = true;
+                hippoTime = 0;
+            }
+        }
+
+        if (hippoResuming)
+        {
+            if (hippoTime < 1f)
+            {
+                hippoTime += Time.deltaTime * speed / 2;
+                transform.position = Vector3.Lerp(hippoFinalPosition, hippoInitialPosition + Vector3.right, hippoTime);
+                transform.rotation = Quaternion.Lerp(hippoFinalRotation, hippoInitialRotation * Quaternion.Euler(0, 180, 180), hippoTime);
+                return;
+            }
+            else
+            {
+                Debug.Log("1");
+                hippoResuming = false;
+                movingForward = !movingForward;
+            }
+        }
+
+
+
+
+
         if (movingForward)
         {
             if (transform.position.z < 18)
             {
+                if (gameObject.name.Contains("Hippo") && transform.position.z >= 12)
+                {
+                    if (Physics.Raycast(new Vector3(transform.position.x + 1, 1, 0), Vector3.down, out RaycastHit hit, 10f, LayerMask.GetMask("Out")))
+                    {
+                        hippoRotating = true;
+                        hippoInitialPosition = transform.position;
+                        hippoInitialRotation = transform.rotation;
+                        hippoFinalPosition = new Vector3(transform.position.x + 0.5f, transform.position.y, 14);
+                        hippoFinalRotation = Quaternion.Euler(transform.eulerAngles.x, -90, transform.eulerAngles.z);
+
+                        hippoTime = 0;
+                        return;
+                    }
+                }
+
                 if (gameObject.name != "Seagull(Clone)")
                 {
                     transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
@@ -70,6 +134,21 @@ public class LinearMover_FG : MonoBehaviour
         {
             if (transform.position.z > -18)
             {
+                if (gameObject.name.Contains("Hippo") && transform.position.z <= -12)
+                {
+                    if (Physics.Raycast(new Vector3(transform.position.x + 1, 1, 0), Vector3.down, out RaycastHit hit, 10f, LayerMask.GetMask("Out")))
+                    {
+                        hippoRotating = true;
+                        hippoInitialPosition = transform.position;
+                        hippoInitialRotation = transform.rotation;
+                        hippoFinalPosition = new Vector3(transform.position.x + 0.5f, transform.position.y, -14);
+                        hippoFinalRotation = Quaternion.Euler(transform.eulerAngles.x, -90, transform.eulerAngles.z);
+
+                        hippoTime = 0;
+                        return;
+                    }
+                }
+
                 if (gameObject.name != "Seagull(Clone)")
                 {
                     transform.Translate(0, 0, speed * -Time.deltaTime, Space.World);
