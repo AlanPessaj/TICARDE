@@ -243,7 +243,7 @@ public class PlayerController_FG : MonoBehaviour
                 generator.player2Score = transform.position.x;
             }
 
-            Instantiate(ghost, transform.position, Quaternion.identity);
+            Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = true;
             Destroy(gameObject);
         }
     }

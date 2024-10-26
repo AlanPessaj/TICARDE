@@ -1,5 +1,5 @@
-canguros
 portales
+canguros
 sonidos
 interaccion con hardware
 -----------------------------------------------------------------------------
@@ -17,3 +17,5 @@ T(Logs) = 24 / N . 0,75 . V
 T= SpawnRate(time)
 V = Velocidad
 N = Objetos en pantalla
+
+MAX DISTANCE ENTRE PORTALES = 70 TILES (X)

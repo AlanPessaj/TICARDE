@@ -22,6 +22,7 @@ public class FrogController_FG : MonoBehaviour
     Vector3 targetPos;
     GameObject[] players = new GameObject[2];
     public GameObject outCollider;
+    public GameObject ghost;
 
     private void Start()
     {
@@ -141,5 +142,14 @@ public class FrogController_FG : MonoBehaviour
     private void OnDestroy()
     {
         Destroy(checker.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull") && Application.IsPlaying(this))
+        {
+            Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
+            Destroy(gameObject);
+        }
     }
 }

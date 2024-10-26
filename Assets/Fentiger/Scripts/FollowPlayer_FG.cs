@@ -10,6 +10,7 @@ public class FollowPlayer_FG : MonoBehaviour
     public bool leftSpawn;
     public Generator_FG generator;
     public float speed = 3;
+    public GameObject ghost;
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +96,15 @@ public class FollowPlayer_FG : MonoBehaviour
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, -11);
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
+        {
+            Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
+            Destroy(gameObject);
         }
     }
 }
