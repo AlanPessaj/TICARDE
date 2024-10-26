@@ -28,11 +28,11 @@ public class LinearMover_FG : MonoBehaviour
 
         if (gameObject.name == "LillyPad(Clone)")
         {
-            time = 3 / speed;
+            time = 5 / speed;
         }
         else if (gameObject.name == "BrokenLog(Clone)")
         {
-            time = Random.Range((3 / speed) - 0.2f, (3 / speed) + 0.5f);
+            time = Random.Range((5 / speed) - 0.2f, (5 / speed) + 0.5f);
         }
 
     }
