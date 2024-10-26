@@ -1736,7 +1736,7 @@ MonoBehaviour:
   blocking: 0
   XPMultiplier: 1.5
   smashForce: 15
-  knockbackForce: 500
+  knockbackForce: 250
 --- !u!114 &788796818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1754,6 +1754,7 @@ MonoBehaviour:
   maxHealth: 100
   maxXP: 100
   XP: 0
+  noDamage: 1
 --- !u!1 &814508641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3282,7 +3283,7 @@ MonoBehaviour:
   blocking: 0
   XPMultiplier: 1.5
   smashForce: 15
-  knockbackForce: 500
+  knockbackForce: 250
 --- !u!114 &1779018772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3300,6 +3301,7 @@ MonoBehaviour:
   maxHealth: 100
   maxXP: 100
   XP: 0
+  noDamage: 1
 --- !u!1 &1791810005
 GameObject:
   m_ObjectHideFlags: 0

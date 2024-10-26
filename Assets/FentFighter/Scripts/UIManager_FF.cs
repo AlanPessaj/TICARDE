@@ -10,6 +10,7 @@ public class UIManager_FF : MonoBehaviour
     public float maxHealth;
     public float maxXP;
     public float XP;
+    public bool noDamage;
     bool calledCorutine = false;
 
     // Update is called once per frame
@@ -45,8 +46,11 @@ public class UIManager_FF : MonoBehaviour
 
     public void ChangeHealth(float value)
     {
-        health = Mathf.Clamp(health + value, 0, maxHealth);
-        UI.transform.GetChild(0).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxHealth, health)), 0, 0);
+        if (value > 0 || !noDamage)
+        {
+            health = Mathf.Clamp(health + value, 0, maxHealth);
+            UI.transform.GetChild(0).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxHealth, health)), 0, 0);
+        }
     }
 
     public void AddXP(float value)

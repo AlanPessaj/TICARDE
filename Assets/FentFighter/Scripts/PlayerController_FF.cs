@@ -51,15 +51,14 @@ public class PlayerController_FF : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.D))
             {
+                movDirection += 1;
                 if (facingLeft)
                 {
                     animator.SetBool("runb", true);
-                    movDirection += 1;
                 }
                 else
                 {
                     animator.SetBool("run", true);
-                    movDirection += 1;
                 }
             }
             else
@@ -75,15 +74,14 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.A))
             {
+                movDirection -= 1;
                 if (!facingLeft)
                 {
                     animator.SetBool("runb", true);
-                    movDirection -= 1;
                 }
                 else
                 {
                     animator.SetBool("run", true);
-                    movDirection -= 1;
                 }
             }
             else
@@ -227,8 +225,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 if (!airborne)
                 {
-                    GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
-                    GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(movementSpeed * movDirection, jumpForce, 0, ForceMode.Impulse);
                     animator.SetTrigger("jump");
                 }
             }
@@ -247,7 +244,7 @@ public class PlayerController_FF : MonoBehaviour
         }
         if (!airborne)
         {
-            transform.Translate(movDirection * movementSpeed * Time.deltaTime, 0, 0, Space.World);
+            transform.Translate(Vector3.right * movDirection * movementSpeed * Time.deltaTime, Space.World);
         }
         else
         {

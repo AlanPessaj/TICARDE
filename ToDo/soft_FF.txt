@@ -1,4 +1,3 @@
-knockback
 stun
  |
 animacion de golpe en cada seccion 

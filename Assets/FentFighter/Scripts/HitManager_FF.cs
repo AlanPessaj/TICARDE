@@ -204,8 +204,7 @@ public class HitManager_FF : MonoBehaviour
                 }
                 if (damageProperties.type == DamageType.UpperCut)
                 {
-                    GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<PlayerController_FF>().movementSpeed * -GetComponent<PlayerController_FF>().pMovDirection, 0, 0);
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerController_FF>().jumpForce, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(GetComponent<PlayerController_FF>().movementSpeed * -GetComponent<PlayerController_FF>().pMovDirection, GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
                     //animacion de me pego un gancho + stun
                 }
                 if (damageProperties.type == DamageType.Smash)
@@ -221,7 +220,7 @@ public class HitManager_FF : MonoBehaviour
             {
                 detectedAbility = true;
             }
-            if (damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick || damageProperties.type == DamageType.Smash)
+            if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut)
             {
                 CalculateKnockback();
             }
@@ -231,18 +230,22 @@ public class HitManager_FF : MonoBehaviour
 
     void CalculateKnockback()
     {
-        int knockback = 1;
+        float knockback = 2;
         if (damageProperties.type != DamageType.Ability)
         {
-            knockback += Mathf.RoundToInt(damageProperties.owner.GetComponent<PlayerController_FF>().pMovDirection - GetComponent<PlayerController_FF>().pMovDirection);
+            knockback += Mathf.Round(damageProperties.owner.GetComponent<PlayerController_FF>().pMovDirection + GetComponent<PlayerController_FF>().pMovDirection);
         }
         else
         {
-            knockback += Mathf.RoundToInt(-GetComponent<PlayerController_FF>().pMovDirection);
+            knockback += Mathf.Round(-GetComponent<PlayerController_FF>().pMovDirection);
         }
-        if (Mathf.Abs(GetComponent<PlayerController_FF>().pMovDirection) == 0.5f)
+        if (GetComponent<PlayerController_FF>().InState("crouch") || GetComponent<PlayerController_FF>().InState("crouching") || GetComponent<PlayerController_FF>().InState("uncrouch"))
         {
             knockback--;
+        }
+        if (damageProperties.type == DamageType.Punch || damageProperties.type == DamageType.Kick)
+        {
+            knockback *= 0.5f;
         }
         GetComponent<Rigidbody>().AddForce(Mathf.Clamp(knockback, 0, Mathf.Infinity) * knockbackForce * -transform.forward);
     }
