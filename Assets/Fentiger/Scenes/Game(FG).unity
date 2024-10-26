@@ -154,6 +154,7 @@ MonoBehaviour:
   - {fileID: 5873325583378978193, guid: 29639986ccfaf8142ac3e5eed28fd71c, type: 3}
   - {fileID: 5873325583378978193, guid: fa2f1157bad73ca4fa1a3314941baf22, type: 3}
   grass: {fileID: 4787763905658012092, guid: 4b8a130b54878db45b4756b9c49247e1, type: 3}
+  lastTileCreated: {fileID: 0}
   side: 0
   distance: 0
   difficulty: 1

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5669554436543623923}
   - component: {fileID: 198070176592298572}
   - component: {fileID: 4885908451459528735}
+  - component: {fileID: 114369932347225728}
   m_Layer: 18
   m_Name: Heart
   m_TagString: Untagged
@@ -124,3 +125,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.040165108
   m_Center: {x: -0.00003537163, y: 0.00004212187, z: 0.0017946796}
+--- !u!114 &114369932347225728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5285254102257641245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c4bd63675bd64fac39b3e1086ec04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
