@@ -76,14 +76,14 @@ public class Generator_FG : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Portal
-            Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
+            //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
 
             
             //Ovni
-            /*if (camara.GetChild(0).childCount < 1)
+            if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }*/
+            }
 
 
             //Gaviota

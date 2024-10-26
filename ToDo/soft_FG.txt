@@ -1,6 +1,7 @@
-canguros
+hipopotamo
 sonidos
 interaccion con hardware
+
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas

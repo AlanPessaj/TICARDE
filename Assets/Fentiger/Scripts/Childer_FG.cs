@@ -5,9 +5,13 @@ using UnityEngine;
 public class Childer_FG : MonoBehaviour
 {
     Generator_FG generator;
-    void Start()
+
+    private void Update()
     {
-        transform.parent = generator.lastTileCreated.transform;
+        if (generator.camara.position.x - 50 > transform.position.x)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Awake()
