@@ -179,7 +179,7 @@ MonoBehaviour:
   specials:
   - {fileID: 4333055094429083658, guid: a801072b7f235cd4bb2c48818b375afb, type: 3}
   - {fileID: 6903385497561135094, guid: 17c0f0212b639004dab7cbe6b569ae02, type: 3}
-  - {fileID: 0}
+  - {fileID: 8402230931829022764, guid: a5ea66bead1faae45a9652d3dca3377b, type: 3}
   - {fileID: 5285254102257641245, guid: 15676c245ee0f5644847149aad6b8e41, type: 3}
   treeSeparator: 0
   treeSpawn: 0
@@ -960,7 +960,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1932087
+    m_Bits: 4029239
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -1015,7 +1015,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1949495
+    m_Bits: 4046647
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}

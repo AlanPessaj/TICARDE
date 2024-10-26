@@ -15,11 +15,13 @@ public class PlayerController_FG : MonoBehaviour
     bool facingTreeUp;
     bool facingTreeDown;
     bool onFrog;
+    bool facingPortal;
     FrogController_FG rana;
     public Vector3 raycastPos;
     public GameObject ghost;
     public Material ghostMaterial;
     Material material;
+    GameObject portal;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +34,17 @@ public class PlayerController_FG : MonoBehaviour
     {
         if (isPlayer1)
         {
-            if (Input.GetKeyDown(KeyCode.W) && !facingTreeDown)
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
+                if (!facingTreeDown && generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
                     MoveForward();
+                }
+
+                if (facingPortal)
+                {
+                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
                 }
             }
             if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
@@ -57,11 +65,17 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && !facingTreeDown)
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
+                if (!facingTreeDown && generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
                     MoveForward();
+                }
+
+                if (facingPortal)
+                {
+                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
                 }
             }
             if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
@@ -301,42 +315,15 @@ public class PlayerController_FG : MonoBehaviour
         //Debug.DrawRay(raycastPos, -Vector3.forward * 1.3f, Color.blue, 1, false); // Izquierda
         //Debug.DrawRay(raycastPos, Vector3.right * 1.3f, Color.green, 1, false);   // Abajo
         //Debug.DrawRay(raycastPos, -Vector3.right * 1.3f, Color.yellow, 1, false);  // Arriba
-
-        if (Physics.Raycast(raycastPos, Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
+        Debug.DrawRay(transform.position, Vector3.right * 1f, Color.red);
+        facingTreeRight = Physics.Raycast(raycastPos, Vector3.forward, 1.3f, LayerMask.GetMask("Tree"));
+        facingTreeLeft = Physics.Raycast(raycastPos, -Vector3.forward, 1.3f, LayerMask.GetMask("Tree"));
+        facingTreeDown = Physics.Raycast(raycastPos, Vector3.right, 1.3f, LayerMask.GetMask("Tree"));
+        facingTreeUp = Physics.Raycast(raycastPos, -Vector3.right, 1.3f, LayerMask.GetMask("Tree"));
+        facingPortal = Physics.Raycast(transform.position, Vector3.right, out RaycastHit dPortal, 1f, LayerMask.GetMask("Portal"));
+        if (facingPortal)
         {
-            facingTreeRight = true;
-            //Derecha
-        }
-        else
-        {
-            facingTreeRight = false;
-        }
-        if (Physics.Raycast(raycastPos, -Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
-        {
-            facingTreeLeft = true;
-            //Izquierda
-        }
-        else
-        {
-            facingTreeLeft = false;
-        }
-        if (Physics.Raycast(raycastPos, Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
-        {
-            facingTreeDown = true;
-            //Abajo
-        }
-        else
-        {
-            facingTreeDown = false;
-        }
-        if (Physics.Raycast(raycastPos, -Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
-        {
-            facingTreeUp = true;
-            //Arriba
-        }
-        else
-        {
-            facingTreeUp = false;
+            this.portal = dPortal.transform.gameObject;
         }
     }
 
