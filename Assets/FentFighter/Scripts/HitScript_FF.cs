@@ -56,7 +56,7 @@ public class HitScript_FF : StateMachineBehaviour
             jumped = true;
             if (!animator.GetComponent<PlayerController_FF>().airborne)
             {
-                animator.GetComponent<Rigidbody>().velocity = new Vector3(animator.GetComponent<PlayerController_FF>().movementSpeed * animator.GetComponent<PlayerController_FF>().movDirection, 0, 0);
+                animator.GetComponent<Rigidbody>().velocity = new Vector3(animator.GetComponent<PlayerController_FF>().movementSpeed * animator.GetComponent<PlayerController_FF>().pMovDirection, 0, 0);
                 animator.GetComponent<Rigidbody>().AddForce(0, animator.GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
             }
         }
@@ -91,7 +91,7 @@ public class HitScript_FF : StateMachineBehaviour
             animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(false);
             if (stateInfo.IsName("slideKick"))
             {
-                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.SlideKick;
+                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.Kick;
             }
         }
     }
