@@ -28,10 +28,11 @@ public class PlayerController_FF : MonoBehaviour
     }
     public bool facingLeft;
     public bool isPlayer1;
-    public float movDirection = 0;
+    public float pMovDirection;
     // Update is called once per frame
     void Update()
     {
+        float movDirection = 0;
         if (otherPlayer.transform.position.x > transform.position.x && facingLeft)
         {
             //Cambiar a derecha
@@ -252,8 +253,8 @@ public class PlayerController_FF : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
-        movDirection = 0;
         UpdateCombo();
+        pMovDirection = movDirection;
     }
 
     void CheckButtons()
