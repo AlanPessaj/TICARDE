@@ -1,4 +1,3 @@
-HACER QUE APAREZCA SELECCIONADO VOLVER A JUGAR EN ButtonSelector
 canguros
 sonidos
 interaccion con hardware
