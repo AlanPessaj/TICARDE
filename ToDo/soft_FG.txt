@@ -1,7 +1,7 @@
 portales
+canguros
 sonidos
 interaccion con hardware
-canguros
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
@@ -17,3 +17,5 @@ T(Logs) = 24 / N . 0,75 . V
 T= SpawnRate(time)
 V = Velocidad
 N = Objetos en pantalla
+
+MAX DISTANCE ENTRE PORTALES = 70 TILES (X)
