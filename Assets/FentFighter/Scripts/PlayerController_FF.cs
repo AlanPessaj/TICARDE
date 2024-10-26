@@ -439,6 +439,8 @@ public class PlayerController_FF : MonoBehaviour
 
     void UpperCut()
     {
+        if (InState("block") || InState("blocking") || InState("punch"))
+            animator.CrossFade("upperCut", 0.25f);
         if ((InState("idle") || InState("jumping")) && (!airborne || (airborne && GetComponent<Rigidbody>().velocity.y > 9)))
             animator.SetTrigger("upperCut");
     }

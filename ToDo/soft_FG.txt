@@ -1,3 +1,6 @@
+
+HACER QUE APAREZCA SELECCIONADO VOLVER A JUGAR EN ButtonSelector
+
 portales ---> FUNCIONALIDAD | SPAWN
 canguros
 sonidos
