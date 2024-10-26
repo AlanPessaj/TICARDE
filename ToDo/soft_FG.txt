@@ -1,4 +1,4 @@
-portales
+portales ---> FUNCIONALIDAD | SPAWN
 canguros
 sonidos
 interaccion con hardware
