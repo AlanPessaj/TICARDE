@@ -1,3 +1,4 @@
+ARREGLAR GANCHO - GOLPE MARTILLO
 stun
  |
 animacion de golpe en cada seccion 
