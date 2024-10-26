@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3139924929813415648}
   - component: {fileID: 564587101047889375}
   - component: {fileID: 1373724807426059499}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4717,7 +4717,7 @@ GameObject:
   - component: {fileID: 4982398925165992}
   - component: {fileID: 1553969030659285021}
   - component: {fileID: 3305700868924999788}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: DarkSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9424,7 +9424,7 @@ GameObject:
   - component: {fileID: 8053842330334396250}
   - component: {fileID: 269056566570221708}
   - component: {fileID: 6493125971908263069}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14280,7 +14280,7 @@ GameObject:
   - component: {fileID: 6198029111434251900}
   - component: {fileID: 2666523172753199740}
   - component: {fileID: 7607453040619784988}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Sides
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18978,7 +18978,8 @@ GameObject:
   - component: {fileID: 8402230931825638444}
   - component: {fileID: 8402230931826769644}
   - component: {fileID: 2299150154104071986}
-  m_Layer: 0
+  - component: {fileID: 8986218290836121040}
+  m_Layer: 21
   m_Name: Portal Azul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19059,6 +19060,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redPrefab: {fileID: 2176666666016086564, guid: ac135d5ead2c4ce41a7dde855989682a,
     type: 3}
+  redPortal: {fileID: 0}
+--- !u!65 &8986218290836121040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402230931829022764}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.989614, y: 1.1134322, z: 5.8520184}
+  m_Center: {x: 0.06879713, y: 0.007816913, z: 0}
 --- !u!1 &9082089318582387176
 GameObject:
   m_ObjectHideFlags: 0
@@ -19070,7 +19085,7 @@ GameObject:
   - component: {fileID: 2591697375865622860}
   - component: {fileID: 246613930012971476}
   - component: {fileID: 1154699354765472140}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Particulas Azules
   m_TagString: Untagged
   m_Icon: {fileID: 0}
