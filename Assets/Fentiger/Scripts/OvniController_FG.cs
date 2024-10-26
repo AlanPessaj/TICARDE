@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class OvniController_FG : MonoBehaviour
 {
+    bool isOrbiting = true;
+    bool hasFinishedOrbiting = false;
+    bool oscillate = false;
+    bool leave = false;
+    bool gotInPos = false;
     public float orbitSpeed;
     public float orbitDuration;
-    private float elapsedTime = 0f;
-    private bool isOrbiting = true;
-    private bool hasFinishedOrbiting = false;
+    float elapsedTime = 0f;
     public float movingDelay;
-    private float movingTime = 0f;
-    private bool oscillate = false;
-    bool leave = false;
-    private float t = 0f;
+    float movingTime = 0f;
+    float t = 0f;
     public float oscillateSpeed = 2f;
     public Material yellow;
     public Material red;
@@ -62,18 +63,32 @@ public class OvniController_FG : MonoBehaviour
 
         if (leave)
         {
-            leaveTime += Time.deltaTime;
-            float t = Mathf.Clamp01(leaveTime / 2);
-            transform.localPosition = Vector3.Lerp(leavePos, new Vector3(-20, 10, 0), t);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), t);
-            if (transform.localPosition.x < -19)
+            if (!gotInPos)
             {
-                Destroy(gameObject);
+                leaveTime += Time.deltaTime;
+                transform.localPosition = Vector3.Lerp(leavePos, new Vector3(0, 3, 4), leaveTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), leaveTime);
+                if (leaveTime >= 1)
+                {
+                    gotInPos = true;
+                    leaveTime = 0;
+                    leavePos = transform.localPosition;
+                }
             }
+            else
+            {
+                leaveTime += Time.deltaTime;
+                transform.localPosition = Vector3.Lerp(leavePos, new Vector3(0, 1, -8), leaveTime);
+                if (leaveTime >= 1)
+                {
+                    Destroy(gameObject);
+                }
+            }
+            // 1 -8
         }
     }
 
-    private IEnumerator Laser()
+    IEnumerator Laser()
     {
         yield return new WaitForSeconds(4f);
         laser = transform.GetChild(1).gameObject;
