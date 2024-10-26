@@ -43,8 +43,8 @@ public class PlayerController_FG : MonoBehaviour
 
                 if (facingPortal)
                 {
-                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position;
-                    otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position;
+                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
                 }
             }
             if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
@@ -74,8 +74,8 @@ public class PlayerController_FG : MonoBehaviour
 
                 if (facingPortal)
                 {
-                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position;
-                    otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position;
+                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
                 }
             }
             if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)

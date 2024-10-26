@@ -74,10 +74,18 @@ public class Generator_FG : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (camara.GetChild(0).childCount < 1)
+            //Portal
+            Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
+
+            
+            //Ovni
+            /*if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }
+            }*/
+
+
+            //Gaviota
             /*if (multiplayer)
             {
                 Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
@@ -133,6 +141,8 @@ public class Generator_FG : MonoBehaviour
          * [3] = Vida
          */
         float number = Random.Range(1, 101);
+        float number2 = Random.Range(1, 101);
+        float number3 = Random.Range(1, 101);
         if (number <= Levels[Level].special[0])
         {
             if (multiplayer)
@@ -149,9 +159,15 @@ public class Generator_FG : MonoBehaviour
             }
             
         }
-        if (number <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1)
+
+        if (number2 <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1)
         {
             Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
+        }
+
+        if (number3 <= Levels[Level].special[2])
+        {
+            Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
         }
     }
     bool? Percenter(float[] percentages)
@@ -251,7 +267,7 @@ public class Generator_FG : MonoBehaviour
 
     void GenerateSection()
     {
-        if (Random.Range(1,100) <= 5) //BAJAR PROBABILIDAD
+        if (Random.Range(1,100) <= 5)
         {
             //Vida
             Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11f,11f)), Quaternion.identity);
