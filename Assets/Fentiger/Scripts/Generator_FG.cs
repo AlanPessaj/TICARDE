@@ -7,7 +7,6 @@ public class Generator_FG : MonoBehaviour
     public bool multiplayer;
     public GameObject[] sections;
     public GameObject grass;
-    public GameObject lastTileCreated;
     bool? lastSection;
     public bool side = false;
     public int distance = 0;
@@ -280,12 +279,11 @@ public class Generator_FG : MonoBehaviour
             isField = section[0] == sections[4] || section[0] == sections[5] || section[0] == sections[6] || section[0] == sections[7];
             if (isField)
             {
-                lastTileCreated = Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject;
-                toBake.Add(lastTileCreated);
+                toBake.Add(Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity).transform.GetChild(0).gameObject);
             }
             else
             {
-                lastTileCreated = Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity);
+                Instantiate(section[0], new Vector3(distance, 0, 0), Quaternion.identity);
             }
             bool doBreak = section[0] == grass;
             section.RemoveAt(0);

@@ -122,4 +122,12 @@ public class LinearMover_FG : MonoBehaviour
     {
         generator = GameObject.Find("GAMEMANAGER").GetComponent<Generator_FG>();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (gameObject.name.Contains("Hippo") && (collision.gameObject.name.Contains("Log(Clone)") || collision.gameObject.name.Contains("LillyPad")))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }
