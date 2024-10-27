@@ -1,4 +1,5 @@
 SONIDO DE ACELERAR
+BAJAR LA TIMESCALE A LA VELOCIDAD DE EL BASS DROP DOWN
 sonidos
 interaccion con hardware
 IDEA:
@@ -47,5 +48,5 @@ BPM	Duración (segundos)
 90	77
 95	72.95
 100	69.3
-
+https://www.youtube.com/watch?v=MNiQzDmRwfM&ab_channel=BROKENvisual
 

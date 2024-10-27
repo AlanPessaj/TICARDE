@@ -5,6 +5,8 @@ using UnityEngine;
 public class SoundManager_FG : MonoBehaviour
 {
     public Generator_FG generator;
+    public AudioSource themeSource;
+    public AudioSource effectsSource;
     public AudioClip[] mainTheme;
     int level = 0;
     void Update()
@@ -12,11 +14,12 @@ public class SoundManager_FG : MonoBehaviour
         if (level != generator.Level)
         {
             level = generator.Level;
-            float time = GetComponent<AudioSource>().time;
-            float duration = GetComponent<AudioSource>().clip.length;
-            GetComponent<AudioSource>().clip = mainTheme[level];
-            GetComponent<AudioSource>().time = Mathf.Lerp(0, GetComponent<AudioSource>().clip.length, Mathf.InverseLerp(0, duration, time));
-            GetComponent<AudioSource>().Play();
+            float time = themeSource.time;
+            float duration = themeSource.clip.length;
+            themeSource.clip = mainTheme[level];
+            themeSource.time = Mathf.Lerp(0, themeSource.clip.length, Mathf.InverseLerp(0, duration, time));
+            themeSource.Play();
+            effectsSource.Play();
         }
     }
 }
