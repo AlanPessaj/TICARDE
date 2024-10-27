@@ -123,21 +123,6 @@ public class LinearMover_FG : MonoBehaviour
             }
             else
             {
-                if (gameObject.name.Contains("Hippo") && transform.childCount == 1)
-                {
-                    transform.GetChild(0).parent = null;
-                }
-                else
-                {
-                    if (transform.childCount > 2)
-                    {
-                        transform.GetChild(1).parent = null;
-                    }
-                    if (transform.childCount > 1)
-                    {
-                        transform.GetChild(1).parent = null;
-                    }
-                }
                 Destroy(gameObject);
             }
 
@@ -172,21 +157,6 @@ public class LinearMover_FG : MonoBehaviour
             }
             else
             {
-                if (gameObject.name.Contains("Hippo") && transform.childCount == 1)
-                {
-                    transform.GetChild(0).parent = null;
-                }
-                else
-                {
-                    if (transform.childCount > 2)
-                    {
-                        transform.GetChild(1).parent = null;
-                    }
-                    if (transform.childCount > 1)
-                    {
-                        transform.GetChild(1).parent = null;
-                    }
-                }
                 Destroy(gameObject);
             }
         }
@@ -233,6 +203,25 @@ public class LinearMover_FG : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (gameObject.name.Contains("Hippo") && transform.childCount > 0)
+        {
+            transform.GetChild(0).GetComponent<PlayerController_FG>().enabled = true;
+            transform.GetChild(0).parent = null;
+        }
+        else if(transform.childCount > 1)
+        {
+            transform.GetChild(1).GetComponent<PlayerController_FG>().enabled = true;
+            transform.GetChild(1).parent = null;
+            if (transform.childCount > 1)
+            {
+                transform.GetChild(1).GetComponent<PlayerController_FG>().enabled = true;
+                transform.GetChild(1).parent = null;
+            }
+        }
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if (gameObject.name.Contains("Hippo") && collision.gameObject.name.Contains("Hippo"))
@@ -246,7 +235,6 @@ public class LinearMover_FG : MonoBehaviour
             {
                 hippoCollision = transform.position.z < collision.transform.position.z;
             }
-            
         }
         else
         {

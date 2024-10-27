@@ -266,7 +266,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        Debug.DrawRay(transform.position + Vector3.up * 2f, Vector3.down * 10f, Color.red, 1f, false);
+        //Debug.DrawRay(transform.position + Vector3.up * 2f, Vector3.down * 10f, Color.red, 1f, false);
         Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers - LayerMask.GetMask("Tree", "Player", "Lion"));
         if (hit.collider != null)
         {
@@ -274,7 +274,6 @@ public class PlayerController_FG : MonoBehaviour
             {
                 if (hit.collider.gameObject.name == "LillyPad(Clone)" && !onHippo)
                 {
-                    Debug.Log("lilly");
                     if (hit.transform.childCount == 1)
                     {
                         transform.parent = hit.transform;
@@ -293,7 +292,6 @@ public class PlayerController_FG : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.name == "Hippo(Clone)" && !onHippo)
                 {
-                    Debug.Log("hippo");
                     if (hit.transform.childCount == 0)
                     {
                         transform.parent = hit.transform;
@@ -303,7 +301,6 @@ public class PlayerController_FG : MonoBehaviour
                 }
                 else if(!onHippo)
                 {
-                    Debug.Log("log");
                     transform.parent = hit.transform;
                     onLog = true;
                     transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
