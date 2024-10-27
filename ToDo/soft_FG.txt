@@ -1,4 +1,3 @@
-BAJAR LA TIMESCALE A LA VELOCIDAD DE EL BASS DROP DOWN
 CORAZON EMPUJA PLAYER (NO PUEDE SER KINEMATIC EL RIGIDBODY O NO DETECTA COLISIONES)
 sonidos
 interaccion con hardware
@@ -48,5 +47,3 @@ BPM	Duración (segundos)
 90	77
 95	72.95
 100	69.3
-https://www.youtube.com/watch?v=MNiQzDmRwfM&ab_channel=BROKENvisual
-
