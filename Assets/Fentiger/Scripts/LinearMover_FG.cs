@@ -55,10 +55,12 @@ public class LinearMover_FG : MonoBehaviour
     {
         if (hippoCollision)
         {
+            Debug.Log("x2");
             speed = generator.Levels[generator.Level].speed * 2;
         }
         else
         {
+            Debug.Log("x1");
             speed = generator.Levels[generator.Level].speed;
         }
 
@@ -242,7 +244,7 @@ public class LinearMover_FG : MonoBehaviour
     {
         if (gameObject.name.Contains("Hippo") && (collision.gameObject.name.Contains("Log(Clone)") || collision.gameObject.name.Contains("LillyPad")))
         {
-            //HEAVY generator.GetComponent<SoundManager_FG>().PlaySound(collision.gameObject.GetComponent<LinearMover_FG>().breakSound);
+            GetComponents<AudioSource>()[1].PlayOneShot(GetComponents<AudioSource>()[1].clip);
             Destroy(collision.gameObject);
         }
     }
@@ -279,9 +281,10 @@ public class LinearMover_FG : MonoBehaviour
                 hippoCollision = transform.position.z < collision.transform.position.z;
             }
         }
-        else
-        {
-            hippoCollision = false;
-        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (gameObject.name.Contains("Hippo") && collision.gameObject.name.Contains("Hippo")) hippoCollision = false;
     }
 }
