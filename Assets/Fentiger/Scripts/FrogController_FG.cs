@@ -146,10 +146,21 @@ public class FrogController_FG : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull") && Application.IsPlaying(this))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
         {
-            Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
-            Destroy(gameObject);
+            if (transform.childCount > 1)
+            {
+                transform.GetChild(1).position -= new Vector3(1, 0, 1);
+                transform.GetChild(1).SetParent(null);
+            }
+            StartCoroutine(Die());
         }
+    }
+
+    IEnumerator Die()
+    {
+        yield return null;
+        Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
+        Destroy(gameObject);
     }
 }

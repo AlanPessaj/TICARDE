@@ -226,7 +226,6 @@ public class LinearMover_FG : MonoBehaviour
     {
         if (gameObject.name.Contains("Hippo") && collision.gameObject.name.Contains("Hippo"))
         {
-            Debug.Log(speed);
             if (movingForward)
             {
                 hippoCollision = transform.position.z > collision.transform.position.z;
