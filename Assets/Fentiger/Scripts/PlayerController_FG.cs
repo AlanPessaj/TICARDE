@@ -179,13 +179,16 @@ public class PlayerController_FG : MonoBehaviour
         }
         else if (onHippo)
         {
-            if (hippo.GetComponent<LinearMover_FG>().movingForward)
+            if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
             {
-                HippoRightMove();
-            }
-            else
-            {
-                HippoLeftMove();
+                if (hippo.GetComponent<LinearMover_FG>().movingForward)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 2.3f);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1.5f);
+                }
             }
         }
         else
@@ -229,13 +232,16 @@ public class PlayerController_FG : MonoBehaviour
         }
         else if (onHippo)
         {
-            if (hippo.GetComponent<LinearMover_FG>().movingForward)
+            if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
             {
-                HippoLeftMove();
-            }
-            else
-            {
-                HippoRightMove();
+                if (hippo.GetComponent<LinearMover_FG>().movingForward)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1.5f);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 2.3f);
+                }
             }
         }
         else
@@ -244,50 +250,11 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-
                 onFrog = false;
             }
         }
     }
-
-    void HippoRightMove()
-    {
-        if (!hippo.GetComponent<LinearMover_FG>().hippoResuming || !hippo.GetComponent<LinearMover_FG>().hippoResuming)
-        {
-            if (transform.localPosition.z <= 1.3f && transform.localPosition.z > 0.5f)
-            {
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.5f);
-            }
-            else if (transform.localPosition.z <= 0.5f && transform.localPosition.z > 0)
-            {
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-            }
-        }
-    }
-
-    void HippoLeftMove()
-    {
-        if (!hippo.GetComponent<LinearMover_FG>().hippoResuming || !hippo.GetComponent<LinearMover_FG>().hippoResuming)
-        {
-            if (transform.localPosition.z < 0.5f && transform.localPosition.z >= 0)
-            {
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.5f);
-            }
-            else if (transform.localPosition.z >= 0.5f && transform.localPosition.z < 1.3f)
-            {
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1.3f);
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
-            }
-        }
-    }
-
+    
     void Die()
     {
         if (transform.GetChild(0).gameObject.activeSelf)
@@ -363,8 +330,8 @@ public class PlayerController_FG : MonoBehaviour
                     {
                         transform.parent = hit.transform;
                         transform.localPosition = new Vector3(1.5f, 0, 0.5f);
-                        hippo = hit.collider.gameObject;
                         onHippo = true;
+                        hippo = hit.collider.gameObject;
                     }
                 }
                 else if(!onHippo)
