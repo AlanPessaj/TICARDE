@@ -8,8 +8,7 @@ public class SoundManager_FG : MonoBehaviour
     public AudioSource themeSource;
     public AudioSource effectsSource;
     public AudioClip[] mainTheme;
-    public AudioClip[] effectSounds;
-    public bool Ended;
+    public AudioClip dropDown;
     int level = 0;
     void Update()
     {
@@ -21,15 +20,13 @@ public class SoundManager_FG : MonoBehaviour
             themeSource.clip = mainTheme[level];
             themeSource.time = Mathf.Lerp(0, themeSource.clip.length, Mathf.InverseLerp(0, duration, time));
             themeSource.Play();
-            effectsSource.clip = effectSounds[0];
             effectsSource.Play();
         }
+    }
 
-        if (Ended)
-        {
-            effectsSource.clip = effectSounds[1];
-            effectsSource.Play();
-            Ended = false;
-        }
+    public void EndSound()
+    {
+        themeSource.Stop();
+        effectsSource.PlayOneShot(dropDown);
     }
 }

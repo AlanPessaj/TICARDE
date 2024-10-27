@@ -7,6 +7,7 @@ public class DieScript_FG : MonoBehaviour
 {
     public bool playerGhost;
     public Generator_FG generator;
+    bool firstSend = true;
 
     private void Awake()
     {
@@ -18,6 +19,12 @@ public class DieScript_FG : MonoBehaviour
         transform.position += Vector3.up * 2.0f * Time.deltaTime;
         float newZ = transform.position.z + Mathf.Sin(Time.time) * 0.01f;
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
+
+        if (playerGhost && !generator.isTherePlayer1 && !generator.isTherePlayer2 && firstSend)
+        {
+            generator.GetComponent<SoundManager_FG>().EndSound();
+            firstSend = false;
+        }
 
         if (transform.position.y >= 15)
         {
@@ -35,6 +42,7 @@ public class DieScript_FG : MonoBehaviour
             {
                 GameOver();
             }
+
             else
             {
                 Destroy(gameObject);
@@ -44,7 +52,6 @@ public class DieScript_FG : MonoBehaviour
 
     void GameOver()
     {
-        generator.GetComponent<SoundManager_FG>().Ended = true;
         SceneManager.sceneLoaded += OnEndSceneLoaded;
         SceneManager.LoadScene("End(FG)", LoadSceneMode.Additive);
     }
