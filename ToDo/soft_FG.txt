@@ -1,3 +1,4 @@
+SONIDO DE ACELERAR
 sonidos
 interaccion con hardware
 IDEA:
@@ -19,3 +20,32 @@ V = Velocidad
 N = Objetos en pantalla
 
 MAX DISTANCE ENTRE PORTALES = 70 TILES (X)
+
+
+lvl 1 = 55bpm
+lvl 2 = 60bpm
+lvl 3 = 65bpm
+lvl 4 = 70bpm
+lvl 5 = 75bpm
+lvl 6 = 80 bpm
+lvl 7 = 85bpm
+lvl 8 = 90bpm
+lvl 9 = 95bpm
+lvl 10 = 100bpm
+
+NUEVA DURACION = (duracion anterior * (BPM anterior/nuevo BPM) * 60
+
+
+BPM	Duración (segundos)
+55	126
+60	115.5
+65	106.62
+70	99
+75	92.4
+80	86.63
+85	81.53
+90	77
+95	72.95
+100	69.3
+
+
