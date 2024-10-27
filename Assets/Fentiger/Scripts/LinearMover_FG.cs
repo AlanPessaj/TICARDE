@@ -7,6 +7,7 @@ public class LinearMover_FG : MonoBehaviour
     public float speed;
     private float rotation;
     public float time = 3;
+    public float initialTime;
     public bool movingForward;
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
@@ -17,7 +18,11 @@ public class LinearMover_FG : MonoBehaviour
     Quaternion hippoInitialRotation;
     float hippoTime;
     public bool hippoResuming;
+    public AudioClip breakSound;
     bool hippoCollision;
+    bool firstSound = true;
+    bool secondSound = true;
+    bool playerOn;
 
     void Start()
     {
@@ -43,7 +48,7 @@ public class LinearMover_FG : MonoBehaviour
             time = Random.Range((5 / speed) - 0.2f, (5 / speed) + 0.5f);
         }
         hippoTime = 0;
-
+        initialTime = time;
     }
     void Update()
     {
@@ -163,7 +168,26 @@ public class LinearMover_FG : MonoBehaviour
             transform.Rotate(0, rotation, 0);
             if (transform.childCount > 1)
             {
+                if (!playerOn)
+                {
+                    GetComponents<AudioSource>()[1].Play();
+                    playerOn = true;
+                }
                 time -= Time.deltaTime;
+                if (time <= (initialTime / 3) * 2 && firstSound)
+                {
+                    GetComponent<AudioSource>().Play();
+                    firstSound = false;
+                }
+                else if(time <= initialTime / 3 && secondSound)
+                {
+                    GetComponent<AudioSource>().Play();
+                    secondSound = false;
+                }
+            }
+            else
+            {
+                playerOn = false;
             }
         }
         else if (gameObject.name == "BrokenLog(Clone)")
@@ -175,6 +199,7 @@ public class LinearMover_FG : MonoBehaviour
         }
         if (time <= 0)
         {
+            generator.GetComponent<SoundManager_FG>().PlaySound(breakSound);
             Destroy(gameObject);
         }
     }

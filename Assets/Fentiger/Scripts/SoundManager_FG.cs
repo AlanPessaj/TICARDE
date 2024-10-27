@@ -29,4 +29,9 @@ public class SoundManager_FG : MonoBehaviour
         themeSource.Stop();
         effectsSource.PlayOneShot(dropDown);
     }
+
+    public void PlaySound(AudioClip sound)
+    {
+        effectsSource.PlayOneShot(sound);
+    }
 }
