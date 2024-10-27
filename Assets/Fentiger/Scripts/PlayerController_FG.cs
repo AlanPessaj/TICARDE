@@ -23,6 +23,7 @@ public class PlayerController_FG : MonoBehaviour
     public Material ghostMaterial;
     Material material;
     GameObject portal;
+    GameObject hippo;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,9 +38,12 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                if (!facingTreeDown && generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    MoveForward();
+                    if (!facingTreeDown)
+                    {
+                        MoveForward();
+                    }
                 }
 
                 if (facingPortal)
@@ -71,9 +75,12 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (!facingTreeDown && generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    MoveForward();
+                    if (!facingTreeDown)
+                    {
+                        MoveForward();
+                    }
                 }
 
                 if (facingPortal)
@@ -151,7 +158,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
         }
-        else if (onLog || onHippo)
+        else if (onLog)
         {
             if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
             {
@@ -173,6 +180,17 @@ public class PlayerController_FG : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
         }
+        else if (onHippo)
+        {
+            if (hippo.GetComponent<LinearMover_FG>().movingForward)
+            {
+                HippoRightMove();
+            }
+            else
+            {
+                HippoLeftMove();
+            }
+        }
         else
         {
             if (!rana.isJumping)
@@ -190,7 +208,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
         }
-        else if (onLog || onHippo)
+        else if (onLog)
         {
             if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
             {
@@ -212,6 +230,17 @@ public class PlayerController_FG : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
         }
+        else if (onHippo)
+        {
+            if (hippo.GetComponent<LinearMover_FG>().movingForward)
+            {
+                HippoLeftMove();
+            }
+            else
+            {
+                HippoRightMove();
+            }
+        }
         else
         {
             if (!rana.isJumping)
@@ -220,6 +249,44 @@ public class PlayerController_FG : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
 
                 onFrog = false;
+            }
+        }
+    }
+
+    void HippoRightMove()
+    {
+        if (!hippo.GetComponent<LinearMover_FG>().hippoResuming || !hippo.GetComponent<LinearMover_FG>().hippoResuming)
+        {
+            if (transform.localPosition.z <= 1.3f && transform.localPosition.z > 0.5f)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.5f);
+            }
+            else if (transform.localPosition.z <= 0.5f && transform.localPosition.z > 0)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+            }
+        }
+    }
+
+    void HippoLeftMove()
+    {
+        if (!hippo.GetComponent<LinearMover_FG>().hippoResuming || !hippo.GetComponent<LinearMover_FG>().hippoResuming)
+        {
+            if (transform.localPosition.z < 0.5f && transform.localPosition.z >= 0)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.5f);
+            }
+            else if (transform.localPosition.z >= 0.5f && transform.localPosition.z < 1.3f)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1.3f);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
         }
     }
@@ -299,6 +366,7 @@ public class PlayerController_FG : MonoBehaviour
                     {
                         transform.parent = hit.transform;
                         transform.localPosition = new Vector3(1.5f, 0, 0.5f);
+                        hippo = hit.collider.gameObject;
                         onHippo = true;
                     }
                 }
