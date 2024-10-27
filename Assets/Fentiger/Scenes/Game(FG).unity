@@ -196,7 +196,7 @@ MonoBehaviour:
   player2Score: 0
   player1Name: Player1
   player2Name: Player2
-  debugMultiplayer: 0
+  debugMultiplayer: 1
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0

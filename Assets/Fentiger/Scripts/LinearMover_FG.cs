@@ -23,6 +23,7 @@ public class LinearMover_FG : MonoBehaviour
     bool firstSound = true;
     bool secondSound = true;
     bool playerOn;
+    int logChildCount;
 
     void Start()
     {
@@ -160,6 +161,23 @@ public class LinearMover_FG : MonoBehaviour
             else
             {
                 Destroy(gameObject);
+            }
+        }
+
+        if (gameObject.name == "Hippo(Clone)")
+        {
+
+        }
+
+        if (gameObject.name.Contains("Log(Clone)"))
+        {
+            if (logChildCount != transform.childCount - 1)
+            {
+                if (logChildCount < transform.childCount - 1)
+                {
+                    GetComponent<AudioSource>().Play();
+                }
+                logChildCount = transform.childCount - 1;
             }
         }
 
