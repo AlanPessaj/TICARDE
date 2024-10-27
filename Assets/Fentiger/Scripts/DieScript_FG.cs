@@ -44,6 +44,7 @@ public class DieScript_FG : MonoBehaviour
 
     void GameOver()
     {
+        generator.GetComponent<SoundManager_FG>().Ended = true;
         SceneManager.sceneLoaded += OnEndSceneLoaded;
         SceneManager.LoadScene("End(FG)", LoadSceneMode.Additive);
     }
