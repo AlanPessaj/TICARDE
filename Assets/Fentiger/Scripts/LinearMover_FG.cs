@@ -7,16 +7,16 @@ public class LinearMover_FG : MonoBehaviour
     public float speed;
     private float rotation;
     public float time = 3;
-    private bool movingForward;
+    public bool movingForward;
     public Generator_FG generator;
     public LinearSpawner_FG spawner;
-    bool hippoRotating;
+    public bool hippoRotating;
     Vector3 hippoInitialPosition;
     Quaternion hippoFinalRotation;
     Vector3 hippoFinalPosition;
     Quaternion hippoInitialRotation;
     float hippoTime;
-    bool hippoResuming;
+    public bool hippoResuming;
     bool hippoCollision;
 
     void Start()
@@ -89,10 +89,7 @@ public class LinearMover_FG : MonoBehaviour
             }
         }
 
-
-
-
-
+        
         if (movingForward)
         {
             if (transform.position.z < 18)
