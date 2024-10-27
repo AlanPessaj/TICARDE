@@ -20,10 +20,17 @@ public class DieScript_FG : MonoBehaviour
         float newZ = transform.position.z + Mathf.Sin(Time.time) * 0.01f;
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
 
-        if (playerGhost && !generator.isTherePlayer1 && !generator.isTherePlayer2 && firstSend)
+        if (playerGhost && !generator.isTherePlayer1 && !generator.isTherePlayer2)
         {
-            generator.GetComponent<SoundManager_FG>().EndSound();
-            firstSend = false;
+            if (Input.GetButtonDown("A") || Input.GetButtonDown("A2"))
+            {
+                transform.position = transform.position + Vector3.up * 15;
+            }
+            if (firstSend)
+            {
+                generator.GetComponent<SoundManager_FG>().EndSound();
+                firstSend = false;
+            }
         }
 
         if (transform.position.y >= 15)
