@@ -32,9 +32,14 @@ public class Generator_FG : MonoBehaviour
     public float player2Score;
     public string player1Name = "Player1";
     public string player2Name = "Player2";
+    public bool debugMultiplayer;
     // Start is called before the first frame update
     void Start()
     {
+        if (!debugMultiplayer)
+        {
+            Destroy(players[1]);
+        }
         Level = startingLevel;
         while (distance < despawnRadius)
         {
@@ -267,10 +272,10 @@ public class Generator_FG : MonoBehaviour
 
     void GenerateSection()
     {
-        if (Random.Range(1,100) <= 5)
+        if (Random.Range(1,101) <= 5)
         {
             //Vida
-            Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11f,11f)), Quaternion.identity);
+            Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11,12)), Quaternion.identity);
         }
 
         bool isField = false;
