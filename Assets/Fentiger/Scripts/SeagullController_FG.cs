@@ -8,6 +8,7 @@ public class SeagullController_FG : MonoBehaviour
     public bool leftSide;
     public GameObject[] players = new GameObject[2];
     public GameObject shit;
+    bool scream = true;
     void Start()
     {
         players[0] = GameObject.Find("Player1");
@@ -24,10 +25,22 @@ public class SeagullController_FG : MonoBehaviour
     {
         if (firstShit && Physics.Raycast(transform.position, Vector3.down, 100f, LayerMask.GetMask("Player")))
         {
-            //Cagar
             Instantiate(shit, transform.position, shit.transform.rotation);
             firstShit = false;
         }
 
+        if (scream)
+        {
+            if (leftSide && transform.position.z <= 12)
+            {
+                GetComponent<AudioSource>().Play();
+                scream = false;
+            }
+            else if(!leftSide && transform.position.z >= -12)
+            {
+                GetComponent<AudioSource>().Play();
+                scream = false;
+            }
+        }
     }
 }
