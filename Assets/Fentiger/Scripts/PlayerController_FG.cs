@@ -180,7 +180,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
-            transform.parent.GetComponent<AudioSource>().Play();
+            transform.parent.GetComponent<AudioSource>().PlayOneShot(transform.parent.GetComponent<AudioSource>().clip);
         }
         else if (onHippo)
         {
@@ -235,7 +235,7 @@ public class PlayerController_FG : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
 
-            transform.parent.GetComponent<AudioSource>().Play();
+            transform.parent.GetComponent<AudioSource>().PlayOneShot(transform.parent.GetComponent<AudioSource>().clip);
         }
         else if (onHippo)
         {

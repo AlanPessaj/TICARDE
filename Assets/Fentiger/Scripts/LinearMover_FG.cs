@@ -169,7 +169,7 @@ public class LinearMover_FG : MonoBehaviour
 
         }
 
-        if (gameObject.name.Contains("Log(Clone)"))
+        if (gameObject.name == ("Log(Clone)"))
         {
             if (logChildCount != transform.childCount - 1)
             {
@@ -180,18 +180,17 @@ public class LinearMover_FG : MonoBehaviour
                 logChildCount = transform.childCount - 1;
             }
         }
-
-        if (gameObject.name == "LillyPad(Clone)")
+        else if (gameObject.name == "LillyPad(Clone)")
         {
             transform.Rotate(0, rotation, 0);
             if (transform.childCount > 1)
             {
+                time -= Time.deltaTime;
                 if (!playerOn)
                 {
                     GetComponents<AudioSource>()[1].Play();
                     playerOn = true;
                 }
-                time -= Time.deltaTime;
                 if (time <= (initialTime / 3) * 2 && firstSound)
                 {
                     GetComponent<AudioSource>().Play();
@@ -213,8 +212,25 @@ public class LinearMover_FG : MonoBehaviour
             if (transform.childCount > 1)
             {
                 time -= Time.deltaTime;
+                if (time <= (initialTime / 3) * 2 && firstSound)
+                {
+                    GetComponents<AudioSource>()[1].Play();
+                    firstSound = false;
+                }
+                else if (time <= initialTime / 3 && secondSound)
+                {
+                    GetComponents<AudioSource>()[1].Play();
+                    secondSound = false;
+                }
             }
+
+            if (logChildCount < transform.childCount - 1)
+            {
+                GetComponent<AudioSource>().Play();
+            }
+            logChildCount = transform.childCount - 1;
         }
+
         if (time <= 0)
         {
             generator.GetComponent<SoundManager_FG>().PlaySound(breakSound);
@@ -231,7 +247,7 @@ public class LinearMover_FG : MonoBehaviour
     {
         if (gameObject.name.Contains("Hippo") && (collision.gameObject.name.Contains("Log(Clone)") || collision.gameObject.name.Contains("LillyPad")))
         {
-            generator.GetComponent<SoundManager_FG>().PlaySound(collision.gameObject.GetComponent<LinearMover_FG>().breakSound);
+            //HEAVY generator.GetComponent<SoundManager_FG>().PlaySound(collision.gameObject.GetComponent<LinearMover_FG>().breakSound);
             Destroy(collision.gameObject);
         }
     }
