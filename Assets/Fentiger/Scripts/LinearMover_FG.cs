@@ -17,10 +17,12 @@ public class LinearMover_FG : MonoBehaviour
     Quaternion hippoInitialRotation;
     float hippoTime;
     bool hippoResuming;
+    bool hippoCollision;
 
     void Start()
     {
         speed = generator.Levels[generator.Level].speed;
+
         rotation = Random.Range(-1f, 1f);
         if (gameObject.name == "Seagull(Clone)")
         {
@@ -45,8 +47,14 @@ public class LinearMover_FG : MonoBehaviour
     }
     void Update()
     {
-        speed = generator.Levels[generator.Level].speed;
-
+        if (hippoCollision)
+        {
+            speed = generator.Levels[generator.Level].speed * 2;
+        }
+        else
+        {
+            speed = generator.Levels[generator.Level].speed;
+        }
 
         if (hippoRotating)
         {
@@ -222,6 +230,27 @@ public class LinearMover_FG : MonoBehaviour
         if (gameObject.name.Contains("Hippo") && (collision.gameObject.name.Contains("Log(Clone)") || collision.gameObject.name.Contains("LillyPad")))
         {
             Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (gameObject.name.Contains("Hippo") && collision.gameObject.name.Contains("Hippo"))
+        {
+            Debug.Log(speed);
+            if (movingForward)
+            {
+                hippoCollision = transform.position.z > collision.transform.position.z;
+            }
+            else
+            {
+                hippoCollision = transform.position.z < collision.transform.position.z;
+            }
+            
+        }
+        else
+        {
+            hippoCollision = false;
         }
     }
 }
