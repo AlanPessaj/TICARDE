@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thing: {fileID: 5276149425105017193, guid: d2b505a18e0885d419c13ba6423a6bd0, type: 3}
+  hippo: {fileID: 0}
   generator: {fileID: 0}
   changedSide: 0
   randomSpawnSide: 0
