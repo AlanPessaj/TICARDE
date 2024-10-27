@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2347992223026960700}
   - component: {fileID: 339219570492963974}
   - component: {fileID: 54577481109234606}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hippo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7525561400008066496}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071067}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &7525561400008939968
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -91,8 +91,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3141562, y: 0.9390936, z: 2.7596064}
-  m_Center: {x: 0.14018477, y: -0.017801864, z: 0.11527753}
+  m_Size: {x: 1.3141562, y: 0.18041502, z: 2.6586356}
+  m_Center: {x: 0.14018476, y: -0.00805442, z: 0.105688035}
 --- !u!114 &339219570492963974
 MonoBehaviour:
   m_ObjectHideFlags: 0

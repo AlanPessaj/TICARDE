@@ -289,6 +289,15 @@ public class PlayerController_FG : MonoBehaviour
                         onFrog = true;
                     }
                 }
+                else if (hit.collider.gameObject.name == "Hippo(Clone)")
+                {
+                    Debug.Log("Hippo");
+                    if (hit.transform.childCount == 0)
+                    {
+                        transform.parent = hit.transform;
+                        transform.localPosition = new Vector3(1.5f, 0, 0.5f);
+                    }
+                }
                 else
                 {
                     transform.parent = hit.transform;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class LinearSpawner_FG : MonoBehaviour
 {
     public GameObject thing;
+    public GameObject hippo;
     public Generator_FG generator;
     float timer = 0;
     public bool changedSide = false;
@@ -29,6 +30,8 @@ public class LinearSpawner_FG : MonoBehaviour
 
     void Update()
     {
+        bool hippoSpawn = (Random.Range(1,101) == 1) && generator.Level > 3;
+
         if (gameObject.name.Contains("Logs"))
         {
             initialSpawnRate = generator.Levels[generator.Level].spawnRate[0];
@@ -47,13 +50,31 @@ public class LinearSpawner_FG : MonoBehaviour
             {
                 Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), Quaternion.Euler(thing.transform.eulerAngles + new Vector3(0, 180, 0)), transform).GetComponent<LinearMover_FG>().spawner = this;
             }
+            else if (gameObject.name == "Cars(Clone)")
+            {
+                Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
+            }
             else if (changedSide)
             {
-                Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
+                if (hippoSpawn)
+                {
+                    Instantiate(hippo, transform.position + new Vector3(0, -2.7f, 16.5f), Quaternion.Euler(0, 0, 90), transform).GetComponent<LinearMover_FG>().spawner = this;
+                }
+                else
+                {
+                    Instantiate(thing, transform.position + new Vector3(0, -2.7f, 16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
+                }
             }
             else
             {
-                Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
+                if (hippoSpawn)
+                {
+                    Instantiate(hippo, transform.position + new Vector3(0, -2.7f, -16.5f), Quaternion.Euler(0, 180, 90), transform).GetComponent<LinearMover_FG>().spawner = this;
+                }
+                else
+                {
+                    Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
+                }
             }
             timer = Random.Range(initialSpawnRate, initialSpawnRate*1.5f);
         }

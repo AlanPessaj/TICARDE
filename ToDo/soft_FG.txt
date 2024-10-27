@@ -1,7 +1,12 @@
+REVISAR QUE PASA CUANDO LA RANA SE MUERE CON UN PLAYER ENCIMA
 CAMBIAR TAMAÑO COLLIDER HIPPO
+REVISAR PORTALES SI ES 1 PLAYER
 hipopotamo
 sonidos
 interaccion con hardware
+
+IDEA:
+cuando estes sobre un hippo haya mas chance de gaviota
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas

@@ -105,11 +105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thing: {fileID: 7216818711589203257, guid: 0f685adb5c183994387913e59fd4207f, type: 3}
+  hippo: {fileID: 7525561400008066496, guid: 712f34271c825f0469e5225163ccee57, type: 3}
   generator: {fileID: 0}
-  spawnRate: 3.5
   changedSide: 0
   randomSpawnSide: 0
-  difficulty: 0
   time: 0
 --- !u!1001 &6706574144922503206
 PrefabInstance:

@@ -59,8 +59,6 @@ public class LinearMover_FG : MonoBehaviour
             }
             else
             {
-                Debug.Log("0.5");
-                //llego
                 hippoRotating = false;
                 hippoResuming = true;
                 hippoTime = 0;
@@ -78,7 +76,6 @@ public class LinearMover_FG : MonoBehaviour
             }
             else
             {
-                Debug.Log("1");
                 hippoResuming = false;
                 movingForward = !movingForward;
             }
@@ -118,13 +115,20 @@ public class LinearMover_FG : MonoBehaviour
             }
             else
             {
-                if (transform.childCount > 2)
+                if (gameObject.name.Contains("Hippo") && transform.childCount == 1)
                 {
-                    transform.GetChild(1).parent = null;
+                    transform.GetChild(0).parent = null;
                 }
-                if (transform.childCount > 1)
+                else
                 {
-                    transform.GetChild(1).parent = null;
+                    if (transform.childCount > 2)
+                    {
+                        transform.GetChild(1).parent = null;
+                    }
+                    if (transform.childCount > 1)
+                    {
+                        transform.GetChild(1).parent = null;
+                    }
                 }
                 Destroy(gameObject);
             }
@@ -160,13 +164,20 @@ public class LinearMover_FG : MonoBehaviour
             }
             else
             {
-                if (transform.childCount > 2)
+                if (gameObject.name.Contains("Hippo") && transform.childCount == 1)
                 {
-                    transform.GetChild(1).parent = null;
+                    transform.GetChild(0).parent = null;
                 }
-                if (transform.childCount > 1)
+                else
                 {
-                    transform.GetChild(1).parent = null;
+                    if (transform.childCount > 2)
+                    {
+                        transform.GetChild(1).parent = null;
+                    }
+                    if (transform.childCount > 1)
+                    {
+                        transform.GetChild(1).parent = null;
+                    }
                 }
                 Destroy(gameObject);
             }
@@ -189,6 +200,10 @@ public class LinearMover_FG : MonoBehaviour
         }
         if (time <= 0)
         {
+            if (transform.childCount > 2)
+            {
+                transform.GetChild(1).parent = null;
+            }
             if (transform.childCount > 1)
             {
                 transform.GetChild(1).parent = null;
