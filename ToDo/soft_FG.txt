@@ -1,10 +1,5 @@
-BAJAR SPAWN DE HIPPOS
-PORTALES SPAWNEAN DEMASIADO CERCA
-PORTALES SPAWNEAN DEMASIADO
-hipopotamo
 sonidos
 interaccion con hardware
-
 IDEA:
 cuando estes sobre un hippo haya mas chance de gaviota
 -----------------------------------------------------------------------------
