@@ -106,7 +106,7 @@ public class PlayerController_FG : MonoBehaviour
             }
         }
 
-        if ((transform.position.z > 13f || transform.position.z < -13f) && !immortal)
+        if ((transform.position.z > 15f || transform.position.z < -15f) && !immortal)
         {
             //Perder vida
             Die();
