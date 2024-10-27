@@ -175,14 +175,6 @@ public class LinearMover_FG : MonoBehaviour
         }
         if (time <= 0)
         {
-            if (transform.childCount > 2)
-            {
-                transform.GetChild(1).parent = null;
-            }
-            if (transform.childCount > 1)
-            {
-                transform.GetChild(1).parent = null;
-            }
             Destroy(gameObject);
         }
     }
