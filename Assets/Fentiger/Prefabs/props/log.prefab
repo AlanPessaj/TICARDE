@@ -54,7 +54,7 @@ MonoBehaviour:
   spawner: {fileID: 0}
   hippoRotating: 0
   hippoResuming: 0
-  breakSound: {fileID: 0}
+  breakSound: {fileID: 8300000, guid: dddaebf97a1d2394d9f73c625f9c246e, type: 3}
 --- !u!65 &1801677936192510642
 BoxCollider:
   m_ObjectHideFlags: 0

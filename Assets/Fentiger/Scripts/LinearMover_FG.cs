@@ -231,6 +231,7 @@ public class LinearMover_FG : MonoBehaviour
     {
         if (gameObject.name.Contains("Hippo") && (collision.gameObject.name.Contains("Log(Clone)") || collision.gameObject.name.Contains("LillyPad")))
         {
+            generator.GetComponent<SoundManager_FG>().PlaySound(collision.gameObject.GetComponent<LinearMover_FG>().breakSound);
             Destroy(collision.gameObject);
         }
     }
