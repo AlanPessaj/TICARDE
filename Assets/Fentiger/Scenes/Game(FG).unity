@@ -125,6 +125,8 @@ GameObject:
   - component: {fileID: 287369563}
   - component: {fileID: 287369564}
   - component: {fileID: 287369565}
+  - component: {fileID: 287369566}
+  - component: {fileID: 287369567}
   m_Layer: 0
   m_Name: GAMEMANAGER
   m_TagString: Untagged
@@ -246,15 +248,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 96d56908c08a7bf40b51165d0e67fa75, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 48f0fba097b0d534da4be2c65cb90e5c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -332,6 +334,44 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &287369566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287369560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9134c545588343b2d49df2f5125db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generator: {fileID: 0}
+  mainTheme: []
+--- !u!114 &287369567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287369560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9134c545588343b2d49df2f5125db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generator: {fileID: 287369561}
+  mainTheme:
+  - {fileID: 8300000, guid: 48f0fba097b0d534da4be2c65cb90e5c, type: 3}
+  - {fileID: 8300000, guid: 446ee2ae35642124490929d8b44586ba, type: 3}
+  - {fileID: 8300000, guid: 419afa39b7acf5e4d82c7dfa860ebff6, type: 3}
+  - {fileID: 8300000, guid: bdcf55a7104c35848be958fc7cbe1e3f, type: 3}
+  - {fileID: 8300000, guid: b8a2b5f588b25ce4980084e5f9fdfa42, type: 3}
+  - {fileID: 8300000, guid: 7bb9441d4af2ad44fa789c314069e244, type: 3}
+  - {fileID: 8300000, guid: d1f7f024f0b5b844897dea8ac1e9b0c7, type: 3}
+  - {fileID: 8300000, guid: 841228d8bc8aaf74dba9da3d82fa0565, type: 3}
+  - {fileID: 8300000, guid: 68b8e08c640ec9248af84bd237cbac64, type: 3}
+  - {fileID: 8300000, guid: 5368bd026aba0c4459d5c7148ff33c72, type: 3}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
