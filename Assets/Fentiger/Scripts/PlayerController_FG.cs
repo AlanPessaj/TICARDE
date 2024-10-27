@@ -15,6 +15,7 @@ public class PlayerController_FG : MonoBehaviour
     bool facingTreeUp;
     bool facingTreeDown;
     bool onFrog;
+    bool onHippo;
     bool facingPortal;
     FrogController_FG rana;
     public Vector3 raycastPos;
@@ -143,11 +144,11 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveLeft()
     {
-        if (!onLog && !onFrog)
+        if (!onLog && !onFrog && !onHippo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
         }
-        else if (onLog)
+        else if (onLog || onHippo)
         {
             if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
             {
@@ -182,11 +183,11 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveRight()
     {
-        if (!onLog && !onFrog)
+        if (!onLog && !onFrog && !onHippo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
         }
-        else if (onLog)
+        else if (onLog || onHippo)
         {
             if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
             {
@@ -265,21 +266,22 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        //Debug.DrawRay(transform.position + Vector3.up * 2, Vector3.down, Color.red, 0.5f, false);
-        Physics.Raycast(transform.position + Vector3.up * 2, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers - LayerMask.GetMask("Tree", "Player", "Lion"));
+        Debug.DrawRay(transform.position + Vector3.up * 2f, Vector3.down * 10f, Color.red, 1f, false);
+        Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers - LayerMask.GetMask("Tree", "Player", "Lion"));
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
             {
-                if (hit.collider.gameObject.name == "LillyPad(Clone)")
+                if (hit.collider.gameObject.name == "LillyPad(Clone)" && !onHippo)
                 {
+                    Debug.Log("lilly");
                     if (hit.transform.childCount == 1)
                     {
                         transform.parent = hit.transform;
                         transform.localPosition = new Vector3(0, 1, 0);
                     }
                 }
-                else if (hit.collider.gameObject.name == "Frog(Clone)")
+                else if (hit.collider.gameObject.name == "Frog(Clone)" && !onHippo)
                 {
                     if (!hit.transform.gameObject.GetComponent<FrogController_FG>().isJumping && hit.transform.childCount == 1)
                     {
@@ -289,17 +291,19 @@ public class PlayerController_FG : MonoBehaviour
                         onFrog = true;
                     }
                 }
-                else if (hit.collider.gameObject.name == "Hippo(Clone)")
+                else if (hit.collider.gameObject.name == "Hippo(Clone)" && !onHippo)
                 {
-                    Debug.Log("Hippo");
+                    Debug.Log("hippo");
                     if (hit.transform.childCount == 0)
                     {
                         transform.parent = hit.transform;
                         transform.localPosition = new Vector3(1.5f, 0, 0.5f);
+                        onHippo = true;
                     }
                 }
-                else
+                else if(!onHippo)
                 {
+                    Debug.Log("log");
                     transform.parent = hit.transform;
                     onLog = true;
                     transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
@@ -309,7 +313,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.parent = null;
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), -2, Mathf.RoundToInt(transform.position.z));
-
+                onHippo = false;
                 onLog = false;
             }
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
@@ -324,7 +328,7 @@ public class PlayerController_FG : MonoBehaviour
         //Debug.DrawRay(raycastPos, -Vector3.forward * 1.3f, Color.blue, 1, false); // Izquierda
         //Debug.DrawRay(raycastPos, Vector3.right * 1.3f, Color.green, 1, false);   // Abajo
         //Debug.DrawRay(raycastPos, -Vector3.right * 1.3f, Color.yellow, 1, false);  // Arriba
-        Debug.DrawRay(transform.position, Vector3.right * 1f, Color.red);
+        //Debug.DrawRay(transform.position, Vector3.right * 1f, Color.red);
         facingTreeRight = Physics.Raycast(raycastPos, Vector3.forward, 1.3f, LayerMask.GetMask("Tree"));
         facingTreeLeft = Physics.Raycast(raycastPos, -Vector3.forward, 1.3f, LayerMask.GetMask("Tree"));
         facingTreeDown = Physics.Raycast(raycastPos, Vector3.right, 1.3f, LayerMask.GetMask("Tree"));
