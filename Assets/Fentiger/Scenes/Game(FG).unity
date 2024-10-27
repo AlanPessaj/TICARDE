@@ -188,7 +188,7 @@ MonoBehaviour:
   treeSeparator: 0
   treeSpawn: 0
   baker: {fileID: 287369563}
-  startingLevel: 0
+  startingLevel: 9
   section: []
   isTherePlayer1: 0
   isTherePlayer2: 0

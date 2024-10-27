@@ -164,12 +164,7 @@ public class LinearMover_FG : MonoBehaviour
             }
         }
 
-        if (gameObject.name == "Hippo(Clone)")
-        {
-
-        }
-
-        if (gameObject.name == ("Log(Clone)"))
+        if (gameObject.name == "Log(Clone)" || gameObject.name == "Hippo(Clone)")
         {
             if (logChildCount != transform.childCount - 1)
             {
