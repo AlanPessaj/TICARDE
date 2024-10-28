@@ -24,6 +24,7 @@ public class PlayerController_FG : MonoBehaviour
     Material material;
     GameObject portal;
     GameObject hippo;
+    GameObject log;
     // Start is called before the first frame update
     void Start()
     {
@@ -188,7 +189,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
-            transform.parent.GetComponent<AudioSource>().PlayOneShot(transform.parent.GetComponent<AudioSource>().clip);
+            log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
         }
         else if (onHippo)
         {
@@ -243,7 +244,7 @@ public class PlayerController_FG : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
 
-            transform.parent.GetComponent<AudioSource>().PlayOneShot(transform.parent.GetComponent<AudioSource>().clip);
+            log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
         }
         else if (onHippo)
         {
@@ -353,6 +354,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     transform.parent = hit.transform;
                     onLog = true;
+                    log = hit.transform.gameObject;
                     transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
                 }
             }
