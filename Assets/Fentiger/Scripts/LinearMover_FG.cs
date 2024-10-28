@@ -242,7 +242,6 @@ public class LinearMover_FG : MonoBehaviour
     {
         if (gameObject.name.Contains("Hippo") && (collision.gameObject.name.Contains("Log(Clone)") || collision.gameObject.name.Contains("LillyPad")))
         {
-            Debug.Log("Colision");
             GetComponents<AudioSource>()[1].PlayOneShot(GetComponents<AudioSource>()[1].clip);
             Destroy(collision.gameObject);
         }
