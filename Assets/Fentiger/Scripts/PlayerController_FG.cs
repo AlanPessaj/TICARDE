@@ -371,6 +371,10 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
                 }
+                else if (hit.collider.gameObject.name == "Car(Clone)")
+                {
+                    generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
+                }
                 return;
             }
         }
