@@ -55,12 +55,10 @@ public class LinearMover_FG : MonoBehaviour
     {
         if (hippoCollision)
         {
-            Debug.Log("x2");
             speed = generator.Levels[generator.Level].speed * 2;
         }
         else
         {
-            Debug.Log("x1");
             speed = generator.Levels[generator.Level].speed;
         }
 

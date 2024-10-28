@@ -34,6 +34,10 @@ public class PlayerController_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
+        }
         if (isPlayer1)
         {
             if (Input.GetKeyDown(KeyCode.W))
@@ -363,6 +367,10 @@ public class PlayerController_FG : MonoBehaviour
             {
                 //perder vida
                 Die();
+                if (hit.transform.parent.name.Contains("Logs") || hit.transform.parent.name == "LilyPads(Clone)")
+                {
+                    generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
+                }
                 return;
             }
         }

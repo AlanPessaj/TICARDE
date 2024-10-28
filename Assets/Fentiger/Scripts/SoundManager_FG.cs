@@ -10,6 +10,7 @@ public class SoundManager_FG : MonoBehaviour
     public AudioClip[] mainTheme;
     public AudioClip dropDown;
     public AudioClip carRunOver;
+    public AudioClip waterFalling;
     int level = 0;
     void Update()
     {
