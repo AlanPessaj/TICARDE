@@ -1,7 +1,3 @@
-ARREGLAR GANCHO - GOLPE MARTILLO
-stun
- |
-animacion de golpe en cada seccion 
 sonido
 hardware
 
@@ -10,4 +6,3 @@ hardware
 ----------  +- ---------
 
 animacion de ganar
-patada deslizante
