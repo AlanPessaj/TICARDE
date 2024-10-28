@@ -43,21 +43,34 @@ public class FollowPlayer_FG : MonoBehaviour
                 if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position) && players[0].transform.parent == null)
                 {
                     agent.destination = players[0].transform.position;
+                    GetComponent<Animator>().SetBool("running", true);
+                    GetComponent<Animator>().SetBool("walking", false);
                 }
                 else if(players[1].transform.parent == null)
                 {
+                    GetComponent<Animator>().SetBool("running", true);
+                    GetComponent<Animator>().SetBool("walking", false);
                     agent.destination = players[1].transform.position;
                 }
                 else if (leftSpawn)
                 {
+                    GetComponent<Animator>().SetBool("running", false);
+                    GetComponent<Animator>().SetBool("walking", !agent.isStopped);
                     GetComponent<NavMeshAgent>().speed = speed / 2;
                     agent.destination = transform.parent.position - new Vector3(0, 0, 11);
                 }
                 else
                 {
+                    GetComponent<Animator>().SetBool("running", false);
+                    GetComponent<Animator>().SetBool("walking", !agent.isStopped);
                     GetComponent<NavMeshAgent>().speed = speed / 2;
                     agent.destination = transform.parent.position - new Vector3(0, 0, -11);
                 }
+            }
+            else
+            {
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", !agent.isStopped);
             }
         }
 
@@ -67,16 +80,22 @@ public class FollowPlayer_FG : MonoBehaviour
             {
                 GetComponent<NavMeshAgent>().speed = speed;
                 agent.destination = players[0].transform.position;
+                GetComponent<Animator>().SetBool("running", true);
+                GetComponent<Animator>().SetBool("walking", false);
             }
             else if (leftSpawn)
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", !agent.isStopped);
             }
             else
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", !agent.isStopped);
             }
         }
         else if(!generator.multiplayer && !generator.player1Alive)
@@ -85,16 +104,22 @@ public class FollowPlayer_FG : MonoBehaviour
             {
                 GetComponent<NavMeshAgent>().speed = speed;
                 agent.destination = players[1].transform.position;
+                GetComponent<Animator>().SetBool("running", true);
+                GetComponent<Animator>().SetBool("walking", false);
             }
             else if (leftSpawn)
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", !agent.isStopped);
             }
             else
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", !agent.isStopped);
             }
         }
     }
