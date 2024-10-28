@@ -120,6 +120,7 @@ public class FrogController_FG : MonoBehaviour
 
     void JumpToPosition(Vector3 targetPosition)
     {
+        GetComponent<AudioSource>().Play();
         jumpProgress += Time.deltaTime * jumpSpeed;
         Vector3 horizontalPosition = Vector3.Lerp(startPos, targetPosition, jumpProgress);
         float arc = Mathf.Sin(Mathf.PI * jumpProgress) * jumpHeight;
