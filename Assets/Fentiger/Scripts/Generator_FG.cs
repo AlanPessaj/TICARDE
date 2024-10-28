@@ -46,13 +46,13 @@ public class Generator_FG : MonoBehaviour
             GenerateZones();
         }
         initialSpawn = false;
-        StartCoroutine(TimeSprint(1, 50));
+        StartCoroutine(TimeSprint(30, 50));
     }
     
     private IEnumerator TimeSprint(float seconds, float rate)
     {
         Time.timeScale = rate;
-        yield return new WaitForSecondsRealtime(seconds);
+        yield return new WaitForSeconds(seconds);
         Time.timeScale = 1;
     }
 
@@ -83,7 +83,7 @@ public class Generator_FG : MonoBehaviour
             //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
 
             
-            //Ovni
+            //
             /*if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
