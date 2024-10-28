@@ -210,7 +210,7 @@ public class HitManager_FF : MonoBehaviour
                 {
                     //animacion de me pego una patada + stun
                 }
-                if (damageProperties.type == DamageType.UpperCut || damageProperties.type == DamageType.SlideKick)
+                if (damageProperties.type == DamageType.UpperCut)
                 {
                     GetComponent<Rigidbody>().AddForce(GetComponent<PlayerController_FF>().movementSpeed * -GetComponent<PlayerController_FF>().pMovDirection, GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
                     //animacion de me pego un gancho + stun
@@ -228,7 +228,7 @@ public class HitManager_FF : MonoBehaviour
             {
                 detectedAbility = true;
             }
-            if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut && damageProperties.type != DamageType.Smash)
+            if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut && damageProperties.type != DamageType.Smash && damageProperties.type != DamageType.SlideKick)
                 CalculateKnockback();
             PlayHitAnimation();
             damageProperties.disableAction = ResetDetection;

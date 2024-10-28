@@ -31,6 +31,7 @@ public class HitScript_FF : StateMachineBehaviour
             {
                 animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.SlideKick;
                 facingLeft = animator.GetComponent<PlayerController_FF>().facingLeft;
+                Physics.IgnoreCollision(animator.GetComponent<Collider>(), animator.GetComponent<PlayerController_FF>().otherPlayer.GetComponent<Collider>(), true);
             }
         }
     }
@@ -92,6 +93,7 @@ public class HitScript_FF : StateMachineBehaviour
             if (stateInfo.IsName("slideKick"))
             {
                 animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.Kick;
+                Physics.IgnoreCollision(animator.GetComponent<Collider>(), animator.GetComponent<PlayerController_FF>().otherPlayer.GetComponent<Collider>(), false);
             }
         }
         if (animator.GetBool("cutToSmash"))
