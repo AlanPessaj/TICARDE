@@ -11,6 +11,7 @@ public class FollowPlayer_FG : MonoBehaviour
     public Generator_FG generator;
     public float speed = 3;
     public GameObject ghost;
+    public bool debugTest;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,10 @@ public class FollowPlayer_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (agent.remainingDistance <= agent.stoppingDistance && debugTest)
+        {
+            Debug.Log("LLEGUé");
+        }
         if (generator.multiplayer)
         {
             if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
