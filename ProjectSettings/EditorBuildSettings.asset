@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/FentisTennis/Scenes/Game(FT).unity
     guid: a6f344fe1fe23d64d8321c4d4a2c0730
   - enabled: 1
-    path: Assets/Fentiger/Scripts/Scenes/Game(FG).unity
+    path: Assets/Fentiger/Scenes/Game(FG).unity
     guid: 24999b1ebf6b48742b43d8e6b8ffab22
   - enabled: 1
     path: Assets/FentFighter/Scenes/Game(FF).unity
@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/FentFighter/Scenes/END(FF).unity
     guid: e35d00c0f37d4da40b9eca8e1d63accf
   - enabled: 1
-    path: Assets/Fentiger/Scripts/Scenes/End(FG).unity
+    path: Assets/Fentiger/Scenes/End(FG).unity
     guid: b90dd898db9753542a4f1cb9e32f1fed
   m_configObjects: {}
