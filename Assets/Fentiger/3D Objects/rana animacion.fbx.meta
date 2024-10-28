@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2ae8f7678b3e21a40ac767efeb4004ac
+guid: feba7718b0f2510448b68928f547a3ff
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -78,55 +78,55 @@ ModelImporter:
     100144: hand.L
     100146: hand.R
     100148: jaw
-    100150: pelvis.C
-    100152: pelvis.C_end
-    100154: pelvis.C_end_end
-    100156: pelvis.L
-    100158: pelvis.R
-    100160: r_index.001.L
-    100162: r_index.001.R
-    100164: r_index.002.L
-    100166: r_index.002.L_end
-    100168: r_index.002.L_end_end
-    100170: r_index.002.R
-    100172: r_index.002.R_end
-    100174: r_index.002.R_end_end
-    100176: r_middle.001.L
-    100178: r_middle.001.R
-    100180: r_middle.002.L
-    100182: r_middle.002.L_end
-    100184: r_middle.002.L_end_end
-    100186: r_middle.002.R
-    100188: r_middle.002.R_end
-    100190: r_middle.002.R_end_end
-    100192: r_palm.001.L
-    100194: r_palm.001.R
-    100196: r_palm.002.L
-    100198: r_palm.002.R
-    100200: r_palm.003.L
-    100202: r_palm.003.R
-    100204: r_palm.004.L
-    100206: r_palm.004.R
-    100208: r_pinky.001.L
-    100210: r_pinky.001.R
-    100212: r_pinky.002.L
-    100214: r_pinky.002.L_end
-    100216: r_pinky.002.L_end_end
-    100218: r_pinky.002.R
-    100220: r_pinky.002.R_end
-    100222: r_pinky.002.R_end_end
-    100224: r_ring.001.L
-    100226: r_ring.001.R
-    100228: r_ring.002.L
-    100230: r_ring.002.L_end
-    100232: r_ring.002.L_end_end
-    100234: r_ring.002.R
-    100236: r_ring.002.R_end
-    100238: r_ring.002.R_end_end
-    100240: r_toe.L
-    100242: r_toe.R
-    100244: //RootNode
-    100246: rana
+    100150: Object_4
+    100152: pelvis.C
+    100154: pelvis.C_end
+    100156: pelvis.C_end_end
+    100158: pelvis.L
+    100160: pelvis.R
+    100162: r_index.001.L
+    100164: r_index.001.R
+    100166: r_index.002.L
+    100168: r_index.002.L_end
+    100170: r_index.002.L_end_end
+    100172: r_index.002.R
+    100174: r_index.002.R_end
+    100176: r_index.002.R_end_end
+    100178: r_middle.001.L
+    100180: r_middle.001.R
+    100182: r_middle.002.L
+    100184: r_middle.002.L_end
+    100186: r_middle.002.L_end_end
+    100188: r_middle.002.R
+    100190: r_middle.002.R_end
+    100192: r_middle.002.R_end_end
+    100194: r_palm.001.L
+    100196: r_palm.001.R
+    100198: r_palm.002.L
+    100200: r_palm.002.R
+    100202: r_palm.003.L
+    100204: r_palm.003.R
+    100206: r_palm.004.L
+    100208: r_palm.004.R
+    100210: r_pinky.001.L
+    100212: r_pinky.001.R
+    100214: r_pinky.002.L
+    100216: r_pinky.002.L_end
+    100218: r_pinky.002.L_end_end
+    100220: r_pinky.002.R
+    100222: r_pinky.002.R_end
+    100224: r_pinky.002.R_end_end
+    100226: r_ring.001.L
+    100228: r_ring.001.R
+    100230: r_ring.002.L
+    100232: r_ring.002.L_end
+    100234: r_ring.002.L_end_end
+    100236: r_ring.002.R
+    100238: r_ring.002.R_end
+    100240: r_ring.002.R_end_end
+    100242: r_toe.L
+    100244: r_toe.R
+    100246: //RootNode
     100248: shin.L
     100250: shin.R
     100252: shoulder.L
@@ -220,55 +220,55 @@ ModelImporter:
     400144: hand.L
     400146: hand.R
     400148: jaw
-    400150: pelvis.C
-    400152: pelvis.C_end
-    400154: pelvis.C_end_end
-    400156: pelvis.L
-    400158: pelvis.R
-    400160: r_index.001.L
-    400162: r_index.001.R
-    400164: r_index.002.L
-    400166: r_index.002.L_end
-    400168: r_index.002.L_end_end
-    400170: r_index.002.R
-    400172: r_index.002.R_end
-    400174: r_index.002.R_end_end
-    400176: r_middle.001.L
-    400178: r_middle.001.R
-    400180: r_middle.002.L
-    400182: r_middle.002.L_end
-    400184: r_middle.002.L_end_end
-    400186: r_middle.002.R
-    400188: r_middle.002.R_end
-    400190: r_middle.002.R_end_end
-    400192: r_palm.001.L
-    400194: r_palm.001.R
-    400196: r_palm.002.L
-    400198: r_palm.002.R
-    400200: r_palm.003.L
-    400202: r_palm.003.R
-    400204: r_palm.004.L
-    400206: r_palm.004.R
-    400208: r_pinky.001.L
-    400210: r_pinky.001.R
-    400212: r_pinky.002.L
-    400214: r_pinky.002.L_end
-    400216: r_pinky.002.L_end_end
-    400218: r_pinky.002.R
-    400220: r_pinky.002.R_end
-    400222: r_pinky.002.R_end_end
-    400224: r_ring.001.L
-    400226: r_ring.001.R
-    400228: r_ring.002.L
-    400230: r_ring.002.L_end
-    400232: r_ring.002.L_end_end
-    400234: r_ring.002.R
-    400236: r_ring.002.R_end
-    400238: r_ring.002.R_end_end
-    400240: r_toe.L
-    400242: r_toe.R
-    400244: //RootNode
-    400246: rana
+    400150: Object_4
+    400152: pelvis.C
+    400154: pelvis.C_end
+    400156: pelvis.C_end_end
+    400158: pelvis.L
+    400160: pelvis.R
+    400162: r_index.001.L
+    400164: r_index.001.R
+    400166: r_index.002.L
+    400168: r_index.002.L_end
+    400170: r_index.002.L_end_end
+    400172: r_index.002.R
+    400174: r_index.002.R_end
+    400176: r_index.002.R_end_end
+    400178: r_middle.001.L
+    400180: r_middle.001.R
+    400182: r_middle.002.L
+    400184: r_middle.002.L_end
+    400186: r_middle.002.L_end_end
+    400188: r_middle.002.R
+    400190: r_middle.002.R_end
+    400192: r_middle.002.R_end_end
+    400194: r_palm.001.L
+    400196: r_palm.001.R
+    400198: r_palm.002.L
+    400200: r_palm.002.R
+    400202: r_palm.003.L
+    400204: r_palm.003.R
+    400206: r_palm.004.L
+    400208: r_palm.004.R
+    400210: r_pinky.001.L
+    400212: r_pinky.001.R
+    400214: r_pinky.002.L
+    400216: r_pinky.002.L_end
+    400218: r_pinky.002.L_end_end
+    400220: r_pinky.002.R
+    400222: r_pinky.002.R_end
+    400224: r_pinky.002.R_end_end
+    400226: r_ring.001.L
+    400228: r_ring.001.R
+    400230: r_ring.002.L
+    400232: r_ring.002.L_end
+    400234: r_ring.002.L_end_end
+    400236: r_ring.002.R
+    400238: r_ring.002.R_end
+    400240: r_ring.002.R_end_end
+    400242: r_toe.L
+    400244: r_toe.R
+    400246: //RootNode
     400248: shin.L
     400250: shin.R
     400252: shoulder.L
@@ -287,11 +287,11 @@ ModelImporter:
     400278: thigh.R
     400280: upper_arm.L
     400282: upper_arm.R
-    2100000: material
-    4300000: rana
+    2100000: material.003
+    4300000: Object_4
     7400000: Frog Armature|Frog JumpPlace
     9500000: //RootNode
-    13700000: rana
+    13700000: Object_4
   externalObjects: {}
   materials:
     importMaterials: 1
