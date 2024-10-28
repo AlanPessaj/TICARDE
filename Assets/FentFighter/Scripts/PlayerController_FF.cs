@@ -301,7 +301,7 @@ public class PlayerController_FF : MonoBehaviour
                     }
                     DetectCombo("A", "B", player, Ulti);
                     DetectCombo("A", "C", player, UpperCut);
-                    if (InState("idle"))
+                    if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch"))
                     {
                         animator.SetTrigger("punch");
                     }

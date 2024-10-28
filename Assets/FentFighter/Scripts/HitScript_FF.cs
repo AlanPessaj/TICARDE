@@ -10,7 +10,7 @@ public class HitScript_FF : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut") || stateInfo.IsName("smash"))
+        if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut") || stateInfo.IsName("smash") || stateInfo.IsName("crouchedPunch"))
         {
             animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
             if (stateInfo.IsName("upperCut"))
@@ -22,6 +22,10 @@ public class HitScript_FF : StateMachineBehaviour
             {
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage *= 1.5f;
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Smash;
+            }
+            if (stateInfo.IsName("crouchedPunch"))
+            {
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Kick;
             }
         }
         else
@@ -66,7 +70,7 @@ public class HitScript_FF : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut") || stateInfo.IsName("smash"))
+        if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut") || stateInfo.IsName("smash") || stateInfo.IsName("crouchedPunch"))
         {
             if (animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction != null)
             {
@@ -80,6 +84,10 @@ public class HitScript_FF : StateMachineBehaviour
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Punch;
                 if (stateInfo.IsName("upperCut"))
                     jumped = false;
+            }
+            if (stateInfo.IsName("crouchedPunch"))
+            {
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Punch;
             }
         }
         else
