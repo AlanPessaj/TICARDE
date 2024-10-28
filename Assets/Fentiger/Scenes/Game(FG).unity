@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.56452405, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -458,6 +458,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 68b8e08c640ec9248af84bd237cbac64, type: 3}
   - {fileID: 8300000, guid: 5368bd026aba0c4459d5c7148ff33c72, type: 3}
   dropDown: {fileID: 8300000, guid: b67fe4e073179024ba19a42244d92380, type: 3}
+  carRunOver: {fileID: 8300000, guid: 2be0b8e441f984946b0b1c3ff9b9d8e4, type: 3}
 --- !u!82 &287369568
 AudioSource:
   m_ObjectHideFlags: 0

@@ -389,6 +389,10 @@ public class PlayerController_FG : MonoBehaviour
         {
             //perder vida
             Die();
+            if (other.collider.gameObject.name == "Car(Clone)")
+            {
+                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
+            }
         }
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Seagull") && !immortal)
         {
