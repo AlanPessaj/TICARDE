@@ -431,7 +431,11 @@ public class PlayerController_FF : MonoBehaviour
     void Smash()
     {
         if (airborne)
+        {
+            if (InState("upperCut"))
+                animator.SetBool("cutToSmash", true);
             animator.SetTrigger("smash");
+        }
     }
 
     void UpperCut()

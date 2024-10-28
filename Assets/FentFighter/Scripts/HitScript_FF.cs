@@ -94,6 +94,13 @@ public class HitScript_FF : StateMachineBehaviour
                 animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.Kick;
             }
         }
+        if (animator.GetBool("cutToSmash"))
+        {
+            animator.SetBool("cutToSmash", false);
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage *= 1.5f;
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Smash;
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -14,6 +14,7 @@ public class HitManager_FF : MonoBehaviour
     bool detectedHit;
     bool detectedBlock;
     bool detectedAbility;
+    int hTrigger;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +47,7 @@ public class HitManager_FF : MonoBehaviour
                             else
                             {
                                 //Debug.Log("pego en cabeza, pecho y piernas");
+                                CheckTriggerDistance(hColliders);
                                 TakeDamage();
                             }
                             collided = true;
@@ -73,6 +75,7 @@ public class HitManager_FF : MonoBehaviour
                             else
                             {
                                 //Debug.Log("pego en cabeza y pecho");
+                                CheckTriggerDistance(new Collider[] { hColliders[0], hColliders[1] });
                                 TakeDamage();
                             }
                             collided = true;
@@ -88,6 +91,7 @@ public class HitManager_FF : MonoBehaviour
                         else
                         {
                             //Debug.Log("pego en cabeza y piernas");
+                            CheckTriggerDistance(new Collider[] { hColliders[0], hColliders[2] });
                             TakeDamage();
                         }
                         collided = true;
@@ -103,6 +107,7 @@ public class HitManager_FF : MonoBehaviour
                     else
                     {
                         //Debug.Log("pego en pecho y piernas");
+                        CheckTriggerDistance(new Collider[] { hColliders[1], hColliders[2] });
                         TakeDamage();
                     }
                     collided = true;
@@ -135,6 +140,7 @@ public class HitManager_FF : MonoBehaviour
                     else
                     {
                         //Debug.Log("pego en cabeza");
+                        hTrigger = 0;
                         TakeDamage();
                     }
                     break;
@@ -159,11 +165,13 @@ public class HitManager_FF : MonoBehaviour
                     else
                     {
                         //Debug.Log("pego en pecho");
+                        hTrigger = 1;
                         TakeDamage();
                     }
                     break;
                 case 2:
                     //Debug.Log("pego en piernas");
+                    hTrigger = 2;
                     TakeDamage();
                     break;
             }
@@ -202,7 +210,7 @@ public class HitManager_FF : MonoBehaviour
                 {
                     //animacion de me pego una patada + stun
                 }
-                if (damageProperties.type == DamageType.UpperCut)
+                if (damageProperties.type == DamageType.UpperCut || damageProperties.type == DamageType.SlideKick)
                 {
                     GetComponent<Rigidbody>().AddForce(GetComponent<PlayerController_FF>().movementSpeed * -GetComponent<PlayerController_FF>().pMovDirection, GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
                     //animacion de me pego un gancho + stun
@@ -220,10 +228,9 @@ public class HitManager_FF : MonoBehaviour
             {
                 detectedAbility = true;
             }
-            if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut)
-            {
+            if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut && damageProperties.type != DamageType.Smash)
                 CalculateKnockback();
-            }
+            PlayHitAnimation();
             damageProperties.disableAction = ResetDetection;
         }
     }
@@ -248,5 +255,51 @@ public class HitManager_FF : MonoBehaviour
             knockback *= 0.5f;
         }
         GetComponent<Rigidbody>().AddForce(Mathf.Clamp(knockback, 0, Mathf.Infinity) * knockbackForce * -transform.forward);
+    }
+
+    void PlayHitAnimation()
+    {
+        switch (damageProperties.type)  
+        {
+            case DamageType.UpperCut:
+                animator.SetTrigger("upperCutHit");
+                break;
+            case DamageType.Smash:
+                animator.SetTrigger("smashHit");
+                break;
+            case DamageType.SlideKick:
+                animator.SetTrigger("slideKickHit");
+                break;
+            default:
+                switch (hTrigger)
+                {
+                    case 0:
+                        animator.SetTrigger("headHit");
+                        break;
+                    case 1:
+                        animator.SetTrigger("chestHit");
+                        break;
+                    case 2:
+                        animator.SetTrigger("legsHit");
+                        break;
+                    default:
+                        Debug.LogError("invalid hTrigger value");
+                        break;
+                }
+                break;
+        }
+    }
+
+    void CheckTriggerDistance(Collider[] triggers)
+    {
+        float distance = Mathf.Infinity;
+        foreach (Collider item in triggers)
+        {
+            if (distance >= Vector3.Distance(item.transform.position, damageProperties.transform.position))
+            {
+                distance = Vector3.Distance(item.transform.position, damageProperties.transform.position);
+                hTrigger = item.GetComponent<HitDetector_FF>().colNumber;
+            }
+        }
     }
 }
