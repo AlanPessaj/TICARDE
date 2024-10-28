@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48415e43eca497c4c8ef05281d298a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpSound: {fileID: 8300000, guid: 1e2c802604b4e384cb2142c66fd10dc6, type: 3}
 --- !u!114 &114369932347225728
 MonoBehaviour:
   m_ObjectHideFlags: 0
