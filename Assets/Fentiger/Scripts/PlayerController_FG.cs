@@ -87,7 +87,11 @@ public class PlayerController_FG : MonoBehaviour
                 if (facingPortal)
                 {
                     transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
-                    otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    if (generator.multiplayer)
+                    {
+                        otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    }
+                    portal.GetComponent<AudioSource>().Play();
                 }
             }
             if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
