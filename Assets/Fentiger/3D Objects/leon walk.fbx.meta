@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: a771bbeef89fbf04d8a71873729eac41
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: BackCollar.L
+    100002: BackCollar.L.001
+    100004: BackFoot.L
+    100006: BackFoot.L.001
+    100008: BackFoot.L.001_end
+    100010: BackFoot.L.001_end_end
+    100012: BackFoot.L_end
+    100014: BackFoot.L_end_end
+    100016: BackLeg1.L
+    100018: BackLeg1.L.001
+    100020: BackLeg2.L
+    100022: BackLeg2.L.001
+    100024: BackLeg3.L
+    100026: BackLeg3.L.001
+    100028: BackLeg_IK.L
+    100030: BackLeg_IK.L.001
+    100032: BackLeg_IK.L.001_end
+    100034: BackLeg_IK.L.001_end_end
+    100036: BackLeg_IK.L_end
+    100038: BackLeg_IK.L_end_end
+    100040: FrontCollar.L
+    100042: FrontCollar.L.001
+    100044: FrontFoot.L
+    100046: FrontFoot.L.001
+    100048: FrontFoot.L.001_end
+    100050: FrontFoot.L.001_end_end
+    100052: FrontFoot.L_end
+    100054: FrontFoot.L_end_end
+    100056: FrontLeg1.L
+    100058: FrontLeg1.L.001
+    100060: FrontLeg2.L
+    100062: FrontLeg2.L.001
+    100064: FrontLeg3.L
+    100066: FrontLeg3.L.001
+    100068: FrontLeg_IK.L
+    100070: FrontLeg_IK.L.001
+    100072: FrontLeg_IK.L.001_end
+    100074: FrontLeg_IK.L.001_end_end
+    100076: FrontLeg_IK.L_end
+    100078: FrontLeg_IK.L_end_end
+    100080: Head
+    100082: Head_end
+    100084: Head_end_end
+    100086: Hip
+    100088: //RootNode
+    100090: LowerBack
+    100092: LowerNeck
+    100094: MainControl
+    100096: Mouth
+    100098: Mouth_end
+    100100: Tail1.001
+    100102: Tail1.002
+    100104: Tail1.003
+    100106: Tail1.004
+    100108: Tail1.006
+    100110: Tail1.006_end
+    100112: Tail1.006_end_end
+    100114: TailControl
+    100116: TailControl_end
+    100118: TailControl_end_end
+    100120: Upperback
+    100122: UpperNeck
+    400000: BackCollar.L
+    400002: BackCollar.L.001
+    400004: BackFoot.L
+    400006: BackFoot.L.001
+    400008: BackFoot.L.001_end
+    400010: BackFoot.L.001_end_end
+    400012: BackFoot.L_end
+    400014: BackFoot.L_end_end
+    400016: BackLeg1.L
+    400018: BackLeg1.L.001
+    400020: BackLeg2.L
+    400022: BackLeg2.L.001
+    400024: BackLeg3.L
+    400026: BackLeg3.L.001
+    400028: BackLeg_IK.L
+    400030: BackLeg_IK.L.001
+    400032: BackLeg_IK.L.001_end
+    400034: BackLeg_IK.L.001_end_end
+    400036: BackLeg_IK.L_end
+    400038: BackLeg_IK.L_end_end
+    400040: FrontCollar.L
+    400042: FrontCollar.L.001
+    400044: FrontFoot.L
+    400046: FrontFoot.L.001
+    400048: FrontFoot.L.001_end
+    400050: FrontFoot.L.001_end_end
+    400052: FrontFoot.L_end
+    400054: FrontFoot.L_end_end
+    400056: FrontLeg1.L
+    400058: FrontLeg1.L.001
+    400060: FrontLeg2.L
+    400062: FrontLeg2.L.001
+    400064: FrontLeg3.L
+    400066: FrontLeg3.L.001
+    400068: FrontLeg_IK.L
+    400070: FrontLeg_IK.L.001
+    400072: FrontLeg_IK.L.001_end
+    400074: FrontLeg_IK.L.001_end_end
+    400076: FrontLeg_IK.L_end
+    400078: FrontLeg_IK.L_end_end
+    400080: Head
+    400082: Head_end
+    400084: Head_end_end
+    400086: Hip
+    400088: //RootNode
+    400090: LowerBack
+    400092: LowerNeck
+    400094: MainControl
+    400096: Mouth
+    400098: Mouth_end
+    400100: Tail1.001
+    400102: Tail1.002
+    400104: Tail1.003
+    400106: Tail1.004
+    400108: Tail1.006
+    400110: Tail1.006_end
+    400112: Tail1.006_end_end
+    400114: TailControl
+    400116: TailControl_end
+    400118: TailControl_end_end
+    400120: Upperback
+    400122: UpperNeck
+    7400000: Lion Armature|Lion Bite
+    7400002: Lion Armature|Lion Walk
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Lion Armature|Lion Walk
+      takeName: Lion Armature|Lion Walk
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2a325749e3ba238408c3816a49e55d41,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

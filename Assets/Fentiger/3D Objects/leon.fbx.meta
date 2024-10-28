@@ -1,0 +1,296 @@
+fileFormatVersion: 2
+guid: 2a325749e3ba238408c3816a49e55d41
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: BackCollar.L
+    100002: BackCollar.L.001
+    100004: BackFoot.L
+    100006: BackFoot.L.001
+    100008: BackFoot.L.001_end
+    100010: BackFoot.L.001_end_end
+    100012: BackFoot.L_end
+    100014: BackFoot.L_end_end
+    100016: BackLeg1.L
+    100018: BackLeg1.L.001
+    100020: BackLeg2.L
+    100022: BackLeg2.L.001
+    100024: BackLeg3.L
+    100026: BackLeg3.L.001
+    100028: BackLeg_IK.L
+    100030: BackLeg_IK.L.001
+    100032: BackLeg_IK.L.001_end
+    100034: BackLeg_IK.L.001_end_end
+    100036: BackLeg_IK.L_end
+    100038: BackLeg_IK.L_end_end
+    100040: BezierCurve
+    100042: FrontCollar.L
+    100044: FrontCollar.L.001
+    100046: FrontFoot.L
+    100048: FrontFoot.L.001
+    100050: FrontFoot.L.001_end
+    100052: FrontFoot.L.001_end_end
+    100054: FrontFoot.L_end
+    100056: FrontFoot.L_end_end
+    100058: FrontLeg1.L
+    100060: FrontLeg1.L.001
+    100062: FrontLeg2.L
+    100064: FrontLeg2.L.001
+    100066: FrontLeg3.L
+    100068: FrontLeg3.L.001
+    100070: FrontLeg_IK.L
+    100072: FrontLeg_IK.L.001
+    100074: FrontLeg_IK.L.001_end
+    100076: FrontLeg_IK.L.001_end_end
+    100078: FrontLeg_IK.L_end
+    100080: FrontLeg_IK.L_end_end
+    100082: Head
+    100084: Head_end
+    100086: Head_end_end
+    100088: Hip
+    100090: //RootNode
+    100092: Lion Armature
+    100094: LowerBack
+    100096: LowerNeck
+    100098: MainControl
+    100100: Mouth
+    100102: Mouth_end
+    100104: Plane.003
+    100106: Tail1.001
+    100108: Tail1.002
+    100110: Tail1.003
+    100112: Tail1.004
+    100114: Tail1.006
+    100116: Tail1.006_end
+    100118: Tail1.006_end_end
+    100120: TailControl
+    100122: TailControl_end
+    100124: TailControl_end_end
+    100126: Upperback
+    100128: UpperNeck
+    400000: BackCollar.L
+    400002: BackCollar.L.001
+    400004: BackFoot.L
+    400006: BackFoot.L.001
+    400008: BackFoot.L.001_end
+    400010: BackFoot.L.001_end_end
+    400012: BackFoot.L_end
+    400014: BackFoot.L_end_end
+    400016: BackLeg1.L
+    400018: BackLeg1.L.001
+    400020: BackLeg2.L
+    400022: BackLeg2.L.001
+    400024: BackLeg3.L
+    400026: BackLeg3.L.001
+    400028: BackLeg_IK.L
+    400030: BackLeg_IK.L.001
+    400032: BackLeg_IK.L.001_end
+    400034: BackLeg_IK.L.001_end_end
+    400036: BackLeg_IK.L_end
+    400038: BackLeg_IK.L_end_end
+    400040: BezierCurve
+    400042: FrontCollar.L
+    400044: FrontCollar.L.001
+    400046: FrontFoot.L
+    400048: FrontFoot.L.001
+    400050: FrontFoot.L.001_end
+    400052: FrontFoot.L.001_end_end
+    400054: FrontFoot.L_end
+    400056: FrontFoot.L_end_end
+    400058: FrontLeg1.L
+    400060: FrontLeg1.L.001
+    400062: FrontLeg2.L
+    400064: FrontLeg2.L.001
+    400066: FrontLeg3.L
+    400068: FrontLeg3.L.001
+    400070: FrontLeg_IK.L
+    400072: FrontLeg_IK.L.001
+    400074: FrontLeg_IK.L.001_end
+    400076: FrontLeg_IK.L.001_end_end
+    400078: FrontLeg_IK.L_end
+    400080: FrontLeg_IK.L_end_end
+    400082: Head
+    400084: Head_end
+    400086: Head_end_end
+    400088: Hip
+    400090: //RootNode
+    400092: Lion Armature
+    400094: LowerBack
+    400096: LowerNeck
+    400098: MainControl
+    400100: Mouth
+    400102: Mouth_end
+    400104: Plane.003
+    400106: Tail1.001
+    400108: Tail1.002
+    400110: Tail1.003
+    400112: Tail1.004
+    400114: Tail1.006
+    400116: Tail1.006_end
+    400118: Tail1.006_end_end
+    400120: TailControl
+    400122: TailControl_end
+    400124: TailControl_end_end
+    400126: Upperback
+    400128: UpperNeck
+    2100000: Lion_coat.001
+    2100002: Lion_Mane_3.001
+    2100004: Lion_belly.001
+    2100006: Lion_Mane_2.001
+    2100008: Lion_ears_2.001
+    2100010: Lion_Mane_1.001
+    2100012: Lion_nose.001
+    2100014: Lion_mouth.001
+    2100016: negro_
+    2100018: Lion_ears.001
+    2300000: BezierCurve
+    3300000: BezierCurve
+    4300000: BezierCurve
+    4300002: Plane.003
+    7400000: Lion Armature|Lion Bite
+    7400002: Lion Armature|Lion Idle
+    9500000: //RootNode
+    13700000: Plane.003
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Lion Armature|Lion Bite
+      takeName: Lion Armature|Lion Bite
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Lion Armature|Lion Idle
+      takeName: Lion Armature|Lion Idle
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
