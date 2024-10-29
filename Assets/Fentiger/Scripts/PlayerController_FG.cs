@@ -477,11 +477,16 @@ public class PlayerController_FG : MonoBehaviour
                 generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().step);
                 hasMoved = false;
             }
-            if ((hit.collider.gameObject.name == "Cars(Clone)" || hit.transform.parent.name == "Cars(Clone)") && hasMoved)
+            try
             {
-                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().roadStep);
-                hasMoved = false;
+                if ((hit.collider.gameObject.name == "Cars(Clone)" || hit.transform.parent.name == "Cars(Clone)") && hasMoved)
+                {
+                    generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().roadStep);
+                    hasMoved = false;
+                }
             }
+            catch { }
+
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
             {
                 //perder vida
