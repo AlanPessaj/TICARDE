@@ -80,16 +80,26 @@ public class OvniController_FG : MonoBehaviour
 
     IEnumerator Laser()
     {
-        yield return new WaitForSeconds(4f);
+        bool style = Random.Range(0, 2) == 1;
+        if (style)
+        {
+            yield return new WaitForSeconds(4f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(3f);
+        }
         laser = transform.GetChild(1).gameObject;
         laser.SetActive(true);
-        yield return new WaitForSeconds(4f);
+        GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(Random.Range(2f,4f));
         laser.GetComponent<Renderer>().material = yellow;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(Random.Range(2f, 4f));
         laser.GetComponent<Renderer>().material = red;
         laser.layer = LayerMask.NameToLayer("Seagull");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(Random.Range(1f,1.5f));
         laser.SetActive(false);
+        GetComponent<AudioSource>().Stop();
         leave = true;
         leavePos = transform.localPosition;
         leaveRot = transform.rotation;
