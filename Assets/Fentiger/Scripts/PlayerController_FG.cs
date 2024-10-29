@@ -42,12 +42,13 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetButtonDown("A"))
             {
-                DetectCombo("A", "B", "", HeartAbility);
+                DetectCombo("A", "B", "", HeartAbility, HippoAbility);
             }
             if (Input.GetButtonDown("B"))
             {
-                DetectCombo("B", "A", "", HeartAbility);
+                DetectCombo("B", "A", "", HeartAbility, PortalAbility);
             }
+            if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) Invulnerability(true);
             if (Input.GetKeyDown(KeyCode.W))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
@@ -88,12 +89,13 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetButtonDown("A2"))
             {
-                DetectCombo("A", "B", "2", HeartAbility);
+                DetectCombo("A", "B", "2", HeartAbility, HippoAbility);
             }
             if (Input.GetButtonDown("B2"))
             {
-                DetectCombo("B", "A", "2", HeartAbility);
+                DetectCombo("B", "A", "2", HeartAbility, PortalAbility);
             }
+            if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) Invulnerability(true);
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
@@ -309,17 +311,21 @@ public class PlayerController_FG : MonoBehaviour
 
     void HeartAbility()
     {
-
+        //3
+        if (transform.GetChild(0).gameObject.activeSelf)
+        {
+            if (GetComponent<UIManager_FG>().RemoveXP(75)) transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 
     void HippoAbility()
     {
-
+        //2
     }
 
     void PortalAbility()
     {
-
+        //2
     }
 
     void MoveRight()
