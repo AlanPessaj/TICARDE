@@ -3,6 +3,8 @@ https://www.youtube.com/watch?v=VGxwELiwwRI&ab_channel=Chiarey-Chan
 AGREGAR SEMAFORO
 sonidos
 interaccion con hardware
+scoreboard
+seleccion de personaje
 IDEA:
 cuando estes sobre un hippo haya mas chance de gaviota
 -----------------------------------------------------------------------------
