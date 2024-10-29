@@ -321,11 +321,29 @@ public class PlayerController_FG : MonoBehaviour
     void HippoAbility()
     {
         //2
+        if (Physics.Raycast(transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Out")) && hippoCheck.transform.name == "agua")
+        {
+            if (GetComponent<UIManager_FG>().RemoveXP(50))
+            {
+                if (hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
+                {
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, transform.position + new Vector3(1, -0.7f, transform.position.z), Quaternion.Euler(0, 0, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                }
+                else
+                {
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, transform.position + new Vector3(1, -0.7f, transform.position.z), Quaternion.Euler(0, 180, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                }
+            }
+        }
     }
 
     void PortalAbility()
     {
         //2
+        if (GetComponent<UIManager_FG>().RemoveXP(50))
+        {
+            Instantiate(generator.specials[2], new Vector3(transform.position.x + 0.5f, -1.5f, transform.position.z), Quaternion.Euler(0, 0, 90));
+        }
     }
 
     void MoveRight()
