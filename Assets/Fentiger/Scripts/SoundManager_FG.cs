@@ -12,6 +12,8 @@ public class SoundManager_FG : MonoBehaviour
     public AudioClip carRunOver;
     public AudioClip waterFalling;
     public AudioClip lionBite;
+    public AudioClip step;
+    public AudioClip roadStep;
     int level = 0;
     void Update()
     {

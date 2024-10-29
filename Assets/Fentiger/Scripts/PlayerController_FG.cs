@@ -17,6 +17,7 @@ public class PlayerController_FG : MonoBehaviour
     bool onFrog;
     bool onHippo;
     bool facingPortal;
+    bool hasMoved;
     FrogController_FG rana;
     public Vector3 raycastPos;
     public GameObject ghost;
@@ -143,6 +144,7 @@ public class PlayerController_FG : MonoBehaviour
         {
             generator.GenerateZones();
         }
+        hasMoved = true;
     }
 
     void MoveBackward()
@@ -160,6 +162,7 @@ public class PlayerController_FG : MonoBehaviour
                 onFrog = false;
             }
         }
+        hasMoved = true;
     }
 
     void MoveLeft()
@@ -214,6 +217,7 @@ public class PlayerController_FG : MonoBehaviour
                 onFrog = false;
             }
         }
+        hasMoved = true;
     }
 
     void MoveRight()
@@ -269,6 +273,7 @@ public class PlayerController_FG : MonoBehaviour
                 onFrog = false;
             }
         }
+        hasMoved = true;
     }
     
     void Die()
@@ -364,6 +369,16 @@ public class PlayerController_FG : MonoBehaviour
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), -2, Mathf.RoundToInt(transform.position.z));
                 onHippo = false;
                 onLog = false;
+            }
+            if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Field") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Grass")) && hasMoved)
+            {
+                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().step);
+                hasMoved = false;
+            }
+            if ((hit.collider.gameObject.name == "Cars(Clone)" || hit.transform.parent.name == "Cars(Clone)") && hasMoved)
+            {
+                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().roadStep);
+                hasMoved = false;
             }
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
             {
