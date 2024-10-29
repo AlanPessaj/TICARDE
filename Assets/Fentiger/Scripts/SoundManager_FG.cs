@@ -14,6 +14,7 @@ public class SoundManager_FG : MonoBehaviour
     public AudioClip lionBite;
     public AudioClip step;
     public AudioClip roadStep;
+    public AudioClip laserImpact;
     int level = 0;
     void Update()
     {

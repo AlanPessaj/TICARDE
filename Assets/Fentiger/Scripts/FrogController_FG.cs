@@ -23,6 +23,7 @@ public class FrogController_FG : MonoBehaviour
     GameObject[] players = new GameObject[2];
     public GameObject outCollider;
     public GameObject ghost;
+    public GameObject generator;
 
     private void Start()
     {
@@ -139,6 +140,7 @@ public class FrogController_FG : MonoBehaviour
 
     private void Awake()
     {
+        generator = GameObject.Find("GAMEMANAGER");
         players[0] = GameObject.Find("Player1");
         players[1] = GameObject.Find("Player2");
     }
@@ -164,6 +166,7 @@ public class FrogController_FG : MonoBehaviour
     IEnumerator Die()
     {
         yield return null;
+        generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().laserImpact);
         Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
         Destroy(gameObject);
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class LaserScaler_FG : MonoBehaviour
 {
     float toDivide;
-
     void Update()
     {
         Debug.DrawRay(transform.GetChild(0).position, transform.up * 48f, Color.red);

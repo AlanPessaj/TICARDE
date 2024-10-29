@@ -39,7 +39,7 @@ public class FollowPlayer_FG : MonoBehaviour
         timer = Mathf.Max(0, timer - Time.deltaTime);
         if (generator.multiplayer)
         {
-            if (Vector3.Distance(players[0].transform.position, transform.position) < 6f || Vector3.Distance(players[1].transform.position, transform.position) < 6f)
+            if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
             {
                 if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position) && players[0].transform.parent == null)
                 {
@@ -93,7 +93,7 @@ public class FollowPlayer_FG : MonoBehaviour
 
         if (!generator.multiplayer && generator.player1Alive)
         {
-            if (Vector3.Distance(players[0].transform.position, transform.position) < 6f && players[0].transform.parent == null)
+            if (players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5 && players[0].transform.parent == null)
             {
                 if (!soundPlayed && timer == 0)
                 {
@@ -125,7 +125,7 @@ public class FollowPlayer_FG : MonoBehaviour
         }
         else if(!generator.multiplayer && !generator.player1Alive)
         {
-            if (Vector3.Distance(players[1].transform.position, transform.position) < 6f && players[1].transform.parent == null)
+            if (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5 && players[1].transform.parent == null)
             {
                 if (!soundPlayed && timer == 0)
                 {
@@ -161,6 +161,7 @@ public class FollowPlayer_FG : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
         {
+            generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().laserImpact);
             Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
             Destroy(gameObject);
         }

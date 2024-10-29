@@ -774,6 +774,7 @@ MonoBehaviour:
   lionBite: {fileID: 8300000, guid: 1d780f93904b8a64fb9390ddf68fd37c, type: 3}
   step: {fileID: 8300000, guid: 558fc240f454e1e42b2ad3bddf4f4f7a, type: 3}
   roadStep: {fileID: 8300000, guid: a534e12260596b64bb59d3ec9f640350, type: 3}
+  laserImpact: {fileID: 8300000, guid: 4c9bef0f9c13dfe469816c9c76204743, type: 3}
 --- !u!82 &287369568
 AudioSource:
   m_ObjectHideFlags: 0
