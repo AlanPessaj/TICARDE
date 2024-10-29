@@ -1,9 +1,5 @@
-sonidos
 interaccion con hardware
-scoreboard
 seleccion de personaje
-IDEA:
-cuando estes sobre un hippo haya mas chance de gaviota
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
