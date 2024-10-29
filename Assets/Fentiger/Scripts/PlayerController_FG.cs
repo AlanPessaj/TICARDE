@@ -26,6 +26,8 @@ public class PlayerController_FG : MonoBehaviour
     GameObject portal;
     GameObject hippo;
     GameObject log;
+    List<string[]> combos = new List<string[]>();
+    public float comboTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +38,17 @@ public class PlayerController_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
-        }
         if (isPlayer1)
         {
+            if (Input.GetButtonDown("A"))
+            {
+                DetectCombo("A", "B", "", HeartAbility, HippoAbility);
+            }
+            if (Input.GetButtonDown("B"))
+            {
+                DetectCombo("B", "A", "", HeartAbility, PortalAbility);
+            }
+            if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
             if (Input.GetKeyDown(KeyCode.W))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
@@ -80,6 +87,15 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
+            if (Input.GetButtonDown("A2"))
+            {
+                DetectCombo("A", "B", "2", HeartAbility, HippoAbility);
+            }
+            if (Input.GetButtonDown("B2"))
+            {
+                DetectCombo("B", "A", "2", HeartAbility, PortalAbility);
+            }
+            if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
@@ -123,6 +139,7 @@ public class PlayerController_FG : MonoBehaviour
             Die();
         }
         CheckTile();
+        UpdateCombo();
     }
 
     void MoveForward()
@@ -218,6 +235,115 @@ public class PlayerController_FG : MonoBehaviour
             }
         }
         hasMoved = true;
+    }
+    void DetectCombo(string button1, string button2, string player, System.Action func, System.Action noCombo = null, bool isBtn1 = true, bool isBtn2 = true)
+    {
+        if (isBtn1)
+            button1 += player;
+        if (isBtn2)
+            button2 += player;
+        if (noCombo == null)
+            noCombo = Nothing;
+        if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, noCombo.Method.Name, isBtn1.ToString(), isBtn2.ToString() }))
+            combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, noCombo.Method.Name, isBtn1.ToString(), isBtn2.ToString() });
+    }
+
+    void UpdateCombo()
+    {
+        Queue<string[]> removeQueue = new Queue<string[]>();
+        foreach (var item in combos)
+        {
+            if (float.Parse(item[2]) <= 0)
+            {
+                Invoke(item[4], 0);
+                removeQueue.Enqueue(item);
+                continue;
+            }
+            if (bool.Parse(item[5]))
+            {
+                if (bool.Parse(item[6]))
+                {
+                    if (Input.GetButton(item[0]) && Input.GetButtonDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Input.GetButton(item[0]) && Input.GetKeyDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                if (bool.Parse(item[6]))
+                {
+                    if (Input.GetKey(item[0]) && Input.GetButtonDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Input.GetKey(item[0]) && Input.GetKeyDown(item[1]))
+                    {
+                        Invoke(item[3], 0);
+                        removeQueue.Enqueue(item);
+                        continue;
+                    }
+                }
+            }
+            item[2] = (float.Parse(item[2]) - Time.deltaTime).ToString();
+        }
+        while (removeQueue.Count > 0)
+        {
+            combos.Remove(removeQueue.Dequeue());
+        }
+    }
+
+    void HeartAbility()
+    {
+        //3
+        if (!transform.GetChild(0).gameObject.activeSelf)
+        {
+            if (GetComponent<UIManager_FG>().RemoveXP(75)) transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
+
+    void HippoAbility()
+    {
+        //2
+        if (Physics.Raycast(transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Out")) && hippoCheck.transform.name == "agua")
+        {
+            if (GetComponent<UIManager_FG>().RemoveXP(50))
+            {
+                if (hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
+                {
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(transform.position.x + 1, -2.7f, transform.position.z + 2), Quaternion.Euler(0, 0, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                }
+                else
+                {
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo,  new Vector3(transform.position.x + 1, -2.7f, transform.position.z - 2), Quaternion.Euler(0, 180, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                }
+            }
+        }
+    }
+
+    void PortalAbility()
+    {
+        //2
+        if (GetComponent<UIManager_FG>().RemoveXP(50))
+        {
+            Instantiate(generator.specials[2], new Vector3(transform.position.x + 0.5f, -1.5f, transform.position.z), Quaternion.Euler(0, 0, 90));
+        }
     }
 
     void MoveRight()
@@ -375,11 +501,16 @@ public class PlayerController_FG : MonoBehaviour
                 generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().step);
                 hasMoved = false;
             }
-            if ((hit.collider.gameObject.name == "Cars(Clone)" || hit.transform.parent.name == "Cars(Clone)") && hasMoved)
+            try
             {
-                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().roadStep);
-                hasMoved = false;
+                if ((hit.collider.gameObject.name == "Cars(Clone)" || hit.transform.parent.name == "Cars(Clone)") && hasMoved)
+                {
+                    generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().roadStep);
+                    hasMoved = false;
+                }
             }
+            catch { }
+
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
             {
                 //perder vida
@@ -442,10 +573,12 @@ public class PlayerController_FG : MonoBehaviour
         }
     }
 
-    private IEnumerator Invulnerability()
+    IEnumerator Invulnerability(bool ability = false)
     {
         immortal = true;
-        for (int i = 0; i < 5; i++)
+        int index = 4;
+        if (ability) index /= 2;
+        for (int i = 0; i < index; i++)
         {
             yield return new WaitForSeconds(0.3f);
             GetComponent<Renderer>().material = ghostMaterial;
@@ -454,4 +587,5 @@ public class PlayerController_FG : MonoBehaviour
         }
         immortal = false;
     }
+    void Nothing() { }
 }

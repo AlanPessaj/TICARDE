@@ -71,7 +71,7 @@ public class OvniController_FG : MonoBehaviour
             transform.rotation = Quaternion.Lerp(leaveRot, Quaternion.identity, leaveTargetTime);
             transform.localPosition = Vector3.Lerp(leavePos, leaveTarget, leaveTime);
             leavePos = transform.localPosition;
-            if (leaveTargetTime >= 1)
+            if (leaveTargetTime >= 1.5f)
             {
                 Destroy(gameObject);
             }
