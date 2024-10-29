@@ -460,6 +460,7 @@ MonoBehaviour:
   dropDown: {fileID: 8300000, guid: b67fe4e073179024ba19a42244d92380, type: 3}
   carRunOver: {fileID: 8300000, guid: 2be0b8e441f984946b0b1c3ff9b9d8e4, type: 3}
   waterFalling: {fileID: 8300000, guid: ce2908b72db6ec043acdc567878b848b, type: 3}
+  lionBite: {fileID: 8300000, guid: 1d780f93904b8a64fb9390ddf68fd37c, type: 3}
 --- !u!82 &287369568
 AudioSource:
   m_ObjectHideFlags: 0

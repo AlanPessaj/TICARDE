@@ -407,6 +407,10 @@ public class PlayerController_FG : MonoBehaviour
             {
                 generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
             }
+            if (other.collider.gameObject.layer == LayerMask.NameToLayer("Lion"))
+            {
+                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().lionBite);
+            }
         }
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Seagull") && !immortal)
         {
