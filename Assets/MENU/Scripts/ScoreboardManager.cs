@@ -13,7 +13,7 @@ public class ScoreboardManager : MonoBehaviour
 
     }
 
-    void LoadScores(string game)
+    public void LoadScores(string game)
     {
         for (int i = 0; i < names.Length; i++)
         {
@@ -26,12 +26,11 @@ public class ScoreboardManager : MonoBehaviour
     }
 
 
-    void SaveNewScore(string name, int score, string game)
+    public void SaveNewScore(string name, int score, string game)
     {
         SortedList<int, string> scoreboard = new SortedList<int, string>();
         List<int> sameScores = new List<int>();
         List<string> sameNames = new List<string>();
-        scoreboard.Add(score, name);
         for (int i = 0; i < scores.Length; i++)
         {
             if (PlayerPrefs.HasKey($"{game}/name{i}"))
@@ -50,6 +49,22 @@ public class ScoreboardManager : MonoBehaviour
             {
                 break;
             }
+        }
+        if (scoreboard.ContainsValue(name))
+        {
+            foreach (var par in scoreboard)
+            {
+
+            }
+        }
+        if (!scoreboard.ContainsKey(score))
+        {
+            scoreboard.Add(score, name);
+        }
+        else
+        {
+            sameScores.Add(score);
+            sameNames.Add(name);
         }
         List<int> orderedScores = new List<int>();
         List<string> orderedNames = new List<string>();
