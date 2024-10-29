@@ -377,6 +377,10 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
                 }
+                else if (hit.collider.gameObject.name == "Out")
+                {
+                    hit.collider.GetComponent<AudioSource>().Play();
+                }
                 return;
             }
         }

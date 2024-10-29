@@ -1,4 +1,3 @@
-AGREGAR SEMAFORO
 sonidos
 interaccion con hardware
 scoreboard
