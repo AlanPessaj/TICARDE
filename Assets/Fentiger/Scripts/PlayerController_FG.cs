@@ -27,7 +27,7 @@ public class PlayerController_FG : MonoBehaviour
     GameObject hippo;
     GameObject log;
     List<string[]> combos = new List<string[]>();
-    float comboTime;
+    public float comboTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +48,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 DetectCombo("B", "A", "", HeartAbility, PortalAbility);
             }
-            if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) Invulnerability(true);
+            if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
             if (Input.GetKeyDown(KeyCode.W))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
@@ -95,7 +95,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 DetectCombo("B", "A", "2", HeartAbility, PortalAbility);
             }
-            if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) Invulnerability(true);
+            if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
@@ -259,9 +259,9 @@ public class PlayerController_FG : MonoBehaviour
                 removeQueue.Enqueue(item);
                 continue;
             }
-            if (bool.Parse(item[4]))
+            if (bool.Parse(item[5]))
             {
-                if (bool.Parse(item[5]))
+                if (bool.Parse(item[6]))
                 {
                     if (Input.GetButton(item[0]) && Input.GetButtonDown(item[1]))
                     {
@@ -282,7 +282,7 @@ public class PlayerController_FG : MonoBehaviour
             }
             else
             {
-                if (bool.Parse(item[5]))
+                if (bool.Parse(item[6]))
                 {
                     if (Input.GetKey(item[0]) && Input.GetButtonDown(item[1]))
                     {
@@ -312,7 +312,7 @@ public class PlayerController_FG : MonoBehaviour
     void HeartAbility()
     {
         //3
-        if (transform.GetChild(0).gameObject.activeSelf)
+        if (!transform.GetChild(0).gameObject.activeSelf)
         {
             if (GetComponent<UIManager_FG>().RemoveXP(75)) transform.GetChild(0).gameObject.SetActive(true);
         }
