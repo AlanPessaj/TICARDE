@@ -566,6 +566,10 @@ public class PlayerController_FG : MonoBehaviour
         {
             //perder vida
             Die();
+            if (other.transform.name == "Laser")
+            {
+                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().laserImpact);
+            }
             if (other.transform.name.Contains("Shit"))
             {
                 Destroy(other.gameObject);
