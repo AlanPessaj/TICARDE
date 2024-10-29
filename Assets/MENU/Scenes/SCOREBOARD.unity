@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &99073445
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1000,7 +1000,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &395555373
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1353,7 +1353,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &712866218
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1576,7 +1576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &890585409
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1729,7 +1729,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &1220843464
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2526,7 +2526,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &1568774295
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2881,7 +2881,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &1793361877
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3116,7 +3116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &1890314007
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3395,7 +3395,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &1918641747
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3706,7 +3706,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NONE
+  m_Text: 0
 --- !u!222 &2029225674
 CanvasRenderer:
   m_ObjectHideFlags: 0
