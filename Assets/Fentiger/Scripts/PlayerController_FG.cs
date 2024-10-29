@@ -327,11 +327,11 @@ public class PlayerController_FG : MonoBehaviour
             {
                 if (hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
                 {
-                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, transform.position + new Vector3(1, -0.7f, transform.position.z), Quaternion.Euler(0, 0, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(transform.position.x + 1, -2.7f, transform.position.z + 2), Quaternion.Euler(0, 0, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
                 }
                 else
                 {
-                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, transform.position + new Vector3(1, -0.7f, transform.position.z), Quaternion.Euler(0, 180, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo,  new Vector3(transform.position.x + 1, -2.7f, transform.position.z - 2), Quaternion.Euler(0, 180, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
                 }
             }
         }
