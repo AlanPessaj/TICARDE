@@ -10,6 +10,9 @@ public class FollowPlayer_FG : MonoBehaviour
     public bool leftSpawn;
     public Generator_FG generator;
     public float speed = 3;
+    public GameObject ghost;
+    bool soundPlayed;
+    float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,29 +37,59 @@ public class FollowPlayer_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer = Mathf.Max(0, timer - Time.deltaTime);
         if (generator.multiplayer)
         {
             if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
             {
-                GetComponent<NavMeshAgent>().speed = speed;
+                
                 if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position) && players[0].transform.parent == null)
                 {
+                    if (!soundPlayed && timer == 0)
+                    {
+                        GetComponent<AudioSource>().Play();
+                        timer = 2;
+                        soundPlayed = true;
+                    }
+                    GetComponent<NavMeshAgent>().speed = speed;
                     agent.destination = players[0].transform.position;
+                    GetComponent<Animator>().SetBool("running", true);
+                    GetComponent<Animator>().SetBool("walking", false);
                 }
                 else if(players[1].transform.parent == null)
                 {
+                    if (!soundPlayed && timer == 0)
+                    {
+                        GetComponent<AudioSource>().Play();
+                        timer = 2;
+                        soundPlayed = true;
+                    }
+                    GetComponent<NavMeshAgent>().speed = speed;
+                    GetComponent<Animator>().SetBool("running", true);
+                    GetComponent<Animator>().SetBool("walking", false);
                     agent.destination = players[1].transform.position;
                 }
                 else if (leftSpawn)
                 {
+                    GetComponent<Animator>().SetBool("running", false);
+                    GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
                     GetComponent<NavMeshAgent>().speed = speed / 2;
                     agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                    soundPlayed = false;
                 }
                 else
                 {
+                    GetComponent<Animator>().SetBool("running", false);
+                    GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
                     GetComponent<NavMeshAgent>().speed = speed / 2;
                     agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                    soundPlayed = false;
                 }
+            }
+            else
+            {
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
             }
         }
 
@@ -64,37 +97,74 @@ public class FollowPlayer_FG : MonoBehaviour
         {
             if (players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5 && players[0].transform.parent == null)
             {
+                if (!soundPlayed && timer == 0)
+                {
+                    GetComponent<AudioSource>().Play();
+                    timer = 2;
+                    soundPlayed = true;
+                }
                 GetComponent<NavMeshAgent>().speed = speed;
                 agent.destination = players[0].transform.position;
+                GetComponent<Animator>().SetBool("running", true);
+                GetComponent<Animator>().SetBool("walking", false);
             }
             else if (leftSpawn)
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
+                soundPlayed = false;
             }
             else
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
+                soundPlayed = false;
             }
         }
         else if(!generator.multiplayer && !generator.player1Alive)
         {
             if (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5 && players[1].transform.parent == null)
             {
+                if (!soundPlayed && timer == 0)
+                {
+                    GetComponent<AudioSource>().Play();
+                    timer = 2;
+                    soundPlayed = true;
+                }
                 GetComponent<NavMeshAgent>().speed = speed;
                 agent.destination = players[1].transform.position;
+                GetComponent<Animator>().SetBool("running", true);
+                GetComponent<Animator>().SetBool("walking", false);
             }
             else if (leftSpawn)
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
+                soundPlayed = false;
             }
             else
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
                 agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                GetComponent<Animator>().SetBool("running", false);
+                GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
+                soundPlayed = false;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
+        {
+            Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
+            Destroy(gameObject);
         }
     }
 }

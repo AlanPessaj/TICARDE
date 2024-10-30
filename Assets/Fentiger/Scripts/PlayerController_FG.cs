@@ -15,25 +15,50 @@ public class PlayerController_FG : MonoBehaviour
     bool facingTreeUp;
     bool facingTreeDown;
     bool onFrog;
+    bool onHippo;
+    bool facingPortal;
     FrogController_FG rana;
     public Vector3 raycastPos;
     public GameObject ghost;
+    public Material ghostMaterial;
+    Material material;
+    GameObject portal;
+    GameObject hippo;
+    GameObject log;
     // Start is called before the first frame update
     void Start()
     {
         isPlayer1 = name == "Player1";
+        material = GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
+        }
         if (isPlayer1)
         {
-            if (Input.GetKeyDown(KeyCode.W) && !facingTreeDown)
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    MoveForward();
+                    if (!facingTreeDown)
+                    {
+                        MoveForward();
+                    }
+                }
+
+                if (facingPortal)
+                {
+                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    if (generator.multiplayer)
+                    {
+                        otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    }
+                    portal.GetComponent<AudioSource>().Play();
                 }
             }
             if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
@@ -54,11 +79,24 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && !facingTreeDown)
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    MoveForward();
+                    if (!facingTreeDown)
+                    {
+                        MoveForward();
+                    }
+                }
+
+                if (facingPortal)
+                {
+                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    if (generator.multiplayer)
+                    {
+                        otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    }
+                    portal.GetComponent<AudioSource>().Play();
                 }
             }
             if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
@@ -78,7 +116,7 @@ public class PlayerController_FG : MonoBehaviour
             }
         }
 
-        if ((transform.position.z > 13f || transform.position.z < -13f) && !immortal)
+        if ((transform.position.z > 15f || transform.position.z < -15f) && !immortal)
         {
             //Perder vida
             Die();
@@ -126,7 +164,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveLeft()
     {
-        if (!onLog && !onFrog)
+        if (!onLog && !onFrog && !onHippo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
         }
@@ -151,6 +189,21 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
             }
+            log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
+        }
+        else if (onHippo)
+        {
+            if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
+            {
+                if (hippo.GetComponent<LinearMover_FG>().movingForward)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 2.3f);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1.5f);
+                }
+            }
         }
         else
         {
@@ -165,7 +218,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveRight()
     {
-        if (!onLog && !onFrog)
+        if (!onLog && !onFrog && !onHippo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
         }
@@ -190,6 +243,22 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
+
+            log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
+        }
+        else if (onHippo)
+        {
+            if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
+            {
+                if (hippo.GetComponent<LinearMover_FG>().movingForward)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1.5f);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 2.3f);
+                }
+            }
         }
         else
         {
@@ -197,12 +266,11 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-
                 onFrog = false;
             }
         }
     }
-
+    
     void Die()
     {
         if (transform.GetChild(0).gameObject.activeSelf)
@@ -226,10 +294,7 @@ public class PlayerController_FG : MonoBehaviour
             if (foundGrass)
             {
                 transform.position = new Vector3(transform.position.x + tries - 1, -2, 0);
-            }
-            else
-            {
-                Debug.Log("No se encontró pasto después de 20 intentos.");
+                StartCoroutine(Invulnerability());
             }
         }
         else
@@ -243,7 +308,7 @@ public class PlayerController_FG : MonoBehaviour
                 generator.player2Score = transform.position.x;
             }
 
-            Instantiate(ghost, transform.position, Quaternion.identity);
+            Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = true;
             Destroy(gameObject);
         }
     }
@@ -251,13 +316,13 @@ public class PlayerController_FG : MonoBehaviour
 
     void CheckTile()
     {
-        //Debug.DrawRay(transform.position + Vector3.up * 2, Vector3.down, Color.red, 0.5f, false);
-        Physics.Raycast(transform.position + Vector3.up * 2, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers - LayerMask.GetMask("Tree", "Player"));
+        //Debug.DrawRay(transform.position + Vector3.up * 2f, Vector3.down * 10f, Color.red, 1f, false);
+        Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out RaycastHit hit, 10f, Physics.AllLayers - LayerMask.GetMask("Tree", "Player", "Lion"));
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Transport"))
             {
-                if (hit.collider.gameObject.name == "LillyPad(Clone)")
+                if (hit.collider.gameObject.name == "LillyPad(Clone)" && !onHippo)
                 {
                     if (hit.transform.childCount == 1)
                     {
@@ -265,7 +330,7 @@ public class PlayerController_FG : MonoBehaviour
                         transform.localPosition = new Vector3(0, 1, 0);
                     }
                 }
-                else if (hit.collider.gameObject.name == "Frog(Clone)")
+                else if (hit.collider.gameObject.name == "Frog(Clone)" && !onHippo)
                 {
                     if (!hit.transform.gameObject.GetComponent<FrogController_FG>().isJumping && hit.transform.childCount == 1)
                     {
@@ -275,10 +340,21 @@ public class PlayerController_FG : MonoBehaviour
                         onFrog = true;
                     }
                 }
-                else
+                else if (hit.collider.gameObject.name == "Hippo(Clone)" && !onHippo)
+                {
+                    if (hit.transform.childCount == 0)
+                    {
+                        transform.parent = hit.transform;
+                        transform.localPosition = new Vector3(1.5f, 0, 0.5f);
+                        onHippo = true;
+                        hippo = hit.collider.gameObject;
+                    }
+                }
+                else if(!onHippo)
                 {
                     transform.parent = hit.transform;
                     onLog = true;
+                    log = hit.transform.gameObject;
                     transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
                 }
             }
@@ -286,13 +362,21 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.parent = null;
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), -2, Mathf.RoundToInt(transform.position.z));
-
+                onHippo = false;
                 onLog = false;
             }
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
             {
                 //perder vida
                 Die();
+                if (hit.transform.parent.name.Contains("Logs") || hit.transform.parent.name == "LilyPads(Clone)")
+                {
+                    generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
+                }
+                else if (hit.collider.gameObject.name == "Car(Clone)")
+                {
+                    generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
+                }
                 return;
             }
         }
@@ -301,57 +385,50 @@ public class PlayerController_FG : MonoBehaviour
         //Debug.DrawRay(raycastPos, -Vector3.forward * 1.3f, Color.blue, 1, false); // Izquierda
         //Debug.DrawRay(raycastPos, Vector3.right * 1.3f, Color.green, 1, false);   // Abajo
         //Debug.DrawRay(raycastPos, -Vector3.right * 1.3f, Color.yellow, 1, false);  // Arriba
-
-        if (Physics.Raycast(raycastPos, Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
+        //Debug.DrawRay(transform.position, Vector3.right * 1f, Color.red);
+        facingTreeRight = Physics.Raycast(raycastPos, Vector3.forward, 1.3f, LayerMask.GetMask("Tree"));
+        facingTreeLeft = Physics.Raycast(raycastPos, -Vector3.forward, 1.3f, LayerMask.GetMask("Tree"));
+        facingTreeDown = Physics.Raycast(raycastPos, Vector3.right, 1.3f, LayerMask.GetMask("Tree"));
+        facingTreeUp = Physics.Raycast(raycastPos, -Vector3.right, 1.3f, LayerMask.GetMask("Tree"));
+        facingPortal = Physics.Raycast(transform.position, Vector3.right, out RaycastHit dPortal, 1f, LayerMask.GetMask("Portal"));
+        if (facingPortal)
         {
-            facingTreeRight = true;
-            //Derecha
-        }
-        else
-        {
-            facingTreeRight = false;
-        }
-        if (Physics.Raycast(raycastPos, -Vector3.forward, 1.3f, LayerMask.GetMask("Tree")))
-        {
-            facingTreeLeft = true;
-            //Izquierda
-        }
-        else
-        {
-            facingTreeLeft = false;
-        }
-        if (Physics.Raycast(raycastPos, Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
-        {
-            facingTreeDown = true;
-            //Abajo
-        }
-        else
-        {
-            facingTreeDown = false;
-        }
-        if (Physics.Raycast(raycastPos, -Vector3.right, 1.3f, LayerMask.GetMask("Tree")))
-        {
-            facingTreeUp = true;
-            //Arriba
-        }
-        else
-        {
-            facingTreeUp = false;
+            this.portal = dPortal.transform.gameObject;
         }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
+        if ((other.collider.gameObject.layer == LayerMask.NameToLayer("Lion") || other.collider.gameObject.layer == LayerMask.NameToLayer("Out")) && !immortal && !onFrog)
         {
             //perder vida
             Die();
+            if (other.collider.gameObject.name == "Car(Clone)")
+            {
+                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
+            }
         }
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Seagull") && !immortal)
         {
             //perder vida
             Die();
-            Destroy(other.gameObject);
+            if (other.transform.name.Contains("Shit"))
+            {
+                Destroy(other.gameObject);
+            }
         }
+    }
+
+    private IEnumerator Invulnerability()
+    {
+        immortal = true;
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            GetComponent<Renderer>().material = ghostMaterial;
+            yield return new WaitForSeconds(0.3f);
+            GetComponent<Renderer>().material = material;
+        }
+        immortal = false;
     }
 }

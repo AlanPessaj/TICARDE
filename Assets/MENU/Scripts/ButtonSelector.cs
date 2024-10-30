@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
-public class ButtonSelector_FG : MonoBehaviour
+public class ButtonSelector : MonoBehaviour
 {
     public Button playAgain;
     public Button menu;
-
-    private Button selectedButton;
+    Button selectedButton;
 
     void Update()
     {
@@ -44,5 +44,10 @@ public class ButtonSelector_FG : MonoBehaviour
         var colors = button.colors;
         colors.normalColor = colors.normalColor / 0.7f;
         button.colors = colors;
+    }
+
+    private void Start()
+    {
+        SelectButton(playAgain);
     }
 }

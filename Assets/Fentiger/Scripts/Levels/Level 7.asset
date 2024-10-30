@@ -29,13 +29,13 @@ MonoBehaviour:
   - 30
   - 30
   floaters:
-  - 33.3
-  - 33.3
-  - 33.4
+  - 45
+  - 35.8
+  - 19.2
   special:
-  - 18
-  - 13
+  - 40
   - 8
+  - 5
   speed: 3.5
   spawnRate:
   - 1.44

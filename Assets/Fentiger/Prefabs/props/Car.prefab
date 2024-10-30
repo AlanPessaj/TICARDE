@@ -47,9 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   time: 100
+  initialTime: 0
+  movingForward: 0
   generator: {fileID: 0}
   spawner: {fileID: 0}
-  thingsInScreen: 3
+  hippoRotating: 0
+  hippoResuming: 0
+  breakSound: {fileID: 8300000, guid: dca33494fcf8483419ed5efeac715222, type: 3}
 --- !u!65 &65950358195407088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61,8 +65,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.8, z: 2}
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Size: {x: 0.9, y: 0.8, z: 1.8411446}
+  m_Center: {x: 0, y: 0.099999994, z: 0.052998543}
 --- !u!1001 &1101994088683003735
 PrefabInstance:
   m_ObjectHideFlags: 0

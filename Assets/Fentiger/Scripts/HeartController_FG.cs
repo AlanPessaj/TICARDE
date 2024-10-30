@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class HeartController_FG : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    public AudioClip pickUpSound;
+    GameObject generator;
+    private void Update()
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && !collision.gameObject.transform.GetChild(0).gameObject.activeSelf)
+        Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out RaycastHit hit, 3f, LayerMask.GetMask("Player"));
+        if (hit.collider != null && !hit.transform.GetChild(0).gameObject.activeSelf)
         {
-            collision.transform.GetChild(0).gameObject.SetActive(true);
+            generator.GetComponent<SoundManager_FG>().PlaySound(pickUpSound);
+            hit.transform.GetChild(0).gameObject.SetActive(true);
             Destroy(gameObject);
         }
+    }
+
+    private void Awake()
+    {
+        generator = GameObject.Find("GAMEMANAGER");
     }
 }

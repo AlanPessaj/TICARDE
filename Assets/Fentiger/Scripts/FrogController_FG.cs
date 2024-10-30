@@ -22,6 +22,7 @@ public class FrogController_FG : MonoBehaviour
     Vector3 targetPos;
     GameObject[] players = new GameObject[2];
     public GameObject outCollider;
+    public GameObject ghost;
 
     private void Start()
     {
@@ -119,6 +120,7 @@ public class FrogController_FG : MonoBehaviour
 
     void JumpToPosition(Vector3 targetPosition)
     {
+        GetComponent<AudioSource>().Play();
         jumpProgress += Time.deltaTime * jumpSpeed;
         Vector3 horizontalPosition = Vector3.Lerp(startPos, targetPosition, jumpProgress);
         float arc = Mathf.Sin(Mathf.PI * jumpProgress) * jumpHeight;
@@ -141,5 +143,25 @@ public class FrogController_FG : MonoBehaviour
     private void OnDestroy()
     {
         Destroy(checker.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
+        {
+            if (transform.childCount > 1)
+            {
+                transform.GetChild(1).position -= new Vector3(1, 0, 1);
+                transform.GetChild(1).SetParent(null);
+            }
+            StartCoroutine(Die());
+        }
+    }
+
+    IEnumerator Die()
+    {
+        yield return null;
+        Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
+        Destroy(gameObject);
     }
 }

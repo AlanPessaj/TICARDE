@@ -5,42 +5,76 @@ using UnityEngine.SceneManagement;
 
 public class DieScript_FG : MonoBehaviour
 {
+    public bool playerGhost;
     public Generator_FG generator;
+    bool firstSend = true;
+
+    private void Awake()
+    {
+        generator = GameObject.Find("GAMEMANAGER").GetComponent<Generator_FG>();
+    }
+
     void Update()
     {
         transform.position += Vector3.up * 2.0f * Time.deltaTime;
         float newZ = transform.position.z + Mathf.Sin(Time.time) * 0.01f;
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
+
+        if (playerGhost && !generator.isTherePlayer1 && !generator.isTherePlayer2)
+        {
+            if (Input.GetButtonDown("A") || Input.GetButtonDown("A2"))
+            {
+                transform.position = transform.position + Vector3.up * 15;
+            }
+            if (firstSend)
+            {
+                generator.GetComponent<SoundManager_FG>().EndSound();
+                firstSend = false;
+            }
+        }
+
         if (transform.position.y >= 15)
         {
-            if (!generator.isTherePlayer1 && !generator.isTherePlayer2)
+            bool thereIsAnother = false;
+            foreach (DieScript_FG script in FindObjectsOfType<DieScript_FG>())
+            {
+                if (script.playerGhost && script != this)
+                {
+                    thereIsAnother = true;
+                    break;
+                }
+            }
+
+            if (!generator.isTherePlayer1 && !generator.isTherePlayer2 && playerGhost && !thereIsAnother)
             {
                 GameOver();
+            }
+
+            else
+            {
+                Destroy(gameObject);
             }
         }
     }
 
     void GameOver()
     {
+        SceneManager.sceneLoaded += OnEndSceneLoaded;
         SceneManager.LoadScene("End(FG)", LoadSceneMode.Additive);
-        StartCoroutine(WaitAndExecute());
     }
 
-    private IEnumerator WaitAndExecute()
+    private void OnEndSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        yield return null;
-        Scene end = SceneManager.GetSceneByName("End(FG)");
-        end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player1Name = generator.player1Name;
-        end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player2Name = generator.player2Name;
-        end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player1Score = generator.player1Score;
-        end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().player2Score = generator.player2Score;
-        end.GetRootGameObjects()[0].GetComponent<EndManager_FG>().UpdateValues();
-        SceneManager.UnloadSceneAsync(gameObject.scene);
-
-    }
-
-    private void Awake()
-    {
-        generator = GameObject.Find("GAMEMANAGER").GetComponent<Generator_FG>();
+        if (scene.name == "End(FG)")
+        {
+            EndManager_FG endManager = scene.GetRootGameObjects()[0].GetComponent<EndManager_FG>();
+            endManager.player1Name = generator.player1Name;
+            endManager.player2Name = generator.player2Name;
+            endManager.player1Score = generator.player1Score;
+            endManager.player2Score = generator.player2Score;
+            endManager.UpdateValues();
+            SceneManager.UnloadSceneAsync(generator.gameObject.scene);
+            SceneManager.sceneLoaded -= OnEndSceneLoaded;
+        }
     }
 }

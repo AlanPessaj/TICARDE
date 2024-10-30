@@ -10,7 +10,7 @@ public class HitScript_FF : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut") || stateInfo.IsName("smash"))
+        if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut") || stateInfo.IsName("smash") || stateInfo.IsName("crouchedPunch"))
         {
             animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
             if (stateInfo.IsName("upperCut"))
@@ -23,6 +23,10 @@ public class HitScript_FF : StateMachineBehaviour
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage *= 1.5f;
                 animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Smash;
             }
+            if (stateInfo.IsName("crouchedPunch"))
+            {
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Kick;
+            }
         }
         else
         {
@@ -31,6 +35,7 @@ public class HitScript_FF : StateMachineBehaviour
             {
                 animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.SlideKick;
                 facingLeft = animator.GetComponent<PlayerController_FF>().facingLeft;
+                Physics.IgnoreCollision(animator.GetComponent<Collider>(), animator.GetComponent<PlayerController_FF>().otherPlayer.GetComponent<Collider>(), true);
             }
         }
     }
@@ -56,7 +61,7 @@ public class HitScript_FF : StateMachineBehaviour
             jumped = true;
             if (!animator.GetComponent<PlayerController_FF>().airborne)
             {
-                animator.GetComponent<Rigidbody>().velocity = new Vector3(animator.GetComponent<PlayerController_FF>().movementSpeed * animator.GetComponent<PlayerController_FF>().movDirection, 0, 0);
+                animator.GetComponent<Rigidbody>().velocity = new Vector3(animator.GetComponent<PlayerController_FF>().movementSpeed * animator.GetComponent<PlayerController_FF>().pMovDirection, 0, 0);
                 animator.GetComponent<Rigidbody>().AddForce(0, animator.GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
             }
         }
@@ -65,7 +70,7 @@ public class HitScript_FF : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut") || stateInfo.IsName("smash"))
+        if (stateInfo.IsName("punch") || stateInfo.IsName("upperCut") || stateInfo.IsName("smash") || stateInfo.IsName("crouchedPunch"))
         {
             if (animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction != null)
             {
@@ -80,6 +85,10 @@ public class HitScript_FF : StateMachineBehaviour
                 if (stateInfo.IsName("upperCut"))
                     jumped = false;
             }
+            if (stateInfo.IsName("crouchedPunch"))
+            {
+                animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Punch;
+            }
         }
         else
         {
@@ -91,8 +100,16 @@ public class HitScript_FF : StateMachineBehaviour
             animator.gameObject.GetComponent<PlayerController_FF>().foot.SetActive(false);
             if (stateInfo.IsName("slideKick"))
             {
-                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.SlideKick;
+                animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.Kick;
+                Physics.IgnoreCollision(animator.GetComponent<Collider>(), animator.GetComponent<PlayerController_FF>().otherPlayer.GetComponent<Collider>(), false);
             }
+        }
+        if (animator.GetBool("cutToSmash"))
+        {
+            animator.SetBool("cutToSmash", false);
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage *= 1.5f;
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Smash;
+            animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
         }
     }
 

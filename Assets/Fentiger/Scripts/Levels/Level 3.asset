@@ -29,11 +29,11 @@ MonoBehaviour:
   - 20
   - 0
   floaters:
-  - 25
-  - 50
-  - 25
+  - 55
+  - 35
+  - 10
   special:
-  - 8
+  - 20
   - 1
   - 0
   speed: 1.5

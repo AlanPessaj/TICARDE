@@ -28,10 +28,11 @@ public class PlayerController_FF : MonoBehaviour
     }
     public bool facingLeft;
     public bool isPlayer1;
-    public float movDirection = 0;
+    public float pMovDirection;
     // Update is called once per frame
     void Update()
     {
+        float movDirection = 0;
         if (otherPlayer.transform.position.x > transform.position.x && facingLeft)
         {
             //Cambiar a derecha
@@ -50,15 +51,14 @@ public class PlayerController_FF : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.D))
             {
+                movDirection += 1;
                 if (facingLeft)
                 {
                     animator.SetBool("runb", true);
-                    movDirection += 1;
                 }
                 else
                 {
                     animator.SetBool("run", true);
-                    movDirection += 1;
                 }
             }
             else
@@ -74,15 +74,14 @@ public class PlayerController_FF : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.A))
             {
+                movDirection -= 1;
                 if (!facingLeft)
                 {
                     animator.SetBool("runb", true);
-                    movDirection -= 1;
                 }
                 else
                 {
                     animator.SetBool("run", true);
-                    movDirection -= 1;
                 }
             }
             else
@@ -226,8 +225,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 if (!airborne)
                 {
-                    GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
-                    GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(movementSpeed * movDirection, jumpForce, 0, ForceMode.Impulse);
                     animator.SetTrigger("jump");
                 }
             }
@@ -246,14 +244,14 @@ public class PlayerController_FF : MonoBehaviour
         }
         if (!airborne)
         {
-            transform.Translate(movDirection * movementSpeed * Time.deltaTime, 0, 0, Space.World);
+            transform.Translate(Vector3.right * movDirection * movementSpeed * Time.deltaTime, Space.World);
         }
         else
         {
             GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
-        movDirection = 0;
         UpdateCombo();
+        pMovDirection = movDirection;
     }
 
     void CheckButtons()
@@ -303,7 +301,7 @@ public class PlayerController_FF : MonoBehaviour
                     }
                     DetectCombo("A", "B", player, Ulti);
                     DetectCombo("A", "C", player, UpperCut);
-                    if (InState("idle"))
+                    if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch"))
                     {
                         animator.SetTrigger("punch");
                     }
@@ -433,11 +431,17 @@ public class PlayerController_FF : MonoBehaviour
     void Smash()
     {
         if (airborne)
+        {
+            if (InState("upperCut"))
+                animator.SetBool("cutToSmash", true);
             animator.SetTrigger("smash");
+        }
     }
 
     void UpperCut()
     {
+        if (InState("block") || InState("blocking") || InState("punch"))
+            animator.CrossFade("upperCut", 0.25f);
         if ((InState("idle") || InState("jumping")) && (!airborne || (airborne && GetComponent<Rigidbody>().velocity.y > 9)))
             animator.SetTrigger("upperCut");
     }

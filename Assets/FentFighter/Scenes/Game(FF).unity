@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 12
-  type: 1
+  type: 3
   owner: {fileID: 788796811}
 --- !u!1 &83951991
 GameObject:
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 12
-  type: 1
+  type: 3
   owner: {fileID: 1779018765}
 --- !u!1 &535542124
 GameObject:
@@ -1736,6 +1736,7 @@ MonoBehaviour:
   blocking: 0
   XPMultiplier: 1.5
   smashForce: 15
+  knockbackForce: 250
 --- !u!114 &788796818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1753,6 +1754,7 @@ MonoBehaviour:
   maxHealth: 100
   maxXP: 100
   XP: 0
+  noDamage: 1
 --- !u!1 &814508641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3283,7 @@ MonoBehaviour:
   blocking: 0
   XPMultiplier: 1.5
   smashForce: 15
+  knockbackForce: 250
 --- !u!114 &1779018772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3298,6 +3301,7 @@ MonoBehaviour:
   maxHealth: 100
   maxXP: 100
   XP: 0
+  noDamage: 1
 --- !u!1 &1791810005
 GameObject:
   m_ObjectHideFlags: 0
