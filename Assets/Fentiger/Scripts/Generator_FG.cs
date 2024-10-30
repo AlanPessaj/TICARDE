@@ -19,7 +19,7 @@ public class Generator_FG : MonoBehaviour
     public Transform camara;
     public Transform ovniSpawn;
     public GameObject[] players = new GameObject[2];
-    public GameObject[] specials = new GameObject[4];
+    public GameObject[] specials;
     public int treeSeparator;
     public bool treeSpawn;
     public BakeNavMesh_FG baker;
@@ -83,15 +83,15 @@ public class Generator_FG : MonoBehaviour
             //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
 
             
-            //
-            /*if (camara.GetChild(0).childCount < 1)
+            // Ovni
+            if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }*/
+            }
 
 
             //Gaviota
-            if (multiplayer)
+            /*if (multiplayer)
             {
                 Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
             }
@@ -102,7 +102,7 @@ public class Generator_FG : MonoBehaviour
             else
             {
                 Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
-            }
+            }*/
         }
 
         float difficultyPosition = 0; //reemplazo de camara.position.x
@@ -143,7 +143,8 @@ public class Generator_FG : MonoBehaviour
          * [0] = Gaviota
          * [1] = Laser
          * [2] = Portales
-         * [3] = Vida
+         * [3] = Corazon
+         * [4] = Estrella
          */
         float number = Random.Range(1, 101);
         float number2 = Random.Range(1, 101);
@@ -272,12 +273,17 @@ public class Generator_FG : MonoBehaviour
 
     void GenerateSection()
     {
-        if (Random.Range(1,101) <= 5)
+        int pickable = Random.Range(1, 101);
+        if (pickable == 1)
         {
             //Vida
             Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11,12)), Quaternion.identity);
         }
-
+        else if(pickable > 95)
+        {
+            //XP
+            Instantiate(specials[4], new Vector3(distance, -1.5f, Random.Range(-11, 12)), Quaternion.identity);
+        }
         bool isField = false;
         while ((!initialSpawn || distance < despawnRadius) && section.Count != 0)
         {

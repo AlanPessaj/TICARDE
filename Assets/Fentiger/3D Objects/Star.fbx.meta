@@ -1,32 +1,59 @@
 fileFormatVersion: 2
-guid: 4ed12f0f21546724fbc6e0217ec8ffb6
+guid: 51fb5c4855d57fe41bb97eede17188ba
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: Area
+    100002: Area.001
+    100004: Area.002
+    100006: Camera
+    100008: Camera.001
+    100010: Camera.002
+    100012: Cylinder
+    100014: NurbsCurve
+    100016: Plane
+    100018: Sphere
+    100020: Sphere.001
+    100022: //RootNode
+    400000: Area
+    400002: Area.001
+    400004: Area.002
+    400006: Camera
+    400008: Camera.001
+    400010: Camera.002
+    400012: Cylinder
+    400014: NurbsCurve
+    400016: Plane
+    400018: Sphere
+    400020: Sphere.001
+    400022: //RootNode
+    2000000: Camera
+    2000002: Camera.001
+    2000004: Camera.002
     2100000: Material.001
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: CUERPO OVNI
-    7400000: CUERPO OVNI|BTN 1Action
-    7400002: CUERPO OVNI|BTN 2Action
-    7400004: CUERPO OVNI|BTN 3Action
-    7400006: CUERPO OVNI|BTN 4Action
-    7400008: CUERPO OVNI|BTN 5Action
-    7400010: CUERPO OVNI|BTN 6Action
-    7400012: CUERPO OVNI|BTN 7Action
-    7400014: CUERPO OVNI|BTN 8Action
-    7400016: CUERPO OVNI|CUERPO OVNIAction
-    7400018: CUERPO OVNI|PARTE DE ARRIBA OVNIAction
-    7400020: CUERPO OVNI|PATASAction
-    9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 646ee31f514d93046872a17453bf546c, type: 2}
+    2100002: Material.002
+    2100004: Material.004
+    2100006: Material.003
+    2100008: Material.005
+    2300000: Cylinder
+    2300002: NurbsCurve
+    2300004: Plane
+    2300006: Sphere
+    2300008: Sphere.001
+    3300000: Cylinder
+    3300002: NurbsCurve
+    3300004: Plane
+    3300006: Sphere
+    3300008: Sphere.001
+    4300000: Cylinder
+    4300002: Sphere
+    4300004: NurbsCurve
+    4300006: Sphere.001
+    4300008: Plane
+    10800000: Area
+    10800002: Area.001
+    10800004: Area.002
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -78,8 +105,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -106,7 +133,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

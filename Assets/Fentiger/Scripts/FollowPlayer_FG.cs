@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class FollowPlayer_FG : MonoBehaviour
 {
-    GameObject[] players = new GameObject[2];
+    public GameObject[] players = new GameObject[2];
     public NavMeshAgent agent;
     public bool leftSpawn;
     public Generator_FG generator;
@@ -31,7 +31,6 @@ public class FollowPlayer_FG : MonoBehaviour
         {
             players[1] = GameObject.Find("Player2");
         }
-
     }
 
     // Update is called once per frame
@@ -42,7 +41,6 @@ public class FollowPlayer_FG : MonoBehaviour
         {
             if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
             {
-                
                 if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position) && players[0].transform.parent == null)
                 {
                     if (!soundPlayed && timer == 0)
@@ -163,6 +161,7 @@ public class FollowPlayer_FG : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Seagull"))
         {
+            generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().laserImpact);
             Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = false;
             Destroy(gameObject);
         }

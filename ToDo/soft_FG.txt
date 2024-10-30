@@ -1,11 +1,5 @@
-APLICAR NUEVO LEON
-APLICAR NUEVA RANA
-APLICAR NUEVO OVNI
-AGREGAR SEMAFORO
-sonidos
 interaccion con hardware
-IDEA:
-cuando estes sobre un hippo haya mas chance de gaviota
+seleccion de personaje
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas

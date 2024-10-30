@@ -30,7 +30,7 @@ public class LinearSpawner_FG : MonoBehaviour
 
     void Update()
     {
-        bool hippoSpawn = (Random.Range(1,101) == 1) && generator.Level > 3;
+        bool hippoSpawn = (Random.Range(1,201) == 1) && generator.Level > 3;
 
         if (gameObject.name.Contains("Logs"))
         {
