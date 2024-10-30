@@ -34,11 +34,26 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
-        String dataFromSerial = Serial.readStringUntil('\n');
-        tft.fillScreen(WHITE);
-        tft.setCursor(0, 0);
-        tft.print("Recibido: ");
-        tft.println(dataFromSerial);
+    String dataFromUnity = Serial.readStringUntil('\n'); // Lee el string enviado por Unity hasta un salto de línea
+
+    // Procesar el string recibido como un array de strings separados por comas
+    const int maxStrings = 10; // Máximo número de elementos en el array
+    String stringArray[maxStrings]; // Array para almacenar las cadenas
+    int index = 0;
+
+    // Divide el string por comas y almacena en el array
+    while (dataFromUnity.length() > 0 && index < maxStrings) {
+      int commaIndex = dataFromUnity.indexOf(',');
+      if (commaIndex == -1) {
+        // Si no hay más comas, almacena el resto del string
+        stringArray[index] = dataFromUnity;
+        break;
+      } else {
+        // Almacena el substring antes de la coma
+        stringArray[index] = dataFromUnity.substring(0, commaIndex);
+        dataFromUnity = dataFromUnity.substring(commaIndex + 1); // Resto del string
+      }
+      index++;
     }
 
 }
