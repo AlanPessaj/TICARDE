@@ -172,6 +172,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe05495eac9d5ac45afd1bc6dfb121d5, type: 2}
   Level: 0
   camara: {fileID: 534669905}
+  ovniSpawn: {fileID: 0}
   players:
   - {fileID: 0}
   - {fileID: 0}
@@ -192,6 +193,7 @@ MonoBehaviour:
   player2Score: 0
   player1Name: Player1
   player2Name: Player2
+  debugMultiplayer: 0
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0
@@ -469,6 +471,8 @@ MonoBehaviour:
   otherPlayer: {fileID: 1863136296}
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
+  ghostMaterial: {fileID: 0}
+  comboTime: 0
 --- !u!136 &1220741842
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -500,7 +504,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d434a82dc32c22d49b2ca6ed2f3bb4b7, type: 2}
+  - {fileID: 2100000, guid: 909f1566f64d9334683ad53acc4590cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -696,6 +700,8 @@ MonoBehaviour:
   otherPlayer: {fileID: 1220741840}
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
+  ghostMaterial: {fileID: 0}
+  comboTime: 0
 --- !u!136 &1863136298
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -727,7 +733,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7b751eff1966a0c489e877e8d2dd0fd5, type: 2}
+  - {fileID: 2100000, guid: 909f1566f64d9334683ad53acc4590cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
