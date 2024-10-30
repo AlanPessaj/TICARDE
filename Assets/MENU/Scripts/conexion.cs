@@ -6,9 +6,7 @@ using System.IO.Ports;
 
 public class conexion : MonoBehaviour
 {
-    public InputField m; // Make sure to assign this in the Unity Inspector
-
-    SerialPort arduinoPort = new SerialPort("COM8", 9600); // Corrected port name format
+        SerialPort arduinoPort = new SerialPort("COM8", 9600); // Corrected port name format
 
     private void Awake()
     {
@@ -36,37 +34,34 @@ public class conexion : MonoBehaviour
         }
     }
 
-    public void SendMessagetoArduino(string msg)
+    public void SendMessagestoArduino(string identifier, string[] messages){
+    if (arduinoPort.IsOpen)
     {
-        if (arduinoPort.IsOpen)
+        try
         {
-            try
+            // Enviar identificador
+            arduinoPort.WriteLine(identifier);
+            Debug.Log("Identifier sent to Arduino: " + identifier);
+
+            // Enviar los mensajes
+            foreach (string msg in messages)
             {
                 arduinoPort.WriteLine(msg);
                 Debug.Log("Message sent to Arduino: " + msg);
             }
-            catch (System.Exception e)
-            {
-                Debug.LogError("Failed to send message to Arduino: " + e.Message);
-            }
         }
-        else
+        catch (System.Exception e)
         {
-            Debug.LogWarning("Serial port is not open.");
+            Debug.LogError("Failed to send message to Arduino: " + e.Message);
         }
+    }
+    else
+    {
+        Debug.LogWarning("Serial port is not open.");
+    }
     }
 
-    public void Btn()
-    {
-        if (arduinoPort.IsOpen) // Ensure the port is open before sending the message
-        {
-            SendMessagetoArduino(m.text); // Ensure that m is properly initialized
-        }
-        else
-        {
-            Debug.LogWarning("Cannot send message, serial port is not open.");
-        }
-    }
+
 
     public void ClosePort()
     {
