@@ -54,17 +54,24 @@ public class ScoreboardManager : MonoBehaviour
         {
             foreach (var par in scoreboard)
             {
-
+                if (par.Value == name)
+                {
+                    if (par.Key < score)
+                    {
+                        scoreboard.Remove(par.Key);
+                        if (!scoreboard.ContainsKey(score))
+                        {
+                            scoreboard.Add(score, name);
+                        }
+                        else
+                        {
+                            sameScores.Add(score);
+                            sameNames.Add(name);
+                        }
+                    }
+                    break;
+                }
             }
-        }
-        if (!scoreboard.ContainsKey(score))
-        {
-            scoreboard.Add(score, name);
-        }
-        else
-        {
-            sameScores.Add(score);
-            sameNames.Add(name);
         }
         List<int> orderedScores = new List<int>();
         List<string> orderedNames = new List<string>();
