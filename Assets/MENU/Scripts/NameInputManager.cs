@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class NameInputManager : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class NameInputManager : MonoBehaviour
     public RectTransform player2;
     public bool multiplayer;
     public Image joinButton;
-    float timer = 0;
     public Coroutine instance;
 
     void Update()
@@ -43,13 +43,38 @@ public class NameInputManager : MonoBehaviour
         if (!multiplayer) joinButton.gameObject.SetActive(false);
         for (int i = 0; i < 10; i++)
         {
-            foreach (RectTransform character in player1.GetComponent<NameController>().chars) character.transform.GetComponent<TextMeshProUGUI>().color = Color.white;
-            if(multiplayer) foreach (RectTransform character in player2.GetComponent<NameController>().chars) character.transform.GetComponent<TextMeshProUGUI>().color = Color.white;
+            foreach (RectTransform character in player1.GetComponent<NameController>().chars)
+                character.transform.GetComponent<TextMeshProUGUI>().color = Color.white;
+
+            if (multiplayer)
+                foreach (RectTransform character in player2.GetComponent<NameController>().chars)
+                    character.transform.GetComponent<TextMeshProUGUI>().color = Color.white;
+
             yield return new WaitForSeconds(0.1f);
-            foreach (RectTransform character in player1.GetComponent<NameController>().chars) character.transform.GetComponent<TextMeshProUGUI>().color = Color.green;
-            if (multiplayer) foreach (RectTransform character in player2.GetComponent<NameController>().chars) character.transform.GetComponent<TextMeshProUGUI>().color = Color.green;
+            foreach (RectTransform character in player1.GetComponent<NameController>().chars)
+                character.transform.GetComponent<TextMeshProUGUI>().color = Color.green;
+
+            if (multiplayer)
+                foreach (RectTransform character in player2.GetComponent<NameController>().chars)
+                    character.transform.GetComponent<TextMeshProUGUI>().color = Color.green;
+
             yield return new WaitForSeconds(0.1f);
         }
-        //CERRAR
+        GameData.name1 = player1.GetComponent<NameController>().chars[0].GetComponent<TextMeshProUGUI>().text + player1.GetComponent<NameController>().chars[1].GetComponent<TextMeshProUGUI>().text + player1.GetComponent<NameController>().chars[2].GetComponent<TextMeshProUGUI>().text + player1.GetComponent<NameController>().chars[3].GetComponent<TextMeshProUGUI>().text;
+        if (multiplayer)
+        {
+            GameData.name2 = player2.GetComponent<NameController>().chars[0].GetComponent<TextMeshProUGUI>().text + player2.GetComponent<NameController>().chars[1].GetComponent<TextMeshProUGUI>().text + player2.GetComponent<NameController>().chars[2].GetComponent<TextMeshProUGUI>().text + player2.GetComponent<NameController>().chars[3].GetComponent<TextMeshProUGUI>().text;
+        }
+        else GameData.name2 = "";
+        GameData.multiplayer = multiplayer;
+        SceneManager.LoadScene("CharacterSelector");
     }
 }
+
+public static class GameData
+{
+    public static string name1;
+    public static string name2;
+    public static bool multiplayer;
+}
+

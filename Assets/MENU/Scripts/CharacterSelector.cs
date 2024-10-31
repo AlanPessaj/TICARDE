@@ -33,6 +33,14 @@ public class CharacterSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        name1 = GameData.name1;
+        name2 = GameData.name2;
+        multiplayer = GameData.multiplayer;
+        Debug.Log($"Name1: {name1}, Name2: {name2}, Multiplayer: {multiplayer}");
+        GameData.name1 = null;
+        GameData.name2 = null;
+        GameData.multiplayer = false;
+
         squares = new GameObject[pSquares.Length / 2, pSquares.Length / 2];
         int p = 0;
         for (int i = 0; i < pSquares.Length / 2; i++)

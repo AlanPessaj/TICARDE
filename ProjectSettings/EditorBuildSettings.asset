@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Fentiger/Scenes/End(FG).unity
     guid: b90dd898db9753542a4f1cb9e32f1fed
+  - enabled: 1
+    path: Assets/MENU/Scenes/NameInput.unity
+    guid: da69294e04e7f974981db2d7aac08ee3
+  - enabled: 1
+    path: Assets/MENU/Scenes/CharacterSelector.unity
+    guid: db40f6feecb0ced41b5ea496c5133dba
   m_configObjects: {}
