@@ -36,6 +36,7 @@ public class CharacterSelector : MonoBehaviour
         name1 = GameData.name1;
         name2 = GameData.name2;
         game = GameData.game;
+        multiplayer = GameData.name2 != "";
         //Debug.Log($"Name1: {name1}, Name2: {name2}, Multiplayer: {multiplayer}, Game: {game}");
         GameData.game = null;
         GameData.name1 = null;
