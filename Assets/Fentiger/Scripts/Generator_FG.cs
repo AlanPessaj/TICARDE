@@ -43,18 +43,13 @@ public class Generator_FG : MonoBehaviour
 
     void Start()
     {
-        GetComponent<GameInfo>().loadAction = Loader;
-    }
-
-    void Loader()
-    {
-        multiplayer = GetComponent<GameInfo>().name2 != "";
-        player1Name = GetComponent<GameInfo>().name1;
-        player2Name = GetComponent<GameInfo>().name2;
-        players[0].GetComponent<Renderer>().material = characters[GetComponent<GameInfo>().char1];
+        multiplayer = GameData.name2 != "";
+        player1Name = GameData.name1;
+        player2Name = GameData.name2;
+        players[0].GetComponent<Renderer>().material = characters[GameData.char1];
         if (multiplayer)
         {
-            players[1].GetComponent<Renderer>().material = characters[GetComponent<GameInfo>().char2];
+            players[1].GetComponent<Renderer>().material = characters[GameData.char2];
         }
         else
         {
