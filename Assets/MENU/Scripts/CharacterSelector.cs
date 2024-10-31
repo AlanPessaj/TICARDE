@@ -7,8 +7,6 @@ using TMPro;
 
 public class CharacterSelector : MonoBehaviour
 {
-    public string name1;
-    public string name2;
     public GameObject[] pSquares;
     GameObject[,] squares;
     public GameObject[] pMPSquares1;
@@ -33,14 +31,9 @@ public class CharacterSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        name1 = GameData.name1;
-        name2 = GameData.name2;
         game = GameData.game;
         multiplayer = GameData.name2 != "";
         //Debug.Log($"Name1: {name1}, Name2: {name2}, Multiplayer: {multiplayer}, Game: {game}");
-        GameData.game = null;
-        GameData.name1 = null;
-        GameData.name2 = null;
 
         squares = new GameObject[pSquares.Length / 2, pSquares.Length / 2];
         int p = 0;
