@@ -7,11 +7,6 @@ public class GameSelector : MonoBehaviour
 {
     public GameObject[] logos;
     int index;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -53,15 +48,16 @@ public class GameSelector : MonoBehaviour
             switch (index)
             {
                 case 0:
-                    SceneManager.LoadScene("Game(FF)");
+                    GameData.game = "FF";
                 break;
                 case 1:
-                    SceneManager.LoadScene("Game(FT)");
+                    GameData.game = "FT";
                 break;
                 case 2:
-                    SceneManager.LoadScene("Game(FG)");
+                    GameData.game = "FG";
                 break;
             }
+            SceneManager.LoadScene("NameInput");
         }
     }
 }

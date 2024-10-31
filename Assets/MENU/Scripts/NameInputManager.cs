@@ -12,11 +12,12 @@ public class NameInputManager : MonoBehaviour
     public bool multiplayer;
     public Image joinButton;
     public Coroutine instance;
-    public string game;
+    string game = "FF";
 
 
     private void Start()
     {
+        game = GameData.game;
         multiplayer = game != "FG";
     }
 
