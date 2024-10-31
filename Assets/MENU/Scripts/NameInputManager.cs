@@ -12,6 +12,7 @@ public class NameInputManager : MonoBehaviour
     public bool multiplayer;
     public Image joinButton;
     public Coroutine instance;
+    public string game;
 
     void Update()
     {
@@ -67,6 +68,7 @@ public class NameInputManager : MonoBehaviour
         }
         else GameData.name2 = "";
         GameData.multiplayer = multiplayer;
+        GameData.game = game;
         SceneManager.LoadScene("CharacterSelector");
     }
 }
@@ -76,5 +78,6 @@ public static class GameData
     public static string name1;
     public static string name2;
     public static bool multiplayer;
+    public static string game;
 }
 
