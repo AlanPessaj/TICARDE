@@ -1,8 +1,6 @@
 interaccion con hardware
 seleccion de personaje
-ARREGLAR BUG DIE SCRIPT, SUBIR SOLO A UNO.
 TESTEAR JUEGO
-BAJAR VELOCIDAD DE LEONES
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
