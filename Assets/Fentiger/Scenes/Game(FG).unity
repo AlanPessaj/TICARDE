@@ -499,7 +499,7 @@ MonoBehaviour:
   treeSeparator: 0
   treeSpawn: 0
   baker: {fileID: 287369563}
-  startingLevel: 9
+  startingLevel: 0
   section: []
   isTherePlayer1: 0
   isTherePlayer2: 0
@@ -508,7 +508,7 @@ MonoBehaviour:
   player2Score: 0
   player1Name: Player1
   player2Name: Player2
-  debugMultiplayer: 1
+  debugMultiplayer: 0
 --- !u!4 &287369562
 Transform:
   m_ObjectHideFlags: 0

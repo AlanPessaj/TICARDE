@@ -10,7 +10,7 @@ public class NameContoller : MonoBehaviour
     int index = 0;
     Coroutine instance;
     int selectedChar = 0;
-    int selected;
+    int selected = 0;
 
     private void Start()
     {
@@ -84,12 +84,11 @@ public class NameContoller : MonoBehaviour
     {
         if (way == 0) selectedChar++;
         else selectedChar--;
-
         if (selectedChar < 0) selectedChar = 35;
         if (selectedChar > 35) selectedChar = 0;
+        yield return new WaitForSeconds(0.1f);
         chars[selected].GetComponent<TextMeshPro>().text = characters[selectedChar].ToString();
         transform.GetChild(0).GetChild(way).gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
         transform.GetChild(0).GetChild(way).gameObject.SetActive(false);
         instance = null;
     }

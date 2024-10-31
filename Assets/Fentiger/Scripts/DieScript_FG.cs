@@ -24,7 +24,7 @@ public class DieScript_FG : MonoBehaviour
         {
             if (Input.GetButtonDown("A") || Input.GetButtonDown("A2"))
             {
-                transform.position = transform.position + Vector3.up * 15;
+                transform.position = transform.position + Vector3.up * 14;
             }
             if (firstSend)
             {
