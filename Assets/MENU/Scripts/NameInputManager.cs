@@ -14,6 +14,12 @@ public class NameInputManager : MonoBehaviour
     public Coroutine instance;
     public string game;
 
+
+    private void Start()
+    {
+        multiplayer = game != "FG";
+    }
+
     void Update()
     {
         if (multiplayer)

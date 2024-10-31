@@ -292,6 +292,7 @@ MonoBehaviour:
   player2: {fileID: 1286219164}
   multiplayer: 0
   joinButton: {fileID: 6222149}
+  game: FF
 --- !u!4 &117220463
 Transform:
   m_ObjectHideFlags: 0
@@ -1400,7 +1401,6 @@ GameObject:
   - component: {fileID: 1286219164}
   - component: {fileID: 1286219166}
   - component: {fileID: 1286219165}
-  - component: {fileID: 1286219167}
   - component: {fileID: 1286219168}
   m_Layer: 5
   m_Name: Player2
@@ -1469,22 +1469,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286219163}
   m_CullTransparentMesh: 0
---- !u!114 &1286219167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286219163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7dc00200465a39419da427a75399f32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
-  multiplayer: 0
-  joinButton: {fileID: 0}
 --- !u!114 &1286219168
 MonoBehaviour:
   m_ObjectHideFlags: 0
