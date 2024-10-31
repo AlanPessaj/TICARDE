@@ -1,6 +1,9 @@
 interaccion con hardware
 seleccion de personaje
 TESTEAR JUEGO
+SOLUCIONAR SPAWN TIMESCALE
+HACER LLEGAR LO MEJOR ANTES
+FORMA DE REVIVIR
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas

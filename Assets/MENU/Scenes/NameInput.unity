@@ -112,6 +112,78 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6222147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6222148}
+  - component: {fileID: 6222150}
+  - component: {fileID: 6222149}
+  m_Layer: 5
+  m_Name: JoinButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6222148
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222147}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10.032652, y: 0.77648294, z: 0.98601}
+  m_Children: []
+  m_Father: {fileID: 100287987}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 289.45, y: -364.07}
+  m_SizeDelta: {x: 43.802315, y: 43.802315}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6222149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 9e5e0387d5fa19b428a6b964a8786ffb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &6222150
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222147}
+  m_CullTransparentMesh: 0
 --- !u!1 &100287986
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +213,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6222148}
   - {fileID: 1167571710}
   - {fileID: 1286219164}
   m_Father: {fileID: 1642617094}
@@ -218,6 +291,7 @@ MonoBehaviour:
   player1: {fileID: 1167571710}
   player2: {fileID: 1286219164}
   multiplayer: 0
+  joinButton: {fileID: 6222149}
 --- !u!4 &117220463
 Transform:
   m_ObjectHideFlags: 0
@@ -1182,7 +1256,7 @@ RectTransform:
   - {fileID: 2086921929}
   - {fileID: 418252250}
   m_Father: {fileID: 100287987}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1236,11 +1310,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59630e7e98034444bdbf1c38935042d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 117220462}
   chars:
   - {fileID: 146999549}
   - {fileID: 1711893119}
   - {fileID: 2086921929}
   - {fileID: 418252250}
+  finished: 0
 --- !u!1 &1221484904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1427,7 @@ RectTransform:
   - {fileID: 1486395334}
   - {fileID: 1221484905}
   m_Father: {fileID: 100287987}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1408,6 +1484,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   multiplayer: 0
+  joinButton: {fileID: 0}
 --- !u!114 &1286219168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,11 +1497,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59630e7e98034444bdbf1c38935042d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 117220462}
   chars:
   - {fileID: 1878289089}
   - {fileID: 1796600722}
   - {fileID: 153244113}
   - {fileID: 1486395334}
+  finished: 0
 --- !u!1 &1486395333
 GameObject:
   m_ObjectHideFlags: 0
