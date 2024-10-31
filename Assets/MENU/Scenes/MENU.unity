@@ -437,6 +437,7 @@ MonoBehaviour:
   - {fileID: 1508080803}
   - {fileID: 100472391}
   - {fileID: 1922404392}
+  animationFinished: 0
 --- !u!4 &892208960
 Transform:
   m_ObjectHideFlags: 0
@@ -850,6 +851,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 2072439045}
+    - target: {fileID: 402522858, guid: 01706135836def5469172add297739c7, type: 3}
+      propertyPath: selector
+      value: 
+      objectReference: {fileID: 892208959}
     - target: {fileID: 1897104787235992337, guid: 01706135836def5469172add297739c7,
         type: 3}
       propertyPath: m_LocalPosition.x
