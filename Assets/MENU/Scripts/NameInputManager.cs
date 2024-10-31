@@ -73,7 +73,6 @@ public class NameInputManager : MonoBehaviour
             GameData.name2 = player2.GetComponent<NameController>().chars[0].GetComponent<TextMeshProUGUI>().text + player2.GetComponent<NameController>().chars[1].GetComponent<TextMeshProUGUI>().text + player2.GetComponent<NameController>().chars[2].GetComponent<TextMeshProUGUI>().text + player2.GetComponent<NameController>().chars[3].GetComponent<TextMeshProUGUI>().text;
         }
         else GameData.name2 = "";
-        GameData.multiplayer = multiplayer;
         GameData.game = game;
         SceneManager.LoadScene("CharacterSelector");
     }
@@ -83,7 +82,6 @@ public static class GameData
 {
     public static string name1;
     public static string name2;
-    public static bool multiplayer;
     public static string game;
 }
 

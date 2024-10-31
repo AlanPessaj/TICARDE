@@ -32,11 +32,20 @@ public class Generator_FG : MonoBehaviour
     public float player2Score;
     public string player1Name = "Player1";
     public string player2Name = "Player2";
-    public bool debugMultiplayer;
     // Start is called before the first frame update
     void Start()
     {
-        if (!debugMultiplayer)
+        GetComponent<GameInfo>().loadAction = Loader;
+
+    }
+
+    void Loader()
+    {
+        multiplayer = GetComponent<GameInfo>().name2 != null;
+        player1Name = GetComponent<GameInfo>().name1;
+        player2Name = GetComponent<GameInfo>().name2;
+        //PERSONAJES
+        if (!multiplayer)
         {
             Destroy(players[1]);
         }
