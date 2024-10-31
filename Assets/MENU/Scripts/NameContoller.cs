@@ -10,12 +10,13 @@ public class NameContoller : MonoBehaviour
     int index = 0;
     Coroutine instance;
     int selectedChar = 0;
+    int selected = 0;
 
     private void Start()
     {
         for (int i = 0; i < 26; i++)
         {
-            characters[i] = (char)('A' + i);
+            characters[i] = (char)('a' + i);
         }
 
         for (int i = 0; i < 10; i++)
@@ -26,7 +27,7 @@ public class NameContoller : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(selectedChar + " " + index);
+        selectedChar = System.Array.IndexOf(chars, chars[selected].GetComponent<TextMeshPro>().text);
         if (gameObject.name == "Player1")
         {
             RectTransform childRect = transform.GetChild(0).GetComponent<RectTransform>();
@@ -38,15 +39,12 @@ public class NameContoller : MonoBehaviour
                     if (Mathf.Approximately(childRect.anchoredPosition.x, chars[i].anchoredPosition.x))
                     {
                         index = i + 1;
+                        selected = i + 1;
                         break;
                     }
                 }
                 if (index < chars.Length)
-                {
                     childRect.anchoredPosition = chars[index].anchoredPosition;
-                    selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text);
-                }
-                    
             }
 
             if (Input.GetKeyDown(KeyCode.A))
@@ -56,32 +54,24 @@ public class NameContoller : MonoBehaviour
                     if (Mathf.Approximately(childRect.anchoredPosition.x, chars[i].anchoredPosition.x))
                     {
                         index = i - 1;
+                        selected = i - 1;
                         break;
                     }
                 }
-                if (index > chars.Length)
-                {
+                if (index >= 0)
                     childRect.anchoredPosition = chars[index].anchoredPosition;
-                    selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text);
-                }
             }
 
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
-                selectedChar--;
-                if (selectedChar < 0) selectedChar = 35;
-                chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
                 if (instance == null)
                 {
                     instance = StartCoroutine(Move(0));
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKey(KeyCode.S))
             {
-                selectedChar++;
-                if (selectedChar > 35) selectedChar = 0;
-                chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
                 if (instance == null)
                 {
                     instance = StartCoroutine(Move(1));
@@ -92,8 +82,13 @@ public class NameContoller : MonoBehaviour
 
     IEnumerator Move(int way)
     {
-        transform.GetChild(0).GetChild(way).gameObject.SetActive(true);
+        if (way == 0) selectedChar++;
+        else selectedChar--;
+        if (selectedChar < 0) selectedChar = 35;
+        if (selectedChar > 35) selectedChar = 0;
         yield return new WaitForSeconds(0.1f);
+        chars[selected].GetComponent<TextMeshPro>().text = characters[selectedChar].ToString();
+        transform.GetChild(0).GetChild(way).gameObject.SetActive(true);
         transform.GetChild(0).GetChild(way).gameObject.SetActive(false);
         instance = null;
     }
