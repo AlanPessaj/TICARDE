@@ -44,12 +44,11 @@ public class Generator_FG : MonoBehaviour
     void Start()
     {
         GetComponent<GameInfo>().loadAction = Loader;
-
     }
 
     void Loader()
     {
-        multiplayer = GetComponent<GameInfo>().name2 != null;
+        multiplayer = GetComponent<GameInfo>().name2 != "";
         player1Name = GetComponent<GameInfo>().name1;
         player2Name = GetComponent<GameInfo>().name2;
         players[0].GetComponent<Renderer>().material = characters[GetComponent<GameInfo>().char1];
@@ -64,8 +63,10 @@ public class Generator_FG : MonoBehaviour
         Level = startingLevel;
         while (distance < despawnRadius)
         {
+            Debug.Log("iteracion");
             GenerateZones();
         }
+        Debug.Log("termino");
         initialSpawn = false;
         StartCoroutine(TimeSprint(30, 50));
     }
