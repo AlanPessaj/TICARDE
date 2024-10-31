@@ -918,8 +918,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747177418f635e149bc99de81f1e4692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name1: Player1a
-  name2: Player2f
+  name1: Player1
+  name2: Player2
   char1: 2
   char2: 2
 --- !u!1 &620059415
