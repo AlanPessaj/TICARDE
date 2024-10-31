@@ -89,6 +89,8 @@ public class CharacterSelector : MonoBehaviour
             MPSquares2[0, 0].SetActive(false);
             squares[0, 0].SetActive(true);
             squares[0, 0].GetComponent<Image>().color = new Color(1, 1, 0);
+            p2txt[0, 0].SetActive(false);
+            p1txt[0, 0].transform.position += new Vector3(50, 0, 0);
         }
     }
 
@@ -638,6 +640,7 @@ public class CharacterSelector : MonoBehaviour
         nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().char2 = translate[hIndex2, vIndex2];
         nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().name1 = name1;
         nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().name2 = name2;
+        nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().loadAction();
         SceneManager.UnloadSceneAsync(gameObject.scene);
     }
 }

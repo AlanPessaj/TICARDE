@@ -8,4 +8,5 @@ public class GameInfo : MonoBehaviour
     public string name2;
     public int char1;
     public int char2;
+    public System.Action loadAction;
 }
