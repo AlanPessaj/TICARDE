@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SelectorScripts : MonoBehaviour
+public class GameSelector : MonoBehaviour
 {
     public GameObject[] logos;
     int index;
