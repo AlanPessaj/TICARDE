@@ -1,15 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NameContoller : MonoBehaviour
 {
     public RectTransform[] chars = new RectTransform[4];
+    char[] characters = new char[36];
     int index = 0;
     Coroutine instance;
+    int selectedChar = 0;
+    int selected;
+
+    private void Start()
+    {
+        for (int i = 0; i < 26; i++)
+        {
+            characters[i] = (char)('a' + i);
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            characters[26 + i] = (char)('0' + i);
+        }
+    }
 
     void Update()
     {
+        selectedChar = System.Array.IndexOf(chars, chars[selected].GetComponent<TextMeshPro>().text);
         if (gameObject.name == "Player1")
         {
             RectTransform childRect = transform.GetChild(0).GetComponent<RectTransform>();
@@ -21,6 +39,7 @@ public class NameContoller : MonoBehaviour
                     if (Mathf.Approximately(childRect.anchoredPosition.x, chars[i].anchoredPosition.x))
                     {
                         index = i + 1;
+                        selected = i + 1;
                         break;
                     }
                 }
@@ -35,6 +54,7 @@ public class NameContoller : MonoBehaviour
                     if (Mathf.Approximately(childRect.anchoredPosition.x, chars[i].anchoredPosition.x))
                     {
                         index = i - 1;
+                        selected = i - 1;
                         break;
                     }
                 }
@@ -46,7 +66,7 @@ public class NameContoller : MonoBehaviour
             {
                 if (instance == null)
                 {
-                    StartCoroutine(Move(0));
+                    instance = StartCoroutine(Move(0));
                 }
             }
 
@@ -54,7 +74,7 @@ public class NameContoller : MonoBehaviour
             {
                 if (instance == null)
                 {
-                    StartCoroutine(Move(1));
+                    instance = StartCoroutine(Move(1));
                 }
             }
         }
@@ -62,6 +82,12 @@ public class NameContoller : MonoBehaviour
 
     IEnumerator Move(int way)
     {
+        if (way == 0) selectedChar++;
+        else selectedChar--;
+
+        if (selectedChar < 0) selectedChar = 35;
+        if (selectedChar > 35) selectedChar = 0;
+        chars[selected].GetComponent<TextMeshPro>().text = characters[selectedChar].ToString();
         transform.GetChild(0).GetChild(way).gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         transform.GetChild(0).GetChild(way).gameObject.SetActive(false);
