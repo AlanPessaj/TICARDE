@@ -458,6 +458,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c926f775b350f745a5888c374a5149e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 2100000, guid: 6eef482c505d8404780fdbc158472cc9, type: 2}
+  - {fileID: 2100000, guid: 0a39a6a95c91b474788f5de25e1200b4, type: 2}
+  - {fileID: 2100000, guid: f304b84b715674e428ea8a4059efbfe3, type: 2}
+  - {fileID: 2100000, guid: 0b86f9c5608a8ae41afd0326f0891495, type: 2}
   multiplayer: 1
   sections:
   - {fileID: 4167764292532976631, guid: d26d65c93eaa4a848ba90209b016aa35, type: 3}

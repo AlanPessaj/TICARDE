@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Generator_FG : MonoBehaviour
 {
+   /*
+    * Characters:
+    * [0] = Rabino
+    * [1] = Martin Fierro
+    * [2] = Messi
+    * [3] = Peron
+    */
+    public Material[] characters;
     public bool multiplayer;
     public GameObject[] sections;
     public GameObject grass;
@@ -32,7 +40,7 @@ public class Generator_FG : MonoBehaviour
     public float player2Score;
     public string player1Name = "Player1";
     public string player2Name = "Player2";
-    // Start is called before the first frame update
+
     void Start()
     {
         GetComponent<GameInfo>().loadAction = Loader;
@@ -44,8 +52,12 @@ public class Generator_FG : MonoBehaviour
         multiplayer = GetComponent<GameInfo>().name2 != null;
         player1Name = GetComponent<GameInfo>().name1;
         player2Name = GetComponent<GameInfo>().name2;
-        //PERSONAJES
-        if (!multiplayer)
+        players[0].GetComponent<Renderer>().material = characters[GetComponent<GameInfo>().char1];
+        if (multiplayer)
+        {
+            players[1].GetComponent<Renderer>().material = characters[GetComponent<GameInfo>().char2];
+        }
+        else
         {
             Destroy(players[1]);
         }
