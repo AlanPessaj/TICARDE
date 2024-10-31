@@ -7,57 +7,61 @@ public class GameSelector : MonoBehaviour
 {
     public GameObject[] logos;
     int index;
-
+    public bool animationFinished = false;
+    
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (animationFinished)
         {
-            if (index > 0)
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                index--;
+                if (index > 0)
+                {
+                    index--;
+                }
+                else
+                {
+                    index = logos.Length - 1;
+                }
+                foreach (var item in logos)
+                {
+                    item.SetActive(false);
+                }
+                logos[index].SetActive(true);
             }
-            else
+            if (Input.GetKeyDown(KeyCode.D))
             {
-                index = logos.Length - 1;
+                if (index < logos.Length - 1)
+                {
+                    index++;
+                }
+                else
+                {
+                    index = 0;
+                }
+                foreach (var item in logos)
+                {
+                    item.SetActive(false);
+                }
+                logos[index].SetActive(true);
             }
-            foreach (var item in logos)
+            if (Input.GetButtonDown("A"))
             {
-                item.SetActive(false);
+                switch (index)
+                {
+                    case 0:
+                        GameData.game = "FF";
+                        break;
+                    case 1:
+                        GameData.game = "FT";
+                        break;
+                    case 2:
+                        GameData.game = "FG";
+                        break;
+                }
+                SceneManager.LoadScene("NameInput");
             }
-            logos[index].SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (index < logos.Length - 1)
-            {
-                index++;
-            }
-            else
-            {
-                index = 0;
-            }
-            foreach (var item in logos)
-            {
-                item.SetActive(false);
-            }
-            logos[index].SetActive(true);
-        }
-        if (Input.GetButtonDown("A"))
-        {
-            switch (index)
-            {
-                case 0:
-                    GameData.game = "FF";
-                break;
-                case 1:
-                    GameData.game = "FT";
-                break;
-                case 2:
-                    GameData.game = "FG";
-                break;
-            }
-            SceneManager.LoadScene("NameInput");
         }
     }
 }
