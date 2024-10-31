@@ -13,13 +13,12 @@ public class NameInputManager : MonoBehaviour
     {
         if (multiplayer)
         {
-            player1.anchoredPosition = new Vector2(-280, 0);
-            player2.anchoredPosition = new Vector2(280, 0);
+            player1.anchoredPosition = new Vector2(-280, -80);
             player2.gameObject.SetActive(true);
         }
         else
         {
-            player1.anchoredPosition = new Vector2(0, 0);
+            player1.anchoredPosition = new Vector2(0, -80);
             player2.gameObject.SetActive(false);
         }
     }
