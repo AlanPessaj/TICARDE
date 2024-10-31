@@ -517,10 +517,10 @@ public class CharacterSelector : MonoBehaviour
                     }
                 }
             }
-            if ((confirmed[0] && confirmed[1] && multiplayer) || (confirmed[0] && !multiplayer))
-            {
-                StartCoroutine(NextScene());
-            }
+        }
+        if ((confirmed[0] && confirmed[1] && multiplayer) || (confirmed[0] && !multiplayer))
+        {
+            StartCoroutine(NextScene());
         }
         if (confirmed[0])
         {
