@@ -499,7 +499,7 @@ MonoBehaviour:
   treeSeparator: 0
   treeSpawn: 0
   baker: {fileID: 287369563}
-  startingLevel: 9
+  startingLevel: 0
   section: []
   isTherePlayer1: 0
   isTherePlayer2: 0
@@ -1713,7 +1713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 287369561}
-  immortal: 1
+  immortal: 0
   otherPlayer: {fileID: 1863136296}
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}

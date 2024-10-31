@@ -24,7 +24,11 @@ public class DieScript_FG : MonoBehaviour
         {
             if (Input.GetButtonDown("A") || Input.GetButtonDown("A2"))
             {
-                transform.position = transform.position + Vector3.up * 15;
+                GameOver();
+                foreach (DieScript_FG ghost in GameObject.FindObjectsOfType<DieScript_FG>())
+                {
+                    Destroy(ghost.gameObject);
+                }
             }
             if (firstSend)
             {

@@ -47,8 +47,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2746711, y: 2.5011582, z: 4.6197424}
-  m_Center: {x: 0.009269814, y: 1.275579, z: -0.007136345}
+  m_Size: {x: 1.1607286, y: 2.5011582, z: 3.5145385}
+  m_Center: {x: 0.01609353, y: 1.275579, z: -0.07766467}
 --- !u!195 &2246369723265393654
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.5
-  m_Speed: 3
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -83,6 +83,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c31f7099d308cb43a43dfc4614ec6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
   agent: {fileID: 0}
   leftSpawn: 0
   generator: {fileID: 0}
