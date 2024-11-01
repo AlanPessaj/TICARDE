@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MENU/Scenes/CharacterSelector.unity
     guid: db40f6feecb0ced41b5ea496c5133dba
+  - enabled: 1
+    path: Assets/MENU/Scenes/Leaderboard.unity
+    guid: 1031113eb6b8b934a9998f99ff638712
   m_configObjects: {}
