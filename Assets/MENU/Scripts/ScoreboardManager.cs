@@ -10,7 +10,8 @@ public class ScoreboardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SaveNewScore("AAAA", 888888, "FG");
+        LoadScores("FG");
     }
 
     public void LoadScores(string game)
