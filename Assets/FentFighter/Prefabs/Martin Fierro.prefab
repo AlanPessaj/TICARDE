@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 12
   type: 3
-  owner: {fileID: 0}
+  owner: {fileID: 8834447387954263040}
 --- !u!1 &1955364693688003342
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 6
   type: 0
-  owner: {fileID: 0}
+  owner: {fileID: 8834447387954263040}
 --- !u!1 &4869699192234317551
 GameObject:
   m_ObjectHideFlags: 0
