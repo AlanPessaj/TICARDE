@@ -58,10 +58,8 @@ public class Generator_FG : MonoBehaviour
         Level = startingLevel;
         while (distance < despawnRadius)
         {
-            Debug.Log("iteracion");
             GenerateZones();
         }
-        Debug.Log("termino");
         initialSpawn = false;
         StartCoroutine(TimeSprint(30, 50));
     }
