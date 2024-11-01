@@ -245,6 +245,11 @@ public class LinearMover_FG : MonoBehaviour
             GetComponents<AudioSource>()[1].PlayOneShot(GetComponents<AudioSource>()[1].clip);
             Destroy(collision.gameObject);
         }
+
+        if (gameObject.name != "Hippo(Clone)" && collision.transform.position.x == transform.position.x && (collision.gameObject.name == "LillyPad(Clone)" || collision.gameObject.name == "Log(Clone)" || collision.gameObject.name == "Car(Clone)"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

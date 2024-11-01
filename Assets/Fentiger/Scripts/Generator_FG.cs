@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Generator_FG : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class Generator_FG : MonoBehaviour
     public Transform ovniSpawn;
     public GameObject[] players = new GameObject[2];
     public GameObject[] specials;
+    public GameObject loadScreen;
     public int treeSeparator;
     public bool treeSpawn;
     public BakeNavMesh_FG baker;
@@ -69,6 +71,7 @@ public class Generator_FG : MonoBehaviour
         Time.timeScale = rate;
         yield return new WaitForSeconds(seconds);
         Time.timeScale = 1;
+        loadScreen.SetActive(false);
     }
 
     // Update is called once per frame
