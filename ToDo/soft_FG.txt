@@ -1,8 +1,8 @@
 interaccion con hardware
-seleccion de personaje
 TESTEAR JUEGO
 HACER LLEGAR LO MEJOR ANTES
 FORMA DE REVIVIR
+APLICAR ESCENA END
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
