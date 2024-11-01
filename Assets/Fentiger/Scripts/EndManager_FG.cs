@@ -20,10 +20,10 @@ public class EndManager_FG : MonoBehaviour
     {
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name;
         player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "SCORE: " + player1Score.ToString();
-        //ScoreboardManager.SaveNewScore(player1Name, (int)player1Score, "FG");
+        ScoreboardManager.SaveNewScore(player1Name, (int)player1Score, "FG");
         if (player2Name != null)
         {
-            //ScoreboardManager.SaveNewScore(player2Name, (int)player2Score, "FG");
+            ScoreboardManager.SaveNewScore(player2Name, (int)player2Score, "FG");
             player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player2Name;
             player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "SCORE: " + player2Score.ToString();
         }

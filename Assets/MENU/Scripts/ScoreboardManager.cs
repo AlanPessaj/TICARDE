@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class ScoreboardManager : MonoBehaviour
 {
-    public Text[] names;
-    public Text[] scores;
+    public Text[] pNames;
+    public Text[] pScores;
+    public static Text[] names = new Text[10];
+    public static Text[] scores = new Text[10];
     // Start is called before the first frame update
     void Start()
     {
-        SaveNewScore("AAAA", 1000, "FG");
-        LoadScores("FG");
+        names = pNames;
+        scores = pScores;
+        LoadScores(GameData.game);
     }
 
     public void LoadScores(string game)
@@ -27,7 +30,7 @@ public class ScoreboardManager : MonoBehaviour
     }
 
 
-    public void SaveNewScore(string name, int score, string game)
+    public static void SaveNewScore(string name, int score, string game)
     {
         SortedList<int, string> scoreboard = new SortedList<int, string>();
         List<int> sameScores = new List<int>();
@@ -72,6 +75,18 @@ public class ScoreboardManager : MonoBehaviour
                     }
                     break;
                 }
+            }
+        }
+        else
+        {
+            if (!scoreboard.ContainsKey(score))
+            {
+                scoreboard.Add(score, name);
+            }
+            else
+            {
+                sameScores.Add(score);
+                sameNames.Add(name);
             }
         }
         List<int> orderedScores = new List<int>();
