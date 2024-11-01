@@ -1,6 +1,5 @@
 interaccion con hardware
 TESTEAR JUEGO
-HACER LLEGAR LO MEJOR ANTES
 FORMA DE REVIVIR
 APLICAR ESCENA END
 -----------------------------------------------------------------------------
