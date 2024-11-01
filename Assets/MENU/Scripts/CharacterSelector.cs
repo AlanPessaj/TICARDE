@@ -7,8 +7,6 @@ using TMPro;
 
 public class CharacterSelector : MonoBehaviour
 {
-    public string name1;
-    public string name2;
     public GameObject[] pSquares;
     GameObject[,] squares;
     public GameObject[] pMPSquares1;
@@ -33,6 +31,10 @@ public class CharacterSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        game = GameData.game;
+        multiplayer = GameData.name2 != "";
+        //Debug.Log($"Name1: {name1}, Name2: {name2}, Multiplayer: {multiplayer}, Game: {game}");
+
         squares = new GameObject[pSquares.Length / 2, pSquares.Length / 2];
         int p = 0;
         for (int i = 0; i < pSquares.Length / 2; i++)
@@ -88,7 +90,7 @@ public class CharacterSelector : MonoBehaviour
             MPSquares1[0, 0].SetActive(false);
             MPSquares2[0, 0].SetActive(false);
             squares[0, 0].SetActive(true);
-            squares[0, 0].GetComponent<Image>().color = new Color(1, 1, 0);
+            //squares[0, 0].GetComponent<Image>().color = new Color(1, 1, 0);
             p2txt[0, 0].SetActive(false);
             p1txt[0, 0].transform.position += new Vector3(50, 0, 0);
         }
@@ -516,7 +518,7 @@ public class CharacterSelector : MonoBehaviour
         if (confirmed[0])
         {
             confirmedTimer += Time.deltaTime * blinkingSpeed;
-            if (hIndex != hIndex2 || vIndex != vIndex2)
+            if (hIndex != hIndex2 || vIndex != vIndex2 || !multiplayer)
             {
                 squares[hIndex, vIndex].GetComponent<Image>().color = Color.Lerp(new Color(1, 1, 0), Color.white, Mathf.PingPong(confirmedTimer, 1));
             }
@@ -623,8 +625,6 @@ public class CharacterSelector : MonoBehaviour
     {
         loadingScene = true;
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene($"Game({game})", LoadSceneMode.Additive);
-        yield return null;
         Scene nextScene = SceneManager.GetSceneByName($"Game({game})");
         int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
         int p = 0;
@@ -636,11 +636,8 @@ public class CharacterSelector : MonoBehaviour
                 p++;
             }
         }
-        nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().char1 = translate[hIndex, vIndex];
-        nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().char2 = translate[hIndex2, vIndex2];
-        nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().name1 = name1;
-        nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().name2 = name2;
-        nextScene.GetRootGameObjects()[0].GetComponent<GameInfo>().loadAction();
-        SceneManager.UnloadSceneAsync(gameObject.scene);
+        GameData.char1 = translate[hIndex, vIndex];
+        GameData.char2 = translate[hIndex2, vIndex2];
+        SceneManager.LoadScene($"Game({game})");
     }
 }

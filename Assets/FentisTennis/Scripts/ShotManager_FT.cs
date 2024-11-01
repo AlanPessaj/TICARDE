@@ -89,7 +89,7 @@ public class ShotManager_FT : MonoBehaviour
             simulationScene.GetPhysicsScene().Simulate(Time.fixedDeltaTime);
             cBall.GetComponent<BallMover_FT>().Update();
             cPlayer.GetComponent<PlayerController_FT>().Update();
-            cPlayer.transform.GetChild(0).gameObject.GetComponent<HitManager_FT>().Update();
+            //cPlayer.transform.GetChild(0).gameObject.GetComponent<HitManager_FT>().Update();
             if (ballHit)
             {
                 results = new float[3];

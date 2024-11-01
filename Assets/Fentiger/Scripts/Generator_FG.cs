@@ -1,10 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Generator_FG : MonoBehaviour
 {
+   /*
+    * Characters:
+    * [0] = Rabino
+    * [1] = Martin Fierro
+    * [2] = Messi
+    * [3] = Peron
+    */
+    public Material[] characters;
     public bool multiplayer;
+    public bool initialMultiplayer = false;
     public GameObject[] sections;
     public GameObject grass;
     bool? lastSection;
@@ -20,6 +30,7 @@ public class Generator_FG : MonoBehaviour
     public Transform ovniSpawn;
     public GameObject[] players = new GameObject[2];
     public GameObject[] specials;
+    public GameObject loadScreen;
     public int treeSeparator;
     public bool treeSpawn;
     public BakeNavMesh_FG baker;
@@ -32,11 +43,19 @@ public class Generator_FG : MonoBehaviour
     public float player2Score;
     public string player1Name = "Player1";
     public string player2Name = "Player2";
-    public bool debugMultiplayer;
-    // Start is called before the first frame update
+
     void Start()
     {
-        if (!debugMultiplayer)
+        multiplayer = GameData.name2 != "";
+        player1Name = GameData.name1;
+        player2Name = GameData.name2;
+        players[0].GetComponent<Renderer>().material = characters[GameData.char1];
+        if (multiplayer)
+        {
+            players[1].GetComponent<Renderer>().material = characters[GameData.char2];
+            initialMultiplayer = true;
+        }
+        else
         {
             Destroy(players[1]);
         }
@@ -54,6 +73,7 @@ public class Generator_FG : MonoBehaviour
         Time.timeScale = rate;
         yield return new WaitForSeconds(seconds);
         Time.timeScale = 1;
+        loadScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -84,10 +104,10 @@ public class Generator_FG : MonoBehaviour
 
             
             // Ovni
-            if (camara.GetChild(0).childCount < 1)
+            /*if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }
+            }*/
 
 
             //Gaviota
@@ -146,35 +166,12 @@ public class Generator_FG : MonoBehaviour
          * [3] = Corazon
          * [4] = Estrella
          */
-        float number = Random.Range(1, 101);
-        float number2 = Random.Range(1, 101);
-        float number3 = Random.Range(1, 101);
-        if (number <= Levels[Level].special[0])
-        {
-            if (multiplayer)
-            {
-                Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x) + Random.Range(1, 5), 3, 18), Quaternion.identity);
-            }
-            else if(player1Alive)
-            {
-                Instantiate(specials[0], new Vector3(players[0].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(specials[0], new Vector3(players[1].transform.position.x + Random.Range(1, 5), 3, 18), Quaternion.identity);
-            }
-            
-        }
-
-        if (number2 <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1)
-        {
-            Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-        }
-
-        if (number3 <= Levels[Level].special[2])
-        {
-            Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
-        }
+        float number = Random.Range(0, 101);
+        float number2 = Random.Range(0, 101);
+        float number3 = Random.Range(0, 101);
+        if (number <= Levels[Level].special[0]) Instantiate(specials[0], new Vector3(distance, 3, 18), Quaternion.identity);
+        if (number2 <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1) Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
+        if (number3 <= Levels[Level].special[2]) Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
     }
     bool? Percenter(float[] percentages)
     {

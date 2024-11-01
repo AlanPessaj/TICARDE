@@ -1,5 +1,3 @@
-panel nameinput = 920
-920/4 = 230
-
-https://discussions.unity.com/t/solved-unable-to-import-fonts-unable-to-open-assets-fonts-check-external-settings/237630
-
+SONIDOS PANTALLAS
+DESHACER TODOS LOS DEBUGS
+GUARDAR SCORES

@@ -440,7 +440,7 @@ public class PlayerController_FG : MonoBehaviour
             }
 
             Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = true;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

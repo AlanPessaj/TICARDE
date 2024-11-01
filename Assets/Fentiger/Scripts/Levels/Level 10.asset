@@ -25,15 +25,15 @@ MonoBehaviour:
   - 8
   - 8
   enemies:
-  - 40
-  - 30
+  - 50
+  - 20
   - 30
   floaters:
   - 25
   - 45
   - 30
   special:
-  - 55
+  - 100
   - 10
   - 10
   speed: 5

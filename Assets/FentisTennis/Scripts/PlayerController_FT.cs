@@ -200,6 +200,7 @@ public class PlayerController_FT : MonoBehaviour
                 canHit = true;
             }
         }
+        hitManager.hColliders = new Collider[3];
     }
 
     void CheckPrediction()

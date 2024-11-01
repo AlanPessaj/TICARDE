@@ -7,11 +7,7 @@ public class animationScript : MonoBehaviour
     public Sprite[] sprites;
     public int index;
     public GameObject canvas;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameSelector selector;
 
     // Update is called once per frame
     void Update()
@@ -19,6 +15,7 @@ public class animationScript : MonoBehaviour
         if (index < 0)
         {
             canvas.SetActive(true);
+            selector.animationFinished = true;
             Destroy(gameObject);
         }
         else
