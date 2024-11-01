@@ -525,7 +525,7 @@ public class CharacterSelector : MonoBehaviour
         if (confirmed[0])
         {
             confirmedTimer += Time.deltaTime * blinkingSpeed;
-            if (hIndex != hIndex2 || vIndex != vIndex2)
+            if (hIndex != hIndex2 || vIndex != vIndex2 || !multiplayer)
             {
                 squares[hIndex, vIndex].GetComponent<Image>().color = Color.Lerp(new Color(1, 1, 0), Color.white, Mathf.PingPong(confirmedTimer, 1));
             }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -830,7 +830,6 @@ GameObject:
   - component: {fileID: 549505094}
   - component: {fileID: 549505093}
   - component: {fileID: 549505092}
-  - component: {fileID: 549505096}
   - component: {fileID: 549505095}
   m_Layer: 0
   m_Name: GAMEMANAGER
@@ -911,22 +910,6 @@ MonoBehaviour:
   - {fileID: 1977545514}
   - {fileID: 965494607}
   cameraController: {fileID: 620059419}
---- !u!114 &549505096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549505091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 747177418f635e149bc99de81f1e4692, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name1: Player1
-  name2: Player2
-  char1: 2
-  char2: 2
 --- !u!1 &620059415
 GameObject:
   m_ObjectHideFlags: 0
