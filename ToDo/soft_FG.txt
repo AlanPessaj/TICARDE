@@ -1,6 +1,5 @@
 interaccion con hardware
 TESTEAR JUEGO
-FORMA DE REVIVIR
 APLICAR ESCENA END
 -----------------------------------------------------------------------------
 EXTRA:

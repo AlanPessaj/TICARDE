@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 287369561}
   - component: {fileID: 287369563}
   - component: {fileID: 287369564}
+  - component: {fileID: 287369569}
   - component: {fileID: 287369567}
   - component: {fileID: 287369565}
   - component: {fileID: 287369568}
@@ -463,6 +464,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f304b84b715674e428ea8a4059efbfe3, type: 2}
   - {fileID: 2100000, guid: 0b86f9c5608a8ae41afd0326f0891495, type: 2}
   multiplayer: 1
+  initialMultiplayer: 0
   sections:
   - {fileID: 4167764292532976631, guid: d26d65c93eaa4a848ba90209b016aa35, type: 3}
   - {fileID: 5873325583378978193, guid: 7c6017503b332fb449e369ac25845f7b, type: 3}
@@ -876,6 +878,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &287369569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287369560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51de03eb152db5240adcb2c54e1ad2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &369083365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,7 +2537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 287369561}
-  immortal: 1
+  immortal: 0
   otherPlayer: {fileID: 1220741840}
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}

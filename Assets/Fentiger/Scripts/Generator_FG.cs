@@ -14,6 +14,7 @@ public class Generator_FG : MonoBehaviour
     */
     public Material[] characters;
     public bool multiplayer;
+    public bool initialMultiplayer = false;
     public GameObject[] sections;
     public GameObject grass;
     bool? lastSection;
@@ -52,6 +53,7 @@ public class Generator_FG : MonoBehaviour
         if (multiplayer)
         {
             players[1].GetComponent<Renderer>().material = characters[GameData.char2];
+            initialMultiplayer = true;
         }
         else
         {
