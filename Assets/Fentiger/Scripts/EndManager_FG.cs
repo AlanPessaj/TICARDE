@@ -15,7 +15,10 @@ public class EndManager_FG : MonoBehaviour
     public float topScore;
 
 
-
+    private void Start()
+    {
+        GameObject.Find("TICARDEMANAGER").GetComponent<GAMEMANAGER>().enabled = true;
+    }
     public void UpdateValues()
     {
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name;
