@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager_FF : MonoBehaviour
 {
     public GameObject[] characters;
+    public GameObject[] maps;
+    public GameObject map;
     public GameObject[] players;
     public GameObject[] UI;
     public CameraController_FF cameraController;
@@ -13,11 +15,23 @@ public class GameManager_FF : MonoBehaviour
     private void Start()
     {
         Vector3[] playerPos = new Vector3[players.Length];
+        Transform environment = map.transform.parent;
         for (int i = 0; i < players.Length; i++)
         {
             playerPos[i] = players[i].transform.position;
             Destroy(players[i]);
         }
+        Destroy(map);
+        int mapIndex;
+        if (Random.value > 0.5f)
+        {
+            mapIndex = GameData.char1;
+        }
+        else
+        {
+            mapIndex = GameData.char2;
+        }
+        Instantiate(maps[mapIndex]).transform.parent = environment;
         players[0] = Instantiate(characters[GameData.char1], playerPos[0], Quaternion.Euler(0, 90, 0));
         players[1] = Instantiate(characters[GameData.char2], playerPos[1], Quaternion.Euler(0, -90, 0));
         SceneManager.MoveGameObjectToScene(players[0], gameObject.scene);
