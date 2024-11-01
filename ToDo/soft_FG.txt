@@ -1,6 +1,7 @@
 interaccion con hardware
 TESTEAR JUEGO
 APLICAR ESCENA END
+PANTALLA DE CARGA HACER QUE NO SE PUEDAN MOVER
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
