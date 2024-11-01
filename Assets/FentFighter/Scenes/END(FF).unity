@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 566188172}
   - component: {fileID: 566188171}
   m_Layer: 5
-  m_Name: btnMenu
+  m_Name: btnNext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +801,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1666460322}
-        m_MethodName: Menu
+        m_MethodName: Next
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MENU
+  m_text: NEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2254,8 +2254,6 @@ MonoBehaviour:
   txtPlayer1Name: {fileID: 91630052}
   txtPlayer2Name: {fileID: 787537606}
   txtWinner: {fileID: 1405438252}
-  player1Name: Player1
-  player2Name: Player2
 --- !u!4 &1666460323
 Transform:
   m_ObjectHideFlags: 0

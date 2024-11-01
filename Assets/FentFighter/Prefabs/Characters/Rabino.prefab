@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 7764447574331699367}
   - component: {fileID: 2466252928670587219}
   - component: {fileID: 2234425921329066798}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Fist
   m_TagString: Untagged
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
@@ -240,8 +240,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2440711454421603338}
-  m_LocalRotation: {x: -0.43037978, y: 0.6304322, z: 0.64507437, w: -0.03475105}
-  m_LocalPosition: {x: 13.43787, y: 21.773989, z: 92.47715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 1.77, z: 0.23}
   m_LocalScale: {x: 1.1750045, y: 1.1750027, z: 1.1750039}
   m_Children: []
   m_Father: {fileID: 8517903291278139626}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 7819542143217868653}
   - component: {fileID: 532794615957006069}
   - component: {fileID: 3426098410865348057}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3620959569083966614}
   m_LocalRotation: {x: -0.49289677, y: 0.35358566, z: 0.73004705, w: -0.3147401}
-  m_LocalPosition: {x: 35.069653, y: 76.79476, z: 47.490864}
+  m_LocalPosition: {x: -0.08, y: 0.96, z: 0.03}
   m_LocalScale: {x: 3, y: 1.1750002, z: 1.1750028}
   m_Children: []
   m_Father: {fileID: 8517903291278139622}

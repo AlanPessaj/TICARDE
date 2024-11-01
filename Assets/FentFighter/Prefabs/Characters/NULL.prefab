@@ -2039,7 +2039,7 @@ MonoBehaviour:
   maxHealth: 100
   maxXP: 100
   XP: 0
-  noDamage: 1
+  noDamage: 0
 --- !u!1 &4461427881204288277
 GameObject:
   m_ObjectHideFlags: 0

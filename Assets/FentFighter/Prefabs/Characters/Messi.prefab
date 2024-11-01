@@ -1895,7 +1895,7 @@ GameObject:
   - component: {fileID: 1638278861084003033}
   - component: {fileID: 1638278861084003038}
   m_Layer: 10
-  m_Name: Player1
+  m_Name: Messi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2039,7 +2039,7 @@ MonoBehaviour:
   maxHealth: 100
   maxXP: 100
   XP: 0
-  noDamage: 1
+  noDamage: 0
 --- !u!1 &4461427881204288277
 GameObject:
   m_ObjectHideFlags: 0
