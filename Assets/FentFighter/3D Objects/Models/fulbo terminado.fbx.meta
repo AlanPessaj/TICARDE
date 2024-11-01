@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: 15a32deea58bfb7449eca0383eaecb7f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: arco azul
+    100002: arco rojo
+    100004: banquito
+    100006: banquito 2
+    100008: cancha
+    100010: cilindros}
+    100012: //RootNode
+    100014: luz
+    100016: luz 2
+    100018: pared exterior
+    100020: piso gris}
+    100022: piso rojo
+    100024: poste  de luz 2
+    100026: poste de luz
+    100028: poster fent
+    100030: poster fighter
+    100032: poster ticarde 1
+    100034: poster ticarde 2
+    100036: red arco azul
+    100038: red arco rojo
+    100040: rejas
+    400000: arco azul
+    400002: arco rojo
+    400004: banquito
+    400006: banquito 2
+    400008: cancha
+    400010: cilindros}
+    400012: //RootNode
+    400014: luz
+    400016: luz 2
+    400018: pared exterior
+    400020: piso gris}
+    400022: piso rojo
+    400024: poste  de luz 2
+    400026: poste de luz
+    400028: poster fent
+    400030: poster fighter
+    400032: poster ticarde 1
+    400034: poster ticarde 2
+    400036: red arco azul
+    400038: red arco rojo
+    400040: rejas
+    2100000: court
+    2100002: outside court
+    2100004: gris
+    2100006: greys anatomy metalicooooooo
+    2100008: Material.003
+    2100010: greys anatomy metalicooooooo.001
+    2100012: pared exterior
+    2100014: poster ticarde
+    2100016: luz
+    2100018: poster fighter
+    2100020: poster fent
+    2300000: arco azul
+    2300002: arco rojo
+    2300004: banquito
+    2300006: banquito 2
+    2300008: cancha
+    2300010: cilindros}
+    2300012: luz
+    2300014: luz 2
+    2300016: pared exterior
+    2300018: piso gris}
+    2300020: piso rojo
+    2300022: poste  de luz 2
+    2300024: poste de luz
+    2300026: poster fent
+    2300028: poster fighter
+    2300030: poster ticarde 1
+    2300032: poster ticarde 2
+    2300034: red arco azul
+    2300036: red arco rojo
+    2300038: rejas
+    3300000: arco azul
+    3300002: arco rojo
+    3300004: banquito
+    3300006: banquito 2
+    3300008: cancha
+    3300010: cilindros}
+    3300012: luz
+    3300014: luz 2
+    3300016: pared exterior
+    3300018: piso gris}
+    3300020: piso rojo
+    3300022: poste  de luz 2
+    3300024: poste de luz
+    3300026: poster fent
+    3300028: poster fighter
+    3300030: poster ticarde 1
+    3300032: poster ticarde 2
+    3300034: red arco azul
+    3300036: red arco rojo
+    3300038: rejas
+    4300000: cancha
+    4300002: piso rojo
+    4300004: piso gris}
+    4300006: rejas
+    4300008: cilindros}
+    4300010: arco rojo
+    4300012: red arco rojo
+    4300014: arco azul
+    4300016: red arco azul
+    4300018: pared exterior
+    4300020: banquito
+    4300022: banquito 2
+    4300024: poster ticarde 1
+    4300026: poster ticarde 2
+    4300028: poste de luz
+    4300030: luz
+    4300032: poste  de luz 2
+    4300034: luz 2
+    4300036: poster fighter
+    4300038: poster fent
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
