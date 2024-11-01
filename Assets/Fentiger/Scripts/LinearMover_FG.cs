@@ -23,6 +23,7 @@ public class LinearMover_FG : MonoBehaviour
     bool firstSound = true;
     bool secondSound = true;
     bool playerOn;
+    bool seagullStart;
     int logChildCount;
 
     void Start()
@@ -121,7 +122,19 @@ public class LinearMover_FG : MonoBehaviour
                 }
                 else
                 {
-                    transform.Translate(0, 0, 5 * Time.deltaTime, Space.World);
+                    if (generator.multiplayer)
+                    {
+                        if (generator.players[0].transform.position.x + Random.Range(1, 5) >= transform.position.x || generator.players[1].transform.position.x + Random.Range(1, 5) >= transform.position.x) seagullStart = true;
+                    }
+                    else if(generator.player1Alive)
+                    {
+                        if (generator.players[0].transform.position.x + Random.Range(1, 5) >= transform.position.x) seagullStart = true;
+                    }
+                    else
+                    {
+                        if (generator.players[1].transform.position.x + Random.Range(1, 5) >= transform.position.x) seagullStart = true;
+                    }
+                    if (seagullStart) transform.Translate(0, 0, 5 * Time.deltaTime, Space.World);
                 }
             }
             else
@@ -155,7 +168,19 @@ public class LinearMover_FG : MonoBehaviour
                 }
                 else
                 {
-                    transform.Translate(0, 0, 5 * -Time.deltaTime, Space.World);
+                    if (generator.multiplayer)
+                    {
+                        if (generator.players[0].transform.position.x + Random.Range(1, 5) >= transform.position.x || generator.players[1].transform.position.x + Random.Range(1, 5) >= transform.position.x) seagullStart = true;
+                    }
+                    else if (generator.player1Alive)
+                    {
+                        if (generator.players[0].transform.position.x + Random.Range(1, 5) >= transform.position.x) seagullStart = true;
+                    }
+                    else
+                    {
+                        if (generator.players[1].transform.position.x + Random.Range(1, 5) >= transform.position.x) seagullStart = true;
+                    }
+                    if (seagullStart) transform.Translate(0, 0, 5 * -Time.deltaTime, Space.World);
                 }
             }
             else
