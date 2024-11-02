@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 
-public class Points_FF : MonoBehaviour
+public class Points_FT : MonoBehaviour
 {
     public TextMeshProUGUI txtPlayer1Score;
     public TextMeshProUGUI txtPlayer2Score;
@@ -15,10 +15,10 @@ public class Points_FF : MonoBehaviour
     int player1Score;
     int player2Score;
     // Start is called before the first frame update
-    public void UpdateScore(float player1Score, float player2Score)
+    public void UpdateScore(int player1Score, int player2Score)
     {
-        this.player1Score = (int)player1Score;
-        this.player2Score = (int)player2Score;
+        this.player1Score = player1Score;
+        this.player2Score = player2Score;
         txtPlayer1Score.text = player1Score.ToString();
         txtPlayer2Score.text = player2Score.ToString();
         txtPlayer1Name.text = GameData.name1;
@@ -31,13 +31,13 @@ public class Points_FF : MonoBehaviour
 
     public void Next()
     {
-        ScoreboardManager.SaveNewScore(GameData.name1, player1Score, "FF");
-        ScoreboardManager.SaveNewScore(GameData.name2, player2Score, "FF");
+        ScoreboardManager.SaveNewScore(GameData.name1, player1Score, "FT");
+        ScoreboardManager.SaveNewScore(GameData.name2, player2Score, "FT");
         SceneManager.LoadScene("Leaderboard");
     }
 
     public void PlayAgain()
     {
-        SceneManager.LoadScene("Game(FF)");
+        SceneManager.LoadScene("Game(FT)");
     }
 }
