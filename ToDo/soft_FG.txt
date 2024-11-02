@@ -1,6 +1,5 @@
 interaccion con hardware
 TESTEAR JUEGO
-SOLUCIONAR BUG OVNI AL INICIAR
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas

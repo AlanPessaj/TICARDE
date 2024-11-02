@@ -256,6 +256,16 @@ public class LinearMover_FG : MonoBehaviour
             generator.GetComponent<SoundManager_FG>().PlaySound(breakSound);
             Destroy(gameObject);
         }
+
+        if (gameObject.name == "Car(Clone)")
+        {
+            Debug.DrawRay(transform.position + Vector3.forward * 1.5f, -Vector3.forward * 3f, Color.green);
+            if (Physics.Raycast(transform.position + Vector3.forward * 1.5f, -Vector3.forward, out RaycastHit carHit, 3f, LayerMask.GetMask("Out")) && carHit.transform.gameObject != this.gameObject)
+            {
+                Destroy(gameObject);
+            }
+
+        }
     }
 
     private void Awake()
