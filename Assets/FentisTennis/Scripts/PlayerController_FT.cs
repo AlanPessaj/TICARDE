@@ -28,9 +28,15 @@ public class PlayerController_FT : MonoBehaviour
     float driveRotation;
     float lobRotation;
     float smashRotation;
+    bool chargingDrive;
+    bool chargingLob;
+    bool chargingSmash;
     public bool doingDrive;
     public bool doingLob;
     public bool doingSmash;
+    bool didDrive;
+    bool didLob;
+    bool didSmash;
     float speedConst;
     bool canHit = true;
     // Update is called once per frame
@@ -106,7 +112,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
-                if (Input.GetButtonDown("A"))
+                if (Input.GetButtonDown("A") && !gameManager.serving)
                 {
                     gameManager.ThrowBall();
                 }
@@ -178,7 +184,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
-                if (Input.GetButtonDown("A2"))
+                if (Input.GetButtonDown("A2") && !gameManager.serving)
                 {
                     gameManager.ThrowBall();
                 }
@@ -331,14 +337,14 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //A
-                if (!doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit)
+                if (Input.GetButtonDown("A" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit)
                 {
-                    if (Input.GetButtonDown("A" + player))
-                    {
-                        racket.transform.Rotate(-90, 0, 0);
-                        //empezar a moverse
-                        Debug.Log("drive");
-                    }
+                    racket.transform.Rotate(-90, 0, 0);
+                    chargingDrive = true;
+                    //empezar a moverse
+                }
+                if (chargingDrive)
+                {
                     timer += Time.deltaTime;
                     driveRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                     racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(0, 45, driveRotation), 0);
@@ -355,15 +361,15 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //B
-                if (!doingSmash && !doingDrive && !doingLob && smashRotation == 0 && driveRotation == 0 && canHit)
+                if (Input.GetButtonDown("B" + player) && !doingSmash && !doingDrive && !doingLob && smashRotation == 0 && driveRotation == 0 && canHit)
                 {
-                    if (Input.GetButtonDown("B" + player))
-                    {
-                        racket.transform.Rotate(0, 0, 180);
-                        racket.transform.localPosition = new Vector3(0, -0.25f, -3f);
-                        //empezar a moverse
-                        Debug.Log("lob");
-                    }
+                    racket.transform.Rotate(0, 0, 180);
+                    racket.transform.localPosition = new Vector3(0, -0.25f, -3f);
+                    chargingLob = true;
+                    //empezar a moverse
+                }
+                if (chargingLob)
+                {
                     timer += Time.deltaTime;
                     lobRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                     racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -45, lobRotation));
@@ -373,14 +379,14 @@ public class PlayerController_FT : MonoBehaviour
         if (Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //C
-            if (!doingDrive && !doingLob && !doingSmash && driveRotation == 0 && lobRotation == 0 && canHit)
+            if (Input.GetButtonDown("C" + player) && !doingDrive && !doingLob && !doingSmash && driveRotation == 0 && lobRotation == 0 && canHit)
             {
-                if (Input.GetButtonDown("C" + player))
-                {
-                    racket.transform.localPosition = new Vector3(0, 1f, -3f);
-                    //empezar a moverse
-                    Debug.Log("smash");
-                }
+                racket.transform.localPosition = new Vector3(0, 1f, -3f);
+                chargingSmash = true;
+                //empezar a moverse
+            }
+            if (chargingSmash)
+            {
                 timer += Time.deltaTime;
                 smashRotation += Time.deltaTime * racketSpeed * (1 / Time.timeScale) / 4;
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, smashRotation));
@@ -389,110 +395,154 @@ public class PlayerController_FT : MonoBehaviour
         if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //NONE
-            if (Input.GetButtonUp("A" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit && !serve)
+        }
+        MoveRaquet(serve, player);
+    }
+
+    public void MoveRaquet(bool serve, string player)
+    {
+        if (Input.GetButtonUp("A" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit && !serve)
+        {
+            CheckDirection();
+            doingDrive = true;
+            chargingDrive = false;
+            driveRotation = Mathf.InverseLerp(45, -90, racketPivot.transform.eulerAngles.y);
+        }
+        if (Input.GetButtonUp("B" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && driveRotation == 0 && canHit && !serve)
+        {
+            CheckDirection();
+            doingLob = true;
+            chargingLob = false;
+            lobRotation = Mathf.InverseLerp(315, 90, racketPivot.transform.localEulerAngles.z);
+        }
+        if (Input.GetButtonUp("C" + player) && !doingSmash && !doingDrive && !doingLob && driveRotation == 0 && lobRotation == 0 && canHit)
+        {
+            CheckDirection();
+            doingSmash = true;
+            chargingSmash = false;
+            smashRotation = Mathf.InverseLerp(45, -90, racketPivot.transform.localEulerAngles.z);
+        }
+        if (doingDrive && simShot == null)
+        {
+            driveRotation += Time.deltaTime * racketSpeed;
+            racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, driveRotation), 0);
+            if (hitManager.hColliders[1] != null && !didDrive)
             {
-                CheckDirection();
-                doingDrive = true;
-                driveRotation = Mathf.InverseLerp(45, -90, racketPivot.transform.eulerAngles.y);
-            }
-            if (Input.GetButtonUp("B" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && driveRotation == 0 && canHit && !serve)
-            {
-                CheckDirection();
-                doingLob = true;
-                lobRotation = Mathf.InverseLerp(315, 90, racketPivot.transform.localEulerAngles.z);
-            }
-            if (Input.GetButtonUp("C" + player) && !doingSmash && !doingDrive && !doingLob && driveRotation == 0 && lobRotation == 0 && canHit)
-            {
-                CheckDirection();
-                doingSmash = true;
-                smashRotation = Mathf.InverseLerp(45, -90, racketPivot.transform.localEulerAngles.z);
-            }
-            if (doingDrive && simShot == null)
-            {
-                driveRotation += Time.deltaTime * racketSpeed;
-                racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, driveRotation), 0);
-                if (hitManager.hColliders[1] != null)
+                shot.ball.bounced = false;
+                shot.ball.wasPlayer1 = isPlayer1;
+                shot.FindShot(direction, ShotType.drive, isPlayer1);
+                didDrive = true;
+                if (isPlayer1)
                 {
-                    shot.ball.bounced = false;
-                    shot.ball.wasPlayer1 = isPlayer1;
-                    gameObject.name = gameObject.name;
-                    shot.FindShot(direction, ShotType.drive, isPlayer1);
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.Rotate(90, 0, 0);
-                    driveRotation = 0;
-                    doingDrive = false;
+                    gameManager.score1++;
                 }
-                if (driveRotation >= 1)
+                else
                 {
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.Rotate(90, 0, 0);
-                    driveRotation = 0;
-                    doingDrive = false;
-                    canHit = true;
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -15);
-                }
-            }
-            if (doingLob && simShot == null)
-            {
-                lobRotation += Time.deltaTime * racketSpeed;
-                racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, lobRotation));
-                if (hitManager.hColliders[2] != null)
-                {
-                    shot.ball.bounced = false;
-                    shot.ball.wasPlayer1 = isPlayer1;
-                    shot.FindShot(direction, ShotType.lob, isPlayer1);
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.Rotate(0, 0, -180);
-                    racket.transform.localPosition = new Vector3(0, 0, -3f);
-                    lobRotation = 0;
-                    doingLob = false;
-                }
-                if (lobRotation >= 1)
-                {
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.Rotate(0, 0, -180);
-                    racket.transform.localPosition = new Vector3(0, 0, -3f);
-                    lobRotation = 0;
-                    doingLob = false;
-                    canHit = true;
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -15);
+                    gameManager.score2++;
                 }
             }
-            if (doingSmash && simShot == null)
+            if (driveRotation >= 1)
             {
-                smashRotation += Time.deltaTime * racketSpeed;
-                racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, smashRotation));
-                if (hitManager.hColliders[0] != null)
+                racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
+                racket.transform.Rotate(90, 0, 0);
+                driveRotation = 0;
+                doingDrive = false;
+                didDrive = false;
+                canHit = true;
+            }
+        }
+        if (doingLob && simShot == null)
+        {
+            lobRotation += Time.deltaTime * racketSpeed;
+            racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, lobRotation));
+            if (hitManager.hColliders[2] != null && !didLob)
+            {
+                shot.ball.bounced = false;
+                shot.ball.wasPlayer1 = isPlayer1;
+                shot.FindShot(direction, ShotType.lob, isPlayer1);
+                didLob = true;
+                if (isPlayer1)
                 {
-                    if (serve)
+                    gameManager.score1++;
+                }
+                else
+                {
+                    gameManager.score2++;
+                }
+            }
+            if (lobRotation >= 1)
+            {
+                racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
+                racket.transform.Rotate(0, 0, -180);
+                racket.transform.localPosition = new Vector3(0, 0, -3f);
+                lobRotation = 0;
+                doingLob = false;
+                didLob = false;
+                canHit = true;
+            }
+        }
+        if (doingSmash && simShot == null)
+        {
+            smashRotation += Time.deltaTime * racketSpeed;
+            racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, smashRotation));
+            if (hitManager.hColliders[0] != null && !didSmash)
+            {
+                if (serve)
+                {
+                    if (!gameManager.throwingBall)
                     {
                         gameManager.EndServe();
                         shot.FindShot(-2, ShotType.smash, isPlayer1, true);
                     }
-                    else
-                    {
-                        shot.FindShot(direction, ShotType.smash, isPlayer1);
-                    }
-                    shot.ball.bounced = false;
-                    shot.ball.wasPlayer1 = isPlayer1;
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.localPosition = new Vector3(0, 0, -3f);
-                    smashRotation = 0;
-                    doingSmash = false;
                 }
-                if (smashRotation >= 1)
+                else
                 {
-                    racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
-                    racket.transform.localPosition = new Vector3(0, 0, -3f);
-                    smashRotation = 0;
-                    doingSmash = false;
-                    if (!serve)
-                    {
-                        canHit = true;
-                        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -15);
-                    }
+                    shot.FindShot(direction, ShotType.smash, isPlayer1);
+                }
+                shot.ball.bounced = false;
+                shot.ball.wasPlayer1 = isPlayer1;
+                didSmash = true;
+                if (isPlayer1)
+                {
+                    gameManager.score1++;
+                }
+                else
+                {
+                    gameManager.score2++;
+                }
+            }
+            if (smashRotation >= 1)
+            {
+                racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
+                racket.transform.localPosition = new Vector3(0, 0, -3f);
+                smashRotation = 0;
+                doingSmash = false;
+                didSmash = false;
+                if (!serve)
+                {
+                    canHit = true;
                 }
             }
         }
+    }
+
+    public void ResetRaquet()
+    {
+        doingDrive = false;
+        doingLob = false;
+        doingSmash = false;
+        driveRotation = 0;
+        lobRotation = 0;
+        smashRotation = 0;
+        didDrive = false;
+        didLob = false;
+        didSmash = false;
+        canHit = true;
+        chargingDrive = false;
+        chargingLob = false;
+        chargingSmash = false;
+        racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
+        racket.transform.localPosition = new Vector3(0, 0, -3f);
+        racket.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
 }

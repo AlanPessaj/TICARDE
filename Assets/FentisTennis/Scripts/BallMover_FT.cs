@@ -123,33 +123,30 @@ public class BallMover_FT : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
-            if (transform.position.x < 21 && transform.position.x > -21)
+            if (wasPlayer1)
             {
-                if (wasPlayer1)
+                if (bounced)
                 {
-                    if (bounced)
-                    {
-                        //Punto para p1
-                        gameManager.AddPoint(gameManager.player1);
-                        bounced = false;
-                    }
-                    else
-                    {
-                        bounced = true;
-                    }
+                    //Punto para p1
+                    gameManager.AddPoint(gameManager.player1);
+                    bounced = false;
                 }
                 else
                 {
-                    if (bounced)
-                    {
-                        //Punto para p2
-                        gameManager.AddPoint(gameManager.player2);
-                        bounced = false;
-                    }
-                    else
-                    {
-                        bounced = true;
-                    }
+                    bounced = true;
+                }
+            }
+            else
+            {
+                if (bounced)
+                {
+                    //Punto para p2
+                    gameManager.AddPoint(gameManager.player2);
+                    bounced = false;
+                }
+                else
+                {
+                    bounced = true;
                 }
             }
             height *= vCOR;
@@ -169,13 +166,11 @@ public class BallMover_FT : MonoBehaviour
                 {
                     //Punto para p1
                     gameManager.AddPoint(gameManager.player1);
-                    bounced = false;
                 }
                 else
                 {
                     //Punto para p2
                     gameManager.AddPoint(gameManager.player2);
-                    bounced = false;
                 }
             }
             else
@@ -184,15 +179,14 @@ public class BallMover_FT : MonoBehaviour
                 {
                     //Punto para p2
                     gameManager.AddPoint(gameManager.player2);
-                    bounced = false;
                 }
                 else
                 {
                     //Punto para p1
                     gameManager.AddPoint(gameManager.player1);
-                    bounced = false;
                 }
             }
+            bounced = false;
         }
     }
 }
