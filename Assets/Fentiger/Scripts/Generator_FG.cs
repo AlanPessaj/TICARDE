@@ -31,6 +31,7 @@ public class Generator_FG : MonoBehaviour
     public GameObject[] players = new GameObject[2];
     public GameObject[] specials;
     public GameObject loadScreen;
+    public GameObject[] player2XPBar;
     public int treeSeparator;
     public bool treeSpawn;
     public BakeNavMesh_FG baker;
@@ -60,6 +61,7 @@ public class Generator_FG : MonoBehaviour
         else
         {
             Destroy(players[1]);
+            foreach (GameObject item in player2XPBar) item.SetActive(false);
         }
         Level = startingLevel;
         while (distance < despawnRadius)

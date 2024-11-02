@@ -1,6 +1,5 @@
 interaccion con hardware
 TESTEAR JUEGO
-desactivar barra xp en sp
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
