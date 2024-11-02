@@ -504,6 +504,10 @@ MonoBehaviour:
   - {fileID: 5285254102257641245, guid: 15676c245ee0f5644847149aad6b8e41, type: 3}
   - {fileID: 1386064799958590778, guid: 1fd65e54f552dbd419d2755af23821b3, type: 3}
   loadScreen: {fileID: 938883895}
+  player2XPBar:
+  - {fileID: 1466435330}
+  - {fileID: 888994261}
+  - {fileID: 1732845931}
   treeSeparator: 0
   treeSpawn: 0
   baker: {fileID: 287369563}
