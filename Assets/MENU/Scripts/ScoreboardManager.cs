@@ -21,11 +21,15 @@ public class ScoreboardManager : MonoBehaviour
     {
         for (int i = 0; i < names.Length; i++)
         {
-            names[i].text = PlayerPrefs.GetString($"{game}/name{i}", "NONE");
+            if (PlayerPrefs.GetString($"{game}/name{i}").ToString() != "")
+            {
+                names[i].text = PlayerPrefs.GetString($"{game}/name{i}")[0].ToString() + " " + PlayerPrefs.GetString($"{game}/name{i}")[1].ToString() + " " + PlayerPrefs.GetString($"{game}/name{i}")[2].ToString() + " " + PlayerPrefs.GetString($"{game}/name{i}")[3].ToString();
+            }
+            else names[i].text = "N O N E";
         }
         for (int i = 0; i < scores.Length; i++)
         {
-            scores[i].text = PlayerPrefs.GetInt($"{game}/score{i}", 0).ToString();
+            scores[i].text = PlayerPrefs.GetInt($"{game}/score{i}", 0).ToString() + " PTS.";
         }
     }
 

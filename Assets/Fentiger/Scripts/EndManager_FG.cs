@@ -21,14 +21,19 @@ public class EndManager_FG : MonoBehaviour
     }
     public void UpdateValues()
     {
-        player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name;
-        player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "SCORE: " + player1Score.ToString();
+        player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name + " SCORE: ";
+        player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text += player1Score.ToString();
         ScoreboardManager.SaveNewScore(player1Name, (int)player1Score, "FG");
-        if (player2Name != null)
+        if (player2Name != "")
         {
             ScoreboardManager.SaveNewScore(player2Name, (int)player2Score, "FG");
-            player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player2Name;
-            player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "SCORE: " + player2Score.ToString();
+            player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player2Name + " SCORE: ";
+            player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text += player2Score.ToString();
+        }
+        else
+        {
+            player2Canvas.SetActive(false);
+            player1Canvas.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
         }
     }
 

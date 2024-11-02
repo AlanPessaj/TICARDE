@@ -1,6 +1,5 @@
 interaccion con hardware
 TESTEAR JUEGO
-APLICAR ESCENA END
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
