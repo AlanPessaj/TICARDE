@@ -174,7 +174,7 @@ public class Generator_FG : MonoBehaviour
         float number2 = Random.Range(0, 101);
         float number3 = Random.Range(0, 101);
         if (number <= Levels[Level].special[0]) Instantiate(specials[0], new Vector3(distance, 3, 18), Quaternion.identity);
-        if (number2 <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1) Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
+        if (number2 <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1 && Level > 0) Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
         if (number3 <= Levels[Level].special[2]) Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
     }
     bool? Percenter(float[] percentages)
