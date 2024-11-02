@@ -66,6 +66,7 @@ public class PlayerController_FG : MonoBehaviour
                     {
                         otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
                     }
+                    generator.GenerateZones();
                     portal.GetComponent<AudioSource>().Play();
                 }
             }
@@ -112,6 +113,10 @@ public class PlayerController_FG : MonoBehaviour
                     if (generator.multiplayer)
                     {
                         otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    }
+                    while (generator.distance < generator.despawnRadius)
+                    {
+                        generator.GenerateZones();
                     }
                     portal.GetComponent<AudioSource>().Play();
                 }
