@@ -337,8 +337,9 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //A
-                if (Input.GetButtonDown("A" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit)
+                if (Input.GetButtonDown("A" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && driveRotation == 0 && canHit)
                 {
+                    ResetRaquet();
                     racket.transform.Rotate(-90, 0, 0);
                     chargingDrive = true;
                     //empezar a moverse
@@ -361,8 +362,9 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //B
-                if (Input.GetButtonDown("B" + player) && !doingSmash && !doingDrive && !doingLob && smashRotation == 0 && driveRotation == 0 && canHit)
+                if (Input.GetButtonDown("B" + player) && !doingSmash && !doingDrive && !doingLob && smashRotation == 0 && lobRotation == 0 && driveRotation == 0 && canHit)
                 {
+                    ResetRaquet();
                     racket.transform.Rotate(0, 0, 180);
                     racket.transform.localPosition = new Vector3(0, -0.25f, -3f);
                     chargingLob = true;
@@ -379,8 +381,9 @@ public class PlayerController_FT : MonoBehaviour
         if (Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //C
-            if (Input.GetButtonDown("C" + player) && !doingDrive && !doingLob && !doingSmash && driveRotation == 0 && lobRotation == 0 && canHit)
+            if (Input.GetButtonDown("C" + player) && !doingDrive && !doingLob && !doingSmash && smashRotation == 0 && driveRotation == 0 && lobRotation == 0 && canHit)
             {
+                ResetRaquet();
                 racket.transform.localPosition = new Vector3(0, 1f, -3f);
                 chargingSmash = true;
                 //empezar a moverse
@@ -401,21 +404,21 @@ public class PlayerController_FT : MonoBehaviour
 
     public void MoveRaquet(bool serve, string player)
     {
-        if (Input.GetButtonUp("A" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit && !serve)
+        if (Input.GetButtonUp("A" + player) && chargingDrive && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit && !serve)
         {
             CheckDirection();
             doingDrive = true;
             chargingDrive = false;
             driveRotation = Mathf.InverseLerp(45, -90, racketPivot.transform.eulerAngles.y);
         }
-        if (Input.GetButtonUp("B" + player) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && driveRotation == 0 && canHit && !serve)
+        if (Input.GetButtonUp("B" + player) && chargingLob && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && driveRotation == 0 && canHit && !serve)
         {
             CheckDirection();
             doingLob = true;
             chargingLob = false;
             lobRotation = Mathf.InverseLerp(315, 90, racketPivot.transform.localEulerAngles.z);
         }
-        if (Input.GetButtonUp("C" + player) && !doingSmash && !doingDrive && !doingLob && driveRotation == 0 && lobRotation == 0 && canHit)
+        if (Input.GetButtonUp("C" + player) && chargingSmash && !doingSmash && !doingDrive && !doingLob && driveRotation == 0 && lobRotation == 0 && canHit)
         {
             CheckDirection();
             doingSmash = true;
