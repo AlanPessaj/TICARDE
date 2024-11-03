@@ -259,8 +259,8 @@ public class LinearMover_FG : MonoBehaviour
 
         if (gameObject.name == "Car(Clone)")
         {
-            //Debug.DrawRay(transform.position + Vector3.forward * 1f, Vector3.forward * 0.25f, Color.green);
-            if (Physics.Raycast(transform.position + Vector3.forward, Vector3.forward, out RaycastHit carHit, 0.25f, LayerMask.GetMask("Out")) && carHit.transform.gameObject != this.gameObject)
+            //Debug.DrawRay(transform.position + Vector3.forward * 0.5f, Vector3.forward * 0.75f, Color.green);
+            if (Physics.Raycast(transform.position + Vector3.forward * 0.5f, Vector3.forward, out RaycastHit carHit, 0.75f, LayerMask.GetMask("Out")) && carHit.transform.gameObject != this.gameObject && carHit.transform.name == "Car(Clone)")
             {
                 Destroy(gameObject);
             }
