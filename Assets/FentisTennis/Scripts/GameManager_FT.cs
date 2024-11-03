@@ -28,9 +28,24 @@ public class GameManager_FT : MonoBehaviour
     public GameObject player1Canvas;
     public GameObject player2Canvas;
     public GameObject canvas;
+    bool goingToServe;
+    float servingProgress;
+    Vector3 player1PreServePos;
+    Vector3 player2PreServePos;
+    bool switchingSides;
+    bool goingToMiddle = true;
+    float switchProgress;
+    Vector3 player1PreSwitchPos;
+    Vector3 player2PreSwitchPos;
+    //GameObject previousPlayer;
+    Transform player1Transform;
+    Transform player2Transform;
     // Start is called before the first frame update
     void Start()
     {
+        //previousPlayer = player1;
+        player1Transform = player1.transform;
+        player2Transform = player2.transform;
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;//Name
         player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name2;//Name
         switch (startServing)
@@ -79,6 +94,51 @@ public class GameManager_FT : MonoBehaviour
                 }
             }
         }
+        if (goingToServe)
+        {
+            if (Mathf.Approximately(player1Transform.position.x, -50) && Mathf.Approximately(player1Transform.position.z, -30) && Mathf.Approximately(player2Transform.position.x, 50) && Mathf.Approximately(player2Transform.position.z, 30))
+            {
+                servingProgress = 1;
+            }
+            servingProgress += Time.deltaTime;
+            player1Transform.position = Vector3.Lerp(player1PreServePos, new Vector3(-50, 6, -30), servingProgress);
+            player2Transform.position = Vector3.Lerp(player2PreServePos, new Vector3(50, 6, 30), servingProgress);
+            if (servingProgress >= 1)
+            {
+                servingProgress = 0;
+                goingToServe = false;
+                readyToServe = true;
+            }
+        }
+        /*if (switchingSides)
+        {
+            if (goingToMiddle)
+            {
+                switchProgress += Time.deltaTime;
+                player1Transform.position = Vector3.Lerp(player1PreSwitchPos, new Vector3(0, 6, -36), switchProgress);
+                player2Transform.position = Vector3.Lerp(player2PreSwitchPos, new Vector3(0, 6, 36), switchProgress);
+                if (switchProgress >= 1)
+                {
+                    switchProgress = 0;
+                    goingToMiddle = false;
+                }
+            }
+            else
+            {
+                switchProgress += Time.deltaTime;
+                player1Transform.position = Vector3.Lerp(new Vector3(0, 6, -36), new Vector3(50, 6, 30), switchProgress);
+                player2Transform.position = Vector3.Lerp(new Vector3(0, 6, 36), new Vector3(-50, 6, -30), switchProgress);
+                if (switchProgress >= 1)
+                {
+                    switchProgress = 0;
+                    goingToMiddle = true;
+                    switchingSides = false;
+                    readyToServe = true;
+                    player1Transform.Rotate(0, 180, 0);
+                    player2Transform.Rotate(0, 180, 0);
+                }
+            }
+        }*/
     }
 
     public void StartServe(GameObject player)
@@ -91,14 +151,29 @@ public class GameManager_FT : MonoBehaviour
         {
             serve = 2;
         }
-        player1.transform.position = new Vector3(-50, 6, -30);
-        player2.transform.position = new Vector3(50, 6, 30);
+        /*if (player == previousPlayer)
+        {
+            goingToServe = true;
+            player1PreServePos = player1Transform.position;
+            player2PreServePos = player2Transform.position;
+        }
+        else
+        {
+            previousPlayer = player;
+            switchingSides = true;
+            player1PreSwitchPos = player1Transform.position;
+            player2PreSwitchPos = player2Transform.position;
+            player1Transform = player2.transform;
+            player2Transform = player1.transform;
+        }*/
+        goingToServe = true;
+        player1PreServePos = player1Transform.position;
+        player2PreServePos = player2Transform.position;
         player1.GetComponent<PlayerController_FT>().ResetRaquet();
         player2.GetComponent<PlayerController_FT>().ResetRaquet();
         ballmover.active = false;
         ballmover.transform.parent = player.transform;
         ballmover.transform.localPosition = new Vector3(1.5f, 0, 0);
-        readyToServe = true;
     }
 
     public void EndServe()
