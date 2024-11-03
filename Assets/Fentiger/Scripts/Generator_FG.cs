@@ -69,7 +69,7 @@ public class Generator_FG : MonoBehaviour
             GenerateZones();
         }
         initialSpawn = false;
-        StartCoroutine(TimeSprint(30, 50));
+        StartCoroutine(TimeSprint(60, 25));
     }
     
     private IEnumerator TimeSprint(float seconds, float rate)
