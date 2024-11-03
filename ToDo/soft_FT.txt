@@ -1,3 +1,6 @@
 cambio de lado
 animacion de volver a las posiciones de saque
 animacion de ganador
+sonidos
+interaccion con hardware
+TESTEAR

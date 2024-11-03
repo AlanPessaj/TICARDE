@@ -1,8 +1,0 @@
-moverse con raqueta
-drive
-globo
-smash
-salir del medio porque le va a pegar la pelota
-tirar la pelota hacia arriba (saque)
-no pegarle a la pelota (para cada tipo de tiro)
-idle

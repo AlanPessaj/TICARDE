@@ -1,9 +1,0 @@
-sapo + animaciones
-leon + animaciones
-canguro + animaciones
-gaviota + animaciones
-portal + animaciones
-laser + animaciones
-tronco mohoso/roto
-nenufar a punto de romperse
-arbol

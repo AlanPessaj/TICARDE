@@ -1,8 +1,4 @@
 sonido
-hardware
-
-
-
-----------  +- ---------
-
+interaccion con hardware
 animacion de ganar
+TESTEAR
