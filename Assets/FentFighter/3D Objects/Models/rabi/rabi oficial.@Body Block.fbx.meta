@@ -168,7 +168,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Body Block
       takeName: mixamo.com
-      firstFrame: 44
+      firstFrame: 45
       lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
