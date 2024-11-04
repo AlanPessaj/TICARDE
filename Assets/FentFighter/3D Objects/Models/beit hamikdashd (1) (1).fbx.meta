@@ -1,0 +1,285 @@
+fileFormatVersion: 2
+guid: 1b91a2bff10536d4393aef0648702e88
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: cielo
+    100004: columnas x3.001
+    100006: columnas x3.002
+    100008: columnas x3.003
+    100010: columnas x3.004
+    100012: columnas x3.005
+    100014: columnas x3.006
+    100016: columnas x3.007
+    100018: columnas x3.008
+    100020: columnas x3.009
+    100022: columnas x3.010
+    100024: columnas x3.011
+    100026: columnas x3.012
+    100028: columnas x3.013
+    100030: columnas x3.014
+    100032: columnas x3.015
+    100034: columnas x3.016
+    100036: columnas x3.017
+    100038: columnas x3.018
+    100040: columnas x3.019
+    100042: columnas x3.020
+    100044: columnas x3.021
+    100046: columnas x3.022
+    100048: columnas x3.023
+    100050: columnas x3.024
+    100052: columnas x3.025
+    100054: columnas x3.026
+    100056: columnas x3.027
+    100058: columnas x3.028
+    100060: escalera
+    100062: parte de abajo
+    100064: parte de abajo.001
+    100066: parte de ariba
+    100068: parte de arrib
+    100070: parte de bajo templo
+    100072: piso
+    100074: puerta templo
+    100076: templo
+    400000: //RootNode
+    400002: cielo
+    400004: columnas x3.001
+    400006: columnas x3.002
+    400008: columnas x3.003
+    400010: columnas x3.004
+    400012: columnas x3.005
+    400014: columnas x3.006
+    400016: columnas x3.007
+    400018: columnas x3.008
+    400020: columnas x3.009
+    400022: columnas x3.010
+    400024: columnas x3.011
+    400026: columnas x3.012
+    400028: columnas x3.013
+    400030: columnas x3.014
+    400032: columnas x3.015
+    400034: columnas x3.016
+    400036: columnas x3.017
+    400038: columnas x3.018
+    400040: columnas x3.019
+    400042: columnas x3.020
+    400044: columnas x3.021
+    400046: columnas x3.022
+    400048: columnas x3.023
+    400050: columnas x3.024
+    400052: columnas x3.025
+    400054: columnas x3.026
+    400056: columnas x3.027
+    400058: columnas x3.028
+    400060: escalera
+    400062: parte de abajo
+    400064: parte de abajo.001
+    400066: parte de ariba
+    400068: parte de arrib
+    400070: parte de bajo templo
+    400072: piso
+    400074: puerta templo
+    400076: templo
+    2100000: Material.005
+    2100002: Material.003
+    2300000: cielo
+    2300002: columnas x3.001
+    2300004: columnas x3.002
+    2300006: columnas x3.003
+    2300008: columnas x3.004
+    2300010: columnas x3.005
+    2300012: columnas x3.006
+    2300014: columnas x3.007
+    2300016: columnas x3.008
+    2300018: columnas x3.009
+    2300020: columnas x3.010
+    2300022: columnas x3.011
+    2300024: columnas x3.012
+    2300026: columnas x3.013
+    2300028: columnas x3.014
+    2300030: columnas x3.015
+    2300032: columnas x3.016
+    2300034: columnas x3.017
+    2300036: columnas x3.018
+    2300038: columnas x3.019
+    2300040: columnas x3.020
+    2300042: columnas x3.021
+    2300044: columnas x3.022
+    2300046: columnas x3.023
+    2300048: columnas x3.024
+    2300050: columnas x3.025
+    2300052: columnas x3.026
+    2300054: columnas x3.027
+    2300056: columnas x3.028
+    2300058: escalera
+    2300060: parte de abajo
+    2300062: parte de abajo.001
+    2300064: parte de ariba
+    2300066: parte de arrib
+    2300068: parte de bajo templo
+    2300070: piso
+    2300072: puerta templo
+    2300074: templo
+    3300000: cielo
+    3300002: columnas x3.001
+    3300004: columnas x3.002
+    3300006: columnas x3.003
+    3300008: columnas x3.004
+    3300010: columnas x3.005
+    3300012: columnas x3.006
+    3300014: columnas x3.007
+    3300016: columnas x3.008
+    3300018: columnas x3.009
+    3300020: columnas x3.010
+    3300022: columnas x3.011
+    3300024: columnas x3.012
+    3300026: columnas x3.013
+    3300028: columnas x3.014
+    3300030: columnas x3.015
+    3300032: columnas x3.016
+    3300034: columnas x3.017
+    3300036: columnas x3.018
+    3300038: columnas x3.019
+    3300040: columnas x3.020
+    3300042: columnas x3.021
+    3300044: columnas x3.022
+    3300046: columnas x3.023
+    3300048: columnas x3.024
+    3300050: columnas x3.025
+    3300052: columnas x3.026
+    3300054: columnas x3.027
+    3300056: columnas x3.028
+    3300058: escalera
+    3300060: parte de abajo
+    3300062: parte de abajo.001
+    3300064: parte de ariba
+    3300066: parte de arrib
+    3300068: parte de bajo templo
+    3300070: piso
+    3300072: puerta templo
+    3300074: templo
+    4300000: cielo
+    4300002: escalera
+    4300004: puerta templo
+    4300006: parte de bajo templo
+    4300008: templo
+    4300010: piso
+    4300012: parte de abajo
+    4300014: parte de arrib
+    4300016: columnas x3.001
+    4300018: columnas x3.002
+    4300020: columnas x3.003
+    4300022: columnas x3.004
+    4300024: columnas x3.005
+    4300026: columnas x3.006
+    4300028: columnas x3.007
+    4300030: columnas x3.008
+    4300032: columnas x3.009
+    4300034: columnas x3.010
+    4300036: columnas x3.011
+    4300038: columnas x3.012
+    4300040: columnas x3.013
+    4300042: columnas x3.014
+    4300044: parte de abajo.001
+    4300046: parte de ariba
+    4300048: columnas x3.015
+    4300050: columnas x3.016
+    4300052: columnas x3.017
+    4300054: columnas x3.018
+    4300056: columnas x3.019
+    4300058: columnas x3.020
+    4300060: columnas x3.021
+    4300062: columnas x3.022
+    4300064: columnas x3.023
+    4300066: columnas x3.024
+    4300068: columnas x3.025
+    4300070: columnas x3.026
+    4300072: columnas x3.027
+    4300074: columnas x3.028
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
