@@ -145,6 +145,8 @@ public class PlayerController_FG : MonoBehaviour
         }
         CheckTile();
         UpdateCombo();
+
+        if (isPlayer1 && transform.position == otherPlayer.transform.position) transform.position += Vector3.forward * 0.01f;
     }
 
     void MoveForward()
