@@ -264,7 +264,7 @@ public class Generator_FG : MonoBehaviour
     {
         float number = Random.Range(0, 101);
         int pickable = Random.Range(1, 101);
-        if (pickable <= 8)
+        if (pickable <= 5)
         {
             //Vida
             Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11,12)), Quaternion.identity);
