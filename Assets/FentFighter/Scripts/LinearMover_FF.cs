@@ -5,10 +5,12 @@ using UnityEngine;
 public class LinearMover_FF : MonoBehaviour
 {
     public float speed;
+    public float angularSpeed;
+    public bool goingLeft;
     // Start is called before the first frame update
     void Start()
     {
-
+        if (goingLeft) speed *= -1;
     }
 
     // Update is called once per frame
@@ -16,7 +18,8 @@ public class LinearMover_FF : MonoBehaviour
     {
         if (transform.position.x < 18 && transform.position.x > -18)
         {
-            transform.Translate(0, speed * Time.deltaTime, 0, Space.Self);
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Rotate(angularSpeed * Vector3.forward);
         }
         else
         {

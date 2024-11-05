@@ -2285,7 +2285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e425fa3a0a307c946b260cf2533e068a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proyectile: {fileID: 2882189673128036567, guid: c145f7730bcce664b87b128c429de925,
+  proyectile: {fileID: 5403535367433553324, guid: 0256bbc79a2d3cb4b88980ba0f1fda19,
     type: 3}
   fist: {fileID: 2440711454421603338}
   foot: {fileID: 3620959569083966614}
@@ -2356,6 +2356,7 @@ MonoBehaviour:
   maxXP: 100
   XP: 0
   noDamage: 0
+  score: 0
 --- !u!1 &8517903291278179590
 GameObject:
   m_ObjectHideFlags: 0
