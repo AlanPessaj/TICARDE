@@ -28,6 +28,7 @@ public class PlayerController_FG : MonoBehaviour
     GameObject log;
     List<string[]> combos = new List<string[]>();
     public float comboTime;
+    public bool notField;
     // Start is called before the first frame update
     void Start()
     {
@@ -507,6 +508,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().step);
                 hasMoved = false;
+                notField = hit.collider.gameObject.layer == LayerMask.NameToLayer("Grass");
             }
             try
             {
