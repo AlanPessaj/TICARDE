@@ -6,6 +6,7 @@ public class HitScript_FF : StateMachineBehaviour
 {
     public float slideSpeed;
     bool facingLeft;
+    public float slideKickCooldown;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -34,6 +35,7 @@ public class HitScript_FF : StateMachineBehaviour
             if (stateInfo.IsName("slideKick"))
             {
                 animator.gameObject.GetComponent<PlayerController_FF>().foot.GetComponent<Damage_FF>().type = DamageType.SlideKick;
+                animator.gameObject.GetComponent<PlayerController_FF>().slideKickCooldown = slideKickCooldown;
                 facingLeft = animator.GetComponent<PlayerController_FF>().facingLeft;
                 Physics.IgnoreCollision(animator.GetComponent<Collider>(), animator.GetComponent<PlayerController_FF>().otherPlayer.GetComponent<Collider>(), true);
             }

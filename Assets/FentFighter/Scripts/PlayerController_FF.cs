@@ -19,6 +19,7 @@ public class PlayerController_FF : MonoBehaviour
     public bool airborne;
     bool isColliding;
     Animator animator;
+    public float slideKickCooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerController_FF : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (slideKickCooldown > 0) slideKickCooldown -= Time.deltaTime;
         float movDirection = 0;
         if (otherPlayer.transform.position.x > transform.position.x && facingLeft)
         {
@@ -49,7 +51,7 @@ public class PlayerController_FF : MonoBehaviour
         }
         if (isPlayer1)
         {
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) && )
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -326,7 +328,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("B", "C", player, Ulti);
                     DetectCombo("B", "A", player, UpperCut);
-                    if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch"))
+                    if (InState("idle") || (slideKickCooldown <= 0 && (InState("crouching") || InState("crouch") || InState("uncrouch"))))
                     {
                         animator.SetTrigger("kick");
                     }
