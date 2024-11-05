@@ -11,6 +11,7 @@ public class UIManager_FF : MonoBehaviour
     public float maxXP;
     public float XP;
     public bool noDamage;
+    public int score;
     bool calledCorutine = false;
 
     // Update is called once per frame
@@ -35,11 +36,11 @@ public class UIManager_FF : MonoBehaviour
         Scene end = SceneManager.GetSceneByName("END(FF)");
         if (GetComponent<PlayerController_FF>().isPlayer1)
         {
-            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(100 - GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().health, 100 - health);
+            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score, score);
         }
         else
         {
-            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(100 - health, 100 - GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().health);
+            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(score, GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score);
         }
         SceneManager.UnloadSceneAsync(gameObject.scene);
     }
@@ -56,6 +57,7 @@ public class UIManager_FF : MonoBehaviour
     public void AddXP(float value)
     {
         XP = Mathf.Clamp(XP + value, 0, maxXP);
+        score += (int)value;
         UI.transform.GetChild(1).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxXP, XP)), -38.4f, 0);
     }
     public bool RemoveXP(float value)
