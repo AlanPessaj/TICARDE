@@ -111,8 +111,8 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     colliders.SetActive(false);
                     cColliders.SetActive(true);
-                    GetComponent<CapsuleCollider>().height = 0.72f;
-                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                    GetComponent<CapsuleCollider>().height = 1.692f / transform.localScale.y;
+                    GetComponent<CapsuleCollider>().center = Vector3.up * (0.846f / transform.localScale.y);
                 }
             }
             else
@@ -121,8 +121,8 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     colliders.SetActive(true);
                     cColliders.SetActive(false);
-                    GetComponent<CapsuleCollider>().height = 0.95f;
-                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                    GetComponent<CapsuleCollider>().height = 2.2325f / transform.localScale.y;
+                    GetComponent<CapsuleCollider>().center = Vector3.up * (1.11625f / transform.localScale.y);
                 }
             }
             if (hitManager.blocking)
@@ -203,8 +203,8 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     colliders.SetActive(false);
                     cColliders.SetActive(true);
-                    GetComponent<CapsuleCollider>().height = 0.72f;
-                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.36f, 0);
+                    GetComponent<CapsuleCollider>().height = 1.692f / transform.localScale.y;
+                    GetComponent<CapsuleCollider>().center = Vector3.up * (0.846f / transform.localScale.y); 
                 }
             }
             else
@@ -213,8 +213,8 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     colliders.SetActive(true);
                     cColliders.SetActive(false);
-                    GetComponent<CapsuleCollider>().height = 0.95f;
-                    GetComponent<CapsuleCollider>().center = new Vector3(0, 0.475f, 0);
+                    GetComponent<CapsuleCollider>().height = 2.2325f / transform.localScale.y;
+                    GetComponent<CapsuleCollider>().center = Vector3.up * (1.11625f / transform.localScale.y);
                 }
             }
             if (hitManager.blocking)
@@ -274,7 +274,7 @@ public class PlayerController_FF : MonoBehaviour
                     //A + B
                     if (Input.GetButtonDown("A" + player) && Input.GetButtonDown("B" + player))
                     {
-                        Ulti();
+                        UpperCut();
                     }
                 }
             }
@@ -283,7 +283,7 @@ public class PlayerController_FF : MonoBehaviour
                 //A + C
                 if (Input.GetButtonDown("A" + player) && Input.GetButtonDown("C" + player))
                 {
-                    UpperCut();
+                    Ability();
                 }
             }
             else
@@ -299,8 +299,8 @@ public class PlayerController_FF : MonoBehaviour
                     {
                         DetectCombo("A", "down", "2", Smash, isBtn2: false);
                     }
-                    DetectCombo("A", "B", player, Ulti);
-                    DetectCombo("A", "C", player, UpperCut);
+                    DetectCombo("A", "C", player, Ability);
+                    DetectCombo("A", "B", player, UpperCut);
                     if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch"))
                     {
                         animator.SetTrigger("punch");
@@ -316,7 +316,7 @@ public class PlayerController_FF : MonoBehaviour
                 //B + C
                 if (Input.GetButtonDown("B" + player) && Input.GetButtonDown("C" + player))
                 {
-                    Ability();
+                    Ulti();
                 }
             }
             else
@@ -324,8 +324,8 @@ public class PlayerController_FF : MonoBehaviour
                 //B
                 if (Input.GetButtonDown("B" + player))
                 {
-                    DetectCombo("B", "C", player, Ability);
-                    DetectCombo("B", "A", player, Ulti);
+                    DetectCombo("B", "C", player, Ulti);
+                    DetectCombo("B", "A", player, UpperCut);
                     if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch"))
                     {
                         animator.SetTrigger("kick");
@@ -338,8 +338,8 @@ public class PlayerController_FF : MonoBehaviour
             //C
             if (Input.GetButtonDown("C" + player))
             {
-                DetectCombo("C", "B", player, Ability);
-                DetectCombo("C", "A", player, UpperCut);
+                DetectCombo("C", "B", player, Ulti);
+                DetectCombo("C", "A", player, Ability);
                 if (InState("idle"))
                 {
                     animator.SetBool("holdBlock", true);
@@ -440,7 +440,7 @@ public class PlayerController_FF : MonoBehaviour
 
     void UpperCut()
     {
-        if (InState("block") || InState("blocking") || InState("punch"))
+        if (InState("kick") || InState("blocking") || InState("punch"))
             animator.CrossFade("upperCut", 0.25f);
         if ((InState("idle") || InState("jumping")) && (!airborne || (airborne && GetComponent<Rigidbody>().velocity.y > 9)))
             animator.SetTrigger("upperCut");

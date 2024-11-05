@@ -56,7 +56,7 @@ public class HitScript_FF : StateMachineBehaviour
                 animator.transform.Translate(Vector3.right * slideSpeed * Time.deltaTime * stateInfo.speed, Space.World);
             }
         }
-        if (stateInfo.IsName("upperCut") && stateInfo.normalizedTime >= 0.25f && !jumped)
+        if (stateInfo.IsName("upperCut") && !jumped && (animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction != null || stateInfo.normalizedTime >= 0.25f))
         {
             jumped = true;
             if (!animator.GetComponent<PlayerController_FF>().airborne)
