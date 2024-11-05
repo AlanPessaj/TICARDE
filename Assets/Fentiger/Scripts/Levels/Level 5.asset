@@ -34,8 +34,8 @@ MonoBehaviour:
   - 19.2
   special:
   - 25
-  - 8
-  - 3
+  - 13
+  - 5
   speed: 2.5
   spawnRate:
   - 2
