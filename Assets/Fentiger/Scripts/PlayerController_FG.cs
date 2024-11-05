@@ -28,8 +28,6 @@ public class PlayerController_FG : MonoBehaviour
     GameObject log;
     List<string[]> combos = new List<string[]>();
     public float comboTime;
-    bool isMoving = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -40,63 +38,103 @@ public class PlayerController_FG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isMoving)
+        if (isPlayer1)
         {
-            if (isPlayer1)
+            if (Input.GetButtonDown("A"))
             {
-                if (Input.GetButtonDown("A"))
+                DetectCombo("A", "B", "", HeartAbility, HippoAbility);
+            }
+            if (Input.GetButtonDown("B"))
+            {
+                DetectCombo("B", "A", "", HeartAbility, PortalAbility);
+            }
+            if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    DetectCombo("A", "B", "", HeartAbility, HippoAbility);
+                    if (!facingTreeDown)
+                    {
+                        MoveForward();
+                    }
                 }
-                if (Input.GetButtonDown("B"))
+
+                if (facingPortal)
                 {
-                    DetectCombo("B", "A", "", HeartAbility, PortalAbility);
-                }
-                if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
-                if (Input.GetKeyDown(KeyCode.W) && !facingTreeDown)
-                {
-                    MoveForward();
-                }
-                else if (Input.GetKeyDown(KeyCode.S) && !facingTreeUp)
-                {
-                    MoveBackward();
-                }
-                else if (Input.GetKeyDown(KeyCode.A) && !facingTreeRight)
-                {
-                    MoveLeft();
-                }
-                else if (Input.GetKeyDown(KeyCode.D) && !facingTreeLeft)
-                {
-                    MoveRight();
+                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    if (generator.multiplayer)
+                    {
+                        otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    }
+                    generator.GenerateZones();
+                    portal.GetComponent<AudioSource>().Play();
                 }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
             {
-                if (Input.GetButtonDown("A2"))
-                {
-                    DetectCombo("A", "B", "2", HeartAbility, HippoAbility);
-                }
-                if (Input.GetButtonDown("B2"))
-                {
-                    DetectCombo("B", "A", "2", HeartAbility, PortalAbility);
-                }
-                if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
-                if (Input.GetKeyDown(KeyCode.UpArrow) && !facingTreeDown)
-                {
-                    MoveForward();
-                }
-                else if (Input.GetKeyDown(KeyCode.DownArrow) && !facingTreeUp)
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
                     MoveBackward();
                 }
-                else if (Input.GetKeyDown(KeyCode.LeftArrow) && !facingTreeRight)
+            }
+            if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f && !facingTreeRight)
+            {
+                MoveLeft();
+            }
+            if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f && !facingTreeLeft)
+            {
+                MoveRight();
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("A2"))
+            {
+                DetectCombo("A", "B", "2", HeartAbility, HippoAbility);
+            }
+            if (Input.GetButtonDown("B2"))
+            {
+                DetectCombo("B", "A", "2", HeartAbility, PortalAbility);
+            }
+            if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
-                    MoveLeft();
+                    if (!facingTreeDown)
+                    {
+                        MoveForward();
+                    }
                 }
-                else if (Input.GetKeyDown(KeyCode.RightArrow) && !facingTreeLeft)
+
+                if (facingPortal)
                 {
-                    MoveRight();
+                    transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    if (generator.multiplayer)
+                    {
+                        otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
+                    }
+                    while (generator.distance < generator.despawnRadius)
+                    {
+                        generator.GenerateZones();
+                    }
+                    portal.GetComponent<AudioSource>().Play();
                 }
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
+            {
+                if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) || !generator.multiplayer)
+                {
+                    MoveBackward();
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f && !facingTreeRight)
+            {
+                MoveLeft();
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f && !facingTreeLeft)
+            {
+                MoveRight();
             }
         }
 
@@ -105,49 +143,112 @@ public class PlayerController_FG : MonoBehaviour
             //Perder vida
             Die();
         }
-
         CheckTile();
         UpdateCombo();
     }
 
     void MoveForward()
     {
-        isMoving = true;
-        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
-        Invoke("ResetMovement", 0.1f);
+        if (!onFrog)
+        {
+            transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            if (!rana.isJumping)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
+                onFrog = false;
+            }
+        }
+        if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
+        {
+            generator.GenerateZones();
+        }
+        hasMoved = true;
     }
 
     void MoveBackward()
     {
-        isMoving = true;
-        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
-        Invoke("ResetMovement", 0.1f);
+        if (!onFrog)
+        {
+            transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            if (!rana.isJumping)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+                onFrog = false;
+            }
+        }
+        hasMoved = true;
     }
 
     void MoveLeft()
     {
-        isMoving = true;
-        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
-        Invoke("ResetMovement", 0.1f);
+        if (!onLog && !onFrog && !onHippo)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+        }
+        else if (onLog)
+        {
+            if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
+            {
+                if (transform.localPosition.z > 0.3f)
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+                }
+                else
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                }
+            }
+            else if (transform.localPosition.z >= 0 && transform.localPosition.z < 1)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+            }
+            log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
+        }
+        else if (onHippo)
+        {
+            if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
+            {
+                if (hippo.GetComponent<LinearMover_FG>().movingForward)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 2.3f);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1.5f);
+                }
+            }
+        }
+        else
+        {
+            if (!rana.isJumping)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+                onFrog = false;
+            }
+        }
+        hasMoved = true;
     }
-
-    void MoveRight()
-    {
-        isMoving = true;
-        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
-        Invoke("ResetMovement", 0.1f);
-    }
-
-    void ResetMovement()
-    {
-        isMoving = false;
-    }
-
     void DetectCombo(string button1, string button2, string player, System.Action func, System.Action noCombo = null, bool isBtn1 = true, bool isBtn2 = true)
     {
-        if (isBtn1) button1 += player;
-        if (isBtn2) button2 += player;
-        if (noCombo == null) noCombo = Nothing;
+        if (isBtn1)
+            button1 += player;
+        if (isBtn2)
+            button2 += player;
+        if (noCombo == null)
+            noCombo = Nothing;
         if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, noCombo.Method.Name, isBtn1.ToString(), isBtn2.ToString() }))
             combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, noCombo.Method.Name, isBtn1.ToString(), isBtn2.ToString() });
     }
@@ -235,7 +336,7 @@ public class PlayerController_FG : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(transform.position.x + 1, -2.7f, transform.position.z - 2), Quaternion.Euler(0, 180, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo,  new Vector3(transform.position.x + 1, -2.7f, transform.position.z - 2), Quaternion.Euler(0, 180, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
                 }
             }
         }
@@ -250,6 +351,62 @@ public class PlayerController_FG : MonoBehaviour
         }
     }
 
+    void MoveRight()
+    {
+        if (!onLog && !onFrog && !onHippo)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+        }
+        else if (onLog)
+        {
+            if (transform.localPosition.z <= 1 && transform.localPosition.z > 0)
+            {
+                if (transform.localPosition.z <= 0.3f)
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+                }
+                else
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+                }
+            }
+            else if (transform.localPosition.z <= 0 && transform.localPosition.z > -1)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+            }
+
+            log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
+        }
+        else if (onHippo)
+        {
+            if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
+            {
+                if (hippo.GetComponent<LinearMover_FG>().movingForward)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1.5f);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 2.3f);
+                }
+            }
+        }
+        else
+        {
+            if (!rana.isJumping)
+            {
+                transform.rotation = Quaternion.identity;
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+                onFrog = false;
+            }
+        }
+        hasMoved = true;
+    }
+    
     void Die()
     {
         if (transform.GetChild(0).gameObject.activeSelf)
@@ -269,7 +426,7 @@ public class PlayerController_FG : MonoBehaviour
                 }
                 tries++;
             }
-
+            
             if (foundGrass)
             {
                 transform.position = new Vector3(transform.position.x + tries - 1, -2, 0);
@@ -291,6 +448,7 @@ public class PlayerController_FG : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
 
     void CheckTile()
     {
@@ -328,7 +486,7 @@ public class PlayerController_FG : MonoBehaviour
                         hippo = hit.collider.gameObject;
                     }
                 }
-                else if (!onHippo)
+                else if(!onHippo)
                 {
                     transform.parent = hit.transform;
                     onLog = true;
