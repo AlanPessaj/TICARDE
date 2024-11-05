@@ -11,7 +11,6 @@ public class LaserScaler_FG : MonoBehaviour
         Physics.Raycast(transform.GetChild(0).position, transform.up, out RaycastHit hit, 48f, LayerMask.GetMask("Tree"));
         if (hit.collider != null && hit.transform.position.z > -10)
         {
-            Debug.Log(Vector3.Distance(transform.parent.position, hit.transform.position));
             toDivide = 24 / hit.distance * 2;
             transform.position = transform.GetChild(0).position + transform.up * (hit.distance / 2f);
             transform.localScale = new Vector3(0.1f, 24 / toDivide, 0.1f);
