@@ -55,8 +55,15 @@ public class LinearMover_FG : MonoBehaviour
 
         if (manualSpawned && spawner.changedSide)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-            transform.position += Vector3.forward * 2;
+            if (gameObject.name == "Car(Clone)")
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                transform.position += Vector3.forward * 2;
+            }
+            else if (gameObject.name.Contains("Log(Clone)"))
+            {
+                transform.position -= Vector3.forward * 2;
+            }
         }
     }
     void Update()

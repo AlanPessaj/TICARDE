@@ -1,5 +1,7 @@
 interaccion con hardware
 TESTEAR JUEGO
+
+RECORDAR IMPORTANTISIMO, SI SE CAMBIA ALGUN PREFAB CAMBIAR TAMBIEN EN LAS TILES
 -----------------------------------------------------------------------------
 EXTRA:
 NIVEL CAGADA: Nivel con arboles y muchas gaviotas
