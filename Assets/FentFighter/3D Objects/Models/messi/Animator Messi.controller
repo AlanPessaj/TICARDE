@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 0
+  slideKickCooldown: 0
 --- !u!114 &114298374089065064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 0
+  slideKickCooldown: 0
 --- !u!114 &114359791948713370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 0
+  slideKickCooldown: 0
 --- !u!114 &114444148687718426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 0
+  slideKickCooldown: 0
 --- !u!114 &114523230568820466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 2
+  slideKickCooldown: 2
 --- !u!114 &114718817284090816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 0
+  slideKickCooldown: 0
 --- !u!114 &114739517161301088
 MonoBehaviour:
   m_ObjectHideFlags: 1
