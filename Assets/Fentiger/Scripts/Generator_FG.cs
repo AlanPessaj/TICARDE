@@ -265,12 +265,12 @@ public class Generator_FG : MonoBehaviour
     void GenerateSection()
     {
         int pickable = Random.Range(1, 101);
-        if (pickable == 1)
+        if (pickable <= 15)
         {
             //Vida
             Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11,12)), Quaternion.identity);
         }
-        else if(pickable > 95)
+        else if(pickable > 80)
         {
             //XP
             Instantiate(specials[4], new Vector3(distance, -1.5f, Random.Range(-11, 12)), Quaternion.identity);
