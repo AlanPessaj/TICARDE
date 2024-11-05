@@ -18,6 +18,7 @@ public class GAMEMANAGER : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             SceneManager.LoadScene("MENU");
+            Time.timeScale = 1;
         }
     }
 

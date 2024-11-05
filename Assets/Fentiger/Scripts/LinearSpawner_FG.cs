@@ -76,7 +76,7 @@ public class LinearSpawner_FG : MonoBehaviour
                     Instantiate(thing, transform.position + new Vector3(0, -2.7f, -16.5f), thing.transform.rotation, transform).GetComponent<LinearMover_FG>().spawner = this;
                 }
             }
-            timer = Random.Range(initialSpawnRate, initialSpawnRate*1.5f);
+            timer = Random.Range(initialSpawnRate, initialSpawnRate*1.25f);
         }
         timer -= Time.deltaTime;
     }
