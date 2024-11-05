@@ -98,10 +98,10 @@ public class Generator_FG : MonoBehaviour
 
             
             // Ovni
-            /*if (camara.GetChild(0).childCount < 1)
+            if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }*/
+            }
 
 
             //Gaviota
