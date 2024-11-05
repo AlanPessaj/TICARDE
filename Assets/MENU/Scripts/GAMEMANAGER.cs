@@ -6,17 +6,14 @@ using UnityEngine.SceneManagement;
 public class GAMEMANAGER : MonoBehaviour
 {
     public static GAMEMANAGER Instance { get; private set; }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool menuActive;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && menuActive)
         {
+            menuActive = false;
             SceneManager.LoadScene("MENU");
             Time.timeScale = 1;
         }
