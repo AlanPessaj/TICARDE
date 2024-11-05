@@ -13,6 +13,8 @@ public class FollowPlayer_FG : MonoBehaviour
     public GameObject ghost;
     bool soundPlayed;
     float timer = 0;
+    float patrolTimer = 5f;
+    bool changePatrol;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +35,28 @@ public class FollowPlayer_FG : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        patrolTimer -= Time.deltaTime;
+        if (patrolTimer <= 0)
+        {
+            changePatrol = !changePatrol;
+            patrolTimer = Random.Range(5f,10f);
+            if (leftSpawn)
+            {
+                if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                else agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+            }
+            else
+            {
+                if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                else agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+            }
+        }
         timer = Mathf.Max(0, timer - Time.deltaTime);
         if (generator.multiplayer)
         {
-            if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5))
+            if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5 && !players[0].GetComponent<PlayerController_FG>().notField) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5 && !players[1].GetComponent<PlayerController_FG>().notField))
             {
                 if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position) && players[0].transform.parent == null)
                 {
@@ -72,7 +89,8 @@ public class FollowPlayer_FG : MonoBehaviour
                     GetComponent<Animator>().SetBool("running", false);
                     GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
                     GetComponent<NavMeshAgent>().speed = speed / 2;
-                    agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                    if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                    else agent.destination = transform.parent.position - new Vector3(0, 0, 11);
                     soundPlayed = false;
                 }
                 else
@@ -80,7 +98,8 @@ public class FollowPlayer_FG : MonoBehaviour
                     GetComponent<Animator>().SetBool("running", false);
                     GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
                     GetComponent<NavMeshAgent>().speed = speed / 2;
-                    agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                    if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                    else agent.destination = transform.parent.position - new Vector3(0, 0, -11);
                     soundPlayed = false;
                 }
             }
@@ -93,7 +112,7 @@ public class FollowPlayer_FG : MonoBehaviour
 
         if (!generator.multiplayer && generator.player1Alive)
         {
-            if (players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5 && players[0].transform.parent == null)
+            if (players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5 && players[0].transform.parent == null && !players[0].GetComponent<PlayerController_FG>().notField)
             {
                 if (!soundPlayed && timer == 0)
                 {
@@ -109,7 +128,8 @@ public class FollowPlayer_FG : MonoBehaviour
             else if (leftSpawn)
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
-                agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                else agent.destination = transform.parent.position - new Vector3(0, 0, 11);
                 GetComponent<Animator>().SetBool("running", false);
                 GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
                 soundPlayed = false;
@@ -117,7 +137,8 @@ public class FollowPlayer_FG : MonoBehaviour
             else
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
-                agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                else agent.destination = transform.parent.position - new Vector3(0, 0, -11);
                 GetComponent<Animator>().SetBool("running", false);
                 GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
                 soundPlayed = false;
@@ -125,7 +146,7 @@ public class FollowPlayer_FG : MonoBehaviour
         }
         else if(!generator.multiplayer && !generator.player1Alive)
         {
-            if (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5 && players[1].transform.parent == null)
+            if (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5 && players[1].transform.parent == null && !players[1].GetComponent<PlayerController_FG>().notField)
             {
                 if (!soundPlayed && timer == 0)
                 {
@@ -141,7 +162,8 @@ public class FollowPlayer_FG : MonoBehaviour
             else if (leftSpawn)
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
-                agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                else agent.destination = transform.parent.position - new Vector3(0, 0, 11);
                 GetComponent<Animator>().SetBool("running", false);
                 GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
                 soundPlayed = false;
@@ -149,7 +171,8 @@ public class FollowPlayer_FG : MonoBehaviour
             else
             {
                 GetComponent<NavMeshAgent>().speed = speed / 2;
-                agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                else agent.destination = transform.parent.position - new Vector3(0, 0, -11);
                 GetComponent<Animator>().SetBool("running", false);
                 GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
                 soundPlayed = false;

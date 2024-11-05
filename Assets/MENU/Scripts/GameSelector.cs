@@ -62,6 +62,22 @@ public class GameSelector : MonoBehaviour
                 }
                 SceneManager.LoadScene("NameInput");
             }
+            if (Input.GetButtonDown("C"))
+            {
+                switch (index)
+                {
+                    case 0:
+                        GameData.game = "FF";
+                        break;
+                    case 1:
+                        GameData.game = "FT";
+                        break;
+                    case 2:
+                        GameData.game = "FG";
+                        break;
+                }
+                SceneManager.LoadScene("Leaderboard");
+            }
         }
     }
 }

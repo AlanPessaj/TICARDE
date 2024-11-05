@@ -33,7 +33,7 @@ MonoBehaviour:
   - 45
   - 30
   special:
-  - 100
+  - 50
   - 10
   - 10
   speed: 5

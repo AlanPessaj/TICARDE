@@ -160,10 +160,8 @@ public class Generator_FG : MonoBehaviour
          * [3] = Corazon
          * [4] = Estrella
          */
-        float number = Random.Range(0, 101);
         float number2 = Random.Range(0, 101);
         float number3 = Random.Range(0, 101);
-        if (number <= Levels[Level].special[0]) Instantiate(specials[0], new Vector3(distance, 3, 18), Quaternion.identity);
         if (number2 <= Levels[Level].special[1] && camara.GetChild(0).childCount < 1 && Level > 0) Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
         if (number3 <= Levels[Level].special[2]) Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
     }
@@ -264,17 +262,19 @@ public class Generator_FG : MonoBehaviour
 
     void GenerateSection()
     {
+        float number = Random.Range(0, 101);
         int pickable = Random.Range(1, 101);
-        if (pickable <= 15)
+        if (pickable <= 8)
         {
             //Vida
             Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11,12)), Quaternion.identity);
         }
-        else if(pickable > 80)
+        else if(pickable > 90)
         {
             //XP
             Instantiate(specials[4], new Vector3(distance, -1.5f, Random.Range(-11, 12)), Quaternion.identity);
         }
+        if (number <= Levels[Level].special[0]) Instantiate(specials[0], new Vector3(distance, 3, 18), Quaternion.identity);
         bool isField = false;
         while ((!initialSpawn || distance < despawnRadius) && section.Count != 0)
         {
