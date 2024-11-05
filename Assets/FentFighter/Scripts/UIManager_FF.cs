@@ -12,7 +12,7 @@ public class UIManager_FF : MonoBehaviour
     public float XP;
     public bool noDamage;
     public int score;
-    bool calledCorutine = false;
+    bool died = false;
 
     // Update is called once per frame
     void Update()
@@ -22,16 +22,21 @@ public class UIManager_FF : MonoBehaviour
             UI.transform.GetChild(0).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxHealth, health)), 0, 0);
             UI.transform.GetChild(1).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxXP, XP)), -38.4f, 0);
         }
-        if (health <= 0 && !calledCorutine)
+        if (health <= 0 && !died)
         {
-            calledCorutine = true;
-            SceneManager.LoadScene("END(FF)", LoadSceneMode.Additive);
-            StartCoroutine(SetScore());
+            GetComponent<Animator>().SetTrigger("die");
+            died = true;
         }
+    }
+
+    public void LoadEnd()
+    {
+        StartCoroutine(SetScore());
     }
 
     IEnumerator SetScore()
     {
+        SceneManager.LoadScene("END(FF)", LoadSceneMode.Additive);
         yield return null;
         Scene end = SceneManager.GetSceneByName("END(FF)");
         if (GetComponent<PlayerController_FF>().isPlayer1)

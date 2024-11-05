@@ -460,9 +460,9 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (GetComponent<UIManager_FF>().RemoveXP(100))
         {
-            GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(proyectile.transform.eulerAngles + transform.eulerAngles - new Vector3(0, 90, 0)), transform);
-            temp.transform.parent = null;
-            temp.transform.localScale *= 2.5f;
+            GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            temp.GetComponent<LinearMover_FF>().goingLeft = facingLeft;
+            temp.transform.GetChild(1).gameObject.SetActive(true);
             temp.GetComponent<Damage_FF>().damage *= 2;
             temp.GetComponent<Damage_FF>().type = DamageType.Ulti;
             temp.GetComponent<Damage_FF>().owner = gameObject;
