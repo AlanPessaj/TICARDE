@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LinearMover_FG : MonoBehaviour
 {
+    public bool manualSpawned;
     public float speed;
     private float rotation;
     public float time = 3;
@@ -51,6 +52,12 @@ public class LinearMover_FG : MonoBehaviour
         }
         hippoTime = 0;
         initialTime = time;
+
+        if (manualSpawned && spawner.changedSide)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.position += Vector3.forward * 2;
+        }
     }
     void Update()
     {
@@ -255,15 +262,6 @@ public class LinearMover_FG : MonoBehaviour
         {
             generator.GetComponent<SoundManager_FG>().PlaySound(breakSound);
             Destroy(gameObject);
-        }
-
-        if (gameObject.name == "Car(Clone)")
-        {
-            //Debug.DrawRay(transform.position + Vector3.forward * 0.5f, Vector3.forward * 0.75f, Color.green);
-            if (Physics.Raycast(transform.position + Vector3.forward * 0.5f, Vector3.forward, out RaycastHit carHit, 0.75f, LayerMask.GetMask("Out")) && carHit.transform.gameObject != this.gameObject && carHit.transform.name == "Car(Clone)")
-            {
-                Destroy(gameObject);
-            }
         }
     }
 

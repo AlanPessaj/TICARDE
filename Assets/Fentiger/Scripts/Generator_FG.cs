@@ -30,7 +30,6 @@ public class Generator_FG : MonoBehaviour
     public Transform ovniSpawn;
     public GameObject[] players = new GameObject[2];
     public GameObject[] specials;
-    public GameObject loadScreen;
     public GameObject[] player2XPBar;
     public int treeSeparator;
     public bool treeSpawn;
@@ -51,11 +50,9 @@ public class Generator_FG : MonoBehaviour
         player1Name = GameData.name1;
         player2Name = GameData.name2;
         players[0].GetComponent<Renderer>().material = characters[GameData.char1];
-        players[0].GetComponent<PlayerController_FG>().enabled = false;
         if (multiplayer)
         {
             players[1].GetComponent<Renderer>().material = characters[GameData.char2];
-            players[1].GetComponent<PlayerController_FG>().enabled = false;
             initialMultiplayer = true;
         }
         else
@@ -69,18 +66,9 @@ public class Generator_FG : MonoBehaviour
             GenerateZones();
         }
         initialSpawn = false;
-        StartCoroutine(TimeSprint(60, 25));
-    }
-    
-    private IEnumerator TimeSprint(float seconds, float rate)
-    {
-        Time.timeScale = rate;
-        yield return new WaitForSeconds(seconds);
-        Time.timeScale = 1;
-        loadScreen.SetActive(false);
-        players[0].GetComponent<PlayerController_FG>().enabled = true;
         if (initialMultiplayer) players[1].GetComponent<PlayerController_FG>().enabled = true;
     }
+
 
     // Update is called once per frame
     void Update()
