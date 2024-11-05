@@ -11,6 +11,7 @@ public class NameController : MonoBehaviour
     Coroutine instance;
     int selectedChar = 0;
     public bool finished = false;
+    bool isMoving = false;
 
     private void Start()
     {
@@ -27,116 +28,121 @@ public class NameController : MonoBehaviour
 
     void Update()
     {
-        RectTransform childRect = transform.GetChild(0).GetComponent<RectTransform>();
-
-        if (gameObject.name == "Player1")
+        if (!isMoving)
         {
-            if (Input.GetButtonDown("A") && manager.instance == null)
+            RectTransform childRect = transform.GetChild(0).GetComponent<RectTransform>();
+
+            if (gameObject.name == "Player1")
             {
-                finished = !finished;
-                Color targetColor = finished ? Color.green : Color.white;
-                foreach (RectTransform caracter in chars)
+                if (Input.GetButtonDown("A") && manager.instance == null)
                 {
-                    caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
-                }
-            }
-
-            if (!finished)
-            {
-                transform.GetChild(0).gameObject.SetActive(true);
-
-                if (Input.GetKeyDown(KeyCode.D))
-                {
-                    index = (index + 1) % chars.Length;
-                    childRect.anchoredPosition = chars[index].anchoredPosition;
-                    selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text[0]);
-                }
-
-                if (Input.GetKeyDown(KeyCode.A))
-                {
-                    index = (index - 1 + chars.Length) % chars.Length;
-                    childRect.anchoredPosition = chars[index].anchoredPosition;
-                    selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text[0]);
-                }
-
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    selectedChar = (selectedChar - 1 + characters.Length) % characters.Length;
-                    chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
-                    if (instance == null)
+                    finished = !finished;
+                    Color targetColor = finished ? Color.green : Color.white;
+                    foreach (RectTransform caracter in chars)
                     {
-                        instance = StartCoroutine(Move(0));
+                        caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.S))
+                if (!finished)
                 {
-                    selectedChar = (selectedChar + 1) % characters.Length;
-                    chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
-                    if (instance == null)
+                    transform.GetChild(0).gameObject.SetActive(true);
+
+                    if (Input.GetKeyDown(KeyCode.D))
                     {
-                        instance = StartCoroutine(Move(1));
+                        index = (index + 1) % chars.Length;
+                        childRect.anchoredPosition = chars[index].anchoredPosition;
+                        selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text[0]);
+                        StartCoroutine(ResetMovement());
+                    }
+                    else if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        index = (index - 1 + chars.Length) % chars.Length;
+                        childRect.anchoredPosition = chars[index].anchoredPosition;
+                        selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text[0]);
+                        StartCoroutine(ResetMovement());
+                    }
+                    else if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        selectedChar = (selectedChar - 1 + characters.Length) % characters.Length;
+                        chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
+                        if (instance == null)
+                        {
+                            instance = StartCoroutine(Move(0));
+                        }
+                        StartCoroutine(ResetMovement());
+                    }
+                    else if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        selectedChar = (selectedChar + 1) % characters.Length;
+                        chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
+                        if (instance == null)
+                        {
+                            instance = StartCoroutine(Move(1));
+                        }
+                        StartCoroutine(ResetMovement());
                     }
                 }
-            }
-            else
-            {
-                transform.GetChild(0).gameObject.SetActive(false);
-            }
-        }
-        else if (gameObject.name == "Player2")
-        {
-            if (Input.GetButtonDown("A2") && manager.instance == null)
-            {
-                finished = !finished;
-                Color targetColor = finished ? Color.green : Color.white;
-                foreach (RectTransform caracter in chars)
+                else
                 {
-                    caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
+                    transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
-
-            if (!finished)
+            else if (gameObject.name == "Player2")
             {
-                transform.GetChild(0).gameObject.SetActive(true);
-
-                if (Input.GetKeyDown(KeyCode.RightArrow))
+                if (Input.GetButtonDown("A2") && manager.instance == null)
                 {
-                    index = (index + 1) % chars.Length;
-                    childRect.anchoredPosition = chars[index].anchoredPosition;
-                    selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text[0]);
-                }
-
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    index = (index - 1 + chars.Length) % chars.Length;
-                    childRect.anchoredPosition = chars[index].anchoredPosition;
-                    selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text[0]);
-                }
-
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    selectedChar = (selectedChar - 1 + characters.Length) % characters.Length;
-                    chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
-                    if (instance == null)
+                    finished = !finished;
+                    Color targetColor = finished ? Color.green : Color.white;
+                    foreach (RectTransform caracter in chars)
                     {
-                        instance = StartCoroutine(Move(0));
+                        caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (!finished)
                 {
-                    selectedChar = (selectedChar + 1) % characters.Length;
-                    chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
-                    if (instance == null)
+                    transform.GetChild(0).gameObject.SetActive(true);
+
+                    if (Input.GetKeyDown(KeyCode.RightArrow))
                     {
-                        instance = StartCoroutine(Move(1));
+                        index = (index + 1) % chars.Length;
+                        childRect.anchoredPosition = chars[index].anchoredPosition;
+                        selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text[0]);
+                        StartCoroutine(ResetMovement());
+                    }
+                    else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        index = (index - 1 + chars.Length) % chars.Length;
+                        childRect.anchoredPosition = chars[index].anchoredPosition;
+                        selectedChar = System.Array.IndexOf(characters, chars[index].GetComponent<TextMeshProUGUI>().text[0]);
+                        StartCoroutine(ResetMovement());
+                    }
+                    else if (Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        selectedChar = (selectedChar - 1 + characters.Length) % characters.Length;
+                        chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
+                        if (instance == null)
+                        {
+                            instance = StartCoroutine(Move(0));
+                        }
+                        StartCoroutine(ResetMovement());
+                    }
+                    else if (Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        selectedChar = (selectedChar + 1) % characters.Length;
+                        chars[index].GetComponent<TextMeshProUGUI>().text = characters[selectedChar].ToString();
+                        if (instance == null)
+                        {
+                            instance = StartCoroutine(Move(1));
+                        }
+                        StartCoroutine(ResetMovement());
                     }
                 }
-            }
-            else
-            {
-                transform.GetChild(0).gameObject.SetActive(false);
+                else
+                {
+                    transform.GetChild(0).gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -147,5 +153,12 @@ public class NameController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         transform.GetChild(0).GetChild(way).gameObject.SetActive(false);
         instance = null;
+    }
+
+    IEnumerator ResetMovement()
+    {
+        isMoving = true;
+        yield return new WaitForSeconds(0.1f);
+        isMoving = false;
     }
 }
