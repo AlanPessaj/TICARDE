@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Level 4
   m_EditorClassIdentifier: 
   tiles:
-  - 15
-  - 45
-  - 40
+  - 20
+  - 42
+  - 38
   minSize:
   - 5
   - 4
@@ -25,8 +25,8 @@ MonoBehaviour:
   - 7
   - 7
   enemies:
-  - 70
-  - 20
+  - 65
+  - 25
   - 10
   floaters:
   - 50

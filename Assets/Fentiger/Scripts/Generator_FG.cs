@@ -98,10 +98,10 @@ public class Generator_FG : MonoBehaviour
 
             
             // Ovni
-            /*if (camara.GetChild(0).childCount < 1)
+            if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }*/
+            }
 
 
             //Gaviota
@@ -264,7 +264,7 @@ public class Generator_FG : MonoBehaviour
     {
         float number = Random.Range(0, 101);
         int pickable = Random.Range(1, 101);
-        if (pickable <= 8)
+        if (pickable <= 5)
         {
             //Vida
             Instantiate(specials[3], new Vector3(distance, -1.5f, Random.Range(-11,12)), Quaternion.identity);

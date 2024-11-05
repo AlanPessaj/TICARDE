@@ -41,7 +41,7 @@ public class FollowPlayer_FG : MonoBehaviour
         if (patrolTimer <= 0)
         {
             changePatrol = !changePatrol;
-            patrolTimer = Random.Range(5f,10f);
+            patrolTimer = Random.Range(6f,10f);
             if (leftSpawn)
             {
                 if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, -11);
