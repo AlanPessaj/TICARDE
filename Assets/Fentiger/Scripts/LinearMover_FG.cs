@@ -60,7 +60,7 @@ public class LinearMover_FG : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 180, 0);
                 transform.position += Vector3.forward * 2;
             }
-            else if (gameObject.name.Contains("Log(Clone)"))
+            else if (gameObject.name.Contains("Log(Clone)") || gameObject.name == "LillyPad(Clone)")
             {
                 transform.position -= Vector3.forward * 2;
             }
