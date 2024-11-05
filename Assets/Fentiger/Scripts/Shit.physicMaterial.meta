@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/FentFighter/Prefabs/Abilities.meta
-guid: 4e325f12a60f07c40bbbd63054f28c8a
-folderAsset: yes
-DefaultImporter:
-========
-guid: 44168396cd141a04dbea170340133e75
+guid: c045da3530090af43a449669e2e33e32
 NativeFormatImporter:
->>>>>>>> 85bb9ad0df0c68587d30ff9f6ba7552bdf05d839:Assets/Fentiger/Scripts/Shit.physicMaterial.meta
   externalObjects: {}
-  mainObjectFileID: 13400000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

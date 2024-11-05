@@ -230,7 +230,7 @@ public class HitManager_FF : MonoBehaviour
             }
             if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut && damageProperties.type != DamageType.Smash && damageProperties.type != DamageType.SlideKick)
                 CalculateKnockback();
-            PlayHitAnimation();
+            if (!GetComponent<PlayerController_FF>().InState("death")) PlayHitAnimation();
             damageProperties.disableAction = ResetDetection;
         }
     }
