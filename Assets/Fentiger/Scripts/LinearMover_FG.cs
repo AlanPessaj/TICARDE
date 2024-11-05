@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LinearMover_FG : MonoBehaviour
 {
@@ -32,15 +33,8 @@ public class LinearMover_FG : MonoBehaviour
         speed = generator.Levels[generator.Level].speed;
 
         rotation = Random.Range(-1f, 1f);
-        if (gameObject.name == "Seagull(Clone)")
-        {
-            movingForward = !transform.GetComponent<SeagullController_FG>().leftSide;
-        }
-        else
-        {
-            movingForward = !spawner.changedSide;
-
-        }
+        if (gameObject.name == "Seagull(Clone)") movingForward = !transform.GetComponent<SeagullController_FG>().leftSide;
+        else movingForward = !spawner.changedSide;
 
         if (gameObject.name == "LillyPad(Clone)")
         {
@@ -65,6 +59,7 @@ public class LinearMover_FG : MonoBehaviour
                 transform.position -= Vector3.forward * 2;
             }
         }
+        if (manualSpawned && gameObject.name != "LillyPad(Clone)") transform.position += Vector3.forward * Random.Range(-1.5f, 1.5f);
     }
     void Update()
     {
