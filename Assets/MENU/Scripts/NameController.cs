@@ -6,6 +6,7 @@ public class NameController : MonoBehaviour
 {
     public NameInputManager manager;
     public RectTransform[] chars = new RectTransform[4];
+    public AudioClip moveSound;
     char[] characters = new char[36];
     int index = 0;
     Coroutine instance;
@@ -82,6 +83,15 @@ public class NameController : MonoBehaviour
                         }
                         StartCoroutine(ResetMovement());
                     }
+
+                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+                    {
+                        if ((GetComponent<AudioSource>().time > 0.2f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
+                        {
+                            GetComponent<AudioSource>().clip = moveSound;
+                            GetComponent<AudioSource>().Play();
+                        }
+                    }
                 }
                 else
                 {
@@ -137,6 +147,15 @@ public class NameController : MonoBehaviour
                             instance = StartCoroutine(Move(1));
                         }
                         StartCoroutine(ResetMovement());
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        if ((GetComponent<AudioSource>().time > 0.2f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
+                        {
+                            GetComponent<AudioSource>().clip = moveSound;
+                            GetComponent<AudioSource>().Play();
+                        }
                     }
                 }
                 else
