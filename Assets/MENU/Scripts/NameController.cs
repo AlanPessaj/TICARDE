@@ -7,6 +7,7 @@ public class NameController : MonoBehaviour
     public NameInputManager manager;
     public RectTransform[] chars = new RectTransform[4];
     public AudioClip moveSound;
+    public AudioClip selectSound;
     char[] characters = new char[36];
     int index = 0;
     Coroutine instance;
@@ -39,10 +40,8 @@ public class NameController : MonoBehaviour
                 {
                     finished = !finished;
                     Color targetColor = finished ? Color.green : Color.white;
-                    foreach (RectTransform caracter in chars)
-                    {
-                        caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
-                    }
+                    foreach (RectTransform caracter in chars) caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
+                    manager.GetComponent<AudioSource>().PlayOneShot(selectSound);
                 }
 
                 if (!finished)
@@ -104,10 +103,8 @@ public class NameController : MonoBehaviour
                 {
                     finished = !finished;
                     Color targetColor = finished ? Color.green : Color.white;
-                    foreach (RectTransform caracter in chars)
-                    {
-                        caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
-                    }
+                    foreach (RectTransform caracter in chars) caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
+                    manager.GetComponent<AudioSource>().PlayOneShot(selectSound);
                 }
 
                 if (!finished)

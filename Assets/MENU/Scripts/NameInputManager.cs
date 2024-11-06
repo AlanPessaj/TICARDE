@@ -51,13 +51,10 @@ public class NameInputManager : MonoBehaviour
         if (!multiplayer) joinButton.gameObject.SetActive(false);
         for (int i = 0; i < 10; i++)
         {
-            foreach (RectTransform character in player1.GetComponent<NameController>().chars)
-                character.transform.GetComponent<TextMeshProUGUI>().color = Color.white;
-
+            foreach (RectTransform character in player1.GetComponent<NameController>().chars) character.transform.GetComponent<TextMeshProUGUI>().color = Color.white;
             if (multiplayer)
                 foreach (RectTransform character in player2.GetComponent<NameController>().chars)
                     character.transform.GetComponent<TextMeshProUGUI>().color = Color.white;
-
             yield return new WaitForSeconds(0.1f);
             foreach (RectTransform character in player1.GetComponent<NameController>().chars)
                 character.transform.GetComponent<TextMeshProUGUI>().color = Color.green;
@@ -66,6 +63,7 @@ public class NameInputManager : MonoBehaviour
                 foreach (RectTransform character in player2.GetComponent<NameController>().chars)
                     character.transform.GetComponent<TextMeshProUGUI>().color = Color.green;
 
+            GetComponent<AudioSource>().PlayOneShot(player1.GetComponent<NameController>().selectSound);
             yield return new WaitForSeconds(0.1f);
         }
         GameData.name1 = player1.GetComponent<NameController>().chars[0].GetComponent<TextMeshProUGUI>().text + player1.GetComponent<NameController>().chars[1].GetComponent<TextMeshProUGUI>().text + player1.GetComponent<NameController>().chars[2].GetComponent<TextMeshProUGUI>().text + player1.GetComponent<NameController>().chars[3].GetComponent<TextMeshProUGUI>().text;
