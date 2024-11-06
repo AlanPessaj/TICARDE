@@ -86,10 +86,10 @@ public class NameController : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
                     {
-                        if ((GetComponent<AudioSource>().time > 0.1f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
+                        if ((manager.GetComponent<AudioSource>().time > 0.1f && manager.GetComponent<AudioSource>().isPlaying) || !manager.GetComponent<AudioSource>().isPlaying)
                         {
-                            GetComponent<AudioSource>().clip = moveSound;
-                            GetComponent<AudioSource>().Play();
+                            manager.GetComponent<AudioSource>().clip = moveSound;
+                            manager.GetComponent<AudioSource>().Play();
                         }
                     }
                 }
@@ -151,10 +151,10 @@ public class NameController : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
                     {
-                        if ((GetComponent<AudioSource>().time > 0.1f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
+                        if ((manager.GetComponent<AudioSource>().time > 0.1f && manager.GetComponent<AudioSource>().isPlaying) || !manager.GetComponent<AudioSource>().isPlaying)
                         {
-                            GetComponent<AudioSource>().clip = moveSound;
-                            GetComponent<AudioSource>().Play();
+                            manager.GetComponent<AudioSource>().clip = moveSound;
+                            manager.GetComponent<AudioSource>().Play();
                         }
                     }
                 }
