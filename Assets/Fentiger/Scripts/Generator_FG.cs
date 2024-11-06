@@ -57,7 +57,7 @@ public class Generator_FG : MonoBehaviour
         }
         else
         {
-            Destroy(players[1]);
+            players[1].SetActive(false);
             foreach (GameObject item in player2XPBar) item.SetActive(false);
         }
         Level = startingLevel;

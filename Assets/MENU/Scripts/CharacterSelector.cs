@@ -7,6 +7,14 @@ using TMPro;
 
 public class CharacterSelector : MonoBehaviour
 {
+    /*
+    * Characters:
+    * [0] = Rabino
+    * [1] = Martin Fierro
+    * [2] = Messi
+    * [3] = Peron
+    */
+    public AudioClip[] selectionSFX;
     public GameObject[] pSquares;
     GameObject[,] squares;
     public GameObject[] pMPSquares1;
@@ -303,6 +311,21 @@ public class CharacterSelector : MonoBehaviour
                     }
                     confirmedTimer = 0;
                 }
+                else
+                {
+                    int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
+                    int p = 0;
+                    for (int i = 0; i < pMPSquares2.Length / 2; i++)
+                    {
+                        for (int o = 0; o < pMPSquares2.Length / 2; o++)
+                        {
+                            translate[i, o] = p;
+                            p++;
+                        }
+                    }
+                    GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
+                    GetComponent<AudioSource>().Play();
+                }
             }
             if (multiplayer)
             {
@@ -508,6 +531,21 @@ public class CharacterSelector : MonoBehaviour
                         }
                         confirmedTimer2 = 0;
                     }
+                    else
+                    {
+                        int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
+                        int p = 0;
+                        for (int i = 0; i < pMPSquares2.Length / 2; i++)
+                        {
+                            for (int o = 0; o < pMPSquares2.Length / 2; o++)
+                            {
+                                translate[i, o] = p;
+                                p++;
+                            }
+                        }
+                        GetComponents<AudioSource>()[1].clip = selectionSFX[translate[hIndex2, vIndex2]];
+                        GetComponents<AudioSource>()[1].Play();
+                    }
                 }
             }
             if ((confirmed[0] && confirmed[1] && multiplayer) || (confirmed[0] && !multiplayer))
@@ -623,21 +661,25 @@ public class CharacterSelector : MonoBehaviour
 
     IEnumerator NextScene()
     {
-        loadingScene = true;
-        yield return new WaitForSeconds(2);
-        Scene nextScene = SceneManager.GetSceneByName($"Game({game})");
-        int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
-        int p = 0;
-        for (int i = 0; i < pMPSquares2.Length / 2; i++)
+        if (!GetComponent<AudioSource>().isPlaying && !GetComponents<AudioSource>()[1].isPlaying)
         {
-            for (int o = 0; o < pMPSquares2.Length / 2; o++)
+            loadingScene = true;
+            yield return new WaitForSeconds(2);
+            Scene nextScene = SceneManager.GetSceneByName($"Game({game})");
+            int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
+            int p = 0;
+            for (int i = 0; i < pMPSquares2.Length / 2; i++)
             {
-                translate[i, o] = p;
-                p++;
+                for (int o = 0; o < pMPSquares2.Length / 2; o++)
+                {
+                    translate[i, o] = p;
+                    p++;
+                }
             }
+            GameData.char1 = translate[hIndex, vIndex];
+            GameData.char2 = translate[hIndex2, vIndex2];
+            SceneManager.LoadScene($"Game({game})");
         }
-        GameData.char1 = translate[hIndex, vIndex];
-        GameData.char2 = translate[hIndex2, vIndex2];
-        SceneManager.LoadScene($"Game({game})");
+        NextScene();
     }
 }
