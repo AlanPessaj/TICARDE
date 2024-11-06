@@ -84,9 +84,9 @@ public class NameController : MonoBehaviour
                         StartCoroutine(ResetMovement());
                     }
 
-                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
                     {
-                        if ((GetComponent<AudioSource>().time > 0.2f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
+                        if ((GetComponent<AudioSource>().time > 0.1f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
                         {
                             GetComponent<AudioSource>().clip = moveSound;
                             GetComponent<AudioSource>().Play();
@@ -149,9 +149,9 @@ public class NameController : MonoBehaviour
                         StartCoroutine(ResetMovement());
                     }
 
-                    if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+                    if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
                     {
-                        if ((GetComponent<AudioSource>().time > 0.2f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
+                        if ((GetComponent<AudioSource>().time > 0.1f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
                         {
                             GetComponent<AudioSource>().clip = moveSound;
                             GetComponent<AudioSource>().Play();
