@@ -15,6 +15,7 @@ public class CharacterSelector : MonoBehaviour
     * [3] = Peron
     */
     public AudioClip[] selectionSFX;
+    public AudioClip moveSound;
     public GameObject[] pSquares;
     GameObject[,] squares;
     public GameObject[] pMPSquares1;
@@ -116,6 +117,11 @@ public class CharacterSelector : MonoBehaviour
                     if (hIndex > 0)
                     {
                         hIndex--;
+                        if (((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying))
+                        {
+                            GetComponent<AudioSource>().clip = moveSound;
+                            GetComponent<AudioSource>().Play();
+                        }
                     }
                     foreach (var item in squares)
                     {
@@ -162,6 +168,11 @@ public class CharacterSelector : MonoBehaviour
                     if (hIndex < (pSquares.Length / 2) - 1)
                     {
                         hIndex++;
+                        if (((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying))
+                        {
+                            GetComponent<AudioSource>().clip = moveSound;
+                            GetComponent<AudioSource>().Play();
+                        }
                     }
                     foreach (var item in squares)
                     {
@@ -208,6 +219,11 @@ public class CharacterSelector : MonoBehaviour
                     if (vIndex > 0)
                     {
                         vIndex--;
+                        if (((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying))
+                        {
+                            GetComponent<AudioSource>().clip = moveSound;
+                            GetComponent<AudioSource>().Play();
+                        }
                     }
                     foreach (var item in squares)
                     {
@@ -254,6 +270,11 @@ public class CharacterSelector : MonoBehaviour
                     if (vIndex < (pSquares.Length / 2) - 1)
                     {
                         vIndex++;
+                        if (((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying))
+                        {
+                            GetComponent<AudioSource>().clip = moveSound;
+                            GetComponent<AudioSource>().Play();
+                        }
                     }
                     foreach (var item in squares)
                     {
@@ -336,6 +357,11 @@ public class CharacterSelector : MonoBehaviour
                         if (hIndex2 > 0)
                         {
                             hIndex2--;
+                            if ((GetComponents<AudioSource>()[1].time > 0.15f && GetComponents<AudioSource>()[1].isPlaying) || !GetComponents<AudioSource>()[1].isPlaying)
+                            {
+                                GetComponents<AudioSource>()[1].clip = moveSound;
+                                GetComponents<AudioSource>()[1].Play();
+                            }
                         }
                         foreach (var item in squares)
                         {
@@ -382,6 +408,11 @@ public class CharacterSelector : MonoBehaviour
                         if (hIndex2 < (pSquares.Length / 2) - 1)
                         {
                             hIndex2++;
+                            if ((GetComponents<AudioSource>()[1].time > 0.15f && GetComponents<AudioSource>()[1].isPlaying) || !GetComponents<AudioSource>()[1].isPlaying)
+                            {
+                                GetComponents<AudioSource>()[1].clip = moveSound;
+                                GetComponents<AudioSource>()[1].Play();
+                            }
                         }
                         foreach (var item in squares)
                         {
@@ -428,6 +459,11 @@ public class CharacterSelector : MonoBehaviour
                         if (vIndex2 > 0)
                         {
                             vIndex2--;
+                            if ((GetComponents<AudioSource>()[1].time > 0.15f && GetComponents<AudioSource>()[1].isPlaying) || !GetComponents<AudioSource>()[1].isPlaying)
+                            {
+                                GetComponents<AudioSource>()[1].clip = moveSound;
+                                GetComponents<AudioSource>()[1].Play();
+                            }
                         }
                         foreach (var item in squares)
                         {
@@ -474,6 +510,11 @@ public class CharacterSelector : MonoBehaviour
                         if (vIndex2 < (pSquares.Length / 2) - 1)
                         {
                             vIndex2++;
+                            if ((GetComponents<AudioSource>()[1].time > 0.15f && GetComponents<AudioSource>()[1].isPlaying) || !GetComponents<AudioSource>()[1].isPlaying)
+                            {
+                                GetComponents<AudioSource>()[1].clip = moveSound;
+                                GetComponents<AudioSource>()[1].Play();
+                            }
                         }
                         foreach (var item in squares)
                         {
