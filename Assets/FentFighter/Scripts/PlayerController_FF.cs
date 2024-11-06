@@ -51,7 +51,7 @@ public class PlayerController_FF : MonoBehaviour
         }
         if (isPlayer1)
         {
-            if (Input.GetKey(KeyCode.D) && )
+            if (Input.GetKey(KeyCode.D))
             {
                 movDirection += 1;
                 if (facingLeft)

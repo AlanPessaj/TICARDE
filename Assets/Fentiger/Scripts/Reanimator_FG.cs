@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Reanimator_FG : MonoBehaviour
 {
+    public AudioClip reliveSound;
+    public SoundManager_FG soundManager;
     void Update()
     {
         if (GetComponent<Generator_FG>().initialMultiplayer)
@@ -12,6 +14,7 @@ public class Reanimator_FG : MonoBehaviour
             {
                 if (GetComponent<Generator_FG>().players[1].transform.GetChild(0).gameObject.activeSelf)
                 {
+                    soundManager.PlaySound(reliveSound);
                     GetComponent<Generator_FG>().players[1].transform.GetChild(0).gameObject.SetActive(false);
                     GetComponent<Generator_FG>().players[0].SetActive(true);
                     GetComponent<Generator_FG>().players[0].transform.position = GetComponent<Generator_FG>().players[1].transform.position;
@@ -26,6 +29,7 @@ public class Reanimator_FG : MonoBehaviour
             {
                 if (GetComponent<Generator_FG>().players[0].transform.GetChild(0).gameObject.activeSelf)
                 {
+                    soundManager.PlaySound(reliveSound);
                     GetComponent<Generator_FG>().players[0].transform.GetChild(0).gameObject.SetActive(false);
                     GetComponent<Generator_FG>().players[1].SetActive(true);
                     GetComponent<Generator_FG>().players[1].transform.position = GetComponent<Generator_FG>().players[0].transform.position;
