@@ -31,6 +31,8 @@ public class UIManager_FF : MonoBehaviour
 
     public void LoadEnd()
     {
+        GetComponent<Animator>().enabled = false;
+        Time.timeScale = 1;
         StartCoroutine(SetScore());
     }
 

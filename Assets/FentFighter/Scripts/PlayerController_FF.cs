@@ -35,14 +35,14 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (slideKickCooldown > 0) slideKickCooldown -= Time.deltaTime;
         float movDirection = 0;
-        if (otherPlayer.transform.position.x > transform.position.x && facingLeft)
+        if (otherPlayer.transform.position.x > transform.position.x && facingLeft && !InState("death"))
         {
             //Cambiar a derecha
             transform.Rotate(0, 180, 0, Space.World);
             facingLeft = false;
             animator.SetTrigger("turnAround");
         }
-        else if (otherPlayer.transform.position.x < transform.position.x && !facingLeft)
+        else if (otherPlayer.transform.position.x < transform.position.x && !facingLeft && !InState("death"))
         {
             //Cambiar a izquierda
             transform.Rotate(0, 180, 0, Space.World);
@@ -51,7 +51,7 @@ public class PlayerController_FF : MonoBehaviour
         }
         if (isPlayer1)
         {
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) && !InState("death"))
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -74,7 +74,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) && !InState("death"))
             {
                 movDirection -= 1;
                 if (!facingLeft)
@@ -97,8 +97,8 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S));
-            if (Input.GetKey(KeyCode.S))
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S) && !InState("death"));
+            if (Input.GetKey(KeyCode.S) && !InState("death"))
             {
                 if (hitManager.blocking)
                 {
@@ -131,7 +131,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection = movDirection / 2;
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W) && !InState("death"))
             {
                 if (!airborne)
                 {
@@ -143,7 +143,7 @@ public class PlayerController_FF : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) && !InState("death"))
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -166,7 +166,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) && !InState("death"))
             {
                 movDirection -= 1;
                 if (!facingLeft)
@@ -189,8 +189,8 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow));
-            if (Input.GetKey(KeyCode.DownArrow))
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow) && !InState("death"));
+            if (Input.GetKey(KeyCode.DownArrow) && !InState("death"))
             {
                 if (hitManager.blocking)
                 {
@@ -223,7 +223,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection /= 2;
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !InState("death"))
             {
                 if (!airborne)
                 {
@@ -232,7 +232,7 @@ public class PlayerController_FF : MonoBehaviour
                 }
             }
         }
-        CheckButtons();
+        if (!InState("death")) CheckButtons();
         if (isColliding)
         {
             if (transform.position.x > otherPlayer.transform.position.x)
@@ -252,7 +252,7 @@ public class PlayerController_FF : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
-        UpdateCombo();
+        if (!InState("death")) UpdateCombo();
         pMovDirection = movDirection;
     }
 

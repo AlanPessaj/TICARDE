@@ -16,6 +16,11 @@ public class deathScript : StateMachineBehaviour
     {
         Time.timeScale = 1 - stateInfo.normalizedTime;
         if (Time.timeScale <= 0.01) animator.GetComponent<UIManager_FF>().LoadEnd();
+        if (stateInfo.normalizedTime > 0.5f)
+        {
+            animator.GetComponent<CapsuleCollider>().direction = 2;
+            animator.GetComponent<CapsuleCollider>().center = new Vector3(0, 0.1f, -0.5f);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
