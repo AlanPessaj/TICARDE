@@ -38,14 +38,12 @@ public class PlayerController_FF : MonoBehaviour
         if (otherPlayer.transform.position.x > transform.position.x && facingLeft && !InState("death"))
         {
             //Cambiar a derecha
-            transform.Rotate(0, 180, 0, Space.World);
             facingLeft = false;
             animator.SetTrigger("turnAround");
         }
         else if (otherPlayer.transform.position.x < transform.position.x && !facingLeft && !InState("death"))
         {
             //Cambiar a izquierda
-            transform.Rotate(0, 180, 0, Space.World);
             facingLeft = true;
             animator.SetTrigger("turnAround");
         }
@@ -452,6 +450,7 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (GetComponent<UIManager_FF>().RemoveXP(25))
         {
+            animator.SetTrigger("ability");
             GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             temp.GetComponent<LinearMover_FF>().goingLeft = facingLeft;
             temp.GetComponent<Damage_FF>().owner = gameObject;
@@ -462,6 +461,7 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (GetComponent<UIManager_FF>().RemoveXP(100))
         {
+            animator.SetTrigger("ability");
             GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             temp.GetComponent<LinearMover_FF>().goingLeft = facingLeft;
             temp.transform.GetChild(1).gameObject.SetActive(true);
