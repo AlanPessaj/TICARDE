@@ -15,5 +15,10 @@ public class HitDetector_FF : MonoBehaviour
             hitManager.hColliders[colNumber] = GetComponent<Collider>();
             hitManager.damageProperties = other.GetComponent<Damage_FF>();
         }
+        if (other.gameObject.layer == LayerMask.NameToLayer("floor") && colNumber == -1)
+        {
+            if (playerController.InState("hit_smash")) hitManager.TakeFallDamage(true);
+            else if (playerController.InState("hit_slideKick")) hitManager.TakeFallDamage(false);
+        }
     }
 }

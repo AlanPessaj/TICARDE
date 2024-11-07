@@ -941,8 +941,8 @@ MonoBehaviour:
   - {fileID: 1977545514}
   - {fileID: 965494607}
   cameraController: {fileID: 620059419}
-  char1: -1
-  char2: -1
+  char1: 2
+  char2: 2
 --- !u!1 &620059415
 GameObject:
   m_ObjectHideFlags: 0

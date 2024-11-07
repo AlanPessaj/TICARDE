@@ -14,7 +14,10 @@ public class HitManager_FF : MonoBehaviour
     bool detectedHit;
     bool detectedBlock;
     bool detectedAbility;
+    public bool detectedFall;
     int hTrigger;
+    public float slideKickDamage;
+    public float smashDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -282,18 +285,9 @@ public class HitManager_FF : MonoBehaviour
             if (damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti)
             {
                 GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damageProperties.damage * XPMultiplier);
-                if (damageProperties.type == DamageType.Punch)
-                {
-                    //animacion de me pego un puñetazo + stun
-                }
-                if (damageProperties.type == DamageType.Kick)
-                {
-                    //animacion de me pego una patada + stun
-                }
                 if (damageProperties.type == DamageType.UpperCut)
                 {
                     GetComponent<Rigidbody>().AddForce(GetComponent<PlayerController_FF>().movementSpeed * -GetComponent<PlayerController_FF>().pMovDirection, GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
-                    //animacion de me pego un gancho + stun
                 }
                 if (damageProperties.type == DamageType.Smash)
                 {
@@ -304,14 +298,20 @@ public class HitManager_FF : MonoBehaviour
                 }
                 detectedHit = true;
             }
-            else
-            {
-                detectedAbility = true;
-            }
+            else detectedAbility = true;
             if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut && damageProperties.type != DamageType.Smash && damageProperties.type != DamageType.SlideKick)
                 CalculateKnockback();
             if (!GetComponent<PlayerController_FF>().InState("death")) PlayHitAnimation();
             damageProperties.disableAction = ResetDetection;
+        }
+    }
+
+    public void TakeFallDamage(bool smash)
+    {
+        if (!detectedFall)
+        {
+            GetComponent<UIManager_FF>().ChangeHealth(smash ? -smashDamage : -slideKickDamage);
+            detectedFall = true;
         }
     }
 
