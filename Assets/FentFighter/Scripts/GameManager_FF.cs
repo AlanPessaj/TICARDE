@@ -16,8 +16,13 @@ public class GameManager_FF : MonoBehaviour
 
     private void Start()
     {
-        if (char1 >= 0) GameData.char1 = char1;
-        if (char2 >= 0) GameData.char2 = char2;
+        if (GameData.name1 == "" || GameData.name2 == null)
+        {
+            GameData.name1 = "Player1";
+            GameData.name2 = "Player2";
+            GameData.char1 = char1;
+            GameData.char2 = char2;
+        }
         Vector3[] playerPos = new Vector3[players.Length];
         Transform environment = map.transform.parent;
         for (int i = 0; i < players.Length; i++)

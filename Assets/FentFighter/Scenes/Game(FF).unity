@@ -927,10 +927,10 @@ MonoBehaviour:
   - {fileID: 8517903291278179588, guid: 3d947baada9ad7f4082e217ae92cbc7f, type: 3}
   - {fileID: 5805740824578844996, guid: 70486b54b3de10642b66d3d624cc23d7, type: 3}
   - {fileID: 4461427881204288275, guid: c9a8e33e7ee4f0942863641807592421, type: 3}
-  - {fileID: 4461427881204288275, guid: a79259a649c5e7241acc2eeb337a6b98, type: 3}
+  - {fileID: 8340632205591801724, guid: 50fb765f55d33c4478a21f822f4083b2, type: 3}
   maps:
   - {fileID: 6613913990347837729, guid: b6a2171be7c085642af0912916be489a, type: 3}
-  - {fileID: 8918360809619280698, guid: 78e2e77578eae7345b0285ef4eaaeab4, type: 3}
+  - {fileID: 653052095125304284, guid: 822019317747a4b40b3cf22d7a373b02, type: 3}
   - {fileID: 8918360809619280698, guid: ba7d5fbe36c34f74584e03e6d0f227e4, type: 3}
   - {fileID: 4501494224327389466, guid: adcc3b7b996a5ac488fc87c83241102b, type: 3}
   map: {fileID: 1462219358}
@@ -941,8 +941,8 @@ MonoBehaviour:
   - {fileID: 1977545514}
   - {fileID: 965494607}
   cameraController: {fileID: 620059419}
-  char1: 2
-  char2: 2
+  char1: -1
+  char2: -1
 --- !u!1 &620059415
 GameObject:
   m_ObjectHideFlags: 0

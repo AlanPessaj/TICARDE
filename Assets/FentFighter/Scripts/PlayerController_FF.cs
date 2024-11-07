@@ -35,18 +35,9 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (slideKickCooldown > 0) slideKickCooldown -= Time.deltaTime;
         float movDirection = 0;
-        if (otherPlayer.transform.position.x > transform.position.x && facingLeft && !InState("death"))
-        {
-            //Cambiar a derecha
-            facingLeft = false;
+        facingLeft = otherPlayer.transform.position.x < transform.position.x;
+        if (((facingLeft && IsClose(transform.eulerAngles.y, 90)) || (!facingLeft && IsClose(transform.eulerAngles.y, 270))) && !InState("death") && !InState("turnAround")) 
             animator.SetTrigger("turnAround");
-        }
-        else if (otherPlayer.transform.position.x < transform.position.x && !facingLeft && !InState("death"))
-        {
-            //Cambiar a izquierda
-            facingLeft = true;
-            animator.SetTrigger("turnAround");
-        }
         if (isPlayer1)
         {
             if (Input.GetKey(KeyCode.D) && !InState("death"))
@@ -340,11 +331,11 @@ public class PlayerController_FF : MonoBehaviour
             {
                 DetectCombo("C", "B", player, Ulti);
                 DetectCombo("C", "A", player, Ability);
-                if (InState("idle"))
-                {
-                    animator.SetBool("holdBlock", true);
-                    hitManager.blocking = true;
-                }
+            }
+            if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch") || InState("crouchedRun") || InState("crouchedRunBackwards"))
+            {
+                animator.SetBool("holdBlock", true);
+                hitManager.blocking = true;
             }
         }
         else
@@ -498,5 +489,10 @@ public class PlayerController_FF : MonoBehaviour
         {
             isColliding = false;
         }
+    }
+
+    public bool IsClose(float a, float b)
+    {
+        return a > b - b * 0.001f && a < b + b * 0.001f;
     }
 }

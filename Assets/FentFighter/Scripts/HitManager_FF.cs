@@ -41,8 +41,28 @@ public class HitManager_FF : MonoBehaviour
                         {
                             if (blocking)
                             {
-                                //Debug.Log("pego en piernas (block pecho cabeza)");
-                                TakeDamage();
+                                if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
+                                {
+                                    //Debug.Log("(block cabeza pecho piernas)");
+                                    if (!detectedBlock)
+                                    {
+                                        if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
+                                        {
+                                            TakeDamage();
+                                        }
+                                        else
+                                        {
+                                            GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                                            detectedBlock = true;
+                                            damageProperties.disableAction = ResetDetection;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //Debug.Log("pego en piernas (block pecho cabeza)");
+                                    TakeDamage();
+                                }
                             }
                             else
                             {
@@ -85,8 +105,28 @@ public class HitManager_FF : MonoBehaviour
                     {
                         if (blocking)
                         {
-                            //Debug.Log("pego en piernas (block cabeza)");
-                            TakeDamage();
+                            if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
+                            {
+                                //Debug.Log("(block cabeza piernas)");
+                                if (!detectedBlock)
+                                {
+                                    if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
+                                    {
+                                        TakeDamage();
+                                    }
+                                    else
+                                    {
+                                        GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                                        detectedBlock = true;
+                                        damageProperties.disableAction = ResetDetection;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //Debug.Log("pego en piernas (block cabeza)");
+                                TakeDamage();
+                            }
                         }
                         else
                         {
@@ -101,8 +141,28 @@ public class HitManager_FF : MonoBehaviour
                 {
                     if (blocking)
                     {
-                        //Debug.Log("pego en piernas (block pecho)");
-                        TakeDamage();
+                        if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
+                        {
+                            //Debug.Log("(block pecho piernas)");
+                            if (!detectedBlock)
+                            {
+                                if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
+                                {
+                                    TakeDamage();
+                                }
+                                else
+                                {
+                                    GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                                    detectedBlock = true;
+                                    damageProperties.disableAction = ResetDetection;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Debug.Log("pego en piernas (block pecho)");
+                            TakeDamage();
+                        }
                     }
                     else
                     {
@@ -170,9 +230,29 @@ public class HitManager_FF : MonoBehaviour
                     }
                     break;
                 case 2:
-                    //Debug.Log("pego en piernas");
-                    hTrigger = 2;
-                    TakeDamage();
+                    if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
+                    {
+                        //Debug.Log("(block piernas)");
+                        if (!detectedBlock)
+                        {
+                            if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
+                            {
+                                TakeDamage();
+                            }
+                            else
+                            {
+                                GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                                detectedBlock = true;
+                                damageProperties.disableAction = ResetDetection;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Debug.Log("pego en piernas");
+                        hTrigger = 2;
+                        TakeDamage();
+                    }
                     break;
             }
         }
