@@ -17,7 +17,6 @@ public class HitDetector_FF : MonoBehaviour
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor") && colNumber == -1)
         {
-            Debug.Log("auch");
             if (playerController.InState("hit_smash")) hitManager.TakeFallDamage(true);
             else if (playerController.InState("hit_slideKick")) hitManager.TakeFallDamage(false);
         }

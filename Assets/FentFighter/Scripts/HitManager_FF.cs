@@ -279,7 +279,7 @@ public class HitManager_FF : MonoBehaviour
 
     void TakeDamage()
     {
-        if ((!detectedHit && damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti) || (!detectedAbility && (damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.Ulti)))
+        if (((!detectedHit && damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti) || (!detectedAbility && (damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.Ulti))) && !(GetComponent<PlayerController_FF>().InState("death") || GetComponent<PlayerController_FF>().InState("hit_slideKick") || GetComponent<PlayerController_FF>().InState("hit_smash")))
         {
             GetComponent<UIManager_FF>().ChangeHealth(-damageProperties.damage);
             if (damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti)
@@ -291,8 +291,8 @@ public class HitManager_FF : MonoBehaviour
                 }
                 if (damageProperties.type == DamageType.SlideKick)
                 {
-                    GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<PlayerController_FF>().movementSpeed * GetComponent<PlayerController_FF>().pMovDirection, 0, 0);
-                    animator.GetComponent<Rigidbody>().AddForce(0, animator.GetComponent<PlayerController_FF>().jumpForce * 0.1f, 0, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().velocity = GetComponent<PlayerController_FF>().movementSpeed * GetComponent<PlayerController_FF>().pMovDirection * Vector3.right * 2f;
+                    animator.GetComponent<Rigidbody>().AddForce(0.5f * animator.GetComponent<PlayerController_FF>().jumpForce * Vector3.up, ForceMode.Impulse);
                 }
                 if (damageProperties.type == DamageType.Smash)
                 {
