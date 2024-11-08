@@ -16,15 +16,7 @@ public class PlayerController_FT : MonoBehaviour
     public float timeSlow;
     public float minPower;
     public float maxPower;
-    // Start is called before the first frame update
-    void Start()
-    {
-        timeSlow += 1;
-        isPlayer1 = gameObject.name == "Player1";
-        shot = gameManager.gameObject.GetComponent<ShotManager_FT>();
-        speedConst = movementSpeed;
-    }
-    int direction;
+        int direction;
     float driveRotation;
     float lobRotation;
     float smashRotation;
@@ -39,6 +31,15 @@ public class PlayerController_FT : MonoBehaviour
     bool didSmash;
     float speedConst;
     bool canHit = true;
+    // Start is called before the first frame update
+    void Start()
+    {
+        timeSlow += 1;
+        isPlayer1 = gameObject.name == "Player1";
+        shot = gameManager.gameObject.GetComponent<ShotManager_FT>();
+        speedConst = movementSpeed;
+    }
+
     // Update is called once per frame
     public void Update()
     {
@@ -55,19 +56,19 @@ public class PlayerController_FT : MonoBehaviour
         {
             if(gameManager.serve == 2)
             {
-                if (Input.GetKey(KeyCode.W) && transform.position.x < -30)
+                if (Input.GetKey(KeyCode.W) && ((transform.position.x < -30 && gameManager.lastServePlayer1 == 1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.A) && transform.position.z < 0)
+                if (Input.GetKey(KeyCode.A) && ((transform.position.z < 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (Input.GetKey(KeyCode.S) && transform.position.x > -50)
+                if (Input.GetKey(KeyCode.S) && ((transform.position.x < -30 && gameManager.lastServePlayer1 == -1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.D) && transform.position.z > -30)
+                if (Input.GetKey(KeyCode.D) && ((transform.position.z < 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -95,20 +96,20 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (gameManager.serve == 1)
             {
-                //PLAYER 1
-                if (Input.GetKey(KeyCode.W) && transform.position.x < -45)
+                //PLAYER 1  
+                if (Input.GetKey(KeyCode.W) && ((transform.position.x < -45 && gameManager.lastServePlayer1 == 1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.A) && transform.position.z < 0)
+                if (Input.GetKey(KeyCode.A) && ((transform.position.z < 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (Input.GetKey(KeyCode.S) && transform.position.x > -50)
+                if (Input.GetKey(KeyCode.S) && ((transform.position.x < -45 && gameManager.lastServePlayer1 == -1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.D) && transform.position.z > -30)
+                if (Input.GetKey(KeyCode.D) && ((transform.position.z < 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -117,30 +118,30 @@ public class PlayerController_FT : MonoBehaviour
                     gameManager.ThrowBall();
                 }
                 CheckButtons(true);
-                transform.Translate(movement.normalized / 4 * Time.deltaTime * movementSpeed);
+                transform.Translate(movement.normalized / 4 * Time.deltaTime * movementSpeed * gameManager.lastServePlayer1);
             }
             else
             {
-                transform.Translate(movement.normalized * Time.deltaTime * movementSpeed);
+                transform.Translate(movement.normalized * Time.deltaTime * movementSpeed * gameManager.lastServePlayer1);
             }
         }
         else
         {
             if (gameManager.serve == 1)
             {
-                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50)
+                if (Input.GetKey(KeyCode.UpArrow) && ((transform.position.x > 30 && gameManager.lastServePlayer1 == -1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z < 30)
+                if (Input.GetKey(KeyCode.LeftArrow) && ((transform.position.z > 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 30)
+                if (Input.GetKey(KeyCode.DownArrow) && ((transform.position.x > 30 && gameManager.lastServePlayer1 == 1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0)
+                if (Input.GetKey(KeyCode.RightArrow) && ((transform.position.z > 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -168,19 +169,19 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (gameManager.serve == 2)
             {
-                if (Input.GetKey(KeyCode.UpArrow) && transform.position.x < 50)
+                if (Input.GetKey(KeyCode.UpArrow) && ((transform.position.x > 45 && gameManager.lastServePlayer1 == -1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z < 30)
+                if (Input.GetKey(KeyCode.LeftArrow) && ((transform.position.z > 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (Input.GetKey(KeyCode.DownArrow) && transform.position.x > 45)
+                if (Input.GetKey(KeyCode.DownArrow) && ((transform.position.x > 45 && gameManager.lastServePlayer1 == 1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && transform.position.z > 0)
+                if (Input.GetKey(KeyCode.RightArrow) && ((transform.position.z > 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -189,11 +190,11 @@ public class PlayerController_FT : MonoBehaviour
                     gameManager.ThrowBall();
                 }
                 CheckButtons(true);
-                transform.Translate(movement.normalized / 4 * Time.deltaTime * -movementSpeed);
+                transform.Translate(movement.normalized / 4 * Time.deltaTime * -movementSpeed * gameManager.lastServePlayer1);
             }
             else
             {
-                transform.Translate(movement.normalized * Time.deltaTime * -movementSpeed);
+                transform.Translate(movement.normalized * Time.deltaTime * -movementSpeed * gameManager.lastServePlayer1);
             }
         }
         if (!canHit)

@@ -28,6 +28,7 @@ public class GameManager_FT : MonoBehaviour
     public GameObject player1Canvas;
     public GameObject player2Canvas;
     public GameObject canvas;
+    public int lastServePlayer1 = 1;
     bool goingToServe;
     bool readyToServe;
     float servingProgress;
@@ -111,20 +112,19 @@ public class GameManager_FT : MonoBehaviour
             }
         }
     }
-    bool lastServePlayer1 = true;
     public void StartServe(GameObject player)
     {
         if(player == player1)
         {
-            if (!lastServePlayer1) GetComponent<CameraController_FT>().resetPos = true;
-            lastServePlayer1 = true;
+            if (lastServePlayer1 != 1) GetComponent<CameraController_FT>().resetPos = true;
+            lastServePlayer1 = 1;
             serve = 1;
             environment.eulerAngles = Vector3.zero;
         }
         else
         {
-            if (lastServePlayer1) GetComponent<CameraController_FT>().resetPos = true;
-            lastServePlayer1 = false;
+            if (lastServePlayer1 == 1) GetComponent<CameraController_FT>().resetPos = true;
+            lastServePlayer1 = -1;
             serve = 2;
             environment.eulerAngles = Vector3.up * 180;
         }
