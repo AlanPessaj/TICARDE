@@ -10,7 +10,7 @@ public class Reanimator_FG : MonoBehaviour
     {
         if (GetComponent<Generator_FG>().initialMultiplayer)
         {
-            if (Input.GetButtonDown("A") || Input.GetButtonDown("B") || Input.GetButtonDown("C") && !GetComponent<Generator_FG>().multiplayer & !GetComponent<Generator_FG>().isTherePlayer1)
+            if ((Input.GetButtonDown("A") || Input.GetButtonDown("B") || Input.GetButtonDown("C")) && !GetComponent<Generator_FG>().multiplayer & !GetComponent<Generator_FG>().isTherePlayer1)
             {
                 if (GetComponent<Generator_FG>().players[1].transform.GetChild(0).gameObject.activeSelf)
                 {
@@ -25,7 +25,7 @@ public class Reanimator_FG : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown("A2") || Input.GetButtonDown("B2") || Input.GetButtonDown("C2") && !GetComponent<Generator_FG>().multiplayer & !GetComponent<Generator_FG>().isTherePlayer2)
+            if ((Input.GetButtonDown("A2") || Input.GetButtonDown("B2") || Input.GetButtonDown("C2")) && !GetComponent<Generator_FG>().multiplayer & !GetComponent<Generator_FG>().isTherePlayer2)
             {
                 if (GetComponent<Generator_FG>().players[0].transform.GetChild(0).gameObject.activeSelf)
                 {
