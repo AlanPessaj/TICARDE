@@ -345,8 +345,11 @@ public class CharacterSelector : MonoBehaviour
                             p++;
                         }
                     }
-                    GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
-                    GetComponent<AudioSource>().Play();
+                    if (GetComponent<AudioSource>().clip != selectionSFX[translate[hIndex, vIndex]] || (GetComponent<AudioSource>().time >= GetComponent<AudioSource>().clip.length / 2))
+                    {
+                        GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
+                        GetComponent<AudioSource>().Play();
+                    }
                 }
             }
             if (multiplayer)
