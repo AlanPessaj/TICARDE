@@ -287,7 +287,12 @@ public class HitManager_FF : MonoBehaviour
                 GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().AddXP(damageProperties.damage * XPMultiplier);
                 if (damageProperties.type == DamageType.UpperCut)
                 {
-                    GetComponent<Rigidbody>().AddForce(GetComponent<PlayerController_FF>().movementSpeed * -GetComponent<PlayerController_FF>().pMovDirection, GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(GetComponent<PlayerController_FF>().movementSpeed * -GetComponent<PlayerController_FF>().pMovDirection, GetComponent<PlayerController_FF>().jumpForce * 1.3f, 0, ForceMode.Impulse);
+                }
+                if (damageProperties.type == DamageType.SlideKick)
+                {
+                    GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<PlayerController_FF>().movementSpeed * GetComponent<PlayerController_FF>().pMovDirection, 0, 0);
+                    animator.GetComponent<Rigidbody>().AddForce(0, animator.GetComponent<PlayerController_FF>().jumpForce * 0.1f, 0, ForceMode.Impulse);
                 }
                 if (damageProperties.type == DamageType.Smash)
                 {

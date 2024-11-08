@@ -259,6 +259,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1220666804, guid: c9a8e33e7ee4f0942863641807592421, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220666804, guid: c9a8e33e7ee4f0942863641807592421, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220666804, guid: c9a8e33e7ee4f0942863641807592421, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4461427881204193075, guid: c9a8e33e7ee4f0942863641807592421,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -318,11 +330,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4461427881204288276, guid: c9a8e33e7ee4f0942863641807592421,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4461427881204288278, guid: c9a8e33e7ee4f0942863641807592421,
         type: 3}
@@ -660,11 +667,6 @@ PrefabInstance:
       propertyPath: UI
       value: 
       objectReference: {fileID: 965494607}
-    - target: {fileID: 1638278861084003038, guid: c9a8e33e7ee4f0942863641807592421,
-        type: 3}
-      propertyPath: noDamage
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4461427881204193075, guid: c9a8e33e7ee4f0942863641807592421,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -724,11 +726,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4461427881204288276, guid: c9a8e33e7ee4f0942863641807592421,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4461427881204288278, guid: c9a8e33e7ee4f0942863641807592421,
         type: 3}

@@ -36,11 +36,10 @@ public class PlayerController_FF : MonoBehaviour
         if (slideKickCooldown > 0) slideKickCooldown -= Time.deltaTime;
         float movDirection = 0;
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
-        if (((facingLeft && IsClose(transform.eulerAngles.y, 90)) || (!facingLeft && IsClose(transform.eulerAngles.y, 270))) && !InState("death") && !InState("turnAround")) 
-            animator.SetTrigger("turnAround");
+        if (((facingLeft && IsClose(transform.eulerAngles.y, 90)) || (!facingLeft && IsClose(transform.eulerAngles.y, 270))) && !InState("turnAround")) animator.SetTrigger("turnAround");
         if (isPlayer1)
         {
-            if (Input.GetKey(KeyCode.D) && !InState("death"))
+            if (Input.GetKey(KeyCode.D) && !InState("death") && !InState("hit_slideKick"))
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -63,7 +62,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            if (Input.GetKey(KeyCode.A) && !InState("death"))
+            if (Input.GetKey(KeyCode.A) && !InState("death") && !InState("hit_slideKick"))
             {
                 movDirection -= 1;
                 if (!facingLeft)
@@ -86,8 +85,8 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S) && !InState("death"));
-            if (Input.GetKey(KeyCode.S) && !InState("death"))
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S) && !InState("death") && !InState("hit_slideKick"));
+            if (Input.GetKey(KeyCode.S) && !InState("death") && !InState("hit_slideKick"))
             {
                 if (hitManager.blocking)
                 {
@@ -120,7 +119,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection = movDirection / 2;
             }
-            if (Input.GetKeyDown(KeyCode.W) && !InState("death"))
+            if (Input.GetKeyDown(KeyCode.W) && !InState("death") && !InState("hit_slideKick"))
             {
                 if (!airborne)
                 {
@@ -132,7 +131,7 @@ public class PlayerController_FF : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.RightArrow) && !InState("death"))
+            if (Input.GetKey(KeyCode.RightArrow) && !InState("death") && !InState("hit_slideKick"))
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -155,7 +154,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            if (Input.GetKey(KeyCode.LeftArrow) && !InState("death"))
+            if (Input.GetKey(KeyCode.LeftArrow) && !InState("death") && !InState("hit_slideKick"))
             {
                 movDirection -= 1;
                 if (!facingLeft)
@@ -178,8 +177,8 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow) && !InState("death"));
-            if (Input.GetKey(KeyCode.DownArrow) && !InState("death"))
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow) && !InState("death") && !InState("hit_slideKick"));
+            if (Input.GetKey(KeyCode.DownArrow) && !InState("death") && !InState("hit_slideKick"))
             {
                 if (hitManager.blocking)
                 {
@@ -212,7 +211,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection /= 2;
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow) && !InState("death"))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !InState("death") && !InState("hit_slideKick"))
             {
                 if (!airborne)
                 {
@@ -221,7 +220,7 @@ public class PlayerController_FF : MonoBehaviour
                 }
             }
         }
-        if (!InState("death")) CheckButtons();
+        if (!InState("death") && !InState("hit_slideKick")) CheckButtons();
         if (isColliding)
         {
             if (transform.position.x > otherPlayer.transform.position.x)
@@ -241,7 +240,7 @@ public class PlayerController_FF : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
-        if (!InState("death")) UpdateCombo();
+        if (!InState("death") && !InState("hit_slideKick")) UpdateCombo();
         pMovDirection = movDirection;
     }
 

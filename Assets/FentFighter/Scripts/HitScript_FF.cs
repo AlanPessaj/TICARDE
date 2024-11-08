@@ -64,7 +64,7 @@ public class HitScript_FF : StateMachineBehaviour
             if (!animator.GetComponent<PlayerController_FF>().airborne)
             {
                 animator.GetComponent<Rigidbody>().velocity = new Vector3(animator.GetComponent<PlayerController_FF>().movementSpeed * animator.GetComponent<PlayerController_FF>().pMovDirection, 0, 0);
-                animator.GetComponent<Rigidbody>().AddForce(0, animator.GetComponent<PlayerController_FF>().jumpForce, 0, ForceMode.Impulse);
+                animator.GetComponent<Rigidbody>().AddForce(0, animator.GetComponent<PlayerController_FF>().jumpForce * 1.3f, 0, ForceMode.Impulse);
             }
         }
     }
@@ -109,7 +109,6 @@ public class HitScript_FF : StateMachineBehaviour
         if (animator.GetBool("cutToSmash"))
         {
             animator.SetBool("cutToSmash", false);
-            animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage *= 1.5f;
             animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Smash;
             animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
         }
