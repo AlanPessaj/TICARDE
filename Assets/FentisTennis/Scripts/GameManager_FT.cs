@@ -11,8 +11,8 @@ public class GameManager_FT : MonoBehaviour
     public GameObject player2;
     public ShotManager_FT shotmanager;
     public BallMover_FT ballmover;
+    public Transform environment;
     public int serve = 0;
-    bool readyToServe;
     public bool throwingBall = false;
     public bool serving;
     float stepSize;
@@ -29,6 +29,7 @@ public class GameManager_FT : MonoBehaviour
     public GameObject player2Canvas;
     public GameObject canvas;
     bool goingToServe;
+    bool readyToServe;
     float servingProgress;
     Vector3 player1PreServePos;
     Vector3 player2PreServePos;
@@ -37,7 +38,6 @@ public class GameManager_FT : MonoBehaviour
     float switchProgress;
     Vector3 player1PreSwitchPos;
     Vector3 player2PreSwitchPos;
-    //GameObject previousPlayer;
     Transform player1Transform;
     Transform player2Transform;
     // Start is called before the first frame update
@@ -110,62 +110,24 @@ public class GameManager_FT : MonoBehaviour
                 readyToServe = true;
             }
         }
-        /*if (switchingSides)
-        {
-            if (goingToMiddle)
-            {
-                switchProgress += Time.deltaTime;
-                player1Transform.position = Vector3.Lerp(player1PreSwitchPos, new Vector3(0, 6, -36), switchProgress);
-                player2Transform.position = Vector3.Lerp(player2PreSwitchPos, new Vector3(0, 6, 36), switchProgress);
-                if (switchProgress >= 1)
-                {
-                    switchProgress = 0;
-                    goingToMiddle = false;
-                }
-            }
-            else
-            {
-                switchProgress += Time.deltaTime;
-                player1Transform.position = Vector3.Lerp(new Vector3(0, 6, -36), new Vector3(50, 6, 30), switchProgress);
-                player2Transform.position = Vector3.Lerp(new Vector3(0, 6, 36), new Vector3(-50, 6, -30), switchProgress);
-                if (switchProgress >= 1)
-                {
-                    switchProgress = 0;
-                    goingToMiddle = true;
-                    switchingSides = false;
-                    readyToServe = true;
-                    player1Transform.Rotate(0, 180, 0);
-                    player2Transform.Rotate(0, 180, 0);
-                }
-            }
-        }*/
     }
-
+    bool lastServePlayer1 = true;
     public void StartServe(GameObject player)
     {
         if(player == player1)
         {
+            if (!lastServePlayer1) GetComponent<CameraController_FT>().resetPos = true;
+            lastServePlayer1 = true;
             serve = 1;
+            environment.eulerAngles = Vector3.zero;
         }
         else
         {
+            if (lastServePlayer1) GetComponent<CameraController_FT>().resetPos = true;
+            lastServePlayer1 = false;
             serve = 2;
+            environment.eulerAngles = Vector3.up * 180;
         }
-        /*if (player == previousPlayer)
-        {
-            goingToServe = true;
-            player1PreServePos = player1Transform.position;
-            player2PreServePos = player2Transform.position;
-        }
-        else
-        {
-            previousPlayer = player;
-            switchingSides = true;
-            player1PreSwitchPos = player1Transform.position;
-            player2PreSwitchPos = player2Transform.position;
-            player1Transform = player2.transform;
-            player2Transform = player1.transform;
-        }*/
         goingToServe = true;
         player1PreServePos = player1Transform.position;
         player2PreServePos = player2Transform.position;

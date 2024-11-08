@@ -37,6 +37,7 @@ public class CharacterSelector : MonoBehaviour
     public float blinkingSpeed;
     public string game;
     bool loadingScene;
+    bool loadnextscene;
     // Start is called before the first frame update
     void Start()
     {
@@ -344,8 +345,11 @@ public class CharacterSelector : MonoBehaviour
                             p++;
                         }
                     }
-                    GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
-                    GetComponent<AudioSource>().Play();
+                    if (GetComponent<AudioSource>().clip != selectionSFX[translate[hIndex, vIndex]] || (GetComponent<AudioSource>().time >= GetComponent<AudioSource>().clip.length / 2))
+                    {
+                        GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
+                        GetComponent<AudioSource>().Play();
+                    }
                 }
             }
             if (multiplayer)
@@ -589,10 +593,7 @@ public class CharacterSelector : MonoBehaviour
                     }
                 }
             }
-            if ((confirmed[0] && confirmed[1] && multiplayer) || (confirmed[0] && !multiplayer))
-            {
-                StartCoroutine(NextScene());
-            }
+            if ((confirmed[0] && confirmed[1] && multiplayer) || (confirmed[0] && !multiplayer)) if (!GetComponent<AudioSource>().isPlaying && !GetComponents<AudioSource>()[1].isPlaying) StartCoroutine(NextScene());
         }
         if (confirmed[0])
         {
@@ -702,25 +703,21 @@ public class CharacterSelector : MonoBehaviour
 
     IEnumerator NextScene()
     {
-        if (!GetComponent<AudioSource>().isPlaying && !GetComponents<AudioSource>()[1].isPlaying)
+        loadingScene = true;
+        yield return new WaitForSeconds(2);
+        Scene nextScene = SceneManager.GetSceneByName($"Game({game})");
+        int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
+        int p = 0;
+        for (int i = 0; i < pMPSquares2.Length / 2; i++)
         {
-            loadingScene = true;
-            yield return new WaitForSeconds(2);
-            Scene nextScene = SceneManager.GetSceneByName($"Game({game})");
-            int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
-            int p = 0;
-            for (int i = 0; i < pMPSquares2.Length / 2; i++)
+            for (int o = 0; o < pMPSquares2.Length / 2; o++)
             {
-                for (int o = 0; o < pMPSquares2.Length / 2; o++)
-                {
-                    translate[i, o] = p;
-                    p++;
-                }
+                translate[i, o] = p;
+                p++;
             }
-            GameData.char1 = translate[hIndex, vIndex];
-            GameData.char2 = translate[hIndex2, vIndex2];
-            SceneManager.LoadScene($"Game({game})");
         }
-        NextScene();
+        GameData.char1 = translate[hIndex, vIndex];
+        GameData.char2 = translate[hIndex2, vIndex2];
+        SceneManager.LoadScene($"Game({game})");
     }
 }
