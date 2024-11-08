@@ -8,6 +8,9 @@ public class GameSelector : MonoBehaviour
     public GameObject[] logos;
     int index;
     public bool animationFinished = false;
+    public AudioClip joinTitle;
+    bool loadtitle;
+    bool loadleaderboard;
     
     // Update is called once per frame
     void Update()
@@ -16,6 +19,7 @@ public class GameSelector : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
+                if ((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
                 if (index > 0)
                 {
                     index--;
@@ -32,6 +36,7 @@ public class GameSelector : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
+                if ((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
                 if (index < logos.Length - 1)
                 {
                     index++;
@@ -60,7 +65,9 @@ public class GameSelector : MonoBehaviour
                         GameData.game = "FG";
                         break;
                 }
-                SceneManager.LoadScene("NameInput");
+                GetComponent<AudioSource>().clip = joinTitle;
+                GetComponent<AudioSource>().Play();
+                if (!loadleaderboard) loadtitle = true;
             }
             if (Input.GetButtonDown("C"))
             {
@@ -76,8 +83,14 @@ public class GameSelector : MonoBehaviour
                         GameData.game = "FG";
                         break;
                 }
-                SceneManager.LoadScene("Leaderboard");
+                GetComponent<AudioSource>().clip = joinTitle;
+                GetComponent<AudioSource>().Play();
+                if (!loadtitle) loadleaderboard = true;
             }
         }
+
+        if (loadtitle && !GetComponent<AudioSource>().isPlaying) SceneManager.LoadScene("NameInput");
+        if (loadleaderboard && !GetComponent<AudioSource>().isPlaying) SceneManager.LoadScene("Leaderboard");
+
     }
 }
