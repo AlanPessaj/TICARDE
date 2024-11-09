@@ -587,7 +587,7 @@ public class PlayerController_FG : MonoBehaviour
         }
     }
 
-    IEnumerator Invulnerability(bool ability = false)
+    public IEnumerator Invulnerability(bool ability = false)
     {
         immortal = true;
         int index = 4;

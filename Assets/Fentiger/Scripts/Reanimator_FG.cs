@@ -22,6 +22,7 @@ public class Reanimator_FG : MonoBehaviour
                     {
                         if (ghost.playerGhost) Destroy(ghost.gameObject);
                     }
+                    StartCoroutine(GetComponent<Generator_FG>().players[0].GetComponent<PlayerController_FG>().Invulnerability());
                 }
             }
 
@@ -37,6 +38,7 @@ public class Reanimator_FG : MonoBehaviour
                     {
                         if (ghost.playerGhost) Destroy(ghost.gameObject);
                     }
+                    StartCoroutine(GetComponent<Generator_FG>().players[1].GetComponent<PlayerController_FG>().Invulnerability());
                 }
             }
         }
