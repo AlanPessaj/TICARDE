@@ -9,7 +9,6 @@ public class CameraController_FT : MonoBehaviour
     new public Camera camera;
     Vector3 initialPosition;
     public Transform ball;
-    public bool resetPos;
     Vector3 oldBall;
     public void Start()
     {
@@ -22,14 +21,14 @@ public class CameraController_FT : MonoBehaviour
         {
             if (Vector3.Distance(initialPosition, camera.transform.localPosition) > 20) camera.transform.localPosition = initialPosition;
             if (player1.GetComponent<PlayerController_FT>().gameManager.lastServePlayer1 == 1) camera.transform.localPosition += (ball.position - oldBall) / 10;
-            else camera.transform.localPosition += new Vector3((oldBall.x - ball.position.x) / 10, (oldBall.y - ball.position.y) / -10, (oldBall.z - ball.position.z) / 10);
-
+            else camera.transform.localPosition += new Vector3((ball.position.x - oldBall.x) / -10, (ball.position.y - oldBall.y) / 10, (ball.position.z - oldBall.z) / -10);
             oldBall = ball.position;
-            if (resetPos)
-            {
-                camera.transform.localPosition = initialPosition; 
-                resetPos = false;
-            }
         }
+    }
+
+    public void ResetPos()
+    {
+        oldBall = ball.position;
+        camera.transform.localPosition = new Vector3(100, 100, 100);
     }
 }

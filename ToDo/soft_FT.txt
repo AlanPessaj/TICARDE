@@ -4,3 +4,5 @@ sonidos
 interaccion con hardware
 TESTEAR
 bug: Cuando cambia de game le añade un punto a alguien
+
+BLOQUEAR INPUTS EN LA TRANSICION

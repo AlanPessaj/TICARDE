@@ -118,22 +118,22 @@ public class GameManager_FT : MonoBehaviour
     }
     public void StartServe(GameObject player)
     {
+        ballmover.transform.position = Vector3.zero;
         if(player == player1)
         {
-            if (lastServePlayer1 != 1) GetComponent<CameraController_FT>().resetPos = true;
-            lastServePlayer1 = 1;
             serve = 1;
             environment.eulerAngles = Vector3.zero;
             light.eulerAngles = new Vector3(50, -30, 0);
-
+            if (lastServePlayer1 != 1) GetComponent<CameraController_FT>().ResetPos();
+            lastServePlayer1 = 1;
         }
         else
         {
-            if (lastServePlayer1 == 1) GetComponent<CameraController_FT>().resetPos = true;
-            lastServePlayer1 = -1;
             serve = 2;
             environment.eulerAngles = Vector3.up * 180;
             light.eulerAngles = new Vector3(50, 150, 0);
+            if (lastServePlayer1 == 1) GetComponent<CameraController_FT>().ResetPos();
+            lastServePlayer1 = -1;
         }
         goingToServe = true;
         player1PreServePos = player1Transform.position;
