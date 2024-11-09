@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Level 3
   m_EditorClassIdentifier: 
   tiles:
-  - 15
-  - 44.5
-  - 40.5
+  - 10
+  - 47
+  - 43
   minSize:
   - 5
   - 4
