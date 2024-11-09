@@ -2,3 +2,11 @@ sonido
 interaccion con hardware
 animacion de ganar
 TESTEAR
+
+
+
+Cuando gastas la xp en el ff tambien te la saca en el score
+
+Hacer el puño normal mas rapido
+
+Hacer posible la deslizante sin estar quieto

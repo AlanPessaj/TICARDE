@@ -41,6 +41,7 @@ public class GameManager_FT : MonoBehaviour
     Vector3 player2PreSwitchPos;
     Transform player1Transform;
     Transform player2Transform;
+    public bool justServed = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -306,16 +307,24 @@ public class GameManager_FT : MonoBehaviour
                     StartCoroutine(NextScene());
                 }
             }
-            if ((games1 + games2) % 2 == 0)
-            {
-                StartServe(player1);
-            }
-            else
-            {
-                StartServe(player2);
-            }
+            HandleServe();
         }
     }
+
+
+    public void HandleServe()
+    {
+        if ((games1 + games2) % 2 == 0)
+        {
+            StartServe(player1);
+        }
+        else
+        {
+            StartServe(player2);
+        }
+    }
+
+
     void ResetPoints()
     {
         games1 = 0;

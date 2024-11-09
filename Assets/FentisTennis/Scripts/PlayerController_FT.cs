@@ -16,7 +16,7 @@ public class PlayerController_FT : MonoBehaviour
     public float timeSlow;
     public float minPower;
     public float maxPower;
-        int direction;
+    int direction;
     float driveRotation;
     float lobRotation;
     float smashRotation;
@@ -343,6 +343,7 @@ public class PlayerController_FT : MonoBehaviour
                     ResetRaquet();
                     racket.transform.Rotate(-90, 0, 0);
                     chargingDrive = true;
+                    if (gameManager.serve == 0) gameManager.justServed = false;
                     //empezar a moverse
                 }
                 if (chargingDrive)
@@ -369,6 +370,7 @@ public class PlayerController_FT : MonoBehaviour
                     racket.transform.Rotate(0, 0, 180);
                     racket.transform.localPosition = new Vector3(0, -0.25f, -3f);
                     chargingLob = true;
+                    if (gameManager.serve == 0) gameManager.justServed = false;
                     //empezar a moverse
                 }
                 if (chargingLob)
@@ -387,6 +389,7 @@ public class PlayerController_FT : MonoBehaviour
                 ResetRaquet();
                 racket.transform.localPosition = new Vector3(0, 1f, -3f);
                 chargingSmash = true;
+                if (gameManager.serve == 0) gameManager.justServed = false;
                 //empezar a moverse
             }
             if (chargingSmash)

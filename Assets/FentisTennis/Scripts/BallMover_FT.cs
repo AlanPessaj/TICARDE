@@ -20,13 +20,9 @@ public class BallMover_FT : MonoBehaviour
     public bool wasPlayer1 = true;
     public bool bounced = false;
     public GameManager_FT gameManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     float a;
     float r1;
+    public bool secondServe;
     // Update is called once per frame
     public void Update()
     {
@@ -144,10 +140,7 @@ public class BallMover_FT : MonoBehaviour
                     gameManager.AddPoint(gameManager.player2);
                     bounced = false;
                 }
-                else
-                {
-                    bounced = true;
-                }
+                else bounced = true;
             }
             height *= vCOR;
             float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR * (1 + vCOR) * height, 0f, Mathf.Infinity);
@@ -166,11 +159,21 @@ public class BallMover_FT : MonoBehaviour
                 {
                     //Punto para p1
                     gameManager.AddPoint(gameManager.player1);
+                    secondServe = false;
                 }
                 else
                 {
                     //Punto para p2
-                    gameManager.AddPoint(gameManager.player2);
+                    if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed)
+                    {
+                        secondServe = true;
+                        gameManager.HandleServe();
+                    }
+                    else if (gameManager.lastServePlayer1 == 1 && gameManager.justServed)
+                    {
+                        gameManager.AddPoint(gameManager.player2);
+                        secondServe = false;
+                    }
                 }
             }
             else
@@ -179,11 +182,21 @@ public class BallMover_FT : MonoBehaviour
                 {
                     //Punto para p2
                     gameManager.AddPoint(gameManager.player2);
+                    secondServe = false;
                 }
                 else
                 {
                     //Punto para p1
-                    gameManager.AddPoint(gameManager.player1);
+                    if (gameManager.lastServePlayer1 == -1 && !secondServe && gameManager.justServed)
+                    {
+                        secondServe = true;
+                        gameManager.HandleServe();
+                    }
+                    else if (gameManager.lastServePlayer1 == -1 && gameManager.justServed)
+                    {
+                        gameManager.AddPoint(gameManager.player1);
+                        secondServe = false;
+                    }
                 }
             }
             bounced = false;

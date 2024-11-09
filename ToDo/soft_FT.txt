@@ -7,3 +7,5 @@ TESTEAR
 
 camara sigue gameobject centrado en x 0
 revisar cambio de lado luz
+
+bug: Cuando cambia de game le añade un punto a alguien
