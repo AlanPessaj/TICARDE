@@ -31,6 +31,7 @@ public class PlayerController_FT : MonoBehaviour
     bool didSmash;
     float speedConst;
     bool canHit = true;
+    public static List<Frame> replay;
     // Start is called before the first frame update
     void Start()
     {
@@ -436,9 +437,7 @@ public class PlayerController_FT : MonoBehaviour
             if (hitManager.hColliders[1] != null && !didDrive)
             {
                 //acerto drive
-                GetComponent<AudioSource>().Play();
-                shot.ball.bounced = false;
-                shot.ball.wasPlayer1 = isPlayer1;
+                HitBall();
                 shot.FindShot(direction, ShotType.drive, isPlayer1);
                 didDrive = true;
                 if (isPlayer1)
@@ -467,10 +466,8 @@ public class PlayerController_FT : MonoBehaviour
             if (hitManager.hColliders[2] != null && !didLob)
             {
                 //acerto lob
-                GetComponent<AudioSource>().Play();
-                shot.ball.bounced = false;
-                shot.ball.wasPlayer1 = isPlayer1;
                 shot.FindShot(direction, ShotType.lob, isPlayer1);
+                HitBall();
                 didLob = true;
                 if (isPlayer1)
                 {
@@ -499,7 +496,6 @@ public class PlayerController_FT : MonoBehaviour
             if (hitManager.hColliders[0] != null && !didSmash)
             {
                 //acerto smash
-                GetComponent<AudioSource>().Play();
                 if (serve)
                 {
                     if (!gameManager.throwingBall)
@@ -512,8 +508,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     shot.FindShot(direction, ShotType.smash, isPlayer1);
                 }
-                shot.ball.bounced = false;
-                shot.ball.wasPlayer1 = isPlayer1;
+                HitBall();
                 didSmash = true;
                 if (isPlayer1)
                 {
@@ -537,6 +532,14 @@ public class PlayerController_FT : MonoBehaviour
                 }
             }
         }
+    }
+
+    void HitBall()
+    {
+        GetComponent<AudioSource>().Play();
+        shot.ball.bounced = false;
+        shot.ball.wasPlayer1 = isPlayer1;
+        PointReplay.instance.replay = new List<Frame>();
     }
 
     public void ResetRaquet()
