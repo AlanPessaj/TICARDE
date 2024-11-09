@@ -489,7 +489,7 @@ public class PlayerController_FG : MonoBehaviour
                         hippo = hit.collider.gameObject;
                     }
                 }
-                else if(!onHippo)
+                else if(hit.collider.gameObject.name.Contains("Log(Clone)") && !onHippo)
                 {
                     transform.parent = hit.transform;
                     onLog = true;
@@ -524,17 +524,18 @@ public class PlayerController_FG : MonoBehaviour
             {
                 //perder vida
                 Die();
-                if (hit.transform.parent.name.Contains("Logs") || hit.transform.parent.name == "LilyPads(Clone)")
-                {
-                    generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
-                }
-                else if (hit.collider.gameObject.name == "Car(Clone)")
+
+                if (hit.collider.gameObject.name == "Car(Clone)")
                 {
                     generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
                 }
                 else if (hit.collider.gameObject.name == "Out")
                 {
                     hit.collider.GetComponent<AudioSource>().Play();
+                }
+                else if (hit.transform.parent.name.Contains("Logs") || hit.transform.parent.name == "LilyPads(Clone)")
+                {
+                    generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
                 }
                 return;
             }
