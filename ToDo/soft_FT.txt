@@ -2,10 +2,7 @@ cambio de lado
 animacion de ganador
 sonidos
 interaccion con hardware
-hacer menos probable darle a la red en el saque
 TESTEAR
-
-camara sigue gameobject centrado en x 0
 revisar cambio de lado luz
 
 bug: Cuando cambia de game le añade un punto a alguien

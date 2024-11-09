@@ -3728,7 +3728,6 @@ MonoBehaviour:
   racketPivot: {fileID: 886490317}
   gameManager: {fileID: 645166231}
   shot: {fileID: 645166232}
-  ballMover: {fileID: 1639290137}
   hitManager: {fileID: 3162515174754375576}
   simShot: {fileID: 0}
   timeSlow: 0
@@ -4138,7 +4137,6 @@ MonoBehaviour:
   racketPivot: {fileID: 2092556755}
   gameManager: {fileID: 645166231}
   shot: {fileID: 645166232}
-  ballMover: {fileID: 1639290137}
   hitManager: {fileID: 6067811059419904809}
   simShot: {fileID: 0}
   timeSlow: 7
