@@ -36,14 +36,7 @@ public class GameManager_FT : MonoBehaviour
     float servingProgress;
     Vector3 player1PreServePos;
     Vector3 player2PreServePos;
-    bool switchingSides;
-    bool goingToMiddle = true;
-    float switchProgress;
     float ballHeight;
-    Vector3 player1PreSwitchPos;
-    Vector3 player2PreSwitchPos;
-    Transform player1Transform;
-    Transform player2Transform;
     public bool justServed = true;
 
 
@@ -51,8 +44,6 @@ public class GameManager_FT : MonoBehaviour
 
     void Start()
     {
-        player1Transform = player1.transform;
-        player2Transform = player2.transform;
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;//Name
         player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name2;//Name
         switch (startServing)
@@ -101,13 +92,13 @@ public class GameManager_FT : MonoBehaviour
         }
         if (goingToServe)
         {
-            if (Mathf.Approximately(player1Transform.position.x, -50) && Mathf.Approximately(player1Transform.position.z, -30) && Mathf.Approximately(player2Transform.position.x, 50) && Mathf.Approximately(player2Transform.position.z, 30))
+            if (Mathf.Approximately(player1.transform.position.x, -50) && Mathf.Approximately(player1.transform.position.z, -30) && Mathf.Approximately(player2.transform.position.x, 50) && Mathf.Approximately(player2.transform.position.z, 30))
             {
                 servingProgress = 1;
             }
             servingProgress += Time.deltaTime;
-            player1Transform.position = Vector3.Lerp(player1PreServePos, new Vector3(-50, 6, -30), servingProgress);
-            player2Transform.position = Vector3.Lerp(player2PreServePos, new Vector3(50, 6, 30), servingProgress);
+            player1.transform.position = Vector3.Lerp(player1PreServePos, new Vector3(-50, 6, -30), servingProgress);
+            player2.transform.position = Vector3.Lerp(player2PreServePos, new Vector3(50, 6, 30), servingProgress);
             if (servingProgress >= 1)
             {
                 servingProgress = 0;
@@ -136,8 +127,8 @@ public class GameManager_FT : MonoBehaviour
             lastServePlayer1 = -1;
         }
         goingToServe = true;
-        player1PreServePos = player1Transform.position;
-        player2PreServePos = player2Transform.position;
+        player1PreServePos = player1.transform.position;
+        player2PreServePos = player2.transform.position;
         player1.GetComponent<PlayerController_FT>().ResetRaquet();
         player2.GetComponent<PlayerController_FT>().ResetRaquet();
         ballmover.active = false;
