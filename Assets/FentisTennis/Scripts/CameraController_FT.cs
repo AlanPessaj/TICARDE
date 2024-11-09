@@ -20,11 +20,10 @@ public class CameraController_FT : MonoBehaviour
     {
         if (ball.position.y > -2)
         {
-            if (Vector3.Distance(initialPosition, camera.transform.localPosition) > 20)
-            {
-                camera.transform.localPosition = initialPosition;
-            }
-            camera.transform.localPosition += (ball.position - oldBall) / 10;
+            if (Vector3.Distance(initialPosition, camera.transform.localPosition) > 20) camera.transform.localPosition = initialPosition;
+            if (player1.GetComponent<PlayerController_FT>().gameManager.lastServePlayer1 == 1) camera.transform.localPosition += (ball.position - oldBall) / 10;
+            else camera.transform.localPosition += new Vector3((oldBall.x - ball.position.x) / 10, (oldBall.y - ball.position.y) / -10, (oldBall.z - ball.position.z) / 10);
+
             oldBall = ball.position;
             if (resetPos)
             {

@@ -314,14 +314,8 @@ public class GameManager_FT : MonoBehaviour
 
     public void HandleServe()
     {
-        if ((games1 + games2) % 2 == 0)
-        {
-            StartServe(player1);
-        }
-        else
-        {
-            StartServe(player2);
-        }
+        if ((games1 + games2) % 2 == 0) StartServe(player1);
+        else StartServe(player2);
     }
 
 
