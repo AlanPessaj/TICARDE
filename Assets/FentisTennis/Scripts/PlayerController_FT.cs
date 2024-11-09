@@ -32,6 +32,8 @@ public class PlayerController_FT : MonoBehaviour
     float speedConst;
     bool canHit = true;
     public static List<Frame> replay;
+    bool inReplay;
+    int frameIndex;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,9 @@ public class PlayerController_FT : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        Frame currentFrame = replay[frameIndex];
+        inReplay = replay != null;
+        if (inReplay) frameIndex++; else frameIndex = 0;
         Vector3 movement = new Vector3();
         if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0 || doingDrive || doingLob || doingSmash || (gameManager.serving && gameManager.serve == int.Parse(gameObject.name.Substring(gameObject.name.Length - 1))))
         {
@@ -57,7 +62,7 @@ public class PlayerController_FT : MonoBehaviour
         {
             if(gameManager.serve == 2)
             {
-                if (Input.GetKey(KeyCode.W) && ((transform.position.x < -30 && gameManager.lastServePlayer1 == 1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == -1)))
+                if ((Input.GetKey(KeyCode.W) || (inReplay && currentFrame.keys.Contains(KeyCode.W)))&& ((transform.position.x < -30 && gameManager.lastServePlayer1 == 1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
