@@ -38,15 +38,18 @@ public class GameManager_FT : MonoBehaviour
     bool switchingSides;
     bool goingToMiddle = true;
     float switchProgress;
+    float ballHeight;
     Vector3 player1PreSwitchPos;
     Vector3 player2PreSwitchPos;
     Transform player1Transform;
     Transform player2Transform;
     public bool justServed = true;
-    // Start is called before the first frame update
+
+
+
+
     void Start()
     {
-        //previousPlayer = player1;
         player1Transform = player1.transform;
         player2Transform = player2.transform;
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;//Name
@@ -62,8 +65,6 @@ public class GameManager_FT : MonoBehaviour
         }
         stepSize = initialStepSize;
     }
-    float ballHeight;
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

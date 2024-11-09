@@ -26,6 +26,7 @@ public class BallMover_FT : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        GetComponent<TrailRenderer>().enabled = active || gameManager.serving;
         if (active)
         {
             if (height < minheight && !rolling)
