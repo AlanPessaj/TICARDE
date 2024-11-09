@@ -12,7 +12,7 @@ public class GameManager_FT : MonoBehaviour
     public ShotManager_FT shotmanager;
     public BallMover_FT ballmover;
     public Transform environment;
-    public Transform light;
+    public new Transform light;
     public int serve = 0;
     public bool throwingBall = false;
     public bool serving;
