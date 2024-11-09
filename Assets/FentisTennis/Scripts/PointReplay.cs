@@ -18,12 +18,12 @@ public class PointReplay : MonoBehaviour
     void Update()
     {
         Frame currentFrame = new Frame();
-        foreach (KeyCode item in codes) if (Input.GetKey(item)) currentFrame.keys.Add(item);
+        foreach (KeyCode item in codes) if (Input.GetKey(item)) currentFrame.keys.Add(item.ToString());
         replay.Add(currentFrame);
     }
 }
 
 public class Frame
 {
-    public List<KeyCode> keys;
+    public List<string> keys;
 }
