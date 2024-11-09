@@ -49,24 +49,25 @@ public class conexion : MonoBehaviour
 
     }
 
-    public void SendMessagestoArduino(string identifier, string[] messages){
-    if (arduinoPort.IsOpen)
+    public void SendMessagestoArduino(string identifier, string[] messages)
     {
-        try
+        if (arduinoPort.IsOpen)
         {
-                string msg2send = identifier + "," + string.Join(",", messages);
-                arduinoPort.WriteLine(msg2send);
-                Debug.Log(msg2send);
+            try
+            {
+                    string msg2send = identifier + "," + string.Join(",", messages);
+                    arduinoPort.WriteLine(msg2send);
+                    Debug.Log(msg2send);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Failed to send message to Arduino: " + e.Message);
+            }
         }
-        catch (System.Exception e)
+        else
         {
-            Debug.LogError("Failed to send message to Arduino: " + e.Message);
+            Debug.LogWarning("Serial port is not open.");
         }
-    }
-    else
-    {
-        Debug.LogWarning("Serial port is not open.");
-    }
     }
 
 
