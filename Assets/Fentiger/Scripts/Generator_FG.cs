@@ -5,19 +5,21 @@ using UnityEngine.UI;
 
 public class Generator_FG : MonoBehaviour
 {
-   /*
-    * Characters:
-    * [0] = Rabino
-    * [1] = Martin Fierro
-    * [2] = Messi
-    * [3] = Peron
-    */
+    /*
+     * Characters:
+     * [0] = Rabino
+     * [1] = Martin Fierro
+     * [2] = Messi
+     * [3] = Peron
+     */
+    public conexion conexion;
     public Material[] characters;
     public bool multiplayer;
     public bool initialMultiplayer = false;
     public GameObject[] sections;
     public GameObject grass;
     bool? lastSection;
+    float arduinoTimer = 0f;
     public bool side = false;
     public int distance = 0;
     public int difficulty = 1;
@@ -43,6 +45,8 @@ public class Generator_FG : MonoBehaviour
     public float player2Score;
     public string player1Name = "Player1";
     public string player2Name = "Player2";
+
+
 
     void Start()
     {
@@ -98,10 +102,10 @@ public class Generator_FG : MonoBehaviour
 
             
             // Ovni
-            if (camara.GetChild(0).childCount < 1)
+            /*if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }
+            }*/
 
 
             //Gaviota
@@ -143,7 +147,20 @@ public class Generator_FG : MonoBehaviour
             }
         }
         difficulty = (int)Mathf.Clamp(Mathf.Floor(difficultyPosition / difficultyScalar), 1f, Mathf.Infinity);
+        arduinoTimer -= Time.deltaTime;
+        if (arduinoTimer <= 0)
+        {
+            if (!initialMultiplayer) conexion.SendMessagestoArduino("4", new string[] { players[0].transform.position.x.ToString() });
+            else
+            {
+                if (multiplayer) conexion.SendMessagestoArduino("5", new string[] { players[0].transform.position.x.ToString(), players[1].transform.position.x.ToString() });
+                else if(isTherePlayer1) conexion.SendMessagestoArduino("5", new string[] { players[0].transform.position.x.ToString(), "DEAD" });
+                else conexion.SendMessagestoArduino("5", new string[] { "DEAD", players[1].transform.position.x.ToString() });
+            }
+            arduinoTimer = 5f;
+        }
     }
+
     public void GenerateZones()
     {
         NextZone();
@@ -319,6 +336,7 @@ public class Generator_FG : MonoBehaviour
     }
     private void Awake()
     {
+        conexion = GameObject.Find("TICARDEMANAGER").GetComponent<conexion>();
         players[0] = GameObject.Find("Player1");
         players[1] = GameObject.Find("Player2");
     }

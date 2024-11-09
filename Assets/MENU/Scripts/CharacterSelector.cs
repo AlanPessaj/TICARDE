@@ -14,6 +14,7 @@ public class CharacterSelector : MonoBehaviour
     * [2] = Messi
     * [3] = Peron
     */
+    public conexion conexion;
     public AudioClip[] selectionSFX;
     public AudioClip moveSound;
     public GameObject[] pSquares;
@@ -38,6 +39,12 @@ public class CharacterSelector : MonoBehaviour
     public string game;
     bool loadingScene;
     bool loadnextscene;
+
+
+    private void Awake()
+    {
+        conexion = GameObject.Find("TICARDEMANAGER").GetComponent<conexion>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -118,6 +125,7 @@ public class CharacterSelector : MonoBehaviour
                     if (hIndex > 0)
                     {
                         hIndex--;
+                        SendArduino();
                         if (((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying))
                         {
                             GetComponent<AudioSource>().clip = moveSound;
@@ -169,6 +177,7 @@ public class CharacterSelector : MonoBehaviour
                     if (hIndex < (pSquares.Length / 2) - 1)
                     {
                         hIndex++;
+                        SendArduino();
                         if (((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying))
                         {
                             GetComponent<AudioSource>().clip = moveSound;
@@ -220,6 +229,7 @@ public class CharacterSelector : MonoBehaviour
                     if (vIndex > 0)
                     {
                         vIndex--;
+                        SendArduino();
                         if (((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying))
                         {
                             GetComponent<AudioSource>().clip = moveSound;
@@ -271,6 +281,7 @@ public class CharacterSelector : MonoBehaviour
                     if (vIndex < (pSquares.Length / 2) - 1)
                     {
                         vIndex++;
+                        SendArduino();
                         if (((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying))
                         {
                             GetComponent<AudioSource>().clip = moveSound;
@@ -361,6 +372,7 @@ public class CharacterSelector : MonoBehaviour
                         if (hIndex2 > 0)
                         {
                             hIndex2--;
+                            SendArduino();
                             if ((GetComponents<AudioSource>()[1].time > 0.15f && GetComponents<AudioSource>()[1].isPlaying) || !GetComponents<AudioSource>()[1].isPlaying)
                             {
                                 GetComponents<AudioSource>()[1].clip = moveSound;
@@ -412,6 +424,7 @@ public class CharacterSelector : MonoBehaviour
                         if (hIndex2 < (pSquares.Length / 2) - 1)
                         {
                             hIndex2++;
+                            SendArduino();
                             if ((GetComponents<AudioSource>()[1].time > 0.15f && GetComponents<AudioSource>()[1].isPlaying) || !GetComponents<AudioSource>()[1].isPlaying)
                             {
                                 GetComponents<AudioSource>()[1].clip = moveSound;
@@ -463,6 +476,7 @@ public class CharacterSelector : MonoBehaviour
                         if (vIndex2 > 0)
                         {
                             vIndex2--;
+                            SendArduino();
                             if ((GetComponents<AudioSource>()[1].time > 0.15f && GetComponents<AudioSource>()[1].isPlaying) || !GetComponents<AudioSource>()[1].isPlaying)
                             {
                                 GetComponents<AudioSource>()[1].clip = moveSound;
@@ -514,6 +528,7 @@ public class CharacterSelector : MonoBehaviour
                         if (vIndex2 < (pSquares.Length / 2) - 1)
                         {
                             vIndex2++;
+                            SendArduino();
                             if ((GetComponents<AudioSource>()[1].time > 0.15f && GetComponents<AudioSource>()[1].isPlaying) || !GetComponents<AudioSource>()[1].isPlaying)
                             {
                                 GetComponents<AudioSource>()[1].clip = moveSound;
@@ -719,5 +734,53 @@ public class CharacterSelector : MonoBehaviour
         GameData.char1 = translate[hIndex, vIndex];
         GameData.char2 = translate[hIndex2, vIndex2];
         SceneManager.LoadScene($"Game({game})");
+    }
+
+    string Translator(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                return "RABINO";
+            case 1:
+                return "FIERRO";
+            case 2:
+                return "MESSI";
+            case 3:
+                return "PERON";
+            default:
+                return null;
+        }
+    }
+
+    void SendArduino()
+    {
+        int[,] translate = new int[pMPSquares1.Length / 2, pMPSquares1.Length / 2];
+        int p = 0;
+        for (int i = 0; i < pMPSquares1.Length / 2; i++)
+        {
+            for (int o = 0; o < pMPSquares1.Length / 2; o++)
+            {
+                translate[i, o] = p;
+                p++;
+            }
+        }
+
+
+        if (!multiplayer) conexion.SendMessagestoArduino("1", new string[] { Translator(translate[hIndex, vIndex]) });
+        else
+        {
+            int[,] translate2 = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
+            int p2 = 0;
+            for (int i = 0; i < pMPSquares2.Length / 2; i++)
+            {
+                for (int o = 0; o < pMPSquares2.Length / 2; o++)
+                {
+                    translate2[i, o] = p2;
+                    p2++;
+                }
+            }
+            conexion.SendMessagestoArduino("2", new string[] { Translator(translate[hIndex, vIndex]), Translator(translate2[hIndex2, vIndex2]) });
+        }
     }
 }
