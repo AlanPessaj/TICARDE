@@ -431,6 +431,8 @@ public class PlayerController_FT : MonoBehaviour
         }
         if (doingDrive && simShot == null)
         {
+            //acerto drive
+            GetComponent<AudioSource>().Play();
             driveRotation += Time.deltaTime * racketSpeed;
             racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, driveRotation), 0);
             if (hitManager.hColliders[1] != null && !didDrive)
@@ -460,6 +462,8 @@ public class PlayerController_FT : MonoBehaviour
         }
         if (doingLob && simShot == null)
         {
+            //acerto lob
+            GetComponent<AudioSource>().Play();
             lobRotation += Time.deltaTime * racketSpeed;
             racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, lobRotation));
             if (hitManager.hColliders[2] != null && !didLob)
@@ -490,10 +494,12 @@ public class PlayerController_FT : MonoBehaviour
         }
         if (doingSmash && simShot == null)
         {
+            //acerto smash
             smashRotation += Time.deltaTime * racketSpeed;
             racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, smashRotation));
             if (hitManager.hColliders[0] != null && !didSmash)
             {
+                GetComponent<AudioSource>().Play();
                 if (serve)
                 {
                     if (!gameManager.throwingBall)
