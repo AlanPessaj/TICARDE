@@ -133,11 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3e0e505e1c2734f4bb8ca4b51da42f71, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3e0e505e1c2734f4bb8ca4b51da42f71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3e0e505e1c2734f4bb8ca4b51da42f71, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1697,7 +1697,6 @@ MonoBehaviour:
   player2: {fileID: 1884093392}
   camera: {fileID: 61145148}
   ball: {fileID: 1639290142}
-  resetPos: 0
 --- !u!4 &645166230
 Transform:
   m_ObjectHideFlags: 0
