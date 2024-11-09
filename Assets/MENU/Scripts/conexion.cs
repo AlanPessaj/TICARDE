@@ -96,11 +96,11 @@ Funcion SendMessageToArduino tiene 2 parametros: el primero es un identificador 
 (que tiene que ser un string) y un array de strings en el que este eñ mensaje a mostrar o
 el patron de iluminacion de los leds.
 
-Si el id es 1=
+Si el id es 1= DONE
 Se muestra el selector de personaje para 1 jugador
 Posicion 0 del array: nombre del personaje seleccionado
 
-Si el id es 2=
+Si el id es 2= DONE
 Se muestra el selector de personaje para 2 jugadores
 Posicion 0 del array: nombre del personaje seleccionado por jugador 1
 Posicion 1 del array: nombre del personaje seleccionado por jugador 2
@@ -112,11 +112,11 @@ Posicion 1 del array: puntos de jugador 1
 Posicion 2 del array: games de jugador 2
 Posicion 3 del array: puntos de jugador 2
 
-Si el id es 4=
+Si el id es 4= DONE
 El score del frogger (tiles avanzadas) de un solo player
 Posicion 0 del array: Score de player
 
-Si el id es 5=
+Si el id es 5= DONE
 El score del frogger (tiles avanzadas) de 2 players
 Posicion 0 del array: Score de player 1
 Posicion 1 del array: Score de player 2
