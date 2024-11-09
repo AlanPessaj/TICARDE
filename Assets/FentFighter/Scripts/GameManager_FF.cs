@@ -11,9 +11,15 @@ public class GameManager_FF : MonoBehaviour
     public GameObject[] players;
     public GameObject[] UI;
     public CameraController_FF cameraController;
+    public conexion conexion;
     public int char1;
     public int char2;
 
+
+    private void Awake()
+    {
+        conexion = GameObject.Find("TICARDEMANAGER").GetComponent<conexion>();
+    }
     private void Start()
     {
         if (GameData.name1 == "" || GameData.name2 == null)
