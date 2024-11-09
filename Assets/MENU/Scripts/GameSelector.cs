@@ -11,6 +11,7 @@ public class GameSelector : MonoBehaviour
     public AudioClip joinTitle;
     bool loadtitle;
     bool loadleaderboard;
+    bool firstTime = true;
     
     // Update is called once per frame
     void Update()
@@ -51,7 +52,7 @@ public class GameSelector : MonoBehaviour
                 }
                 logos[index].SetActive(true);
             }
-            if (Input.GetButtonDown("A"))
+            if (Input.GetButtonDown("A") && firstTime)
             {
                 switch (index)
                 {
@@ -67,9 +68,10 @@ public class GameSelector : MonoBehaviour
                 }
                 GetComponent<AudioSource>().clip = joinTitle;
                 GetComponent<AudioSource>().Play();
+                firstTime = false;
                 if (!loadleaderboard) loadtitle = true;
             }
-            if (Input.GetButtonDown("C"))
+            if (Input.GetButtonDown("C") && firstTime)
             {
                 switch (index)
                 {
@@ -85,6 +87,7 @@ public class GameSelector : MonoBehaviour
                 }
                 GetComponent<AudioSource>().clip = joinTitle;
                 GetComponent<AudioSource>().Play();
+                firstTime = false;
                 if (!loadtitle) loadleaderboard = true;
             }
         }
