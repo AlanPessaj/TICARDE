@@ -64,7 +64,7 @@ public class UIManager_FF : MonoBehaviour
     public void AddXP(float value)
     {
         XP = Mathf.Clamp(XP + value, 0, maxXP);
-        score += (int)value;
+        if (value > 0) score += (int)value;
         UI.transform.GetChild(1).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxXP, XP)), -38.4f, 0);
     }
     public bool RemoveXP(float value)
