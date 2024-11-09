@@ -4,5 +4,5 @@ sonidos
 interaccion con hardware
 TESTEAR
 revisar cambio de lado luz
-
+revisar trail en todo momento (en especial tras punto)
 bug: Cuando cambia de game le añade un punto a alguien

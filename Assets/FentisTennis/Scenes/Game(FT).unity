@@ -1655,6 +1655,7 @@ MonoBehaviour:
   shotmanager: {fileID: 645166232}
   ballmover: {fileID: 1639290137}
   environment: {fileID: 462449695}
+  light: {fileID: 170076735}
   serve: 0
   throwingBall: 0
   serving: 0
