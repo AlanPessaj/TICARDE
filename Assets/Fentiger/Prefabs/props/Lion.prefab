@@ -89,7 +89,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   leftSpawn: 0
   generator: {fileID: 0}
-  speed: 3
+  speed: 2
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
 --- !u!95 &1969219585938556922
 Animator:

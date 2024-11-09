@@ -38,6 +38,7 @@ public class FollowPlayer_FG : MonoBehaviour
     void Update()
     {
         patrolTimer -= Time.deltaTime;
+        timer -= Time.deltaTime;
         if (patrolTimer <= 0)
         {
             changePatrol = !changePatrol;
@@ -53,14 +54,13 @@ public class FollowPlayer_FG : MonoBehaviour
                 else agent.destination = transform.parent.position - new Vector3(0, 0, -11);
             }
         }
-        timer = Mathf.Max(0, timer - Time.deltaTime);
         if (generator.multiplayer)
         {
             if ((players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5 && !players[0].GetComponent<PlayerController_FG>().notField) || (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5 && !players[1].GetComponent<PlayerController_FG>().notField))
             {
-                if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position) && players[0].transform.parent == null)
+                if (Vector3.Distance(players[0].transform.position, transform.position) < Vector3.Distance(players[1].transform.position, transform.position) && players[0].transform.parent == null && !players[0].GetComponent<PlayerController_FG>().notField)
                 {
-                    if (!soundPlayed && timer == 0)
+                    if (!soundPlayed && timer <= 0)
                     {
                         GetComponent<AudioSource>().Play();
                         timer = 2;
@@ -71,9 +71,9 @@ public class FollowPlayer_FG : MonoBehaviour
                     GetComponent<Animator>().SetBool("running", true);
                     GetComponent<Animator>().SetBool("walking", false);
                 }
-                else if(players[1].transform.parent == null)
+                else if(players[1].transform.parent == null && !players[1].GetComponent<PlayerController_FG>().notField)
                 {
-                    if (!soundPlayed && timer == 0)
+                    if (!soundPlayed && timer <= 0)
                     {
                         GetComponent<AudioSource>().Play();
                         timer = 2;
@@ -107,6 +107,10 @@ public class FollowPlayer_FG : MonoBehaviour
             {
                 GetComponent<Animator>().SetBool("running", false);
                 GetComponent<Animator>().SetBool("walking", agent.velocity.magnitude > 0.1f);
+                GetComponent<NavMeshAgent>().speed = speed / 2;
+                if (changePatrol) agent.destination = transform.parent.position - new Vector3(0, 0, 11);
+                else agent.destination = transform.parent.position - new Vector3(0, 0, -11);
+                soundPlayed = false;
             }
         }
 
@@ -114,7 +118,7 @@ public class FollowPlayer_FG : MonoBehaviour
         {
             if (players[0].transform.position.x >= transform.position.x - 5 && players[0].transform.position.x <= transform.position.x + 5 && players[0].transform.parent == null && !players[0].GetComponent<PlayerController_FG>().notField)
             {
-                if (!soundPlayed && timer == 0)
+                if (!soundPlayed && timer <= 0)
                 {
                     GetComponent<AudioSource>().Play();
                     timer = 2;
@@ -148,7 +152,7 @@ public class FollowPlayer_FG : MonoBehaviour
         {
             if (players[1].transform.position.x >= transform.position.x - 5 && players[1].transform.position.x <= transform.position.x + 5 && players[1].transform.parent == null && !players[1].GetComponent<PlayerController_FG>().notField)
             {
-                if (!soundPlayed && timer == 0)
+                if (!soundPlayed && timer <= 0)
                 {
                     GetComponent<AudioSource>().Play();
                     timer = 2;
