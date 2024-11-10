@@ -120,6 +120,7 @@ public class BallMover_FT : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
+            GetComponent<AudioSource>().Play();
             if (wasPlayer1)
             {
                 if (bounced)
@@ -128,10 +129,7 @@ public class BallMover_FT : MonoBehaviour
                     PointReplay.instance.ShowReplay(gameManager.player1);
                     bounced = false;
                 }
-                else
-                {
-                    bounced = true;
-                }
+                else bounced = true;
             }
             else
             {
@@ -154,6 +152,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
+            if (other.gameObject.name == "cancha") GetComponent<AudioSource>().Play();
             if (wasPlayer1)
             {
                 if (bounced)
