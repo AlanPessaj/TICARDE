@@ -10,6 +10,7 @@ public class PlayerController_FT : MonoBehaviour
     public GameObject racketPivot;
     public GameManager_FT gameManager;
     public ShotManager_FT shot;
+    GameObject transition;
     bool isPlayer1;
     public HitManager_FT hitManager;
     public ShotManager_FT simShot;
@@ -43,6 +44,7 @@ public class PlayerController_FT : MonoBehaviour
         isPlayer1 = gameObject.name == "Player1";
         shot = gameManager.gameObject.GetComponent<ShotManager_FT>();
         speedConst = movementSpeed;
+        transition = gameManager.transition;
     }
 
     // Update is called once per frame
@@ -57,7 +59,7 @@ public class PlayerController_FT : MonoBehaviour
         {
             movementSpeed = speedConst;
         }
-        if (isPlayer1)
+        if (isPlayer1 && !transition.activeSelf)
         {
             if(gameManager.serve == 2)
             {
@@ -130,7 +132,7 @@ public class PlayerController_FT : MonoBehaviour
                 transform.Translate(movement.normalized * Time.deltaTime * movementSpeed * gameManager.lastServePlayer1);
             }
         }
-        else
+        else if (!transition.activeSelf)
         {
             if (gameManager.serve == 1)
             {
