@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PointReplay : MonoBehaviour
 {
@@ -29,8 +30,9 @@ public class PointReplay : MonoBehaviour
     void Awake()
     {
         instance = this;
-        //System.Array.Copy(cameras, 1, ogCameras, 0, cameras.Length - 1);
-        //RandomizeCameras();
+        ogCameras = new Camera[cameras.Length - 1];
+        System.Array.Copy(cameras, 1, ogCameras, 0, ogCameras.Length);
+        RandomizeCameras();
     }
 
     // Update is called once per frame
@@ -65,7 +67,7 @@ public class PointReplay : MonoBehaviour
                 cameras[0].gameObject.SetActive(true);
                 cameras[cameraIndex].gameObject.SetActive(false);
                 exitingReplay = true;
-                //RandomizeCameras();
+                RandomizeCameras();
                 return;
             }
             if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
@@ -96,15 +98,24 @@ public class PointReplay : MonoBehaviour
         replay.Add(currentFrame);
     }
 
+    bool emergency;
+
     void RandomizeCameras()
     {
         Camera[] temp = new Camera[cameras.Length];
         temp[0] = cameras[0];
-        int[] takenInts = new int[ogCameras.Length];
         for (int i = 0; i < ogCameras.Length; i++)
         {
-
+            Camera camera = ogCameras[i];
+            retry:
+            int index = Random.Range(1, temp.Length);
+            if (emergency) break;
+            if (temp[index] != null) goto retry;
+            if (temp[index - 1] != null && temp[index - 1].name.Contains(camera.name.Split(' ')[0])) goto retry;
+            if (index < temp.Length - 1 && temp[index + 1] != null && temp[index + 1].name.Contains(camera.name.Split(' ')[0])) goto retry;
+            temp[index] = camera;
         }
+        cameras = temp;
     }
 
     public void ShowReplay(GameObject scorer)
