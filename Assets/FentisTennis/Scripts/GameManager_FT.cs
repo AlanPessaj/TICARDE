@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager_FT : MonoBehaviour
 {
+    public static GameManager_FT instance;
     public GameObject player1;
     public GameObject player2;
     public ShotManager_FT shotmanager;
@@ -40,7 +41,10 @@ public class GameManager_FT : MonoBehaviour
     public bool justServed = true;
 
 
-
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {

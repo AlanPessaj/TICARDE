@@ -125,7 +125,7 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p1
-                    gameManager.AddPoint(gameManager.player1);
+                    PointReplay.instance.ShowReplay(gameManager.player1);
                     bounced = false;
                 }
                 else
@@ -138,7 +138,7 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p2
-                    gameManager.AddPoint(gameManager.player2);
+                    PointReplay.instance.ShowReplay(gameManager.player2);
                     bounced = false;
                 }
                 else bounced = true;
@@ -159,20 +159,20 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p1
-                    gameManager.AddPoint(gameManager.player1);
+                    PointReplay.instance.ShowReplay(gameManager.player1);
                     secondServe = false;
                 }
                 else
                 {
                     //Punto para p2
-                    if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed)
+                    if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
                     {
                         secondServe = true;
                         gameManager.HandleServe();
                     }
                     else if (gameManager.lastServePlayer1 == 1 && gameManager.justServed)
                     {
-                        gameManager.AddPoint(gameManager.player2);
+                        PointReplay.instance.ShowReplay(gameManager.player2);
                         secondServe = false;
                     }
                 }
@@ -182,7 +182,7 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p2
-                    gameManager.AddPoint(gameManager.player2);
+                    PointReplay.instance.ShowReplay(gameManager.player2);
                     secondServe = false;
                 }
                 else
@@ -195,7 +195,7 @@ public class BallMover_FT : MonoBehaviour
                     }
                     else if (gameManager.lastServePlayer1 == -1 && gameManager.justServed)
                     {
-                        gameManager.AddPoint(gameManager.player1);
+                        PointReplay.instance.ShowReplay(gameManager.player1);
                         secondServe = false;
                     }
                 }

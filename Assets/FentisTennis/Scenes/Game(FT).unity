@@ -1973,7 +1973,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc28f7e15814f6439221cc5827619df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iSPoint: {x: 0, y: 0, z: 0}
+  iEPoint: {x: 0, y: 0, z: 0}
+  iP1Pos: {x: 0, y: 0, z: 0}
+  iP2Pos: {x: 0, y: 0, z: 0}
+  shot: 0
+  ball: {fileID: 1639290137}
   codes: 7700000061000000730000006400000011010000140100001201000013010000
+  buttons:
+  - A
+  - B
+  - C
+  - A2
+  - B2
+  - C2
 --- !u!1 &676378125
 GameObject:
   m_ObjectHideFlags: 0
