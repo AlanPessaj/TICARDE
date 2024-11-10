@@ -1,9 +1,3 @@
 sonido
 interaccion con hardware
-animacion de ganar
 TESTEAR
-
-
-
-
-Hacer el puño normal mas rapido

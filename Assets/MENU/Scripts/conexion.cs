@@ -36,7 +36,7 @@ public class conexion : MonoBehaviour
             Debug.LogError("Failed to open serial port: " + e.Message);
         }
 
-
+        SendMessagestoArduino("0", null);
     }
 
     private void Update()

@@ -738,6 +738,7 @@ public class CharacterSelector : MonoBehaviour
         }
         GameData.char1 = translate[hIndex, vIndex];
         GameData.char2 = translate[hIndex2, vIndex2];
+        conexion.SendMessagestoArduino("0", null);
         SceneManager.LoadScene($"Game({game})");
     }
 

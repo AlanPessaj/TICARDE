@@ -1,6 +1,4 @@
-interaccion con hardware
 TESTEAR JUEGO
-TESTEAR EN ARCADE VELOCIDAD DE LEONES
 -----------------------------------------------------------------------------
 RECORDAR IMPORTANTISIMO, SI SE CAMBIA ALGUN PREFAB CAMBIAR TAMBIEN EN LAS TILES
 EXTRA:
