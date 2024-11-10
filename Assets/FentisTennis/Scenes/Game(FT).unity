@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1978,6 +1978,11 @@ MonoBehaviour:
   games2: 0
   score1: 0
   score2: 0
+  characters:
+  - {fileID: 2100000, guid: 992a0d325e59871498b998074e08f426, type: 2}
+  - {fileID: 2100000, guid: 866089fdf9023a14fbc0948fc9d3643a, type: 2}
+  - {fileID: 2100000, guid: 6e04f914e9ce2134599a3b7e4f0b5c2b, type: 2}
+  - {fileID: 2100000, guid: c52764941f1f0c64a969736af9d56a62, type: 2}
   player1Canvas: {fileID: 1177585469}
   player2Canvas: {fileID: 1673970352}
   canvas: {fileID: 823319289}
