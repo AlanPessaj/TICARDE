@@ -35,7 +35,6 @@ public class PlayerController_FT : MonoBehaviour
     public static bool inReplay;
     public static int frameIndex;
     public static Frame currentFrame;
-    public static bool exitingReplay;
     // Start is called before the first frame update
     void Start()
     {
@@ -118,7 +117,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
-                if (((Input.GetButtonDown("A") && !inReplay && !exitingReplay) || (inReplay && currentFrame.buttonDowns.Contains("A"))) && !gameManager.serving)
+                if (((Input.GetButtonDown("A") && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("A"))) && !gameManager.serving)
                 {
                     gameManager.ThrowBall();
                 }
@@ -190,7 +189,7 @@ public class PlayerController_FT : MonoBehaviour
                 {
                     movement += new Vector3(0, 0, -1);
                 }
-                if (((Input.GetButtonDown("A2") && !inReplay && !exitingReplay) || (inReplay && currentFrame.buttonDowns.Contains("A2"))) && !gameManager.serving)
+                if (((Input.GetButtonDown("A2") && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("A2"))) && !gameManager.serving)
                 {
                     gameManager.ThrowBall();
                 }
