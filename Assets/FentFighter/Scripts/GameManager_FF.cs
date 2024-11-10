@@ -12,6 +12,7 @@ public class GameManager_FF : MonoBehaviour
     public GameObject[] UI;
     public CameraController_FF cameraController;
     public conexion conexion;
+    public float arduinoTimer;
     public int char1;
     public int char2;
 
@@ -58,5 +59,15 @@ public class GameManager_FF : MonoBehaviour
         players[0].GetComponent<UIManager_FF>().UI = UI[0];
         players[1].GetComponent<UIManager_FF>().UI = UI[1];
         cameraController.players = players;
+    }
+
+    private void Update()
+    {
+        arduinoTimer -= Time.deltaTime;
+        if (arduinoTimer <= 0)
+        {
+            conexion.SendMessagestoArduino("6", new string[] {players[0].GetComponent<UIManager_FF>().score.ToString(), players[1].GetComponent<UIManager_FF>().score.ToString() });
+            arduinoTimer = 5f;
+        }
     }
 }

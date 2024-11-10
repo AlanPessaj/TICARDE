@@ -121,7 +121,7 @@ El score del frogger (tiles avanzadas) de 2 players
 Posicion 0 del array: Score de player 1
 Posicion 1 del array: Score de player 2
 
-Si el id es 6= 
+Si el id es 6= DONE
 Daño hecho en el street fighter
 Posicion 0 del array: Score de player 1
 Posicion 1 del array: Score de player 2

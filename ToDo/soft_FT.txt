@@ -6,3 +6,5 @@ TESTEAR
 bug: Cuando cambia de game le añade un punto a alguien
 
 BLOQUEAR INPUTS EN LA TRANSICION
+
+agregar x1.5 de score al ganar
