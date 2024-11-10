@@ -85,6 +85,7 @@ public class PointReplay : MonoBehaviour
             cameras[cameraIndex].transform.LookAt(ball.transform);
             if (cameras[cameraIndex].name.Contains("FollowX")) cameras[cameraIndex].transform.position = new Vector3(ball.transform.position.x, cameras[cameraIndex].transform.position.y, cameras[cameraIndex].transform.position.z);
             if (cameras[cameraIndex].name.Contains("FollowZ")) cameras[cameraIndex].transform.position = new Vector3(cameras[cameraIndex].transform.position.x, cameras[cameraIndex].transform.position.y, ball.transform.position.z);
+            if (iDirection == 0 && cameras[cameraIndex].name.Contains("FollowZ")) if (ball.transform.position.z >= 0) cameras[cameraIndex].transform.position += Vector3.forward; else cameras[cameraIndex].transform.position -= Vector3.forward;
             PlayerController_FT.currentFrame = PlayerController_FT.replay[PlayerController_FT.frameIndex];
             PlayerController_FT.frameIndex++;
             return;
