@@ -39,6 +39,7 @@ public class CharacterSelector : MonoBehaviour
     public string game;
     bool loadingScene;
     bool loadnextscene;
+    bool waitingForSounds;
 
 
     private void Awake()
@@ -116,7 +117,7 @@ public class CharacterSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!loadingScene)
+        if (!waitingForSounds)
         {
             if (!confirmed[0])
             {
@@ -608,7 +609,6 @@ public class CharacterSelector : MonoBehaviour
                     }
                 }
             }
-            if ((confirmed[0] && confirmed[1] && multiplayer) || (confirmed[0] && !multiplayer)) if (!GetComponent<AudioSource>().isPlaying && !GetComponents<AudioSource>()[1].isPlaying) StartCoroutine(NextScene());
         }
         if (confirmed[0])
         {
@@ -633,6 +633,11 @@ public class CharacterSelector : MonoBehaviour
             {
                 MPSquares2[hIndex2, vIndex2].GetComponent<Image>().color = Color.Lerp(Color.blue, Color.white, Mathf.PingPong(confirmedTimer2, 1));
             }
+        }
+        if (((confirmed[0] && confirmed[1] && multiplayer) || (confirmed[0] && !multiplayer)) && !loadingScene)
+        {
+            waitingForSounds = true;
+            if (!GetComponent<AudioSource>().isPlaying && !GetComponents<AudioSource>()[1].isPlaying) StartCoroutine(NextScene());
         }
     }
 
