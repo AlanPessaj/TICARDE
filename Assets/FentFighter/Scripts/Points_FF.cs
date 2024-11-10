@@ -27,12 +27,12 @@ public class Points_FF : MonoBehaviour
             txtWinner.text = GameData.name1;
         else
             txtWinner.text = GameData.name2;
+        ScoreboardManager.SaveNewScore(GameData.name1, (int)player1Score, "FF");
+        ScoreboardManager.SaveNewScore(GameData.name2, (int)player2Score, "FF");
     }
 
     public void Next()
     {
-        ScoreboardManager.SaveNewScore(GameData.name1, player1Score, "FF");
-        ScoreboardManager.SaveNewScore(GameData.name2, player2Score, "FF");
         SceneManager.LoadScene("Leaderboard");
     }
 
