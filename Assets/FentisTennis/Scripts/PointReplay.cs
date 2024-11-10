@@ -21,6 +21,7 @@ public class PointReplay : MonoBehaviour
     public Camera[] cameras;
     public float speed;
     bool exitingReplay;
+    int cameraIndex;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,8 +35,9 @@ public class PointReplay : MonoBehaviour
         if (exitingReplay) { PlayerController_FT.inReplay = false; exitingReplay = false; }
         if (showReplay && !GameManager_FT.instance.transition.activeSelf)
         {
+            cameraIndex = Random.Range(1, cameras.Length);
             cameras[0].gameObject.SetActive(false);
-            cameras[1].gameObject.SetActive(true);
+            cameras[cameraIndex].gameObject.SetActive(true);
             ball.GetComponent<MeshRenderer>().enabled = true;
             ball.active = true;
             showReplay = false;
@@ -49,19 +51,30 @@ public class PointReplay : MonoBehaviour
         }
         if (PlayerController_FT.inReplay)
         {
-            if (Input.GetButtonDown("A") || Input.GetButtonDown("A2")) PlayerController_FT.frameIndex = PlayerController_FT.replay.Count;
-            if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
+            if (Input.GetButtonDown("A") || Input.GetButtonDown("A2"))
             {
                 PlayerController_FT.replay = null;
                 GameManager_FT.instance.AddPoint(scorer);
                 PlayerController_FT.frameIndex = 0;
                 cameras[0].gameObject.SetActive(true);
-                cameras[1].gameObject.SetActive(false);
+                cameras[cameraIndex].gameObject.SetActive(false);
                 exitingReplay = true;
                 return;
             }
-            //cameras[1].transform.LookAt(ball.transform);
-            //cameras[1].transform.position = new Vector3(ball.transform.position.x, cameras[1].transform.position.y, cameras[1].transform.position.z);
+            if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
+            {
+                cameras[cameraIndex].gameObject.SetActive(false);
+                if (cameraIndex < cameras.Length - 1) cameraIndex++; else cameraIndex = 1;
+                cameras[cameraIndex].gameObject.SetActive(true);
+                PlayerController_FT.frameIndex = 0;
+                ball.transform.position = iBallPos;
+                GetComponent<ShotManager_FT>().FindShot(iDirection, shot, wasPlayer1, wasServe);
+                GameManager_FT.instance.player1.transform.position = iP1Pos;
+                GameManager_FT.instance.player2.transform.position = iP2Pos;
+            }
+            cameras[cameraIndex].transform.LookAt(ball.transform);
+            if (cameras[cameraIndex].name.Contains("FollowX")) cameras[cameraIndex].transform.position = new Vector3(ball.transform.position.x, cameras[cameraIndex].transform.position.y, cameras[cameraIndex].transform.position.z);
+            if (cameras[cameraIndex].name.Contains("FollowZ")) cameras[cameraIndex].transform.position = new Vector3(cameras[cameraIndex].transform.position.x, cameras[cameraIndex].transform.position.y, ball.transform.position.z);
             PlayerController_FT.currentFrame = PlayerController_FT.replay[PlayerController_FT.frameIndex];
             PlayerController_FT.frameIndex++;
             return;
