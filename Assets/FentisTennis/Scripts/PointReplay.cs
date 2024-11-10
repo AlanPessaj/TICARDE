@@ -23,6 +23,7 @@ public class PointReplay : MonoBehaviour
     bool exitingReplay;
     int cameraIndex;
     Camera[] ogCameras;
+    bool firstTime = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -56,6 +57,7 @@ public class PointReplay : MonoBehaviour
         {
             if (Input.GetButtonDown("A") || Input.GetButtonDown("A2"))
             {
+                firstTime = true;
                 PlayerController_FT.replay = null;
                 GameManager_FT.instance.AddPoint(scorer);
                 PlayerController_FT.frameIndex = 0;
@@ -105,6 +107,11 @@ public class PointReplay : MonoBehaviour
 
     public void ShowReplay(GameObject scorer)
     {
+        if (firstTime)
+        {
+            scorer.GetComponent<PlayerController_FT>().gameManager.GetComponents<AudioSource>()[1].Play();
+            firstTime = false;
+        }
         if (PlayerController_FT.inReplay || showReplay) return; 
         this.scorer = scorer;
         GameManager_FT.instance.transition.SetActive(true);
