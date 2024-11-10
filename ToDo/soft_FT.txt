@@ -1,10 +1,7 @@
-cambio de lado
 animacion de ganador
 sonidos
 interaccion con hardware
 TESTEAR
-bug: Cuando cambia de game le añade un punto a alguien
+bug: Cuando cambia de game le añade un punto a alguien (no fue posible recrearlo)
 
 BLOQUEAR INPUTS EN LA TRANSICION
-
-agregar x1.5 de score al ganar

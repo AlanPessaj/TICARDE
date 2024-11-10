@@ -336,6 +336,7 @@ public class GameManager_FT : MonoBehaviour
 
     IEnumerator NextScene()
     {
+        if (games1 >= 3) score1 = Mathf.RoundToInt(score1 * 1.5f); else score2 = Mathf.RoundToInt(score2 * 1.5f);
         SceneManager.LoadScene("END(FT)", LoadSceneMode.Additive);
         yield return null;
         SceneManager.GetSceneByName("END(FT)").GetRootGameObjects()[0].GetComponent<Points_FT>().UpdateScore(score1, score2);
