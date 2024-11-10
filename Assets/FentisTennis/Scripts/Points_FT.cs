@@ -40,4 +40,9 @@ public class Points_FT : MonoBehaviour
     {
         SceneManager.LoadScene("Game(FT)");
     }
+
+    private void Start()
+    {
+        GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("0", null);
+    }
 }

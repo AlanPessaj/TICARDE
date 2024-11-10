@@ -51,8 +51,8 @@ public class GameManager_FT : MonoBehaviour
     {
         player1.GetComponent<Renderer>().material = characters[GameData.char1];
         player2.GetComponent<Renderer>().material = characters[GameData.char2];
-        player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;//Name
-        player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name2;//Name
+        player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;
+        player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name2;
         switch (startServing)
         {
             case 1:
@@ -63,6 +63,7 @@ public class GameManager_FT : MonoBehaviour
             break;
         }
         stepSize = initialStepSize;
+        GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), points1.ToString(), games2.ToString(), points2.ToString() });
     }
     void Update()
     {
@@ -312,6 +313,7 @@ public class GameManager_FT : MonoBehaviour
                 }
             }
             transition.SetActive(true);
+            GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), points1.ToString(), games2.ToString(), points2.ToString() });
             HandleServe();
         }
     }
