@@ -316,7 +316,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("B", "C", player, Ulti);
                     DetectCombo("B", "A", player, UpperCut);
-                    if (InState("idle") || (slideKickCooldown <= 0 && (InState("crouching") || InState("crouch") || InState("uncrouch"))))
+                    if (InState("idle") || (slideKickCooldown <= 0 && (InState("crouching") || InState("crouch") || InState("uncrouch") || InState("crouchedRun"))))
                     {
                         animator.SetTrigger("kick");
                     }
