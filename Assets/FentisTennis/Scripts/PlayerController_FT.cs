@@ -437,8 +437,7 @@ public class PlayerController_FT : MonoBehaviour
             if (hitManager.hColliders[1] != null && !didDrive)
             {
                 //acerto drive
-                shot.FindShot(direction, ShotType.drive, isPlayer1);
-                HitBall();
+                HitBall(direction, ShotType.drive);
                 didDrive = true;
                 if (isPlayer1)
                 {
@@ -466,8 +465,7 @@ public class PlayerController_FT : MonoBehaviour
             if (hitManager.hColliders[2] != null && !didLob)
             {
                 //acerto lob
-                shot.FindShot(direction, ShotType.lob, isPlayer1);
-                HitBall();
+                HitBall(direction, ShotType.lob);
                 didLob = true;
                 if (isPlayer1)
                 {
@@ -501,14 +499,13 @@ public class PlayerController_FT : MonoBehaviour
                     if (!gameManager.throwingBall)
                     {
                         gameManager.EndServe();
-                        shot.FindShot(-2, ShotType.smash, isPlayer1, true);
+                        HitBall(-2, ShotType.smash, true);
                     }
                 }
                 else
                 {
-                    shot.FindShot(direction, ShotType.smash, isPlayer1);
+                    HitBall(direction, ShotType.smash);
                 }
-                HitBall();
                 didSmash = true;
                 if (isPlayer1)
                 {
@@ -534,16 +531,21 @@ public class PlayerController_FT : MonoBehaviour
         }
     }
 
-    void HitBall()
+    void HitBall(int direction, ShotType shotType, bool serve = false)
     {
+        PointReplay.instance.replay = new List<Frame>();
+        PointReplay.instance.iDirection = direction;
+        PointReplay.instance.shot = shotType;
+        PointReplay.instance.wasPlayer1 = isPlayer1;
+        PointReplay.instance.wasServe = serve;
+        PointReplay.instance.iBallPos = shot.ball.transform.position;
+        PointReplay.instance.iP1Pos = isPlayer1 ? transform.position : gameManager.player1.transform.position;
+        PointReplay.instance.iP2Pos = !isPlayer1 ? transform.position : gameManager.player2.transform.position;
+        PointReplay.instance.shot = shotType;
         GetComponent<AudioSource>().Play();
         shot.ball.bounced = false;
         shot.ball.wasPlayer1 = isPlayer1;
-        PointReplay.instance.replay = new List<Frame>();
-        PointReplay.instance.iSPoint = shot.ball.sPoint.transform.position;
-        PointReplay.instance.iEPoint = shot.ball.ePoint.transform.position;
-        PointReplay.instance.iP1Pos = isPlayer1 ? transform.position : gameManager.player1.transform.position;
-        PointReplay.instance.iP2Pos = !isPlayer1 ? transform.position : gameManager.player2.transform.position;
+        shot.FindShot(direction, shotType, isPlayer1, serve);
     }
 
     public void ResetRaquet()

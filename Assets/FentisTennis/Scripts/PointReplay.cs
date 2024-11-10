@@ -6,15 +6,18 @@ public class PointReplay : MonoBehaviour
 {
     public static PointReplay instance;
     public List<Frame> replay = new List<Frame>();
-    [HideInInspector] public Vector3 iSPoint;
-    [HideInInspector] public Vector3 iEPoint;
+    [HideInInspector] public int iDirection;
+    [HideInInspector] public ShotType shot;
+    [HideInInspector] public bool wasPlayer1;
+    [HideInInspector] public bool wasServe;
+    [HideInInspector] public Vector3 iBallPos;
     [HideInInspector] public Vector3 iP1Pos;
     [HideInInspector] public Vector3 iP2Pos;
-    [HideInInspector] public ShotType shot;
     public BallMover_FT ball;
     public KeyCode[] codes;
     public string[] buttons;
     GameObject scorer;
+    bool showReplay;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,6 +28,19 @@ public class PointReplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (showReplay && !GameManager_FT.instance.transition.activeSelf)
+        {
+            ball.active = true;
+            showReplay = false;
+            PlayerController_FT.replay = replay;
+            ball.transform.position = iBallPos;
+            GetComponent<ShotManager_FT>().FindShot(iDirection, shot, wasPlayer1, wasServe);
+            GameManager_FT.instance.player1.transform.position = iP1Pos;
+            GameManager_FT.instance.player2.transform.position = iP2Pos;
+            ball.UpdateQuadratic(shot == ShotType.smash);
+            PlayerController_FT.inReplay = true;
+            replay = new List<Frame>();
+        }
         if (PlayerController_FT.inReplay)
         {
             if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
@@ -39,6 +55,7 @@ public class PointReplay : MonoBehaviour
             PlayerController_FT.frameIndex++;
             return;
         }
+        if (showReplay) return;
         Frame currentFrame = new Frame();
         foreach (KeyCode item in codes) if (Input.GetKey(item)) currentFrame.keys.Add(item);
         foreach (string item in buttons) if (Input.GetButton(item)) currentFrame.buttons.Add(item);
@@ -49,16 +66,12 @@ public class PointReplay : MonoBehaviour
 
     public void ShowReplay(GameObject scorer)
     {
-        if (PlayerController_FT.inReplay) return; 
+        if (PlayerController_FT.inReplay || showReplay) return; 
         this.scorer = scorer;
-        PlayerController_FT.replay = replay;
-        ball.sPoint.position = iSPoint;
-        ball.ePoint.position = iEPoint;
-        GameManager_FT.instance.player1.transform.position = iP1Pos;
-        GameManager_FT.instance.player2.transform.position = iP2Pos;
-        ball.step = 0;
-        PlayerController_FT.inReplay = true;
-        replay = new List<Frame>();
+        GameManager_FT.instance.transition.SetActive(true);
+        ball.transform.position = Vector3.left * 1000;
+        ball.active = false;
+        showReplay = true;
     }
 }
 

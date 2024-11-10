@@ -1973,11 +1973,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc28f7e15814f6439221cc5827619df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iSPoint: {x: 0, y: 0, z: 0}
-  iEPoint: {x: 0, y: 0, z: 0}
+  iDirection: 0
+  shot: 0
+  wasPlayer1: 0
+  wasServe: 0
+  iBallPos: {x: 0, y: 0, z: 0}
   iP1Pos: {x: 0, y: 0, z: 0}
   iP2Pos: {x: 0, y: 0, z: 0}
-  shot: 0
   ball: {fileID: 1639290137}
   codes: 7700000061000000730000006400000011010000140100001201000013010000
   buttons:
@@ -2477,7 +2479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &800455121
 Transform:
   m_ObjectHideFlags: 0
@@ -2533,7 +2535,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
