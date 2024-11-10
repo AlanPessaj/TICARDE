@@ -153,6 +153,7 @@ public class BallMover_FT : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
             if (other.gameObject.name == "cancha") GetComponent<AudioSource>().Play();
+            if (other.gameObject.name == "red") GetComponents<AudioSource>()[1].Play();
             if (wasPlayer1)
             {
                 if (bounced)
