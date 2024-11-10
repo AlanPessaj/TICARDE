@@ -311,7 +311,6 @@ public class GameManager_FT : MonoBehaviour
                     StartCoroutine(NextScene());
                 }
             }
-            GetComponents<AudioSource>()[1].Play();
             transition.SetActive(true);
             HandleServe();
         }
