@@ -38,16 +38,27 @@ public class UIManager_FF : MonoBehaviour
 
     IEnumerator SetScore()
     {
+        string winner;
+        if (health <= 0)
+        {
+            winner = !GetComponent<PlayerController_FF>().isPlayer1 ? GameData.name1 : GameData.name2;
+            GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score = Mathf.RoundToInt(GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score * 1.5f);
+        }
+        else
+        {
+            winner = GetComponent<PlayerController_FF>().isPlayer1 ? GameData.name1 : GameData.name2;
+            score = Mathf.RoundToInt(score * 1.5f);
+        }
         SceneManager.LoadScene("END(FF)", LoadSceneMode.Additive);
         yield return null;
         Scene end = SceneManager.GetSceneByName("END(FF)");
         if (GetComponent<PlayerController_FF>().isPlayer1)
         {
-            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score, score);
+            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score, score, winner);
         }
         else
         {
-            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(score, GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score);
+            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(score, GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score, winner);
         }
         SceneManager.UnloadSceneAsync(gameObject.scene);
     }

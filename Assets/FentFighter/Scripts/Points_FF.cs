@@ -15,7 +15,7 @@ public class Points_FF : MonoBehaviour
     int player1Score;
     int player2Score;
     // Start is called before the first frame update
-    public void UpdateScore(float player1Score, float player2Score)
+    public void UpdateScore(float player1Score, float player2Score, string winner)
     {
         this.player1Score = (int)player1Score;
         this.player2Score = (int)player2Score;
@@ -23,10 +23,7 @@ public class Points_FF : MonoBehaviour
         txtPlayer2Score.text = player2Score.ToString();
         txtPlayer1Name.text = GameData.name1;
         txtPlayer2Name.text = GameData.name2;
-        if (player1Score > player2Score)
-            txtWinner.text = GameData.name1;
-        else
-            txtWinner.text = GameData.name2;
+        txtWinner.text = winner;
         ScoreboardManager.SaveNewScore(GameData.name1, (int)player1Score, "FF");
         ScoreboardManager.SaveNewScore(GameData.name2, (int)player2Score, "FF");
     }

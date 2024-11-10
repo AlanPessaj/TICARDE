@@ -19,7 +19,9 @@ public class GameManager_FF : MonoBehaviour
 
     private void Awake()
     {
-        conexion = GameObject.Find("TICARDEMANAGER").GetComponent<conexion>();
+        //para poder iniciar la escena sin venir de menu
+        if (GAMEMANAGER.Instance == null) return;
+        conexion = GAMEMANAGER.Instance.GetComponent<conexion>();
     }
     private void Start()
     {
@@ -63,6 +65,8 @@ public class GameManager_FF : MonoBehaviour
 
     private void Update()
     {
+        //para poder iniciar la escena sin venir de menu
+        if (GAMEMANAGER.Instance == null) return;
         arduinoTimer -= Time.deltaTime;
         if (arduinoTimer <= 0)
         {
