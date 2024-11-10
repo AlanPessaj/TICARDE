@@ -20,6 +20,7 @@ public class PointReplay : MonoBehaviour
     bool showReplay;
     public Camera[] cameras;
     public float speed;
+    bool exitingReplay;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,7 +31,7 @@ public class PointReplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerController_FT.exitingReplay) PlayerController_FT.exitingReplay = false;
+        if (exitingReplay) { PlayerController_FT.inReplay = false; exitingReplay = false; }
         if (showReplay && !GameManager_FT.instance.transition.activeSelf)
         {
             cameras[0].gameObject.SetActive(false);
@@ -52,12 +53,11 @@ public class PointReplay : MonoBehaviour
             if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
             {
                 PlayerController_FT.replay = null;
-                PlayerController_FT.inReplay = false;
                 GameManager_FT.instance.AddPoint(scorer);
                 PlayerController_FT.frameIndex = 0;
                 cameras[0].gameObject.SetActive(true);
                 cameras[1].gameObject.SetActive(false);
-                PlayerController_FT.exitingReplay = true;
+                exitingReplay = true;
                 return;
             }
             //cameras[1].transform.LookAt(ball.transform);
