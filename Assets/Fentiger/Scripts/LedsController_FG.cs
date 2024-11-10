@@ -26,6 +26,11 @@ public class LedsController_FG : MonoBehaviour
 
     public void FillSide(bool player1, string color)
     {
+        if (!generator.initialMultiplayer)
+        {
+            FillAll(color);
+            return;
+        }
         string player = "11";
         if (!player1) player = "12";
         conexion.SendMessagestoArduino(player, new string[] { color });
@@ -38,6 +43,11 @@ public class LedsController_FG : MonoBehaviour
 
     public IEnumerator SideBlink(bool player1, string color)
     {
+        if (!generator.initialMultiplayer)
+        {
+            Blink(color);
+            yield break;
+        }
         string player = "11";
         if (!player1) player = "12";
         conexion.SendMessagestoArduino(player, new string[] { color });
@@ -62,9 +72,20 @@ public class LedsController_FG : MonoBehaviour
     {
         string player = "11";
         if (!player1) player = "12";
-        conexion.SendMessagestoArduino(player, new string[] { "BLUE" });
+        
+        if (generator.initialMultiplayer) conexion.SendMessagestoArduino(player, new string[] { "BLUE" });
+        else
+        {
+            conexion.SendMessagestoArduino("11", new string[] { "BLUE" });
+            conexion.SendMessagestoArduino("12", new string[] { "BLUE" });
+        }
         yield return new WaitForSeconds(0.3f);
-        conexion.SendMessagestoArduino(player, new string[] { "WHITE" });
+        if (generator.initialMultiplayer) conexion.SendMessagestoArduino(player, new string[] { "WHITE" });
+        else
+        {
+            conexion.SendMessagestoArduino("11", new string[] { "WHITE" });
+            conexion.SendMessagestoArduino("12", new string[] { "WHITE" });
+        }
     }
 
     public IEnumerator Blink(string color)
