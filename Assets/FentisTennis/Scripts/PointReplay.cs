@@ -22,11 +22,14 @@ public class PointReplay : MonoBehaviour
     public float speed;
     bool exitingReplay;
     int cameraIndex;
+    Camera[] ogCameras;
 
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
+        System.Array.Copy(cameras, 1, ogCameras, 0, cameras.Length - 1);
+        RandomizeCameras();
     }
 
     // Update is called once per frame
@@ -59,6 +62,7 @@ public class PointReplay : MonoBehaviour
                 cameras[0].gameObject.SetActive(true);
                 cameras[cameraIndex].gameObject.SetActive(false);
                 exitingReplay = true;
+                RandomizeCameras();
                 return;
             }
             if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
@@ -86,6 +90,17 @@ public class PointReplay : MonoBehaviour
         foreach (string item in buttons) if (Input.GetButtonDown(item)) currentFrame.buttonDowns.Add(item);
         foreach (string item in buttons) if (Input.GetButtonUp(item)) currentFrame.buttonUps.Add(item);
         replay.Add(currentFrame);
+    }
+
+    void RandomizeCameras()
+    {
+        Camera[] temp = new Camera[cameras.Length];
+        temp[0] = cameras[0];
+        int[] takenInts = new int[ogCameras.Length];
+        for (int i = 0; i < ogCameras.Length; i++)
+        {
+
+        }
     }
 
     public void ShowReplay(GameObject scorer)
