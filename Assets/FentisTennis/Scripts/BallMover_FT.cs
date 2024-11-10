@@ -158,7 +158,6 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p1
-                    gameManager.GetComponents<AudioSource>()[1].Play();
                     PointReplay.instance.ShowReplay(gameManager.player1);
                     secondServe = false;
                 }
@@ -172,7 +171,6 @@ public class BallMover_FT : MonoBehaviour
                     }
                     else
                     {
-                        gameManager.GetComponents<AudioSource>()[1].Play();
                         PointReplay.instance.ShowReplay(gameManager.player2);
                         secondServe = false;
                     }
@@ -183,7 +181,6 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p2
-                    gameManager.GetComponents<AudioSource>()[1].Play();
                     PointReplay.instance.ShowReplay(gameManager.player2);
                     secondServe = false;
                 }
@@ -197,7 +194,6 @@ public class BallMover_FT : MonoBehaviour
                     }
                     else
                     {
-                        gameManager.GetComponents<AudioSource>()[1].Play();
                         PointReplay.instance.ShowReplay(gameManager.player1);
                         secondServe = false;
                     }
