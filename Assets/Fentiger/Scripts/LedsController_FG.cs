@@ -14,7 +14,7 @@ public class LedsController_FG : MonoBehaviour
 
     private void Awake()
     {
-        conexion = GameObject.Find("TICARDEMANAGER").GetComponent<conexion>();
+        conexion = GAMEMANAGER.Instance.GetComponent<conexion>();
         generator = GetComponent<Generator_FG>();
     }
 

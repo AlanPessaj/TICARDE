@@ -43,7 +43,7 @@ public class CharacterSelector : MonoBehaviour
 
     private void Awake()
     {
-        conexion = GameObject.Find("TICARDEMANAGER").GetComponent<conexion>();
+        conexion = GAMEMANAGER.Instance.GetComponent<conexion>();
     }
     // Start is called before the first frame update
     void Start()

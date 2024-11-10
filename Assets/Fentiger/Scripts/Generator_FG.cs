@@ -337,7 +337,7 @@ public class Generator_FG : MonoBehaviour
 
     private void Awake()
     {
-        conexion = GameObject.Find("TICARDEMANAGER").GetComponent<conexion>();
+        conexion = GAMEMANAGER.Instance.GetComponent<conexion>();
         players[0] = GameObject.Find("Player1");
         players[1] = GameObject.Find("Player2");
     }
