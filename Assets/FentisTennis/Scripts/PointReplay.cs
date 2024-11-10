@@ -19,6 +19,7 @@ public class PointReplay : MonoBehaviour
     GameObject scorer;
     bool showReplay;
     public Camera[] cameras;
+    public float speed;
 
     // Start is called before the first frame update
     void Awake()
@@ -56,6 +57,8 @@ public class PointReplay : MonoBehaviour
                 cameras[1].gameObject.SetActive(false);
                 return;
             }
+            cameras[1].transform.LookAt(ball.transform);
+            cameras[1].transform.position = new Vector3(ball.transform.position.x, cameras[1].transform.position.y, cameras[1].transform.position.z);
             PlayerController_FT.currentFrame = PlayerController_FT.replay[PlayerController_FT.frameIndex];
             PlayerController_FT.frameIndex++;
             return;

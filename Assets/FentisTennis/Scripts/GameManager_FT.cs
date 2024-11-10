@@ -21,12 +21,12 @@ public class GameManager_FT : MonoBehaviour
     public float initialStepSize;
     public float maxBallHeight;
     public int startServing;
-    public int points1 = 0;
-    public int points2 = 0;
-    public int games1 = 0;
-    public int games2 = 0;
-    public int score1 = 0;
-    public int score2 = 0;
+    [HideInInspector] public int points1 = 0;
+    [HideInInspector] public int points2 = 0;
+    [HideInInspector] public int games1 = 0;
+    [HideInInspector] public int games2 = 0;
+    [HideInInspector] public int score1 = 0;
+    [HideInInspector] public int score2 = 0;
     public GameObject player1Canvas;
     public GameObject player2Canvas;
     public GameObject canvas;
