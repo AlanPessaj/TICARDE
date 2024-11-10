@@ -2,6 +2,11 @@ animacion de ganador
 sonidos
 interaccion con hardware
 TESTEAR
-bug: Cuando cambia de game le añade un punto a alguien (no fue posible recrearlo)
 
-BLOQUEAR INPUTS EN LA TRANSICION
+
+SONIDOS:
+
+PELOTA PICA 
+PEGARLE A LA RED
+CAMBIO DE LADO
+FIN DEL PARTIDO
