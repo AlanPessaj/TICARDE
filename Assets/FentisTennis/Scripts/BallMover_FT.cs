@@ -170,7 +170,7 @@ public class BallMover_FT : MonoBehaviour
                         secondServe = true;
                         gameManager.HandleServe();
                     }
-                    else if (gameManager.lastServePlayer1 == 1 && gameManager.justServed)
+                    else
                     {
                         PointReplay.instance.ShowReplay(gameManager.player2);
                         secondServe = false;
@@ -193,7 +193,7 @@ public class BallMover_FT : MonoBehaviour
                         secondServe = true;
                         gameManager.HandleServe();
                     }
-                    else if (gameManager.lastServePlayer1 == -1 && gameManager.justServed)
+                    else
                     {
                         PointReplay.instance.ShowReplay(gameManager.player1);
                         secondServe = false;

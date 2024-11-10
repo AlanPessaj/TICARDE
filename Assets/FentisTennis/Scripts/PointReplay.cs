@@ -18,6 +18,7 @@ public class PointReplay : MonoBehaviour
     public string[] buttons;
     GameObject scorer;
     bool showReplay;
+    public Camera[] cameras;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,6 +31,9 @@ public class PointReplay : MonoBehaviour
     {
         if (showReplay && !GameManager_FT.instance.transition.activeSelf)
         {
+            cameras[0].gameObject.SetActive(false);
+            cameras[1].gameObject.SetActive(true);
+            ball.GetComponent<MeshRenderer>().enabled = true;
             ball.active = true;
             showReplay = false;
             PlayerController_FT.replay = replay;
@@ -37,7 +41,6 @@ public class PointReplay : MonoBehaviour
             GetComponent<ShotManager_FT>().FindShot(iDirection, shot, wasPlayer1, wasServe);
             GameManager_FT.instance.player1.transform.position = iP1Pos;
             GameManager_FT.instance.player2.transform.position = iP2Pos;
-            ball.UpdateQuadratic(shot == ShotType.smash);
             PlayerController_FT.inReplay = true;
             replay = new List<Frame>();
         }
@@ -49,6 +52,8 @@ public class PointReplay : MonoBehaviour
                 PlayerController_FT.inReplay = false;
                 GameManager_FT.instance.AddPoint(scorer);
                 PlayerController_FT.frameIndex = 0;
+                cameras[0].gameObject.SetActive(true);
+                cameras[1].gameObject.SetActive(false);
                 return;
             }
             PlayerController_FT.currentFrame = PlayerController_FT.replay[PlayerController_FT.frameIndex];
@@ -69,7 +74,8 @@ public class PointReplay : MonoBehaviour
         if (PlayerController_FT.inReplay || showReplay) return; 
         this.scorer = scorer;
         GameManager_FT.instance.transition.SetActive(true);
-        ball.transform.position = Vector3.left * 1000;
+        ball.transform.position = Vector3.up * 15;
+        ball.GetComponent<MeshRenderer>().enabled = false;
         ball.active = false;
         showReplay = true;
     }

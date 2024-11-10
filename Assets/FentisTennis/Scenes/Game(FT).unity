@@ -228,7 +228,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39752209}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -274,8 +274,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39752209}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.7, z: 0}
-  m_LocalScale: {x: 3000, y: 7.5, z: 2000}
+  m_LocalPosition: {x: 0, y: -35.2, z: 0}
+  m_LocalScale: {x: 3000, y: 50, z: 2000}
   m_Children: []
   m_Father: {fileID: 462449695}
   m_RootOrder: 10
@@ -1228,7 +1228,7 @@ Transform:
   m_GameObject: {fileID: 351468539}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.17999999, y: -5, z: -28.220001}
-  m_LocalScale: {x: 115.196846, y: 9.599993, z: 13.356725}
+  m_LocalScale: {x: 115.196846, y: 10, z: 13.356725}
   m_Children: []
   m_Father: {fileID: 462449695}
   m_RootOrder: 4
@@ -1989,6 +1989,9 @@ MonoBehaviour:
   - A2
   - B2
   - C2
+  cameras:
+  - {fileID: 61145148}
+  - {fileID: 800455123}
 --- !u!1 &676378125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,7 +2491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800455120}
   m_LocalRotation: {x: 0.29883623, y: 0.64085644, z: -0.29883623, w: 0.64085644}
-  m_LocalPosition: {x: -20, y: 20, z: 0}
+  m_LocalPosition: {x: -38.3, y: 41.8, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1639290142}
@@ -2501,7 +2504,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800455120}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &800455123
 Camera:
   m_ObjectHideFlags: 0
@@ -5147,7 +5150,7 @@ Transform:
   m_GameObject: {fileID: 2050430073}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.17999999, y: -5, z: 28.22}
-  m_LocalScale: {x: 115.196846, y: 9.599993, z: 13.356725}
+  m_LocalScale: {x: 115.196846, y: 10, z: 13.356725}
   m_Children: []
   m_Father: {fileID: 462449695}
   m_RootOrder: 3
