@@ -49,25 +49,24 @@ public class conexion : MonoBehaviour
 
     }
 
-    public void SendMessagestoArduino(string identifier, string[] messages)
+    public void SendMessagestoArduino(string identifier, string[] messages){
+    if (arduinoPort.IsOpen)
     {
-        if (arduinoPort.IsOpen)
+        try
         {
-            try
-            {
-                    string msg2send = identifier + "," + string.Join(",", messages);
-                    arduinoPort.WriteLine(msg2send);
-                    Debug.Log(msg2send);
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError("Failed to send message to Arduino: " + e.Message);
-            }
+                string msg2send = identifier + "," + string.Join(",", messages);
+                arduinoPort.WriteLine(msg2send);
+                Debug.Log(msg2send);
         }
-        else
+        catch (System.Exception e)
         {
-            Debug.LogWarning("Serial port is not open.");
+            Debug.LogError("Failed to send message to Arduino: " + e.Message);
         }
+    }
+    else
+    {
+        Debug.LogWarning("Serial port is not open.");
+    }
     }
 
 
@@ -93,14 +92,18 @@ public class conexion : MonoBehaviour
 
 /*
 Funcion SendMessageToArduino tiene 2 parametros: el primero es un identificador numerico
-(que tiene que ser un string) y un array de strings en el que este el mensaje a mostrar o
+(que tiene que ser un string) y un array de strings en el que este eñ mensaje a mostrar o
 el patron de iluminacion de los leds.
 
-Si el id es 1= DONE
+Si el id es 0=
+Se muestra por pantalla .:TICARDE:.
+No necesita que se le pase nada en el array (mandar vacio)
+
+Si el id es 1=
 Se muestra el selector de personaje para 1 jugador
 Posicion 0 del array: nombre del personaje seleccionado
 
-Si el id es 2= DONE
+Si el id es 2=
 Se muestra el selector de personaje para 2 jugadores
 Posicion 0 del array: nombre del personaje seleccionado por jugador 1
 Posicion 1 del array: nombre del personaje seleccionado por jugador 2
@@ -112,30 +115,26 @@ Posicion 1 del array: puntos de jugador 1
 Posicion 2 del array: games de jugador 2
 Posicion 3 del array: puntos de jugador 2
 
-Si el id es 4= DONE
+Si el id es 4=
 El score del frogger (tiles avanzadas) de un solo player
 Posicion 0 del array: Score de player
 
-Si el id es 5= DONE
+Si el id es 5=
 El score del frogger (tiles avanzadas) de 2 players
 Posicion 0 del array: Score de player 1
 Posicion 1 del array: Score de player 2
 
-Si el id es 6= DONE
+Si el id es 6= 
 Daño hecho en el street fighter
 Posicion 0 del array: Score de player 1
 Posicion 1 del array: Score de player 2
 
-Colores:
-BLACK   0x0000
-BLUE    0x001F
-RED     0xF800
-GREEN   0x07E0
-CYAN    0x07FF
-MAGENTA 0xF81F
-YELLOW  0xFFE0
-WHITE   0xFFFF
-Esas palabras que estan arriba o los colores en hexagesimal
+
+Los colores para el led se tienen que mandar en formato hexagesimal
+Ejemplo:
+FF0000 para el rojo
+000000 para negro (pasar negro es apagar el led)
+00FF00 para el verde
 
 
 Si el id es 7=
@@ -176,4 +175,14 @@ Un led especifico (del 0 al 12) del array de player 2
 Posicion 0 del array: color
 Posicion 1 del array: (string) posicion en el array del led a encender(0-12)
 
+
+Si es 15=
+Se va a hacer un recorrido de ida desde una punta de la tira (la mitad de la izquierda) hasta la otra (la mitad de la derecha)
+Posicion 0 del array: color
+Posicion 1 del array: (string) cuantos milisegundos esperar entre cada led
+
+Si es 16=
+Se va a hacer un recorrido de idadesde una punta de la tira (la mitad de la izquierda) hasta la otra (la mitad de la derecha), y despues de vuelta en la direccion contraria (derecha a izquierda)
+Posicion 0 del array: color
+Posicion 1 del array: (string) cuantos milisegundos esperar entre cada led
 */
