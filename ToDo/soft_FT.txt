@@ -2,8 +2,3 @@ animacion de ganador
 sonidos
 interaccion con hardware
 TESTEAR
-
-
-SONIDOS:
-CAMBIO DE LADO
-FIN DEL PARTIDO
