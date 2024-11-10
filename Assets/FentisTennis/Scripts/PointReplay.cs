@@ -29,8 +29,8 @@ public class PointReplay : MonoBehaviour
     void Awake()
     {
         instance = this;
-        System.Array.Copy(cameras, 1, ogCameras, 0, cameras.Length - 1);
-        RandomizeCameras();
+        //System.Array.Copy(cameras, 1, ogCameras, 0, cameras.Length - 1);
+        //RandomizeCameras();
     }
 
     // Update is called once per frame
@@ -39,6 +39,7 @@ public class PointReplay : MonoBehaviour
         if (exitingReplay) { PlayerController_FT.inReplay = false; exitingReplay = false; }
         if (showReplay && !GameManager_FT.instance.transition.activeSelf)
         {
+            GameManager_FT.instance.player1.GetComponent<AudioSource>().Play();
             cameraIndex = Random.Range(1, cameras.Length);
             cameras[0].gameObject.SetActive(false);
             cameras[cameraIndex].gameObject.SetActive(true);
@@ -64,11 +65,12 @@ public class PointReplay : MonoBehaviour
                 cameras[0].gameObject.SetActive(true);
                 cameras[cameraIndex].gameObject.SetActive(false);
                 exitingReplay = true;
-                RandomizeCameras();
+                //RandomizeCameras();
                 return;
             }
             if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
             {
+                GameManager_FT.instance.player1.GetComponent<AudioSource>().Play();
                 cameras[cameraIndex].gameObject.SetActive(false);
                 if (cameraIndex < cameras.Length - 1) cameraIndex++; else cameraIndex = 1;
                 cameras[cameraIndex].gameObject.SetActive(true);
