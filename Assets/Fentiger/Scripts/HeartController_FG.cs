@@ -10,6 +10,7 @@ public class HeartController_FG : MonoBehaviour
         if (hit.collider != null && !hit.transform.GetChild(0).gameObject.activeSelf)
         {
             hit.transform.GetChild(0).gameObject.SetActive(true);
+            StartCoroutine(hit.transform.GetComponent<PlayerController_FG>().generator.GetComponent<LedsController_FG>().SideBlink(hit.transform.name == "Player1", "GREEN"));
             Destroy(gameObject);
         }
     }

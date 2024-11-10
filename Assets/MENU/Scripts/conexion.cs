@@ -93,7 +93,7 @@ public class conexion : MonoBehaviour
 
 /*
 Funcion SendMessageToArduino tiene 2 parametros: el primero es un identificador numerico
-(que tiene que ser un string) y un array de strings en el que este eñ mensaje a mostrar o
+(que tiene que ser un string) y un array de strings en el que este el mensaje a mostrar o
 el patron de iluminacion de los leds.
 
 Si el id es 1= DONE
