@@ -19,8 +19,8 @@ public class LinearMover_FF : MonoBehaviour
     {
         if (transform.position.x < 18 && transform.position.x > -18)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
-            transform.GetChild(0).Rotate(angularSpeed);
+            transform.Translate(Vector3.right * speed * (transform.GetChild(1).gameObject.activeSelf ? 2 : 1) * Time.deltaTime, Space.World);
+            transform.GetChild(0).Rotate(angularSpeed * Time.deltaTime);
         }
         else
         {

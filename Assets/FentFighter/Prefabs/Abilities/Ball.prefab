@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  angularSpeed: {x: 0, y: 0, z: -30}
+  angularSpeed: {x: 0, y: 0, z: -240}
   goingLeft: 0
 --- !u!114 &8132549468442956317
 MonoBehaviour:

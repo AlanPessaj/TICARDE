@@ -1,4 +1,2 @@
-animacion de ganador
-sonidos
 interaccion con hardware
 TESTEAR
