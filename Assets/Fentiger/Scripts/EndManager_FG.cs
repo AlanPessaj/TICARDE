@@ -13,11 +13,14 @@ public class EndManager_FG : MonoBehaviour
     public GameObject player1Canvas;
     public GameObject player2Canvas;
     public float topScore;
+    public GAMEMANAGER ticardemanager;
 
 
     private void Start()
     {
-        GameObject.Find("TICARDEMANAGER").GetComponent<GAMEMANAGER>().enabled = true;
+        ticardemanager = GameObject.Find("TICARDEMANAGER").GetComponent<GAMEMANAGER>();
+        ticardemanager.enabled = true;
+        ticardemanager.GetComponent<conexion>().SendMessagestoArduino("0", null);
     }
     public void UpdateValues()
     {

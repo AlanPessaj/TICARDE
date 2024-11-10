@@ -12,7 +12,7 @@ public class GameSelector : MonoBehaviour
     bool loadtitle;
     bool loadleaderboard;
     bool firstTime = true;
-    
+
     // Update is called once per frame
     void Update()
     {
