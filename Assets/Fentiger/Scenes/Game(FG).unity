@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.56452405, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.56452316, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -786,6 +786,7 @@ MonoBehaviour:
   step: {fileID: 8300000, guid: 558fc240f454e1e42b2ad3bddf4f4f7a, type: 3}
   roadStep: {fileID: 8300000, guid: a534e12260596b64bb59d3ec9f640350, type: 3}
   laserImpact: {fileID: 8300000, guid: 4c9bef0f9c13dfe469816c9c76204743, type: 3}
+  abilitySound: {fileID: 8300000, guid: 60473de46a3349d4aabebdc09a97ba65, type: 3}
 --- !u!82 &287369568
 AudioSource:
   m_ObjectHideFlags: 0
