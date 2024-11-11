@@ -12,25 +12,18 @@ public class Points_FF : MonoBehaviour
     public TextMeshProUGUI txtPlayer1Name;
     public TextMeshProUGUI txtPlayer2Name;
     public TextMeshProUGUI txtWinner;
-    int player1Score;
-    int player2Score;
 
+    // Start is called before the first frame update
     private void Start()
     {
         GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("0", null);
-    }
-    // Start is called before the first frame update
-    public void UpdateScore(float player1Score, float player2Score, string winner)
-    {
-        this.player1Score = (int)player1Score;
-        this.player2Score = (int)player2Score;
-        txtPlayer1Score.text = player1Score.ToString();
-        txtPlayer2Score.text = player2Score.ToString();
+        txtPlayer1Score.text = GameData.score1.ToString();
+        txtPlayer2Score.text = GameData.score2.ToString();
         txtPlayer1Name.text = GameData.name1;
         txtPlayer2Name.text = GameData.name2;
-        txtWinner.text = winner;
-        ScoreboardManager.SaveNewScore(GameData.name1, (int)player1Score, "FF");
-        ScoreboardManager.SaveNewScore(GameData.name2, (int)player2Score, "FF");
+        txtWinner.text = GameData.p1Winner ? GameData.name1 : GameData.name2;
+        ScoreboardManager.SaveNewScore(GameData.name1, GameData.score1, "FF");
+        ScoreboardManager.SaveNewScore(GameData.name2, GameData.score2, "FF");
     }
 
     public void Next()

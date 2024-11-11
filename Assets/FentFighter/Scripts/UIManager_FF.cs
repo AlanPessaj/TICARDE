@@ -33,34 +33,11 @@ public class UIManager_FF : MonoBehaviour
     {
         GetComponent<Animator>().enabled = false;
         Time.timeScale = 1;
-        StartCoroutine(SetScore());
-    }
-
-    IEnumerator SetScore()
-    {
-        string winner;
-        if (health <= 0)
-        {
-            winner = !GetComponent<PlayerController_FF>().isPlayer1 ? GameData.name1 : GameData.name2;
-            GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score = Mathf.RoundToInt(GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score * 1.5f);
-        }
-        else
-        {
-            winner = GetComponent<PlayerController_FF>().isPlayer1 ? GameData.name1 : GameData.name2;
-            score = Mathf.RoundToInt(score * 1.5f);
-        }
-        SceneManager.LoadScene("END(FF)", LoadSceneMode.Additive);
-        yield return null;
-        Scene end = SceneManager.GetSceneByName("END(FF)");
-        if (GetComponent<PlayerController_FF>().isPlayer1)
-        {
-            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score, score, winner);
-        }
-        else
-        {
-            end.GetRootGameObjects()[0].GetComponent<Points_FF>().UpdateScore(score, GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score, winner);
-        }
-        SceneManager.UnloadSceneAsync(gameObject.scene);
+        GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score = Mathf.RoundToInt(GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score * 1.5f);
+        GameData.score1 = GetComponent<PlayerController_FF>().isPlayer1 ? GameData.score1 = GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score : score;
+        GameData.score2 = !GetComponent<PlayerController_FF>().isPlayer1 ? GameData.score1 = GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score : score;
+        GameData.p1Winner = !GetComponent<PlayerController_FF>().isPlayer1;
+        SceneManager.LoadScene("END(FF)");
     }
 
     public void ChangeHealth(float value)
