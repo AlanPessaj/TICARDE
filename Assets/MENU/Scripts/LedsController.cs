@@ -13,7 +13,7 @@ public class LedsController : MonoBehaviour
 
     private void Awake()
     {
-        conexion = GAMEMANAGER.Instance.GetComponent<conexion>();
+        conexion = GetComponent<conexion>();
     }
 
     public void FillAll(string color)
