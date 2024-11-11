@@ -2,3 +2,21 @@ sonido
 interaccion con hardware
 TESTEAR
 https://danielsoundsgood.itch.io/free-deadly-kombat-sound-effects
+
+
+PLAYER1 = true
+PLAYER2 = false
+
+Tomar daño:
+StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(player, "RED"));
+
+Usar habilidad normal:
+StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(player, "BLUE"));
+
+Usar ulti:
+StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(player, "MAGENTA"));
+
+TERMINAR:
+
+GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(ganador, "GREEN");
+GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(perdedor, "RED");
