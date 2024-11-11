@@ -77,12 +77,3 @@ public class NameInputManager : MonoBehaviour
     }
 }
 
-public static class GameData
-{
-    public static string name1;
-    public static string name2;
-    public static int char1;
-    public static int char2;
-    public static string game;
-}
-

@@ -535,15 +535,15 @@ public class PlayerController_FT : MonoBehaviour
 
     void HitBall(int direction, ShotType shotType, bool serve = false)
     {
-        PointReplay.instance.replay = new List<Frame>();
-        PointReplay.instance.iDirection = direction;
-        PointReplay.instance.shot = shotType;
-        PointReplay.instance.wasPlayer1 = isPlayer1;
-        PointReplay.instance.wasServe = serve;
-        PointReplay.instance.iBallPos = shot.ball.transform.position;
-        PointReplay.instance.iP1Pos = isPlayer1 ? transform.position : gameManager.player1.transform.position;
-        PointReplay.instance.iP2Pos = !isPlayer1 ? transform.position : gameManager.player2.transform.position;
-        PointReplay.instance.shot = shotType;
+        PointReplay_FT.instance.replay = new List<Frame>();
+        PointReplay_FT.instance.iDirection = direction;
+        PointReplay_FT.instance.shot = shotType;
+        PointReplay_FT.instance.wasPlayer1 = isPlayer1;
+        PointReplay_FT.instance.wasServe = serve;
+        PointReplay_FT.instance.iBallPos = shot.ball.transform.position;
+        PointReplay_FT.instance.iP1Pos = isPlayer1 ? transform.position : gameManager.player1.transform.position;
+        PointReplay_FT.instance.iP2Pos = !isPlayer1 ? transform.position : gameManager.player2.transform.position;
+        PointReplay_FT.instance.shot = shotType;
         GetComponent<AudioSource>().Play();
         shot.ball.bounced = false;
         shot.ball.wasPlayer1 = isPlayer1;

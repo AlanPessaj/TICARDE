@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PointReplay : MonoBehaviour
+public class PointReplay_FT : MonoBehaviour
 {
-    public static PointReplay instance;
+    public static PointReplay_FT instance;
     public List<Frame> replay = new List<Frame>();
     [HideInInspector] public int iDirection;
     [HideInInspector] public ShotType shot;

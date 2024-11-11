@@ -126,7 +126,7 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p1
-                    PointReplay.instance.ShowReplay(gameManager.player1);
+                    PointReplay_FT.instance.ShowReplay(gameManager.player1);
                     bounced = false;
                 }
                 else bounced = true;
@@ -136,7 +136,7 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p2
-                    PointReplay.instance.ShowReplay(gameManager.player2);
+                    PointReplay_FT.instance.ShowReplay(gameManager.player2);
                     bounced = false;
                 }
                 else bounced = true;
@@ -159,7 +159,7 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p1
-                    PointReplay.instance.ShowReplay(gameManager.player1);
+                    PointReplay_FT.instance.ShowReplay(gameManager.player1);
                     secondServe = false;
                 }
                 else
@@ -172,7 +172,7 @@ public class BallMover_FT : MonoBehaviour
                     }
                     else
                     {
-                        PointReplay.instance.ShowReplay(gameManager.player2);
+                        PointReplay_FT.instance.ShowReplay(gameManager.player2);
                         secondServe = false;
                     }
                 }
@@ -182,7 +182,7 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p2
-                    PointReplay.instance.ShowReplay(gameManager.player2);
+                    PointReplay_FT.instance.ShowReplay(gameManager.player2);
                     secondServe = false;
                 }
                 else
@@ -195,7 +195,7 @@ public class BallMover_FT : MonoBehaviour
                     }
                     else
                     {
-                        PointReplay.instance.ShowReplay(gameManager.player1);
+                        PointReplay_FT.instance.ShowReplay(gameManager.player1);
                         secondServe = false;
                     }
                 }
