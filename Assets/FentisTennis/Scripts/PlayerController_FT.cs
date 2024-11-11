@@ -36,6 +36,7 @@ public class PlayerController_FT : MonoBehaviour
     public static bool inReplay;
     public static int frameIndex;
     public static Frame currentFrame;
+    public AudioClip wooshSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -453,6 +454,7 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (driveRotation >= 1)
             {
+                if (!didDrive) GetComponent<AudioSource>().PlayOneShot(wooshSFX);
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                 racket.transform.Rotate(90, 0, 0);
                 driveRotation = 0;
@@ -481,6 +483,7 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (lobRotation >= 1)
             {
+                if (!didLob) GetComponent<AudioSource>().PlayOneShot(wooshSFX);
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                 racket.transform.Rotate(0, 0, -180);
                 racket.transform.localPosition = new Vector3(0, 0, -3f);
@@ -521,6 +524,7 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (smashRotation >= 1)
             {
+                if (!didSmash) GetComponent<AudioSource>().PlayOneShot(wooshSFX);
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                 racket.transform.localPosition = new Vector3(0, 0, -3f);
                 smashRotation = 0;

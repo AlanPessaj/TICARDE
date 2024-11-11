@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 39752210}
   m_Layer: 12
   m_Name: downOut
-  m_TagString: Untagged
+  m_TagString: Estadio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 243194482}
   m_Layer: 12
   m_Name: backOut
-  m_TagString: Untagged
+  m_TagString: Estadio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1272,6 +1272,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2576802618454218392, guid: 0d83c24d7da23314a83f8aba745bac43,
+        type: 3}
+      propertyPath: m_TagString
+      value: Estadio
+      objectReference: {fileID: 0}
     - target: {fileID: 2576802618454218396, guid: 0d83c24d7da23314a83f8aba745bac43,
         type: 3}
       propertyPath: m_Layer
@@ -1378,7 +1383,7 @@ GameObject:
   - component: {fileID: 351468541}
   m_Layer: 12
   m_Name: RightOutFloor
-  m_TagString: Untagged
+  m_TagString: Estadio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3735,7 +3740,7 @@ GameObject:
   - component: {fileID: 1284749238}
   m_Layer: 12
   m_Name: rightOut
-  m_TagString: Untagged
+  m_TagString: Estadio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5066,6 +5071,7 @@ MonoBehaviour:
   doingDrive: 0
   doingLob: 0
   doingSmash: 0
+  wooshSFX: {fileID: 8300000, guid: 003b7b8dc2c23844c96ca982a5a2394f, type: 3}
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5573,7 +5579,7 @@ GameObject:
   - component: {fileID: 1941531712}
   m_Layer: 12
   m_Name: leftOut
-  m_TagString: Untagged
+  m_TagString: Estadio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5868,6 +5874,7 @@ MonoBehaviour:
   doingDrive: 0
   doingLob: 0
   doingSmash: 0
+  wooshSFX: {fileID: 8300000, guid: 003b7b8dc2c23844c96ca982a5a2394f, type: 3}
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6085,7 +6092,7 @@ GameObject:
   - component: {fileID: 2036329153}
   m_Layer: 12
   m_Name: frontOut
-  m_TagString: Untagged
+  m_TagString: Estadio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6176,7 +6183,7 @@ GameObject:
   - component: {fileID: 2050430075}
   m_Layer: 12
   m_Name: LeftOutFloor
-  m_TagString: Untagged
+  m_TagString: Estadio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

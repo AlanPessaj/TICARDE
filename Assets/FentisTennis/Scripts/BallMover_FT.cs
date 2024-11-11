@@ -153,7 +153,7 @@ public class BallMover_FT : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
-            if (other.gameObject.name == "cancha") GetComponent<AudioSource>().Play();
+            if (other.gameObject.tag == "Estadio") GetComponent<AudioSource>().Play();
             if (other.gameObject.name == "red") GetComponents<AudioSource>()[1].Play();
             if (wasPlayer1)
             {
@@ -167,16 +167,13 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("1");
                     if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
                     {
-                        Debug.Log("2a");
                         secondServe = true;
                         gameManager.HandleServe();
                     }
                     else
                     {
-                        Debug.Log("2b");
                         //Punto para p2
                         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "RED"));
                         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "GREEN"));
