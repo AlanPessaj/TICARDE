@@ -40,4 +40,6 @@ public static class GameData
     public static int char1;
     public static int char2;
     public static string game;
+    public static int score1;
+    public static int score2;
 }
