@@ -17,13 +17,14 @@ public class UIManager_FF : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        /*if (Input.GetKeyDown(KeyCode.H))
         {
             UI.transform.GetChild(0).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxHealth, health)), 0, 0);
             UI.transform.GetChild(1).localPosition = new Vector3(Mathf.Lerp(385, 0, Mathf.InverseLerp(0, maxXP, XP)), -38.4f, 0);
-        }
+        }*/
         if (health <= 0 && !died)
         {
+            GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().noDamage = true;
             GetComponent<Animator>().SetTrigger("die");
             died = true;
         }

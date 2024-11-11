@@ -29,10 +29,10 @@ public class ShotManager_FT : MonoBehaviour
         {
             Debug.Log(PredictShot(GameObject.Find("Player1"), ShotType.drive));
         }*/
-        if (Input.GetKeyDown(KeyCode.G))
+        /*if (Input.GetKeyDown(KeyCode.G))
         {
             FindShot(0, ShotType.drive, false, false, true);
-        }
+        }*/
     }
 
     public float[] PredictShot(GameObject player, ShotType type)

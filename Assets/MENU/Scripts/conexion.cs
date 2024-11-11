@@ -28,7 +28,7 @@ public class conexion : MonoBehaviour
             if (!arduinoPort.IsOpen) // Check if the port is already open
             {
                 arduinoPort.Open();
-                Debug.Log("Serial Port Opened");
+                //Debug.Log("Serial Port Opened");
             }
         }
         catch (System.Exception e)
@@ -42,10 +42,10 @@ public class conexion : MonoBehaviour
     private void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.Return))
+        /*if(Input.GetKeyDown(KeyCode.Return))
         {
             SendMessagestoArduino(id, prueba);
-        }
+        }*/
 
     }
 
@@ -56,7 +56,7 @@ public class conexion : MonoBehaviour
         {
                 string msg2send = identifier + "," + string.Join(",", messages);
                 arduinoPort.WriteLine(msg2send);
-                Debug.Log(msg2send);
+                //Debug.Log(msg2send);
         }
         catch (System.Exception e)
         {
@@ -76,7 +76,7 @@ public class conexion : MonoBehaviour
         if (arduinoPort.IsOpen)
         {
             arduinoPort.Close();
-            Debug.Log("Serial Port Closed");
+            //Debug.Log("Serial Port Closed");
         }
         else
         {
