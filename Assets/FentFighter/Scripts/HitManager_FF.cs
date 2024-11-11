@@ -304,7 +304,7 @@ public class HitManager_FF : MonoBehaviour
                 animator.SetTrigger("upperCutHit");
                 break;
             case DamageType.Smash:
-                animator.SetTrigger("smashHit");
+                if (GetComponent<PlayerController_FF>().airborne) animator.SetTrigger("airSmashHit"); else animator.SetTrigger("floorSmashHit");
                 break;
             case DamageType.SlideKick:
                 animator.SetTrigger("slideKickHit");

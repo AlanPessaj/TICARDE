@@ -20,6 +20,7 @@ public class PlayerController_FF : MonoBehaviour
     bool isColliding;
     Animator animator;
     public float slideKickCooldown;
+    public AudioClip abilitySound;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,7 @@ public class PlayerController_FF : MonoBehaviour
         if (slideKickCooldown > 0) slideKickCooldown -= Time.deltaTime;
         float movDirection = 0;
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
-        if (((facingLeft && IsClose(transform.eulerAngles.y, 90)) || (!facingLeft && IsClose(transform.eulerAngles.y, 270))) && !InState("turnAround")) animator.SetTrigger("turnAround");
+        if (((facingLeft && IsClose(transform.eulerAngles.y, 90)) || (!facingLeft && IsClose(transform.eulerAngles.y, 270))) && !InState("turnAround") && !InState("crouchedTurnAround")) animator.SetTrigger("turnAround");
         if (isPlayer1)
         {
             if (Input.GetKey(KeyCode.D) && !InState("death") && !InState("hit_slideKick"))
@@ -441,6 +442,7 @@ public class PlayerController_FF : MonoBehaviour
         if (GetComponent<UIManager_FF>().RemoveXP(25))
         {
             animator.SetTrigger("ability");
+            GetComponent<AudioSource>().PlayOneShot(abilitySound);
             StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(isPlayer1, "BLUE"));
             GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             temp.GetComponent<LinearMover_FF>().goingLeft = facingLeft;
@@ -453,6 +455,7 @@ public class PlayerController_FF : MonoBehaviour
         if (GetComponent<UIManager_FF>().RemoveXP(100))
         {
             animator.SetTrigger("ability");
+            GetComponent<AudioSource>().PlayOneShot(abilitySound);
             StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
             GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             temp.GetComponent<LinearMover_FF>().goingLeft = facingLeft;
