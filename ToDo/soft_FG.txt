@@ -1,4 +1,4 @@
-TESTEAR JUEGO
+TESTEAR
 -----------------------------------------------------------------------------
 RECORDAR IMPORTANTISIMO, SI SE CAMBIA ALGUN PREFAB CAMBIAR TAMBIEN EN LAS TILES
 EXTRA:
