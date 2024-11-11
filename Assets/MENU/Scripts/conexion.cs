@@ -6,7 +6,7 @@ using System.IO.Ports;
 
 public class conexion : MonoBehaviour
 {
-    SerialPort arduinoPort = new SerialPort("COM9", 9600); // Corrected port name format
+    SerialPort arduinoPort = new SerialPort("COM6", 9600); // Corrected port name format
 
     public string id;
     public string[] prueba;
@@ -35,8 +35,6 @@ public class conexion : MonoBehaviour
         {
             Debug.LogError("Failed to open serial port: " + e.Message);
         }
-
-        SendMessagestoArduino("0", null);
     }
 
     private void Update()

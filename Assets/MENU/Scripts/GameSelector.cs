@@ -14,6 +14,10 @@ public class GameSelector : MonoBehaviour
     bool firstTime = true;
 
     // Update is called once per frame
+    void Start()
+    {
+        GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("0", new string[] { "" });
+    }
     void Update()
     {
         if (animationFinished)

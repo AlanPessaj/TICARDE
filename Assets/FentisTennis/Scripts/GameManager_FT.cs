@@ -67,10 +67,10 @@ public class GameManager_FT : MonoBehaviour
     }
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Game(FT)");
-        }*/
+            GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), points1.ToString(), games2.ToString(), points2.ToString() });
+        }
         if (serving)
         {
             if (throwingBall)

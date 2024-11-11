@@ -24,7 +24,7 @@ public class EndManager_FG : MonoBehaviour
         player2Score = GameData.score2;
         ticardemanager = GameObject.Find("TICARDEMANAGER").GetComponent<GAMEMANAGER>();
         ticardemanager.enabled = true;
-        ticardemanager.GetComponent<conexion>().SendMessagestoArduino("0", null);
+        ticardemanager.GetComponent<conexion>().SendMessagestoArduino("0", new string[]{ "" });
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name + " SCORE: ";
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text += player1Score.ToString();
         ScoreboardManager.SaveNewScore(player1Name, (int)player1Score, "FG");
