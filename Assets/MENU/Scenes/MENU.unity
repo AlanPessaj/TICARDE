@@ -398,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   prueba: []
+  COM: COM8
 --- !u!114 &351152834
 MonoBehaviour:
   m_ObjectHideFlags: 0
