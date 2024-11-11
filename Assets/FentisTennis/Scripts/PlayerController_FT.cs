@@ -536,6 +536,7 @@ public class PlayerController_FT : MonoBehaviour
 
     void HitBall(int direction, ShotType shotType, bool serve = false)
     {
+        if (inReplay) return;
         PointReplay_FT.instance.replay = new List<Frame>();
         PointReplay_FT.instance.iDirection = direction;
         PointReplay_FT.instance.shot = shotType;
