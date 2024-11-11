@@ -445,15 +445,8 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
-            if (isPlayer1)
-            {
-                generator.player1Score = transform.position.x;
-            }
-            else
-            {
-                generator.player2Score = transform.position.x;
-            }
-
+            if (isPlayer1) generator.player1Score = (int)transform.position.x;
+            else generator.player2Score = (int)transform.position.x;
             Instantiate(ghost, transform.position, Quaternion.identity).GetComponent<DieScript_FG>().playerGhost = true;
             gameObject.SetActive(false);
         }

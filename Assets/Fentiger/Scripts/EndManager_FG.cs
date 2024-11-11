@@ -18,12 +18,13 @@ public class EndManager_FG : MonoBehaviour
 
     private void Start()
     {
+        player1Name = GameData.name1;
+        player2Name = GameData.name2;
+        player1Score = GameData.score1;
+        player2Score = GameData.score2;
         ticardemanager = GameObject.Find("TICARDEMANAGER").GetComponent<GAMEMANAGER>();
         ticardemanager.enabled = true;
         ticardemanager.GetComponent<conexion>().SendMessagestoArduino("0", null);
-    }
-    public void UpdateValues()
-    {
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = player1Name + " SCORE: ";
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text += player1Score.ToString();
         ScoreboardManager.SaveNewScore(player1Name, (int)player1Score, "FG");
@@ -36,7 +37,7 @@ public class EndManager_FG : MonoBehaviour
         else
         {
             player2Canvas.SetActive(false);
-            player1Canvas.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
+            player1Canvas.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
         }
     }
 

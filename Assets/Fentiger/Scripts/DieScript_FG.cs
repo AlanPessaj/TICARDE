@@ -63,22 +63,8 @@ public class DieScript_FG : MonoBehaviour
 
     void GameOver()
     {
-        SceneManager.sceneLoaded += OnEndSceneLoaded;
-        SceneManager.LoadScene("End(FG)", LoadSceneMode.Additive);
-    }
-
-    private void OnEndSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == "End(FG)")
-        {
-            EndManager_FG endManager = scene.GetRootGameObjects()[0].GetComponent<EndManager_FG>();
-            endManager.player1Name = generator.player1Name;
-            endManager.player2Name = generator.player2Name;
-            endManager.player1Score = generator.player1Score;
-            endManager.player2Score = generator.player2Score;
-            endManager.UpdateValues();
-            SceneManager.UnloadSceneAsync(generator.gameObject.scene);
-            SceneManager.sceneLoaded -= OnEndSceneLoaded;
-        }
+        GameData.score1 = generator.player1Score;
+        GameData.score2 = generator.player2Score;
+        SceneManager.LoadScene("End(FG)");
     }
 }
