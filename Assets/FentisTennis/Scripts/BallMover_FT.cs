@@ -23,6 +23,9 @@ public class BallMover_FT : MonoBehaviour
     float a;
     float r1;
     public bool secondServe;
+    public int outBounces = 0;
+    public bool? outPlayer;
+
     // Update is called once per frame
     public void Update()
     {
@@ -119,15 +122,14 @@ public class BallMover_FT : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Floor") && outPlayer == null)
         {
-            GetComponent<AudioSource>().Play();
             if (wasPlayer1)
             {
                 if (bounced)
                 {
                     //Punto para p1
-                    PointReplay_FT.instance.ShowReplay(gameManager.player1);
+                    outPlayer = true;
                     bounced = false;
                 }
                 else bounced = true;
@@ -137,11 +139,77 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p2
-                    PointReplay_FT.instance.ShowReplay(gameManager.player2);
+                    outPlayer = false;
                     bounced = false;
                 }
                 else bounced = true;
             }
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Out") && outPlayer == null)
+        {
+            if (wasPlayer1)
+            {
+                if (bounced)
+                {
+                    //Punto para p1
+                    outPlayer = true;
+                    secondServe = false;
+                }
+                else
+                {
+                    if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
+                    {
+                        outPlayer = true;
+                        secondServe = true;
+                    }
+                    else
+                    {
+                        //Punto para p2
+                        outPlayer = false;
+                        secondServe = false;
+                    }
+                }
+            }
+            else
+            {
+                if (bounced)
+                {
+                    //Punto para p2
+                    outPlayer = false;
+                    secondServe = false;
+                }
+                else
+                {
+                    if (gameManager.lastServePlayer1 == -1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
+                    {
+                        outPlayer = true;
+                        secondServe = true;
+                    }
+                    else
+                    {
+                        //Punto para p1
+                        outPlayer = true;
+                        secondServe = false;
+                    }
+                }
+            }
+            bounced = false;
+        }
+        if (outPlayer != null) outBounces++;
+        if (outBounces >= 3)
+        {
+            if (secondServe) gameManager.HandleServe();
+            else
+            {
+                StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink((bool)outPlayer, "GREEN"));
+                StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink((bool)outPlayer, "RED"));
+                PointReplay_FT.instance.ShowReplay((bool)outPlayer ? gameManager.player1 : gameManager.player2);
+            }
+            outPlayer = null;
+            outBounces = 0;
+        }
+        if (other.GetContact(0).normal.y >= 0.5f)
+        {
             height *= vCOR;
             float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR * (1 + vCOR) * height, 0f, Mathf.Infinity);
             Vector3 direction = (ePoint.position - sPoint.position).normalized;
@@ -151,64 +219,13 @@ public class BallMover_FT : MonoBehaviour
             UpdateQuadratic();
             step = 0f;
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
+        else
         {
-            if (other.gameObject.name == "red") GetComponents<AudioSource>()[1].Play();
-            if (wasPlayer1)
-            {
-                if (bounced)
-                {
-                    //Punto para p1
-                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "GREEN"));
-                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "RED"));
-                    PointReplay_FT.instance.ShowReplay(gameManager.player1);
-                    secondServe = false;
-                }
-                else
-                {
-                    if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
-                    {
-                        secondServe = true;
-                        gameManager.HandleServe();
-                    }
-                    else
-                    {
-                        //Punto para p2
-                        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "RED"));
-                        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "GREEN"));
-                        PointReplay_FT.instance.ShowReplay(gameManager.player2);
-                        secondServe = false;
-                    }
-                }
-            }
-            else
-            {
-                if (bounced)
-                {
-                    //Punto para p2
-                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "RED"));
-                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "GREEN"));
-                    PointReplay_FT.instance.ShowReplay(gameManager.player2);
-                    secondServe = false;
-                }
-                else
-                {
-                    if (gameManager.lastServePlayer1 == -1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
-                    {
-                        secondServe = true;
-                        gameManager.HandleServe();
-                    }
-                    else
-                    {
-                        //Punto para p1
-                        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "GREEN"));
-                        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "RED"));
-                        PointReplay_FT.instance.ShowReplay(gameManager.player1);
-                        secondServe = false;
-                    }
-                }
-            }
-            bounced = false;
+            step = 1 - step;
+            Vector3 temp = sPoint.position;
+            sPoint.position = ePoint.position;
+            ePoint.position = temp;
         }
+        if (other.gameObject.name == "red") GetComponents<AudioSource>()[1].Play(); else GetComponent<AudioSource>().Play();
     }
 }

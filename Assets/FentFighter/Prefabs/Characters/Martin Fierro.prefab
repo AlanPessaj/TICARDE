@@ -2512,6 +2512,7 @@ GameObject:
   - component: {fileID: 2025080443070713162}
   - component: {fileID: 505130418493849440}
   - component: {fileID: 5115233120263885581}
+  - component: {fileID: 82520007741680848}
   m_Layer: 10
   m_Name: Martin Fierro
   m_TagString: Untagged
@@ -2603,6 +2604,7 @@ MonoBehaviour:
   punchHit: 0
   airborne: 0
   slideKickCooldown: 0
+  abilitySound: {fileID: 0}
   facingLeft: 0
   isPlayer1: 0
   pMovDirection: 0
@@ -2642,6 +2644,19 @@ MonoBehaviour:
   XPMultiplier: 1.5
   smashForce: 15
   knockbackForce: 250
+  detectedFall: 0
+  slideKickDamage: 10
+  smashDamage: 20
+  blockSounds:
+  - {fileID: 8300000, guid: 0fa65155e2c3b57408b3205a9afb29fb, type: 3}
+  - {fileID: 8300000, guid: b0792b2d74e4bc445848b149bbf04993, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 5672fafc45b98894981b75264d5af52e, type: 3}
+  - {fileID: 8300000, guid: b3ddc12897577eb4f850469bdc4c5a1d, type: 3}
+  - {fileID: 8300000, guid: 03886685ea2278b469d1ffaf3a6d3d75, type: 3}
+  - {fileID: 8300000, guid: 057dfdda516fbe54b8a1e4bf3dc7a513, type: 3}
+  - {fileID: 8300000, guid: fc804fb2dcdd5e24ba41e14adbf9d78a, type: 3}
+  - {fileID: 8300000, guid: 9ccda051d9563fb4396049b3e2f51b3e, type: 3}
 --- !u!114 &5115233120263885581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,6 +2676,104 @@ MonoBehaviour:
   XP: 0
   noDamage: 0
   score: 0
+  deathSound: {fileID: 8300000, guid: 1720fea8e6f8ba44d80a2e67739d6af4, type: 3}
+  slowDownSound: {fileID: 8300000, guid: b67fe4e073179024ba19a42244d92380, type: 3}
+--- !u!82 &82520007741680848
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805740824578844996}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5805740824578844998
 GameObject:
   m_ObjectHideFlags: 0

@@ -142,6 +142,11 @@ public class PointReplay_FT : MonoBehaviour
         ball.active = false;
         showReplay = true;
     }
+
+    void OnDestroy()
+    {
+        PlayerController_FT.inReplay = false;
+    }
 }
 
 public class Frame
