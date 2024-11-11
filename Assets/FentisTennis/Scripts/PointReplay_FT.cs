@@ -107,8 +107,15 @@ public class PointReplay_FT : MonoBehaviour
         temp[0] = cameras[0];
         for (int i = 0; i < ogCameras.Length; i++)
         {
+            int times = 0;
             Camera camera = ogCameras[i];
             retry:
+            times++;
+            if (times > 100)
+            {
+                temp = cameras;
+                break;
+            }
             int index = Random.Range(1, temp.Length);
             if (emergency) break;
             if (temp[index] != null) goto retry;
