@@ -14,8 +14,8 @@ public class Points_FT : MonoBehaviour
     private void Start()
     {
         GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("0", new string[]{ "" });
-        txtPlayer1Score.text = GameData.name1 + " " + GameData.score1.ToString();
-        txtPlayer2Score.text = GameData.name2 + " " + GameData.score2.ToString();
+        txtPlayer1Score.text = GameData.name1 + " SCORE: " + GameData.score1.ToString();
+        txtPlayer2Score.text = GameData.name2 + " SCORE: " + GameData.score2.ToString();
         txtWinner.text = (GameData.p1Winner ? GameData.name1 : GameData.name2) + " WINS!";
         ScoreboardManager.SaveNewScore(GameData.name1, GameData.score1, "FT");
         ScoreboardManager.SaveNewScore(GameData.name2, GameData.score2, "FT");
