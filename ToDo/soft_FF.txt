@@ -1,4 +1,4 @@
-sonido
+sonido +-
 interaccion con hardware
 TESTEAR
 https://danielsoundsgood.itch.io/free-deadly-kombat-sound-effects
