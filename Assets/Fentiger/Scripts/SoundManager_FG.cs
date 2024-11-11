@@ -15,6 +15,7 @@ public class SoundManager_FG : MonoBehaviour
     public AudioClip step;
     public AudioClip roadStep;
     public AudioClip laserImpact;
+    public AudioClip abilitySound;
     int level = 0;
     void Update()
     {

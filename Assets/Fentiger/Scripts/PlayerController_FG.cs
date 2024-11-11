@@ -323,17 +323,17 @@ public class PlayerController_FG : MonoBehaviour
     void HeartAbility()
     {
         //3
-        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
         if (!transform.GetChild(0).gameObject.activeSelf)
         {
             if (GetComponent<UIManager_FG>().RemoveXP(75)) transform.GetChild(0).gameObject.SetActive(true);
+            generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().abilitySound);
+            StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
         }
     }
 
     void HippoAbility()
     {
         //2
-        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
         if (Physics.Raycast(transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Out")) && hippoCheck.transform.name == "agua")
         {
             if (GetComponent<UIManager_FG>().RemoveXP(50))
@@ -346,6 +346,8 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo,  new Vector3(transform.position.x + 1, -2.7f, transform.position.z - 2), Quaternion.Euler(0, 180, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
                 }
+                generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().abilitySound);
+                StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
             }
         }
     }
@@ -353,10 +355,11 @@ public class PlayerController_FG : MonoBehaviour
     void PortalAbility()
     {
         //2
-        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
         if (GetComponent<UIManager_FG>().RemoveXP(50))
         {
             Instantiate(generator.specials[2], new Vector3(transform.position.x + 0.5f, -1.5f, transform.position.z), Quaternion.Euler(0, 0, 90));
+            generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().abilitySound);
+            StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
         }
     }
 
