@@ -42,6 +42,7 @@ public class NameController : MonoBehaviour
                     Color targetColor = finished ? Color.green : Color.white;
                     foreach (RectTransform caracter in chars) caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
                     manager.GetComponent<AudioSource>().PlayOneShot(selectSound);
+                    if (manager.multiplayer) GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(true, "GREEN");
                 }
 
                 if (!finished)
@@ -105,6 +106,7 @@ public class NameController : MonoBehaviour
                     Color targetColor = finished ? Color.green : Color.white;
                     foreach (RectTransform caracter in chars) caracter.GetComponent<TextMeshProUGUI>().color = targetColor;
                     manager.GetComponent<AudioSource>().PlayOneShot(selectSound);
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(false, "GREEN");
                 }
 
                 if (!finished)

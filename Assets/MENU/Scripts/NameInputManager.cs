@@ -40,7 +40,11 @@ public class NameInputManager : MonoBehaviour
                 joinButton.color = new Color(joinButton.color.r, joinButton.color.g, joinButton.color.b, Mathf.PingPong(Time.time * 1.5f, 1.0f));
                 player1.anchoredPosition = new Vector2(0, -80);
                 player2.gameObject.SetActive(false);
-                if (Input.GetButtonDown("A2") || Input.GetButtonDown("B2") || Input.GetButtonDown("C2")) multiplayer = true;
+                if (Input.GetButtonDown("A2") || Input.GetButtonDown("B2") || Input.GetButtonDown("C2"))
+                {
+                    multiplayer = true;
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().FullRound("BLUE");
+                }
                 if (player1.GetComponent<NameController>().finished) instance = StartCoroutine(Finish());
             }
         }
@@ -48,6 +52,7 @@ public class NameInputManager : MonoBehaviour
 
     IEnumerator Finish()
     {
+        GAMEMANAGER.Instance.GetComponent<LedsController>().Blink("GREEN");
         if (!multiplayer) joinButton.gameObject.SetActive(false);
         for (int i = 0; i < 10; i++)
         {

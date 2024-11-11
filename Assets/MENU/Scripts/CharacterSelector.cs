@@ -361,6 +361,7 @@ public class CharacterSelector : MonoBehaviour
                     {
                         GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
                         GetComponent<AudioSource>().Play();
+                        GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "GREEN");
                     }
                 }
             }
@@ -606,6 +607,7 @@ public class CharacterSelector : MonoBehaviour
                         }
                         GetComponents<AudioSource>()[1].clip = selectionSFX[translate[hIndex2, vIndex2]];
                         GetComponents<AudioSource>()[1].Play();
+                        GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(false, "GREEN");
                     }
                 }
             }

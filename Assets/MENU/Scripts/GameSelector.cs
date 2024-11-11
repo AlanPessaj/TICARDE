@@ -20,7 +20,11 @@ public class GameSelector : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                if ((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
+                if ((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
+                {
+                    GetComponent<AudioSource>().Play();
+                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(true, "GREEN"));
+                }
                 if (index > 0)
                 {
                     index--;
@@ -37,7 +41,11 @@ public class GameSelector : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
-                if ((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
+                if ((GetComponent<AudioSource>().time > 0.15f && GetComponent<AudioSource>().isPlaying) || !GetComponent<AudioSource>().isPlaying)
+                {
+                    GetComponent<AudioSource>().Play();
+                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(false, "GREEN"));
+                }
                 if (index < logos.Length - 1)
                 {
                     index++;
@@ -68,6 +76,7 @@ public class GameSelector : MonoBehaviour
                 }
                 GetComponent<AudioSource>().clip = joinTitle;
                 GetComponent<AudioSource>().Play();
+                StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().Blink("GREEN"));
                 firstTime = false;
                 if (!loadleaderboard) loadtitle = true;
             }
@@ -87,6 +96,7 @@ public class GameSelector : MonoBehaviour
                 }
                 GetComponent<AudioSource>().clip = joinTitle;
                 GetComponent<AudioSource>().Play();
+                StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().Blink("GREEN"));
                 firstTime = false;
                 if (!loadtitle) loadleaderboard = true;
             }
