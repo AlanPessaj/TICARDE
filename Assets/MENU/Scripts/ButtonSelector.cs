@@ -13,9 +13,10 @@ public class ButtonSelector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             SelectButton(playAgain);
+            GetComponent<AudioSource>().Play();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && selectedButton != null)
+        if (Input.GetButtonDown("A") && selectedButton != null)
         {
             selectedButton.onClick.Invoke();
         }
@@ -23,6 +24,7 @@ public class ButtonSelector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             SelectButton(menu);
+            GetComponent<AudioSource>().Play();
         }
     }
 
