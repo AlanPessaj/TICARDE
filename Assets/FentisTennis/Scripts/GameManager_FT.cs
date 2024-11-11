@@ -237,7 +237,7 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (games1 >= 3)
                 {
-                    StartCoroutine(NextScene());
+                    NextScene();
                 }
             }
             else
@@ -309,7 +309,7 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (games2 >= 3)
                 {
-                    StartCoroutine(NextScene());
+                    NextScene();
                 }
             }
             transition.SetActive(true);
@@ -338,12 +338,12 @@ public class GameManager_FT : MonoBehaviour
         player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
     }
 
-    IEnumerator NextScene()
+    void NextScene()
     {
         if (games1 >= 3) score1 = Mathf.RoundToInt(score1 * 1.5f); else score2 = Mathf.RoundToInt(score2 * 1.5f);
-        SceneManager.LoadScene("END(FT)", LoadSceneMode.Additive);
-        yield return null;
-        SceneManager.GetSceneByName("END(FT)").GetRootGameObjects()[0].GetComponent<Points_FT>().UpdateScore(score1, score2);
-        SceneManager.UnloadSceneAsync(gameObject.scene);
+        GameData.score1 = score1;
+        GameData.score2 = score2;
+        GameData.p1Winner = games1 >= 3;
+        SceneManager.LoadScene("END(FT)");
     }
 }
