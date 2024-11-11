@@ -1,0 +1,354 @@
+fileFormatVersion: 2
+guid: 5226acef02187634d895ff435c117461
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: arena
+    100002: caactus 3
+    100004: caactus 3.001
+    100006: CACTUS 2
+    100008: cactus 4
+    100010: CACTUS PETIT 2
+    100012: CACTUS PETIT 2.001
+    100014: cielo
+    100016: cielo.001
+    100018: cielo.002
+    100020: //RootNode
+    100022: eial
+    100024: espinas cactus 2
+    100026: espinas cactus 4
+    100028: "monta\xF1a gris "
+    100030: "monta\xF1a marron"
+    100032: NUBE 1
+    100034: NUBE 2
+    100036: NUBE 3
+    100038: NUBE 4
+    100040: NUBE 5
+    100042: NUBE 6
+    100044: Object_2.004
+    100046: Object_3
+    100048: pasto.001
+    100050: pasto.002
+    100052: pasto.003
+    100054: pasto.004
+    100056: pasto.005
+    100058: plata rodadora 1
+    100060: plnta rodadora 2
+    100062: roca 1
+    100064: roca 2
+    100066: roca 3
+    400000: arena
+    400002: caactus 3
+    400004: caactus 3.001
+    400006: CACTUS 2
+    400008: cactus 4
+    400010: CACTUS PETIT 2
+    400012: CACTUS PETIT 2.001
+    400014: cielo
+    400016: cielo.001
+    400018: cielo.002
+    400020: //RootNode
+    400022: eial
+    400024: espinas cactus 2
+    400026: espinas cactus 4
+    400028: "monta\xF1a gris "
+    400030: "monta\xF1a marron"
+    400032: NUBE 1
+    400034: NUBE 2
+    400036: NUBE 3
+    400038: NUBE 4
+    400040: NUBE 5
+    400042: NUBE 6
+    400044: Object_2.004
+    400046: Object_3
+    400048: pasto.001
+    400050: pasto.002
+    400052: pasto.003
+    400054: pasto.004
+    400056: pasto.005
+    400058: plata rodadora 1
+    400060: plnta rodadora 2
+    400062: roca 1
+    400064: roca 2
+    400066: roca 3
+    2100000: arena
+    2100002: "monta\xF1a marron"
+    2100004: "monta\xF1a gris"
+    2100006: material nube
+    2100008: cactus 1 y 3
+    2100010: Material.002
+    2100012: planta rodadora
+    2100014: piedra 1
+    2100016: piedra 2
+    2100018: pastito
+    2100020: Material.001
+    2100022: flor
+    2100024: cactus petit
+    2100026: cactus 2 y 4
+    2100028: sol
+    2100030: rayos
+    2300000: arena
+    2300002: caactus 3
+    2300004: caactus 3.001
+    2300006: CACTUS 2
+    2300008: cactus 4
+    2300010: CACTUS PETIT 2
+    2300012: CACTUS PETIT 2.001
+    2300014: cielo
+    2300016: cielo.001
+    2300018: cielo.002
+    2300020: eial
+    2300022: espinas cactus 2
+    2300024: espinas cactus 4
+    2300026: "monta\xF1a gris "
+    2300028: "monta\xF1a marron"
+    2300030: NUBE 1
+    2300032: NUBE 2
+    2300034: NUBE 3
+    2300036: NUBE 4
+    2300038: NUBE 5
+    2300040: NUBE 6
+    2300042: Object_2.004
+    2300044: Object_3
+    2300046: pasto.001
+    2300048: pasto.002
+    2300050: pasto.003
+    2300052: pasto.004
+    2300054: pasto.005
+    2300056: plata rodadora 1
+    2300058: plnta rodadora 2
+    2300060: roca 1
+    2300062: roca 2
+    2300064: roca 3
+    3300000: arena
+    3300002: caactus 3
+    3300004: caactus 3.001
+    3300006: CACTUS 2
+    3300008: cactus 4
+    3300010: CACTUS PETIT 2
+    3300012: CACTUS PETIT 2.001
+    3300014: cielo
+    3300016: cielo.001
+    3300018: cielo.002
+    3300020: eial
+    3300022: espinas cactus 2
+    3300024: espinas cactus 4
+    3300026: "monta\xF1a gris "
+    3300028: "monta\xF1a marron"
+    3300030: NUBE 1
+    3300032: NUBE 2
+    3300034: NUBE 3
+    3300036: NUBE 4
+    3300038: NUBE 5
+    3300040: NUBE 6
+    3300042: Object_2.004
+    3300044: Object_3
+    3300046: pasto.001
+    3300048: pasto.002
+    3300050: pasto.003
+    3300052: pasto.004
+    3300054: pasto.005
+    3300056: plata rodadora 1
+    3300058: plnta rodadora 2
+    3300060: roca 1
+    3300062: roca 2
+    3300064: roca 3
+    4300000: arena
+    4300002: "monta\xF1a marron"
+    4300004: "monta\xF1a gris "
+    4300006: NUBE 2
+    4300008: NUBE 5
+    4300010: caactus 3
+    4300012: cielo
+    4300014: plata rodadora 1
+    4300016: plnta rodadora 2
+    4300018: eial
+    4300020: NUBE 1
+    4300022: NUBE 4
+    4300024: roca 2
+    4300026: NUBE 6
+    4300028: NUBE 3
+    4300030: roca 3
+    4300032: pasto.001
+    4300034: pasto.002
+    4300036: pasto.003
+    4300038: pasto.004
+    4300040: roca 1
+    4300042: cielo.001
+    4300044: cielo.002
+    4300046: pasto.005
+    4300048: caactus 3.001
+    4300050: CACTUS PETIT 2
+    4300052: CACTUS 2
+    4300054: espinas cactus 2
+    4300056: cactus 4
+    4300058: espinas cactus 4
+    4300060: Object_2.004
+    4300062: Object_3
+    4300064: CACTUS PETIT 2.001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: ca193bd4bf96e6842b96a7b8aba4b98a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: bc8c72958781fb14082ed232c6fb59be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arena
+    second: {fileID: 2100000, guid: e7ef0d76fe2915d4e94f0d89e4ed39db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cactus 1 y 3
+    second: {fileID: 2100000, guid: 99552410d051eeb4da80087c5e761a2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cactus 2 y 4
+    second: {fileID: 2100000, guid: 961b87379f7bc064f9acf4cb765eb7b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cactus petit
+    second: {fileID: 2100000, guid: 23c9147f39b02d04090890c417b0f393, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flor
+    second: {fileID: 2100000, guid: de525bcfa646e30449735131933ed60f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material nube
+    second: {fileID: 2100000, guid: 35ef187dd7c878240b44e8be3ae535f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "monta\xF1a gris"
+    second: {fileID: 2100000, guid: ee26d52a7fadcc640a4c2cad4e48fc47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "monta\xF1a marron"
+    second: {fileID: 2100000, guid: 6a4117b1a39e8e041821d7ece5a0001c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pastito
+    second: {fileID: 2100000, guid: 5212a09ad77081749a709d01a76b0fe3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: piedra 1
+    second: {fileID: 2100000, guid: f4f821ed2ba5f794c95d18d5543b25cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: piedra 2
+    second: {fileID: 2100000, guid: 6ba9ebfcf40d30b44846059f4dbe095a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: planta rodadora
+    second: {fileID: 2100000, guid: 3536bd6388583974884aaa26065190bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rayos
+    second: {fileID: 2100000, guid: ff54c7338b57f934491fa1cade87c84c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sol
+    second: {fileID: 2100000, guid: 7eb288f20a7bab840ba5d5bacb7e8f62, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
