@@ -157,7 +157,7 @@ public class Generator_FG : MonoBehaviour
                 else if(isTherePlayer1) conexion.SendMessagestoArduino("5", new string[] { players[0].transform.position.x.ToString(), "DEAD" });
                 else conexion.SendMessagestoArduino("5", new string[] { "DEAD", players[1].transform.position.x.ToString() });
             }
-            arduinoTimer = 1f;
+            arduinoTimer = 2f;
         }
     }
 

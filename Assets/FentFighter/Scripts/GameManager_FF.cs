@@ -71,7 +71,7 @@ public class GameManager_FF : MonoBehaviour
         if (arduinoTimer <= 0)
         {
             conexion.SendMessagestoArduino("6", new string[] {players[0].GetComponent<UIManager_FF>().score.ToString(), players[1].GetComponent<UIManager_FF>().score.ToString() });
-            arduinoTimer = 5f;
+            arduinoTimer = 2f;
         }
     }
 }
