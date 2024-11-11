@@ -104,7 +104,8 @@ public class BallMover_FT : MonoBehaviour
             }
             if(counter > 10000 && failSafe)
             {
-                Destroy(gameObject);
+                CreateQuadratic();
+                Debug.LogError("ABORTAR APPROXIMATE QUADRATIC");
                 break;
             }
         } while (Mathf.Abs(qEPoint.y - BuildAndRun(qEPoint.x, r1)) > aproxThreshold);

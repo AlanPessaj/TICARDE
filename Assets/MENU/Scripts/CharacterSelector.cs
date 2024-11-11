@@ -112,6 +112,7 @@ public class CharacterSelector : MonoBehaviour
             p2txt[0, 0].SetActive(false);
             p1txt[0, 0].transform.position += new Vector3(50, 0, 0);
         }
+        SendArduino();
     }
 
     // Update is called once per frame
