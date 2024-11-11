@@ -13,6 +13,7 @@ public class UIManager_FF : MonoBehaviour
     public bool noDamage;
     public int score;
     bool died = false;
+    public AudioClip deathSound;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +25,7 @@ public class UIManager_FF : MonoBehaviour
         }*/
         if (health <= 0 && !died)
         {
+            GetComponent<AudioSource>().PlayOneShot(deathSound);
             GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().noDamage = true;
             GetComponent<Animator>().SetTrigger("die");
             died = true;

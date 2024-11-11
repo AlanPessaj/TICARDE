@@ -18,6 +18,8 @@ public class HitManager_FF : MonoBehaviour
     int hTrigger;
     public float slideKickDamage;
     public float smashDamage;
+    public AudioClip[] blockSounds;
+    public AudioClip[] hitSounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,19 +49,7 @@ public class HitManager_FF : MonoBehaviour
                                 if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                                 {
                                     //Debug.Log("(block cabeza pecho piernas)");
-                                    if (!detectedBlock)
-                                    {
-                                        if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
-                                        {
-                                            TakeDamage();
-                                        }
-                                        else
-                                        {
-                                            GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                                            detectedBlock = true;
-                                            damageProperties.disableAction = ResetDetection;
-                                        }
-                                    }
+                                    CheckBlock();
                                 }
                                 else
                                 {
@@ -81,19 +71,7 @@ public class HitManager_FF : MonoBehaviour
                             if (blocking)
                             {
                                 //Debug.Log("(block cabeza pecho)");
-                                if (!detectedBlock)
-                                {
-                                    if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
-                                    {
-                                        TakeDamage();
-                                    }
-                                    else
-                                    {
-                                        GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                                        detectedBlock = true;
-                                        damageProperties.disableAction = ResetDetection;
-                                    }
-                                }
+                                CheckBlock();
                             }
                             else
                             {
@@ -111,19 +89,7 @@ public class HitManager_FF : MonoBehaviour
                             if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                             {
                                 //Debug.Log("(block cabeza piernas)");
-                                if (!detectedBlock)
-                                {
-                                    if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
-                                    {
-                                        TakeDamage();
-                                    }
-                                    else
-                                    {
-                                        GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                                        detectedBlock = true;
-                                        damageProperties.disableAction = ResetDetection;
-                                    }
-                                }
+                                CheckBlock();
                             }
                             else
                             {
@@ -147,19 +113,7 @@ public class HitManager_FF : MonoBehaviour
                         if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                         {
                             //Debug.Log("(block pecho piernas)");
-                            if (!detectedBlock)
-                            {
-                                if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
-                                {
-                                    TakeDamage();
-                                }
-                                else
-                                {
-                                    GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                                    detectedBlock = true;
-                                    damageProperties.disableAction = ResetDetection;
-                                }
-                            }
+                            CheckBlock();
                         }
                         else
                         {
@@ -192,12 +146,7 @@ public class HitManager_FF : MonoBehaviour
                         else
                         {
                             //Debug.Log("(block cabeza)");
-                            if (!detectedBlock)
-                            {
-                                GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                                detectedBlock = true;
-                                damageProperties.disableAction = ResetDetection;
-                            }
+                            CheckBlock();
                         }
                     }
                     else
@@ -217,12 +166,7 @@ public class HitManager_FF : MonoBehaviour
                         else
                         {
                             //Debug.Log("(block pecho)");
-                            if (!detectedBlock)
-                            {
-                                GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                                detectedBlock = true;
-                                damageProperties.disableAction = ResetDetection;
-                            }
+                            CheckBlock();
                         }
                     }
                     else
@@ -236,19 +180,7 @@ public class HitManager_FF : MonoBehaviour
                     if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                     {
                         //Debug.Log("(block piernas)");
-                        if (!detectedBlock)
-                        {
-                            if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
-                            {
-                                TakeDamage();
-                            }
-                            else
-                            {
-                                GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                                detectedBlock = true;
-                                damageProperties.disableAction = ResetDetection;
-                            }
-                        }
+                        CheckBlock();
                     }
                     else
                     {
@@ -306,7 +238,7 @@ public class HitManager_FF : MonoBehaviour
             else detectedAbility = true;
             if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut && damageProperties.type != DamageType.Smash && damageProperties.type != DamageType.SlideKick)
                 CalculateKnockback();
-            if (!GetComponent<PlayerController_FF>().InState("death")) PlayHitAnimation();
+            if (!GetComponent<PlayerController_FF>().InState("death") && GetComponent<UIManager_FF>().health > 0) PlayHitAnimation();
             damageProperties.disableAction = ResetDetection;
         }
     }
@@ -315,6 +247,7 @@ public class HitManager_FF : MonoBehaviour
     {
         if (!detectedFall)
         {
+            GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
             GetComponent<UIManager_FF>().ChangeHealth(smash ? -smashDamage : -slideKickDamage);
             detectedFall = true;
         }
@@ -342,8 +275,27 @@ public class HitManager_FF : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(Mathf.Clamp(knockback, 0, Mathf.Infinity) * knockbackForce * -transform.forward);
     }
 
+    void CheckBlock()
+    {
+        if (!detectedBlock)
+        {
+            if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
+            {
+                TakeDamage();
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(blockSounds[Random.Range(0, blockSounds.Length)]);
+                GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
+                detectedBlock = true;
+                damageProperties.disableAction = ResetDetection;
+            }
+        }
+    }
+
     void PlayHitAnimation()
     {
+        GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
         switch (damageProperties.type)  
         {
             case DamageType.UpperCut:

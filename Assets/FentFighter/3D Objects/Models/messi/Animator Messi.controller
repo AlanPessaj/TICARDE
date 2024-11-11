@@ -150,6 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: 0
   slideKickCooldown: 0
+  wooshSounds:
+  - {fileID: 8300000, guid: 8f20cdbcf63bbae41ba738f5be41afb4, type: 3}
+  - {fileID: 8300000, guid: 19d658dc69482be4181c2917f7acfe21, type: 3}
+  - {fileID: 8300000, guid: 06f52f7759c6c44419ba8b8957fa9348, type: 3}
 --- !u!114 &114298374089065064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +168,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: 0
   slideKickCooldown: 0
+  wooshSounds:
+  - {fileID: 8300000, guid: 8f20cdbcf63bbae41ba738f5be41afb4, type: 3}
+  - {fileID: 8300000, guid: 19d658dc69482be4181c2917f7acfe21, type: 3}
+  - {fileID: 8300000, guid: 06f52f7759c6c44419ba8b8957fa9348, type: 3}
 --- !u!114 &114327673699588766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +198,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: 0
   slideKickCooldown: 0
+  wooshSounds:
+  - {fileID: 8300000, guid: 8f20cdbcf63bbae41ba738f5be41afb4, type: 3}
+  - {fileID: 8300000, guid: 19d658dc69482be4181c2917f7acfe21, type: 3}
+  - {fileID: 8300000, guid: 06f52f7759c6c44419ba8b8957fa9348, type: 3}
 --- !u!114 &114444148687718426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,6 +216,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: 0
   slideKickCooldown: 0
+  wooshSounds:
+  - {fileID: 8300000, guid: 8f20cdbcf63bbae41ba738f5be41afb4, type: 3}
+  - {fileID: 8300000, guid: 19d658dc69482be4181c2917f7acfe21, type: 3}
+  - {fileID: 8300000, guid: 06f52f7759c6c44419ba8b8957fa9348, type: 3}
 --- !u!114 &114523230568820466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,6 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: 2
   slideKickCooldown: 4
+  wooshSounds:
+  - {fileID: 8300000, guid: 507309227bd45774fa605e11b5bf0dcb, type: 3}
 --- !u!114 &114718817284090816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,6 +298,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: 0
   slideKickCooldown: 0
+  wooshSounds:
+  - {fileID: 8300000, guid: 8f20cdbcf63bbae41ba738f5be41afb4, type: 3}
+  - {fileID: 8300000, guid: 19d658dc69482be4181c2917f7acfe21, type: 3}
+  - {fileID: 8300000, guid: 06f52f7759c6c44419ba8b8957fa9348, type: 3}
 --- !u!114 &114739517161301088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2938,7 +2960,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 4fe618cb959bed842876b990943d4414, type: 3}
-  m_Tag: OLIVIA FALTA LA ANIMACION LPM
+  m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -3347,7 +3369,7 @@ AnimatorStateMachine:
     m_Position: {x: 384, y: 648, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102519745165500016}
-    m_Position: {x: -672, y: 456, z: 0}
+    m_Position: {x: -672, y: 444, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102681890950854086}
     m_Position: {x: -36, y: -132, z: 0}
