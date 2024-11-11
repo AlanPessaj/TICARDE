@@ -123,7 +123,8 @@ public class PointReplay_FT : MonoBehaviour
     {
         if (firstTime)
         {
-            scorer.GetComponent<PlayerController_FT>().gameManager.GetComponents<AudioSource>()[1].Play();
+            GetComponents<AudioSource>()[1].Play();
+            GAMEMANAGER.Instance.GetComponent<LedsController>().FullRound("BLUE");
             firstTime = false;
         }
         if (PlayerController_FT.inReplay || showReplay) return; 

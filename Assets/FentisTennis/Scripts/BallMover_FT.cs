@@ -159,12 +159,13 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p1
+                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "GREEN"));
+                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "RED"));
                     PointReplay_FT.instance.ShowReplay(gameManager.player1);
                     secondServe = false;
                 }
                 else
                 {
-                    //Punto para p2
                     if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
                     {
                         secondServe = true;
@@ -172,6 +173,9 @@ public class BallMover_FT : MonoBehaviour
                     }
                     else
                     {
+                        //Punto para p2
+                        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "RED"));
+                        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "GREEN"));
                         PointReplay_FT.instance.ShowReplay(gameManager.player2);
                         secondServe = false;
                     }
@@ -182,12 +186,13 @@ public class BallMover_FT : MonoBehaviour
                 if (bounced)
                 {
                     //Punto para p2
+                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "RED"));
+                    StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "GREEN"));
                     PointReplay_FT.instance.ShowReplay(gameManager.player2);
                     secondServe = false;
                 }
                 else
                 {
-                    //Punto para p1
                     if (gameManager.lastServePlayer1 == -1 && !secondServe && gameManager.justServed)
                     {
                         secondServe = true;
@@ -195,6 +200,9 @@ public class BallMover_FT : MonoBehaviour
                     }
                     else
                     {
+                        //Punto para p1
+                        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "GREEN"));
+                        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "RED"));
                         PointReplay_FT.instance.ShowReplay(gameManager.player1);
                         secondServe = false;
                     }

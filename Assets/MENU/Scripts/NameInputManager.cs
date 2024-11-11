@@ -52,7 +52,7 @@ public class NameInputManager : MonoBehaviour
 
     IEnumerator Finish()
     {
-        GAMEMANAGER.Instance.GetComponent<LedsController>().Blink("GREEN");
+        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().Blink("GREEN"));
         if (!multiplayer) joinButton.gameObject.SetActive(false);
         for (int i = 0; i < 10; i++)
         {

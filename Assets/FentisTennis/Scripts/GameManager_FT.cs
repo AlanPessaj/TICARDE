@@ -179,6 +179,8 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (points2 < 4 && points1 >= 5)
                 {
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "GREEN");
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(false, "RED");
                     games1++;
                     score1 += 50;
                     points1 = 0;
@@ -186,6 +188,8 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (points2 < 3 && points2 > 0 && points1 >= 4)
                 {
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "GREEN");
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(false, "RED");
                     games1++;
                     score1 += 50;
                     points1 = 0;
@@ -193,6 +197,8 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (points2 == 0 && points1 >= 3)
                 {
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "GREEN");
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(false, "RED");
                     games1++;
                     score1 += 50;
                     points1 = 0;
@@ -251,6 +257,8 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (points1 < 4 && points2 >= 5)
                 {
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "RED");
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(false, "GREEN");
                     games2++;
                     score2 += 50;
                     points1 = 0;
@@ -258,6 +266,8 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (points1 < 3 && points1 > 0 && points2 >= 4)
                 {
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "RED");
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(false, "GREEN");
                     games2++;
                     score2 += 50;
                     points1 = 0;
@@ -265,6 +275,8 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (points1 == 0 && points2 >= 3)
                 {
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "RED");
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(false, "GREEN");
                     games2++;
                     score2 += 50;
                     points1 = 0;
@@ -307,10 +319,7 @@ public class GameManager_FT : MonoBehaviour
                         player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
                         break;
                 }
-                if (games2 >= 3)
-                {
-                    NextScene();
-                }
+                if (games2 >= 3) NextScene();
             }
             transition.SetActive(true);
             GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), points1.ToString(), games2.ToString(), points2.ToString() });
