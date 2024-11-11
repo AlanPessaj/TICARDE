@@ -6,14 +6,14 @@ using System.IO.Ports;
 
 public class conexion : MonoBehaviour
 {
-    SerialPort arduinoPort = new SerialPort("COM6", 9600); // Corrected port name format
-
     public string id;
     public string[] prueba;
-
+    public string COM;
+    SerialPort arduinoPort; // Corrected port name format
     private void Awake()
     {
         // Set the serial port properties
+        arduinoPort = new SerialPort(COM, 9600);
         arduinoPort.Parity = Parity.None;
         arduinoPort.StopBits = StopBits.One;
         arduinoPort.DataBits = 8;
@@ -54,7 +54,7 @@ public class conexion : MonoBehaviour
         {
                 string msg2send = identifier + "," + string.Join(",", messages);
                 arduinoPort.WriteLine(msg2send);
-                //Debug.Log(msg2send);
+                Debug.Log(msg2send);
         }
         catch (System.Exception e)
         {

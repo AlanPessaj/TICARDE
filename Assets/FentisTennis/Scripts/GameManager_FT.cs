@@ -323,6 +323,7 @@ public class GameManager_FT : MonoBehaviour
             }
             transition.SetActive(true);
             GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), points1.ToString(), games2.ToString(), points2.ToString() });
+            //Debug.Log(games1.ToString() + points1.ToString() + games2.ToString() + points2.ToString());
             HandleServe();
         }
     }
