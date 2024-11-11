@@ -312,6 +312,7 @@ public class PlayerController_FT : MonoBehaviour
                 direction = 0;
             }
         }
+        direction *= gameManager.lastServePlayer1;
     }
 
     void CheckButtons(bool serve = false)
