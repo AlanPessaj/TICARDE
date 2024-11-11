@@ -40,6 +40,7 @@ public class GameManager_FT : MonoBehaviour
     Vector3 player2PreServePos;
     float ballHeight;
     public bool justServed = true;
+    float arduinoTimer = 0f;
 
 
     void Awake()
@@ -63,13 +64,14 @@ public class GameManager_FT : MonoBehaviour
             break;
         }
         stepSize = initialStepSize;
-        GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), points1.ToString(), games2.ToString(), points2.ToString() });
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        arduinoTimer -= Time.deltaTime;
+        if (arduinoTimer <= 0)
         {
-            GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), points1.ToString(), games2.ToString(), points2.ToString() });
+            GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text, games2.ToString(), player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text });
+            arduinoTimer = 3f;
         }
         if (serving)
         {
@@ -323,8 +325,6 @@ public class GameManager_FT : MonoBehaviour
                 if (games2 >= 3) NextScene();
             }
             transition.SetActive(true);
-            GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { games1.ToString(), points1.ToString(), games2.ToString(), points2.ToString() });
-            //Debug.Log(games1.ToString() + points1.ToString() + games2.ToString() + points2.ToString());
             HandleServe();
         }
     }
