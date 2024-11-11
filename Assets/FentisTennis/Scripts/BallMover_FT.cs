@@ -221,10 +221,11 @@ public class BallMover_FT : MonoBehaviour
         }
         else
         {
-            step = 1 - step;
-            Vector3 temp = sPoint.position;
-            sPoint.position = ePoint.position;
-            ePoint.position = temp;
+            step = 0;
+            Vector3 temp = transform.position - sPoint.position;
+            sPoint.position = transform.position;
+            ePoint.position = (temp * -1f) + sPoint.position;
+            UpdateQuadratic();
         }
         if (other.gameObject.name == "red") GetComponents<AudioSource>()[1].Play(); else GetComponent<AudioSource>().Play();
     }

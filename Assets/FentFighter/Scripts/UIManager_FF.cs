@@ -41,8 +41,8 @@ public class UIManager_FF : MonoBehaviour
         GetComponent<Animator>().enabled = false;
         Time.timeScale = 1;
         GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score = Mathf.RoundToInt(GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score * 1.5f);
-        GameData.score1 = GetComponent<PlayerController_FF>().isPlayer1 ? GameData.score1 = GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score : score;
-        GameData.score2 = !GetComponent<PlayerController_FF>().isPlayer1 ? GameData.score1 = GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score : score;
+        GameData.score1 = GetComponent<PlayerController_FF>().isPlayer1 ? GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score : score;
+        GameData.score2 = !GetComponent<PlayerController_FF>().isPlayer1 ? GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().score : score;
         GameData.p1Winner = !GetComponent<PlayerController_FF>().isPlayer1;
         SceneManager.LoadScene("END(FF)");
     }
