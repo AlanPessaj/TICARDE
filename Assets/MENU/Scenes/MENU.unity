@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 351152832}
   - component: {fileID: 351152831}
   - component: {fileID: 351152833}
+  - component: {fileID: 351152834}
   m_Layer: 0
   m_Name: TICARDEMANAGER
   m_TagString: Untagged
@@ -397,6 +398,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   prueba: []
+--- !u!114 &351152834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351152830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36b600ccf11c424fb39c68472707be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &669299944
 GameObject:
   m_ObjectHideFlags: 0

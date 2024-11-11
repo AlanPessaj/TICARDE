@@ -436,7 +436,6 @@ GameObject:
   - component: {fileID: 287369564}
   - component: {fileID: 287369569}
   - component: {fileID: 287369567}
-  - component: {fileID: 287369570}
   - component: {fileID: 287369565}
   - component: {fileID: 287369568}
   - component: {fileID: 287369566}
@@ -897,18 +896,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reliveSound: {fileID: 8300000, guid: 62b7da7b95b308840920a48bd5bd68bc, type: 3}
   soundManager: {fileID: 287369567}
---- !u!114 &287369570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287369560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e36b600ccf11c424fb39c68472707be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &369083365
 GameObject:
   m_ObjectHideFlags: 0
