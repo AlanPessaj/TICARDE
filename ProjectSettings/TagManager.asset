@@ -7,7 +7,6 @@ TagManager:
   - Zone
   - Undefined
   - RandomSpawnSide
-  - Estadio
   layers:
   - Default
   - TransparentFX

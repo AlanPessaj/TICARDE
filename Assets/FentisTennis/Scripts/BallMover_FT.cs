@@ -153,7 +153,6 @@ public class BallMover_FT : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Out"))
         {
-            if (other.gameObject.tag == "Estadio") GetComponent<AudioSource>().Play();
             if (other.gameObject.name == "red") GetComponents<AudioSource>()[1].Play();
             if (wasPlayer1)
             {
