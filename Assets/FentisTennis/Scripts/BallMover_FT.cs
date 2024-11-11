@@ -167,13 +167,16 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("1");
                     if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
                     {
+                        Debug.Log("2a");
                         secondServe = true;
                         gameManager.HandleServe();
                     }
                     else
                     {
+                        Debug.Log("2b");
                         //Punto para p2
                         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(true, "RED"));
                         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(false, "GREEN"));
@@ -194,7 +197,7 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
-                    if (gameManager.lastServePlayer1 == -1 && !secondServe && gameManager.justServed)
+                    if (gameManager.lastServePlayer1 == -1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
                     {
                         secondServe = true;
                         gameManager.HandleServe();

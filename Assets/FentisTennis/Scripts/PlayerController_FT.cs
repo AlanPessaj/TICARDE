@@ -546,10 +546,10 @@ public class PlayerController_FT : MonoBehaviour
         PointReplay_FT.instance.iP2Pos = !isPlayer1 ? transform.position : gameManager.player2.transform.position;
         PointReplay_FT.instance.shot = shotType;
         GetComponent<AudioSource>().Play();
-        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(true, "YELLOW", false));
         shot.ball.bounced = false;
         shot.ball.wasPlayer1 = isPlayer1;
         shot.FindShot(direction, shotType, isPlayer1, serve);
+        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(true, "YELLOW", false));
     }
 
     public void ResetRaquet()
