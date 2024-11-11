@@ -247,6 +247,7 @@ public class HitManager_FF : MonoBehaviour
     {
         if (!detectedFall)
         {
+            StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(GetComponent<PlayerController_FF>().isPlayer1, "RED"));
             GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
             GetComponent<UIManager_FF>().ChangeHealth(smash ? -smashDamage : -slideKickDamage);
             detectedFall = true;
@@ -295,6 +296,7 @@ public class HitManager_FF : MonoBehaviour
 
     void PlayHitAnimation()
     {
+        StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(GetComponent<PlayerController_FF>().isPlayer1, "RED"));
         GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
         switch (damageProperties.type)  
         {

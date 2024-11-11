@@ -14,6 +14,7 @@ public class UIManager_FF : MonoBehaviour
     public int score;
     bool died = false;
     public AudioClip deathSound;
+    public AudioClip slowDownSound;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +27,9 @@ public class UIManager_FF : MonoBehaviour
         if (health <= 0 && !died)
         {
             GetComponent<AudioSource>().PlayOneShot(deathSound);
+            GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(GetComponent<PlayerController_FF>().isPlayer1, "GREEN");
+            GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(!GetComponent<PlayerController_FF>().isPlayer1, "RED");
+            gameObject.AddComponent<AudioSource>().PlayOneShot(slowDownSound);
             GetComponent<PlayerController_FF>().otherPlayer.GetComponent<UIManager_FF>().noDamage = true;
             GetComponent<Animator>().SetTrigger("die");
             died = true;

@@ -441,6 +441,7 @@ public class PlayerController_FF : MonoBehaviour
         if (GetComponent<UIManager_FF>().RemoveXP(25))
         {
             animator.SetTrigger("ability");
+            StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(isPlayer1, "BLUE"));
             GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             temp.GetComponent<LinearMover_FF>().goingLeft = facingLeft;
             temp.GetComponent<Damage_FF>().owner = gameObject;
@@ -452,6 +453,7 @@ public class PlayerController_FF : MonoBehaviour
         if (GetComponent<UIManager_FF>().RemoveXP(100))
         {
             animator.SetTrigger("ability");
+            StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
             GameObject temp = Instantiate(proyectile, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             temp.GetComponent<LinearMover_FF>().goingLeft = facingLeft;
             temp.transform.GetChild(1).gameObject.SetActive(true);
