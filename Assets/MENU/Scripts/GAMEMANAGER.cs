@@ -42,4 +42,5 @@ public static class GameData
     public static string game;
     public static int score1;
     public static int score2;
+    public static bool p1Winner;
 }
