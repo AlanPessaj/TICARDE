@@ -68,7 +68,7 @@ public class PlayerController_FG : MonoBehaviour
                         otherPlayer.transform.position = portal.GetComponent<Glad0s_FG>().redPortal.transform.position + Vector3.right * 0.5f;
                     }
                     generator.GenerateZones();
-                    generator.GetComponent<LedsController_FG>().FullRound("BLUE");
+                    generator.GetComponent<LedsController>().FullRound("BLUE");
                     portal.GetComponent<AudioSource>().Play();
                 }
             }
@@ -121,7 +121,7 @@ public class PlayerController_FG : MonoBehaviour
                         generator.GenerateZones();
                     }
                     generator.GenerateZones();
-                    generator.GetComponent<LedsController_FG>().FullRound("BLUE");
+                    generator.GetComponent<LedsController>().FullRound("BLUE");
                     portal.GetComponent<AudioSource>().Play();
                 }
             }
@@ -323,7 +323,7 @@ public class PlayerController_FG : MonoBehaviour
     void HeartAbility()
     {
         //3
-        StartCoroutine(generator.GetComponent<LedsController_FG>().SideBlink(isPlayer1, "MAGENTA"));
+        StartCoroutine(generator.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
         if (!transform.GetChild(0).gameObject.activeSelf)
         {
             if (GetComponent<UIManager_FG>().RemoveXP(75)) transform.GetChild(0).gameObject.SetActive(true);
@@ -333,7 +333,7 @@ public class PlayerController_FG : MonoBehaviour
     void HippoAbility()
     {
         //2
-        StartCoroutine(generator.GetComponent<LedsController_FG>().SideBlink(isPlayer1, "MAGENTA"));
+        StartCoroutine(generator.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
         if (Physics.Raycast(transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Out")) && hippoCheck.transform.name == "agua")
         {
             if (GetComponent<UIManager_FG>().RemoveXP(50))
@@ -353,7 +353,7 @@ public class PlayerController_FG : MonoBehaviour
     void PortalAbility()
     {
         //2
-        StartCoroutine(generator.GetComponent<LedsController_FG>().SideBlink(isPlayer1, "MAGENTA"));
+        StartCoroutine(generator.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
         if (GetComponent<UIManager_FG>().RemoveXP(50))
         {
             Instantiate(generator.specials[2], new Vector3(transform.position.x + 0.5f, -1.5f, transform.position.z), Quaternion.Euler(0, 0, 90));
@@ -418,7 +418,7 @@ public class PlayerController_FG : MonoBehaviour
     
     void Die()
     {
-        StartCoroutine(generator.GetComponent<LedsController_FG>().SideBlink(isPlayer1, "RED"));
+        StartCoroutine(generator.GetComponent<LedsController>().SideBlink(isPlayer1, "RED", generator.multiplayer, generator.isTherePlayer1));
         if (transform.GetChild(0).gameObject.activeSelf)
         {
             transform.GetChild(0).gameObject.SetActive(false);

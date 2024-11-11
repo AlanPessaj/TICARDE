@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LedsController_FG : MonoBehaviour
+public class LedsController : MonoBehaviour
 {
     conexion conexion;
-    Generator_FG generator;
 
     void Start()
     {
@@ -15,7 +14,6 @@ public class LedsController_FG : MonoBehaviour
     private void Awake()
     {
         conexion = GAMEMANAGER.Instance.GetComponent<conexion>();
-        generator = GetComponent<Generator_FG>();
     }
 
     public void FillAll(string color)
@@ -24,9 +22,9 @@ public class LedsController_FG : MonoBehaviour
         conexion.SendMessagestoArduino("12", new string[] { ColorTranslator(color) });
     }
 
-    public void FillSide(bool player1, string color)
+    public void FillSide(bool player1, string color, bool multiplayer = true)
     {
-        if (!generator.initialMultiplayer)
+        if (!multiplayer)
         {
             FillAll(color);
             return;
@@ -41,9 +39,9 @@ public class LedsController_FG : MonoBehaviour
         conexion.SendMessagestoArduino("15", new string[] { ColorTranslator(color) });
     }
 
-    public IEnumerator SideBlink(bool player1, string color)
+    public IEnumerator SideBlink(bool player1, string color, bool multiplayer = true, bool isTherePlayer1 = false)
     {
-        if (!generator.initialMultiplayer)
+        if (!multiplayer)
         {
             Blink(color);
             yield break;
@@ -63,24 +61,24 @@ public class LedsController_FG : MonoBehaviour
         conexion.SendMessagestoArduino(player, new string[] { "FFFFFF" });
         if (color == "RED")
         {
-            if (player1 && !generator.multiplayer && !generator.isTherePlayer1) FillSide(true, "RED");
-            else if (!player1 && !generator.multiplayer && !generator.isTherePlayer2) FillSide(false, "RED");
+            if (player1 && !multiplayer && isTherePlayer1) FillSide(true, "RED");
+            else if (!player1 && !multiplayer && !isTherePlayer1) FillSide(false, "RED");
         }
     }
 
-    public IEnumerator PickUpStar(bool player1)
+    public IEnumerator SingleBlink(bool player1, string color, bool multiplayer = true)
     {
         string player = "11";
         if (!player1) player = "12";
         
-        if (generator.initialMultiplayer) conexion.SendMessagestoArduino(player, new string[] { "000099" });
+        if (multiplayer) conexion.SendMessagestoArduino(player, new string[] { ColorTranslator(color) });
         else
         {
-            conexion.SendMessagestoArduino("11", new string[] { "000099" });
-            conexion.SendMessagestoArduino("12", new string[] { "000099" });
+            conexion.SendMessagestoArduino("11", new string[] { ColorTranslator(color) });
+            conexion.SendMessagestoArduino("12", new string[] { ColorTranslator(color) });
         }
         yield return new WaitForSeconds(0.3f);
-        if (generator.initialMultiplayer) conexion.SendMessagestoArduino(player, new string[] { "FFFFFF" });
+        if (multiplayer) conexion.SendMessagestoArduino(player, new string[] { "FFFFFF" });
         else
         {
             conexion.SendMessagestoArduino("11", new string[] { "FFFFFF" });
