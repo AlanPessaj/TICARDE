@@ -2926,8 +2926,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -157.3, y: 99.7}
-  m_SizeDelta: {x: 82.98541, y: 18.849442}
+  m_AnchoredPosition: {x: -142.1, y: 94.958}
+  m_SizeDelta: {x: 167.34122, y: 20.932598}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028252228
 MonoBehaviour:
@@ -4936,6 +4936,7 @@ MonoBehaviour:
   doingLob: 0
   doingSmash: 0
   wooshSFX: {fileID: 8300000, guid: 003b7b8dc2c23844c96ca982a5a2394f, type: 3}
+  DODRIVE: 0
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5739,6 +5740,7 @@ MonoBehaviour:
   doingLob: 0
   doingSmash: 0
   wooshSFX: {fileID: 8300000, guid: 003b7b8dc2c23844c96ca982a5a2394f, type: 3}
+  DODRIVE: 0
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
