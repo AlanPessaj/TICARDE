@@ -71,6 +71,7 @@ public class Generator_FG : MonoBehaviour
         }
         initialSpawn = false;
         if (initialMultiplayer) players[1].GetComponent<PlayerController_FG>().enabled = true;
+        else players[0].transform.position = Vector3.zero + Vector3.down * 2;
     }
 
 
