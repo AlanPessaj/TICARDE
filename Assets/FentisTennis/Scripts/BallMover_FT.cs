@@ -166,7 +166,7 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
-                    if (gameManager.lastServePlayer1 == 1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
+                    if (gameManager.lastServePlayer1 == 1 && !secondServe && !PlayerController_FT.inReplay)
                     {
                         secondServe = true;
                         gameManager.HandleServe();
@@ -193,7 +193,7 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
-                    if (gameManager.lastServePlayer1 == -1 && !secondServe && gameManager.justServed && !PlayerController_FT.inReplay)
+                    if (gameManager.lastServePlayer1 == -1 && !secondServe && !PlayerController_FT.inReplay)
                     {
                         secondServe = true;
                         gameManager.HandleServe();
