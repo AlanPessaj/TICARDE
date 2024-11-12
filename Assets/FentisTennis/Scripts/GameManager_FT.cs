@@ -40,6 +40,7 @@ public class GameManager_FT : MonoBehaviour
     Vector3 player2PreServePos;
     float ballHeight;
     float arduinoTimer = 0f;
+    public bool inServe;
 
 
     void Awake()
@@ -135,6 +136,7 @@ public class GameManager_FT : MonoBehaviour
             if (lastServePlayer1 == 1) GetComponent<CameraController_FT>().ResetPos();
             lastServePlayer1 = -1;
         }
+        inServe = true;
         goingToServe = true;
         player1PreServePos = player1.transform.position;
         player2PreServePos = player2.transform.position;

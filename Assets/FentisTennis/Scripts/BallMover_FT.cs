@@ -24,9 +24,9 @@ public class BallMover_FT : MonoBehaviour
     float r1;
     public bool secondServe;
     // Update is called once per frame
-    public void Update()
+    public void FixedUpdate()
     {
-        GetComponent<TrailRenderer>().enabled = active || gameManager.serving;
+        GetComponent<TrailRenderer>().emitting = active || gameManager.serving;
         if (active)
         {
             if (height < minheight && !rolling)
@@ -145,7 +145,7 @@ public class BallMover_FT : MonoBehaviour
             height *= vCOR;
             float distance = Mathf.Clamp(Vector3.Distance(sPoint.position, ePoint.position) - hCOR * (1 + vCOR) * height, 0f, Mathf.Infinity);
             Vector3 direction = (ePoint.position - sPoint.position).normalized;
-            sPoint.position = new Vector3(transform.position.x, other.transform.position.y + 0.5f, transform.position.z);
+            sPoint.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             Vector3 displacement = direction * distance;
             ePoint.position = new Vector3(displacement.x + sPoint.position.x, other.transform.position.y + 0.5f, displacement.z + sPoint.position.z);
             UpdateQuadratic();
@@ -166,7 +166,7 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
-                    if (gameManager.lastServePlayer1 == 1 && !secondServe && !PlayerController_FT.inReplay)
+                    if (gameManager.lastServePlayer1 == 1 && !secondServe && !PlayerController_FT.inReplay && gameManager.inServe)
                     {
                         secondServe = true;
                         gameManager.HandleServe();
@@ -193,7 +193,7 @@ public class BallMover_FT : MonoBehaviour
                 }
                 else
                 {
-                    if (gameManager.lastServePlayer1 == -1 && !secondServe && !PlayerController_FT.inReplay)
+                    if (gameManager.lastServePlayer1 == -1 && !secondServe && !PlayerController_FT.inReplay && gameManager.inServe)
                     {
                         secondServe = true;
                         gameManager.HandleServe();

@@ -35,7 +35,7 @@ public class ShotManager_FT : MonoBehaviour
         }*/
     }
 
-    public float[] PredictShot(GameObject player, ShotType type)
+    /*public float[] PredictShot(GameObject player, ShotType type)
     {
         Scene simulationScene = SceneManager.CreateScene("simulation " + player.name);
         Physics.autoSimulation = false;
@@ -110,7 +110,7 @@ public class ShotManager_FT : MonoBehaviour
         Physics.autoSimulation = true;
         ballHit = false;
         return results;
-    }
+    }*/
 
     public void FindShot(int direction, ShotType type, bool isPlayer1, bool serve = false, bool reset = false)
     {
