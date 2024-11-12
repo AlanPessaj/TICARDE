@@ -47,9 +47,19 @@ public class PlayerController_FT : MonoBehaviour
         transition = gameManager.transition;
     }
 
+    public bool DODRIVE;
+
     // Update is called once per frame
-    public void Update()
+    public void FixedUpdate()
     {
+        if (DODRIVE)
+        {
+            CheckDirection();
+            doingLob = true;
+            chargingLob = false;
+            lobRotation = Mathf.InverseLerp(315, 90, racketPivot.transform.localEulerAngles.z);
+            DODRIVE = false;
+        }
         Vector3 movement = new Vector3();
         if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0 || doingDrive || doingLob || doingSmash || (gameManager.serving && gameManager.serve == int.Parse(gameObject.name.Substring(gameObject.name.Length - 1))))
         {
@@ -390,7 +400,7 @@ public class PlayerController_FT : MonoBehaviour
             if (((Input.GetButtonDown("C" + player) && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("C" + player))) && !doingDrive && !doingLob && !doingSmash && smashRotation == 0 && driveRotation == 0 && lobRotation == 0 && canHit)
             {
                 ResetRaquet();
-                racket.transform.localPosition = new Vector3(0, 1f, -3f);
+                racket.transform.localPosition = new Vector3(0, 3f, -3f);
                 chargingSmash = true;
                 //empezar a moverse
             }
@@ -538,6 +548,7 @@ public class PlayerController_FT : MonoBehaviour
     void HitBall(int direction, ShotType shotType, bool serve = false)
     {
         if (inReplay) return;
+        gameManager.inServe = serve;
         PointReplay_FT.instance.replay = new List<Frame>();
         PointReplay_FT.instance.iDirection = direction;
         PointReplay_FT.instance.shot = shotType;
