@@ -244,10 +244,7 @@ public class GameManager_FT : MonoBehaviour
                         player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
                         break;
                 }
-                if (games1 >= 3)
-                {
-                    NextScene();
-                }
+                if (games1 >= 3) GameOverAnimation();
             }
             else
             {
@@ -322,7 +319,7 @@ public class GameManager_FT : MonoBehaviour
                         player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
                         break;
                 }
-                if (games2 >= 3) NextScene();
+                if (games2 >= 3) GameOverAnimation();
             }
             transition.SetActive(true);
             HandleServe();
@@ -347,6 +344,11 @@ public class GameManager_FT : MonoBehaviour
         player2Canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = games2.ToString();
         player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
         player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
+    }
+
+    void GameOverAnimation()
+    {
+        NextScene();
     }
 
     void NextScene()

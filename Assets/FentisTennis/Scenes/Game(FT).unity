@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2099,7 +2099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballHit: 0
   ball: {fileID: 1639290137}
-  driveHeight: 12
+  driveHeight: 14
   lobHeight: 20
   stepSize: 0.55
   finishedHit: 0
@@ -4936,7 +4936,6 @@ MonoBehaviour:
   doingLob: 0
   doingSmash: 0
   wooshSFX: {fileID: 8300000, guid: 003b7b8dc2c23844c96ca982a5a2394f, type: 3}
-  DODRIVE: 0
 --- !u!54 &1884093394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5740,7 +5739,6 @@ MonoBehaviour:
   doingLob: 0
   doingSmash: 0
   wooshSFX: {fileID: 8300000, guid: 003b7b8dc2c23844c96ca982a5a2394f, type: 3}
-  DODRIVE: 0
 --- !u!54 &2012602349
 Rigidbody:
   m_ObjectHideFlags: 0
