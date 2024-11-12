@@ -87,6 +87,11 @@ ModelImporter:
     100162: persona
     100164: remera
     100166: saco
+    100168: camisa
+    100170: 'cinturon '
+    100172: 'cuello '
+    100174: Pantalon
+    100176: Persona
     400000: Armature
     400002: //RootNode
     400004: mixamorig:Head
@@ -171,18 +176,36 @@ ModelImporter:
     400162: persona
     400164: remera
     400166: saco
+    400168: camisa
+    400170: 'cinturon '
+    400172: 'cuello '
+    400174: Pantalon
+    400176: Persona
     2100000: Material.002
     2100002: Material.001
+    2100004: Material.004
     4300000: pantalon
     4300002: persona
     4300004: remera
     4300006: saco
+    4300008: camisa
+    4300010: 'cinturon '
+    4300012: Persona
+    4300014: Pantalon
+    4300016: 'cuello '
     7400000: Armature|Armature|mixamo.com|Layer0
+    7400002: Armature|Armature|mixamo.com|Layer0.001
+    7400004: Armature|Armature|mixamo.com|Layer0.002
     9500000: //RootNode
     13700000: pantalon
     13700002: persona
     13700004: remera
     13700006: saco
+    13700008: camisa
+    13700010: 'cinturon '
+    13700012: 'cuello '
+    13700014: Pantalon
+    13700016: Persona
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -197,12 +220,111 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
+      does not match position in animation file:\n\t'mixamorig:LeftUpLeg' : position
+      error = 21682.716797 mm\n\t'mixamorig:LeftLeg' : position error = 87581.984375
+      mm\n\t'mixamorig:LeftFoot' : position error = 93842.960938 mm\n\t'mixamorig:LeftToeBase'
+      : position error = 23365.308594 mm\n\t'mixamorig:RightUpLeg' : position error
+      = 21396.605469 mm\n\t'mixamorig:RightLeg' : position error = 87760.390625 mm\n\t'mixamorig:RightFoot'
+      : position error = 93929.398438 mm\n\t'mixamorig:RightToeBase' : position error
+      = 24519.216797 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Armature|Armature|mixamo.com|Layer0' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'mixamorig:RightArm' has translation
-      animation that will be discarded.\n"
+      DOF on avatar to improve retargeting quality.\n\t'mixamorig:LeftArm' has translation
+      animation that will be discarded.\n\t'mixamorig:LeftForeArm' has translation
+      animation that will be discarded.\n\t'mixamorig:LeftHand' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandThumb2' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandIndex2' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandIndex3' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandMiddle2' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandMiddle3' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandRing2' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandRing3' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandPinky2' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandPinky3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightArm' has translation animation that
+      will be discarded.\n\t'mixamorig:RightForeArm' has translation animation that
+      will be discarded.\n\t'mixamorig:RightHand' has translation animation that will
+      be discarded.\n\t'mixamorig:RightHandThumb2' has translation animation that
+      will be discarded.\n\t'mixamorig:RightHandThumb3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandIndex2' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandIndex3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandMiddle2' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandMiddle3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandRing2' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandRing3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandPinky2' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandPinky3' has translation animation
+      that will be discarded.\n\nClip 'Armature|Armature|mixamo.com|Layer0.001' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'mixamorig:Spine1'
+      has translation animation that will be discarded.\n\t'mixamorig:Spine2' has
+      translation animation that will be discarded.\n\t'mixamorig:Neck' has translation
+      animation that will be discarded.\n\t'mixamorig:Head' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftArm' has translation animation that
+      will be discarded.\n\t'mixamorig:LeftForeArm' has translation animation that
+      will be discarded.\n\t'mixamorig:LeftHand' has translation animation that will
+      be discarded.\n\t'mixamorig:LeftHandThumb2' has translation animation that will
+      be discarded.\n\t'mixamorig:LeftHandThumb3' has translation animation that will
+      be discarded.\n\t'mixamorig:LeftHandIndex2' has translation animation that will
+      be discarded.\n\t'mixamorig:LeftHandIndex3' has translation animation that will
+      be discarded.\n\t'mixamorig:LeftHandMiddle2' has translation animation that
+      will be discarded.\n\t'mixamorig:LeftHandMiddle3' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandRing2' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandRing3' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandPinky2' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftHandPinky3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightArm' has translation animation that
+      will be discarded.\n\t'mixamorig:RightForeArm' has translation animation that
+      will be discarded.\n\t'mixamorig:RightHand' has translation animation that will
+      be discarded.\n\t'mixamorig:RightHandThumb2' has translation animation that
+      will be discarded.\n\t'mixamorig:RightHandThumb3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandIndex2' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandIndex3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandMiddle2' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandMiddle3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandRing2' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandRing3' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandPinky2' has translation animation
+      that will be discarded.\n\t'mixamorig:RightHandPinky3' has translation animation
+      that will be discarded.\n\t'mixamorig:LeftLeg' has translation animation that
+      will be discarded.\n\t'mixamorig:LeftFoot' has translation animation that will
+      be discarded.\n\t'mixamorig:RightLeg' has translation animation that will be
+      discarded.\n\nClip 'Armature|Armature|mixamo.com|Layer0.002' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'mixamorig:Spine1' has translation
+      animation that will be discarded.\n\t'mixamorig:Spine2' has translation animation
+      that will be discarded.\n\t'mixamorig:Neck' has translation animation that will
+      be discarded.\n\t'mixamorig:Head' has translation animation that will be discarded.\n\t'mixamorig:LeftArm'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftForeArm'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHand' has
+      translation animation that will be discarded.\n\t'mixamorig:LeftHandThumb2'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandThumb3'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandIndex2'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandIndex3'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandMiddle2'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandMiddle3'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandRing2'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandRing3'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandPinky2'
+      has translation animation that will be discarded.\n\t'mixamorig:LeftHandPinky3'
+      has translation animation that will be discarded.\n\t'mixamorig:RightArm' has
+      translation animation that will be discarded.\n\t'mixamorig:RightForeArm' has
+      translation animation that will be discarded.\n\t'mixamorig:RightHand' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandThumb2' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandThumb3' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandIndex2' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandIndex3' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandMiddle2' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandMiddle3' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandRing2' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandRing3' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandPinky2' has translation
+      animation that will be discarded.\n\t'mixamorig:RightHandPinky3' has translation
+      animation that will be discarded.\n\t'mixamorig:LeftLeg' has translation animation
+      that will be discarded.\n\t'mixamorig:RightLeg' has translation animation that
+      will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
