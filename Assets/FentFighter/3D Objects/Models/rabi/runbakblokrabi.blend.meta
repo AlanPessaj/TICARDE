@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d71c8e6ea8aa3a6409477eed5bb537d8
+guid: 04c2d507a39c312468890a4df66fd183
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -85,8 +85,8 @@ ModelImporter:
     100158: pantalon
     100160: persona
     100162: remera
-    100164: saco
-    100166: //RootNode
+    100164: //RootNode
+    100166: saco
     400000: Armature
     400002: mixamorig:Head
     400004: mixamorig:HeadTop_End
@@ -169,14 +169,14 @@ ModelImporter:
     400158: pantalon
     400160: persona
     400162: remera
-    400164: saco
-    400166: //RootNode
-    2100000: Material.001
-    2100002: Material.002
-    4300000: persona
-    4300002: remera
-    4300004: saco
-    4300006: pantalon
+    400164: //RootNode
+    400166: saco
+    2100000: Material.002
+    2100002: Material.001
+    4300000: pantalon
+    4300002: saco
+    4300004: remera
+    4300006: persona
     7400000: Armature|Armature|mixamo.com|Layer0
     9500000: //RootNode
     13700000: pantalon
@@ -235,7 +235,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
+    previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

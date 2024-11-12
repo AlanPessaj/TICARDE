@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da2fda0ac3a35fc4784faabda9ab21cc
+guid: 6de75dec78d6c69428dfa94c244facd0
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -135,7 +135,7 @@ ModelImporter:
     400126: mixamorig:Spine1
     400128: mixamorig:Spine2
     400130: //RootNode
-    7400000: Frisbee Throw
+    7400000: Crouch Walk Forward
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -166,25 +166,25 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Frisbee Throw
+      name: Crouch Walk Forward
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 87
+      lastFrame: 37
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -1010,7 +1010,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ad54f6253ad6e404fbdfe3dccb7c1445,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 251f54fe428831d4288983ac51c23b2d,
     type: 3}
   animationType: 3
   humanoidOversampling: 1
