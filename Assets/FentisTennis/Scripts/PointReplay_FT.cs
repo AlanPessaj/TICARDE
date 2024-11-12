@@ -62,12 +62,12 @@ public class PointReplay_FT : MonoBehaviour
             {
                 firstTime = true;
                 PlayerController_FT.replay = null;
-                GameManager_FT.instance.AddPoint(scorer);
                 PlayerController_FT.frameIndex = 0;
                 cameras[0].gameObject.SetActive(true);
                 cameras[cameraIndex].gameObject.SetActive(false);
                 exitingReplay = true;
                 RandomizeCameras();
+                GameManager_FT.instance.AddPoint(scorer);
                 return;
             }
             if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
