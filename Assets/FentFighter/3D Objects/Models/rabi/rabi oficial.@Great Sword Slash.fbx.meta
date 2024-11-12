@@ -168,7 +168,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Great Sword Slash
       takeName: mixamo.com
-      firstFrame: 0
+      firstFrame: 10
       lastFrame: 32
       wrapMode: 0
       orientationOffsetY: 0

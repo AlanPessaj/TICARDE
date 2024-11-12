@@ -1,10 +1,14 @@
 fileFormatVersion: 2
-guid: 37ede12876d5a234bb46e6a545109427
+guid: 7bb98a9e44f8fdc43aee225c2655d871
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
+    2100000: color  peron
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pelo peron
   externalObjects: {}
   materials:
     importMaterials: 1

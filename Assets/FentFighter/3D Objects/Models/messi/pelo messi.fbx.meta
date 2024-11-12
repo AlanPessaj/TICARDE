@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: e410b329be6e04540a3ba758ed25d58b
+guid: 2daebf51c92812b4cacb8b6953002ee7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Material
+    2100000: color messi
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pasto grande.001
+    4300000: pelo messi
   externalObjects: {}
   materials:
     importMaterials: 1

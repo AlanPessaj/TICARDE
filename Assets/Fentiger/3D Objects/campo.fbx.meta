@@ -1,20 +1,15 @@
 fileFormatVersion: 2
-guid: d38873721aea83f41b08c7e0c894c72c
+guid: e410b329be6e04540a3ba758ed25d58b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: rock_path
+    2100000: Material
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Plane
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rock_path
-    second: {fileID: 2100000, guid: 9ff37b80095096945847a2dc6da71bff, type: 2}
+    4300000: pasto grande.001
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
