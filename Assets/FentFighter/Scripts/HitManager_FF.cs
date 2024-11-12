@@ -298,6 +298,11 @@ public class HitManager_FF : MonoBehaviour
     {
         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(GetComponent<PlayerController_FF>().isPlayer1, "RED"));
         GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
+        if (GetComponent<PlayerController_FF>().InState("crouch") || GetComponent<PlayerController_FF>().InState("crouching") || GetComponent<PlayerController_FF>().InState("uncrouch") || GetComponent<PlayerController_FF>().InState("crouchedPunch") || GetComponent<PlayerController_FF>().InState("crouchedRun") || GetComponent<PlayerController_FF>().InState("crouchedRunBackwards") || GetComponent<PlayerController_FF>().InState("crouchedTurnAround"))
+        {
+            animator.SetTrigger("crouchHit");
+            return;
+        }
         switch (damageProperties.type)  
         {
             case DamageType.UpperCut:
