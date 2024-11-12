@@ -2084,6 +2084,7 @@ MonoBehaviour:
   canvas: {fileID: 823319289}
   transition: {fileID: 1933297168}
   lastServePlayer1: 1
+  inServe: 0
 --- !u!114 &645166232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4125,7 +4126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8150bfcf732fcd04b9d6e6e5bc3afa64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuActive: 0
+  menuActive: 1
 --- !u!4 &1535367285
 Transform:
   m_ObjectHideFlags: 0

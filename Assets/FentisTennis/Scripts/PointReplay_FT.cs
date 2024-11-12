@@ -36,7 +36,7 @@ public class PointReplay_FT : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (exitingReplay) { PlayerController_FT.inReplay = false; exitingReplay = false; }
         if (showReplay && !GameManager_FT.instance.transition.activeSelf)
@@ -55,6 +55,7 @@ public class PointReplay_FT : MonoBehaviour
             GameManager_FT.instance.player2.transform.position = iP2Pos;
             PlayerController_FT.inReplay = true;
             replay = new List<Frame>();
+            ball.GetComponent<TrailRenderer>().emitting = true;
         }
         if (PlayerController_FT.inReplay)
         {
@@ -72,6 +73,7 @@ public class PointReplay_FT : MonoBehaviour
             }
             if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
             {
+                ball.GetComponent<TrailRenderer>().emitting = false;
                 GameManager_FT.instance.player1.GetComponent<AudioSource>().Play();
                 cameras[cameraIndex].gameObject.SetActive(false);
                 if (cameraIndex < cameras.Length - 1) cameraIndex++; else cameraIndex = 1;
@@ -81,6 +83,7 @@ public class PointReplay_FT : MonoBehaviour
                 GetComponent<ShotManager_FT>().FindShot(iDirection, shot, wasPlayer1, wasServe);
                 GameManager_FT.instance.player1.transform.position = iP1Pos;
                 GameManager_FT.instance.player2.transform.position = iP2Pos;
+                ball.GetComponent<TrailRenderer>().emitting = true;
             }
             cameras[cameraIndex].transform.LookAt(ball.transform);
             if (cameras[cameraIndex].name.Contains("FollowX")) cameras[cameraIndex].transform.position = new Vector3(ball.transform.position.x, cameras[cameraIndex].transform.position.y, cameras[cameraIndex].transform.position.z);
@@ -128,6 +131,7 @@ public class PointReplay_FT : MonoBehaviour
 
     public void ShowReplay(GameObject scorer)
     {
+        ball.GetComponent<TrailRenderer>().emitting = false;
         if (firstTime)
         {
             GetComponents<AudioSource>()[1].Play();
