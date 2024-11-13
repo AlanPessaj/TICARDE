@@ -52,11 +52,9 @@ public class Generator_FG : MonoBehaviour
         multiplayer = GameData.name2 != "";
         player1Name = GameData.name1;
         player2Name = GameData.name2;
-        players[0].GetComponent<PlayerController_FG>().skins[0].SetActive(false);
         players[0].GetComponent<PlayerController_FG>().skins[GameData.char1].SetActive(true);
         if (multiplayer)
         {
-            players[1].GetComponent<PlayerController_FG>().skins[0].SetActive(false);
             players[1].GetComponent<PlayerController_FG>().skins[GameData.char2].SetActive(true);
             initialMultiplayer = true;
         }

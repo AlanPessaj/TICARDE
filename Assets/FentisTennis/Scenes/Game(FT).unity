@@ -2313,11 +2313,6 @@ MonoBehaviour:
   games2: 0
   score1: 0
   score2: 0
-  characters:
-  - {fileID: 2100000, guid: 992a0d325e59871498b998074e08f426, type: 2}
-  - {fileID: 2100000, guid: 866089fdf9023a14fbc0948fc9d3643a, type: 2}
-  - {fileID: 2100000, guid: 6e04f914e9ce2134599a3b7e4f0b5c2b, type: 2}
-  - {fileID: 2100000, guid: c52764941f1f0c64a969736af9d56a62, type: 2}
   player1Canvas: {fileID: 1177585469}
   player2Canvas: {fileID: 1673970352}
   canvas: {fileID: 823319289}
@@ -2824,7 +2819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &718049511
 Transform:
   m_ObjectHideFlags: 0
@@ -5264,6 +5259,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 25
+  skins:
+  - {fileID: 1935821641495534052}
+  - {fileID: 1702231500745533645}
+  - {fileID: 7521664452749384384}
+  - {fileID: 5558205466285747405}
   racketSpeed: 6
   racket: {fileID: 1973305278}
   racketPivot: {fileID: 886490317}
@@ -6067,6 +6067,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 25
+  skins:
+  - {fileID: 718049510}
+  - {fileID: 1777647}
+  - {fileID: 3893015}
+  - {fileID: 2016283953}
   racketSpeed: 6
   racket: {fileID: 418982577}
   racketPivot: {fileID: 2092556755}
@@ -6997,7 +7002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1935821641495692740
 Transform:
   m_ObjectHideFlags: 0

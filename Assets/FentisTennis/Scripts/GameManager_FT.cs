@@ -52,9 +52,7 @@ public class GameManager_FT : MonoBehaviour
 
     void Start()
     {
-        player1.GetComponent<PlayerController_FT>().skins[0].SetActive(false);
         player1.GetComponent<PlayerController_FT>().skins[GameData.char1].SetActive(false);
-        player2.GetComponent<PlayerController_FT>().skins[0].SetActive(false);
         player2.GetComponent<PlayerController_FT>().skins[GameData.char2].SetActive(false);
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;
         player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name2;
