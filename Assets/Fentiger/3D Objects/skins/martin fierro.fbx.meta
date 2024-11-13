@@ -1,26 +1,29 @@
 fileFormatVersion: 2
-guid: 171f1cf110f24de4da39cda58da932e5
+<<<<<<<< HEAD:Assets/Fentiger/3D Objects/skins/martin fierro.fbx.meta
+guid: b0c374479dcd38749b5ac3c883ff8cdf
+========
+guid: f6bc8bc1cda3eb74b819f9e72e9c8333
+>>>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695:Assets/FentisTennis/3D Objects/Models/mujer del equipo rojo.fbx.meta
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
+<<<<<<<< HEAD:Assets/Fentiger/3D Objects/skins/martin fierro.fbx.meta
     2100000: endesga
     2100002: textura peron
     2300000: //RootNode
     3300000: //RootNode
     4300000: martin fierro
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: endesga
-    second: {fileID: 2100000, guid: c91728273608ff9439a25a34fb7dff19, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: textura peron
-    second: {fileID: 2100000, guid: a980eb78d33f5b042a3182d58b214369, type: 2}
+========
+    2100000: Material.001
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Plane
+    7400000: Plane|PlaneAction
+    9500000: //RootNode
+>>>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695:Assets/FentisTennis/3D Objects/Models/mujer del equipo rojo.fbx.meta
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,8 +75,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -100,7 +103,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

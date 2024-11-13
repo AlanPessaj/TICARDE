@@ -190,7 +190,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Hook
       takeName: mixamo.com
-      firstFrame: 5
+      firstFrame: 17
       lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
@@ -204,9 +204,9 @@ ModelImporter:
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []

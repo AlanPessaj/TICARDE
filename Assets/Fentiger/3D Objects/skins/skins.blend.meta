@@ -1,24 +1,38 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: c4b0c4a10bcf097479465b5ccd1ae673
-=======
-guid: 6f214fdbe1420ac4aada0b77cbd0102c
->>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695
+guid: 118af9589f517214eb449b82bcdba89e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: textura peron
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: peron
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: textura peron
-    second: {fileID: 2100000, guid: a980eb78d33f5b042a3182d58b214369, type: 2}
+    100000: marin fierro
+    100002: messi
+    100004: peron
+    100006: peron.001
+    100008: //RootNode
+    400000: marin fierro
+    400002: messi
+    400004: peron
+    400006: peron.001
+    400008: //RootNode
+    2100000: Material.002
+    2100002: textura peron
+    2100004: textura messi
+    2100006: textura peron.001
+    2100008: textura peron.002
+    2100010: ENDESGA
+    2100012: textura peron.003
+    2300000: marin fierro
+    2300002: messi
+    2300004: peron
+    2300006: peron.001
+    3300000: marin fierro
+    3300002: messi
+    3300004: peron
+    3300006: peron.001
+    4300000: marin fierro
+    4300002: messi
+    4300004: peron
+    4300006: peron.001
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
