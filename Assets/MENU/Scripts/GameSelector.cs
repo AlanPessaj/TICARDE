@@ -21,9 +21,7 @@ public class GameSelector : MonoBehaviour
 
     IEnumerator StartScreen()
     {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1f);
         GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("0", new string[] { "" });
     }
     void Update()
