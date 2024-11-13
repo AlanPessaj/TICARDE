@@ -7,7 +7,7 @@ public class CameraController_FT : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     new public Camera camera;
-    Vector3 initialPosition;
+    public Vector3 initialPosition;
     public Transform ball;
     Vector3 oldBall;
     public void Start()

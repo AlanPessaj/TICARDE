@@ -41,7 +41,10 @@ public class GameManager_FT : MonoBehaviour
     float ballHeight;
     float arduinoTimer = 0f;
     public bool inServe;
-
+    bool ending;
+    float endingTime;
+    public float endMovementSpeed;
+    bool doingGreeting;
 
     void Awake()
     {
@@ -67,6 +70,12 @@ public class GameManager_FT : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //BORRAME SIN PENA
+            games1 += 3;
+        }
+
         arduinoTimer -= Time.deltaTime;
         if (arduinoTimer <= 0)
         {
@@ -116,6 +125,28 @@ public class GameManager_FT : MonoBehaviour
                 readyToServe = true;
             }
         }
+        if (ending)
+        {
+            endingTime += Time.deltaTime * endMovementSpeed;
+            player1.transform.position = Vector3.Lerp(new Vector3(-50, 6, -30), new Vector3(-9, 6, 0), Mathf.Clamp01(endingTime));
+            player2.transform.position = Vector3.Lerp(new Vector3(50, 6, 30), new Vector3(9, 6, 0), Mathf.Clamp01(endingTime));
+            if (endingTime >= 1) StartCoroutine(GameOverAnimation());
+        }
+        if (doingGreeting)
+        {
+            endingTime += Time.deltaTime * endMovementSpeed * 2;
+            player1.transform.eulerAngles = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(0, 0, -50), Mathf.Clamp01(endingTime));
+            player2.transform.eulerAngles = Vector3.Lerp(new Vector3(0, 180, 0), new Vector3(0, 180, -50), Mathf.Clamp01(endingTime));
+            if (endingTime >= 1)
+            {
+                player1.transform.eulerAngles = Vector3.Lerp(new Vector3(0, 0, -50), new Vector3(0, 0, 0), Mathf.Clamp01(endingTime-1));
+                player2.transform.eulerAngles = Vector3.Lerp(new Vector3(0, 180, -50), new Vector3(0, 180, 0), Mathf.Clamp01(endingTime-1));
+            }
+            else if(endingTime >= 2) NextScene();
+        }
+
+
+
     }
     public void StartServe(GameObject player)
     {
@@ -244,7 +275,7 @@ public class GameManager_FT : MonoBehaviour
                         player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
                         break;
                 }
-                if (games1 >= 3) GameOverAnimation();
+                if (games1 >= 3) StartCoroutine(GameOverAnimation());
             }
             else
             {
@@ -319,7 +350,7 @@ public class GameManager_FT : MonoBehaviour
                         player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
                         break;
                 }
-                if (games2 >= 3) GameOverAnimation();
+                if (games2 >= 3) StartCoroutine(GameOverAnimation());
             }
             transition.SetActive(true);
             HandleServe();
@@ -346,9 +377,30 @@ public class GameManager_FT : MonoBehaviour
         player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
     }
 
-    void GameOverAnimation()
+    
+
+    IEnumerator GameOverAnimation()
     {
-        NextScene();
+        if (!ending)
+        {
+            ballmover.gameObject.SetActive(false);
+            GetComponent<CameraController_FT>().enabled = false;
+            player1.transform.position = new Vector3(-50, 6, -30);
+            player2.transform.position = new Vector3(50, 6, 30);
+            retry:
+            if (transition.activeSelf)
+            {
+                yield return new WaitForSeconds(0.5f);
+                goto retry;
+            }
+            ending = true;
+        }
+        else
+        {
+            endingTime = 0;
+            doingGreeting = true;
+            ending = false;
+        }
     }
 
     void NextScene()
