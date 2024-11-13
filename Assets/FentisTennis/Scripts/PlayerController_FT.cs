@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController_FT : MonoBehaviour
 {
     public float movementSpeed;
+    public GameObject[] skins;
     float timer = 0.25f;
     public int racketSpeed;
     public GameObject racket;
@@ -46,20 +47,11 @@ public class PlayerController_FT : MonoBehaviour
         speedConst = movementSpeed;
         transition = gameManager.transition;
     }
-
-    public bool DODRIVE;
+    
 
     // Update is called once per frame
-    public void FixedUpdate()
+    public void Update()
     {
-        if (DODRIVE)
-        {
-            CheckDirection();
-            doingLob = true;
-            chargingLob = false;
-            lobRotation = Mathf.InverseLerp(315, 90, racketPivot.transform.localEulerAngles.z);
-            DODRIVE = false;
-        }
         Vector3 movement = new Vector3();
         if (driveRotation != 0 || lobRotation != 0 || smashRotation != 0 || doingDrive || doingLob || doingSmash || (gameManager.serving && gameManager.serve == int.Parse(gameObject.name.Substring(gameObject.name.Length - 1))))
         {
@@ -445,7 +437,7 @@ public class PlayerController_FT : MonoBehaviour
         {
             driveRotation += Time.deltaTime * racketSpeed;
             racketPivot.transform.localEulerAngles = new Vector3(0, Mathf.Lerp(45, -90, driveRotation), 0);
-            if (hitManager.hColliders[1] != null && !didDrive)
+            if (hitManager.hColliders[1] != null && !didDrive && shot.ball.wasPlayer1 != isPlayer1)
             {
                 //acerto drive
                 HitBall(direction, ShotType.drive);
@@ -474,7 +466,7 @@ public class PlayerController_FT : MonoBehaviour
         {
             lobRotation += Time.deltaTime * racketSpeed;
             racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(-45, 90, lobRotation));
-            if (hitManager.hColliders[2] != null && !didLob)
+            if (hitManager.hColliders[2] != null && !didLob && shot.ball.wasPlayer1 != isPlayer1)
             {
                 //acerto lob
                 HitBall(direction, ShotType.lob);
@@ -504,7 +496,7 @@ public class PlayerController_FT : MonoBehaviour
         {
             smashRotation += Time.deltaTime * racketSpeed;
             racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(45, -90, smashRotation));
-            if (hitManager.hColliders[0] != null && !didSmash)
+            if (hitManager.hColliders[0] != null && !didSmash && (shot.ball.wasPlayer1 != isPlayer1 || serve))
             {
                 //acerto smash
                 if (serve)

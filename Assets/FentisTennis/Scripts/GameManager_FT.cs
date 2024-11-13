@@ -27,7 +27,6 @@ public class GameManager_FT : MonoBehaviour
     [HideInInspector] public int games2 = 0;
     [HideInInspector] public int score1 = 0;
     [HideInInspector] public int score2 = 0;
-    public Material[] characters;
     public GameObject player1Canvas;
     public GameObject player2Canvas;
     public GameObject canvas;
@@ -41,7 +40,10 @@ public class GameManager_FT : MonoBehaviour
     float ballHeight;
     float arduinoTimer = 0f;
     public bool inServe;
-
+    bool ending;
+    float endingTime;
+    public float endMovementSpeed;
+    bool doingGreeting;
 
     void Awake()
     {
@@ -50,8 +52,8 @@ public class GameManager_FT : MonoBehaviour
 
     void Start()
     {
-        player1.GetComponent<Renderer>().material = characters[GameData.char1];
-        player2.GetComponent<Renderer>().material = characters[GameData.char2];
+        player1.GetComponent<PlayerController_FT>().skins[GameData.char1].SetActive(false);
+        player2.GetComponent<PlayerController_FT>().skins[GameData.char2].SetActive(false);
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;
         player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name2;
         switch (startServing)
@@ -116,6 +118,28 @@ public class GameManager_FT : MonoBehaviour
                 readyToServe = true;
             }
         }
+        if (ending)
+        {
+            endingTime += Time.deltaTime * endMovementSpeed;
+            player1.transform.position = Vector3.Lerp(new Vector3(-50, 6, -30), new Vector3(-9, 6, 0), Mathf.Clamp01(endingTime));
+            player2.transform.position = Vector3.Lerp(new Vector3(50, 6, 30), new Vector3(9, 6, 0), Mathf.Clamp01(endingTime));
+            if (endingTime >= 1) StartCoroutine(GameOverAnimation());
+        }
+        if (doingGreeting)
+        {
+            endingTime += Time.deltaTime * endMovementSpeed * 2;
+            player1.transform.eulerAngles = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(0, 0, -50), Mathf.Clamp01(endingTime));
+            player2.transform.eulerAngles = Vector3.Lerp(new Vector3(0, 180, 0), new Vector3(0, 180, -50), Mathf.Clamp01(endingTime));
+            if (endingTime >= 1)
+            {
+                player1.transform.eulerAngles = Vector3.Lerp(new Vector3(0, 0, -50), new Vector3(0, 0, 0), Mathf.Clamp01(endingTime-1));
+                player2.transform.eulerAngles = Vector3.Lerp(new Vector3(0, 180, -50), new Vector3(0, 180, 0), Mathf.Clamp01(endingTime-1));
+                if (endingTime >= 2) NextScene();
+            }
+        }
+
+
+
     }
     public void StartServe(GameObject player)
     {
@@ -246,7 +270,8 @@ public class GameManager_FT : MonoBehaviour
                 }
                 if (games1 >= 3)
                 {
-                    NextScene();
+                    StartCoroutine(GameOverAnimation());
+                    return;
                 }
             }
             else
@@ -322,7 +347,11 @@ public class GameManager_FT : MonoBehaviour
                         player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "A";
                         break;
                 }
-                if (games2 >= 3) NextScene();
+                if (games2 >= 3)
+                {
+                    StartCoroutine(GameOverAnimation());
+                    return;
+                }
             }
             transition.SetActive(true);
             HandleServe();
@@ -347,6 +376,34 @@ public class GameManager_FT : MonoBehaviour
         player2Canvas.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = games2.ToString();
         player2Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
         player1Canvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0";
+    }
+
+    
+
+    IEnumerator GameOverAnimation()
+    {
+        if (!ending)
+        {
+            ballmover.gameObject.SetActive(false);
+            GetComponent<CameraController_FT>().enabled = false;
+            player1.GetComponent<Rigidbody>().isKinematic = true;
+            player2.GetComponent<Rigidbody>().isKinematic = true;
+            player1.transform.position = new Vector3(-50, 6, -30);
+            player2.transform.position = new Vector3(50, 6, 30);
+            retry:
+            if (transition.activeSelf)
+            {
+                yield return new WaitForSeconds(0.5f);
+                goto retry;
+            }
+            ending = true;
+        }
+        else
+        {
+            endingTime = 0;
+            doingGreeting = true;
+            ending = false;
+        }
     }
 
     void NextScene()

@@ -20,12 +20,6 @@ public class GameSelector : MonoBehaviour
     }
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("3", new string[] { "0", "5", "4", "5" });
-        }
-
         if (animationFinished)
         {
             if (Input.GetKeyDown(KeyCode.A))
