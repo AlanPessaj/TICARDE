@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 653052095128629168}
   - component: {fileID: 653052095127498096}
   - component: {fileID: 5581407290434627823}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: eial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2339,7 +2339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 653052095125204924}
   m_Layer: 0
-  m_Name: untitled
+  m_Name: desertico
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2353,7 +2353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653052095125304284}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -94.09, y: -0.0507, z: 7.5}
+  m_LocalPosition: {x: -94.09, y: -0.1507, z: 7.5}
   m_LocalScale: {x: 1.9, y: 1.9, z: 1.9}
   m_Children:
   - {fileID: 653052095125204864}
