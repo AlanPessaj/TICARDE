@@ -13,7 +13,6 @@ public class Generator_FG : MonoBehaviour
      * [3] = Peron
      */
     public conexion conexion;
-    public Material[] characters;
     public bool multiplayer;
     public bool initialMultiplayer = false;
     public GameObject[] sections;
@@ -53,10 +52,12 @@ public class Generator_FG : MonoBehaviour
         multiplayer = GameData.name2 != "";
         player1Name = GameData.name1;
         player2Name = GameData.name2;
-        players[0].GetComponent<Renderer>().material = characters[GameData.char1];
+        players[0].transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+        players[0].GetComponent<PlayerController_FG>().skins[GameData.char1].SetActive(true);
         if (multiplayer)
         {
-            players[1].GetComponent<Renderer>().material = characters[GameData.char2];
+            players[1].transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+            players[1].GetComponent<PlayerController_FG>().skins[GameData.char2].SetActive(true);
             initialMultiplayer = true;
         }
         else

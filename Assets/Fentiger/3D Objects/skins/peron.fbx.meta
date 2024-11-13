@@ -1,16 +1,20 @@
 fileFormatVersion: 2
-guid: 56f0ae9f90a946c429afacec00c87ced
+guid: 6f214fdbe1420ac4aada0b77cbd0102c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: textura messi
-    2100002: textura peron
+    2100000: textura peron
     2300000: //RootNode
     3300000: //RootNode
-    4300000: messi
-  externalObjects: {}
+    4300000: peron
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: textura peron
+    second: {fileID: 2100000, guid: a980eb78d33f5b042a3182d58b214369, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

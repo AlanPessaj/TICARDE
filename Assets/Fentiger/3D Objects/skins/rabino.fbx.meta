@@ -1,16 +1,26 @@
 fileFormatVersion: 2
-guid: 355e786c59faf464f953180032a734be
+guid: 6c6c95cd027f15147bd9281fad13eab1
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: ENDESGA
+    2100000: endesga
     2100002: textura peron
     2300000: //RootNode
     3300000: //RootNode
-    4300000: peron.001
-  externalObjects: {}
+    4300000: rabino
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: endesga
+    second: {fileID: 2100000, guid: c91728273608ff9439a25a34fb7dff19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: textura peron
+    second: {fileID: 2100000, guid: a980eb78d33f5b042a3182d58b214369, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

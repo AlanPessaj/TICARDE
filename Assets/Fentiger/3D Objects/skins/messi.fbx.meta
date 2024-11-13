@@ -1,16 +1,26 @@
 fileFormatVersion: 2
-guid: 41186367aaaa4d642aaebd3f105ae5b4
+guid: 773550287753e7740967feec151f8fdd
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Material.002
+    2100000: textura messi
     2100002: textura peron
     2300000: //RootNode
     3300000: //RootNode
-    4300000: marin fierro
-  externalObjects: {}
+    4300000: messi
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: textura messi
+    second: {fileID: 2100000, guid: 81c367dd9c52ede4891100742c27eb25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: textura peron
+    second: {fileID: 2100000, guid: a980eb78d33f5b042a3182d58b214369, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

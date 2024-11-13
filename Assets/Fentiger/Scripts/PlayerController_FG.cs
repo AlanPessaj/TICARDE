@@ -9,6 +9,7 @@ public class PlayerController_FG : MonoBehaviour
     bool isPlayer1;
     public bool immortal;
     public GameObject otherPlayer;
+    public GameObject[] skins;
     bool onLog = false;
     bool facingTreeRight;
     bool facingTreeLeft;
@@ -598,9 +599,11 @@ public class PlayerController_FG : MonoBehaviour
         for (int i = 0; i < index; i++)
         {
             yield return new WaitForSeconds(0.3f);
-            GetComponent<Renderer>().material = ghostMaterial;
+            GetComponent<Renderer>().enabled = true;
+            transform.GetChild(1).gameObject.SetActive(false);
             yield return new WaitForSeconds(0.3f);
-            GetComponent<Renderer>().material = material;
+            GetComponent<Renderer>().enabled = false;
+            transform.GetChild(1).gameObject.SetActive(true);
         }
         immortal = false;
     }
