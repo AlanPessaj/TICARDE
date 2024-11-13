@@ -10,7 +10,8 @@ public class conexion : MonoBehaviour
     public string[] prueba;
     public string COM;
     SerialPort arduinoPort; // Corrected port name format
-    private void Awake()
+
+    void Start()
     {
         // Set the serial port properties
         arduinoPort = new SerialPort(COM, 9600);
@@ -18,10 +19,7 @@ public class conexion : MonoBehaviour
         arduinoPort.StopBits = StopBits.One;
         arduinoPort.DataBits = 8;
         arduinoPort.Handshake = Handshake.None;
-    }
 
-    void Start()
-    {
         // Open the serial port in Start()
         try
         {
@@ -35,17 +33,9 @@ public class conexion : MonoBehaviour
         {
             Debug.LogError("Failed to open serial port: " + e.Message);
         }
-    }
-
-    private void Update()
-    {
-        
-        /*if(Input.GetKeyDown(KeyCode.Return))
-        {
-            SendMessagestoArduino(id, prueba);
-        }*/
 
     }
+
 
     public void SendMessagestoArduino(string identifier, string[] messages)
     {

@@ -1,19 +1,15 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Fentiger/3D Objects/skins/messi.fbx.meta
-guid: 3a725a2409d98da43991a1ea8fa85e0d
-========
-guid: 0773c8352b05ffe4b90aad33c074b86f
->>>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695:Assets/FentisTennis/3D Objects/Models/hombre equipo rojo.fbx.meta
+guid: 773550287753e7740967feec151f8fdd
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Material.001
+    2100000: textura messi
+    2100002: textura peron
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Plane
-    7400000: Plane|PlaneAction
+    4300000: messi
     9500000: //RootNode
   externalObjects: {}
   materials:

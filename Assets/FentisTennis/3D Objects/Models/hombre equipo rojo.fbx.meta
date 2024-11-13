@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Fentiger/3D Objects/skins/messi.fbx.meta
-guid: 3a725a2409d98da43991a1ea8fa85e0d
-========
 guid: 0773c8352b05ffe4b90aad33c074b86f
->>>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695:Assets/FentisTennis/3D Objects/Models/hombre equipo rojo.fbx.meta
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:

@@ -1,28 +1,16 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Fentiger/3D Objects/skins/rabino.fbx.meta
-guid: 47fb2eb5f35c68546811ceae8f06f3fc
-========
 guid: 9640353dc671d9f439af2dd86be0f395
->>>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695:Assets/FentisTennis/3D Objects/Models/mujer equipo azul.fbx.meta
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-<<<<<<<< HEAD:Assets/Fentiger/3D Objects/skins/rabino.fbx.meta
-    2100000: endesga
-    2100002: textura peron
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: rabino
-========
     2100000: Material.001
     2300000: //RootNode
     3300000: //RootNode
     4300000: Plane
     7400000: Plane|PlaneAction
     9500000: //RootNode
->>>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695:Assets/FentisTennis/3D Objects/Models/mujer equipo azul.fbx.meta
   externalObjects: {}
   materials:
     importMaterials: 1

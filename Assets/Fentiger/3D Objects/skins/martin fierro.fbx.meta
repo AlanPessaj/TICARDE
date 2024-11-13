@@ -1,28 +1,16 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Fentiger/3D Objects/skins/martin fierro.fbx.meta
-guid: b0c374479dcd38749b5ac3c883ff8cdf
-========
-guid: f6bc8bc1cda3eb74b819f9e72e9c8333
->>>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695:Assets/FentisTennis/3D Objects/Models/mujer del equipo rojo.fbx.meta
+guid: 171f1cf110f24de4da39cda58da932e5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-<<<<<<<< HEAD:Assets/Fentiger/3D Objects/skins/martin fierro.fbx.meta
     2100000: endesga
     2100002: textura peron
     2300000: //RootNode
     3300000: //RootNode
     4300000: martin fierro
-========
-    2100000: Material.001
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Plane
-    7400000: Plane|PlaneAction
     9500000: //RootNode
->>>>>>>> 3beb801a8f01b8294f942ce1b5a33b95e6438695:Assets/FentisTennis/3D Objects/Models/mujer del equipo rojo.fbx.meta
   externalObjects: {}
   materials:
     importMaterials: 1

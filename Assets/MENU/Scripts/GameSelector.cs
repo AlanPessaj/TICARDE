@@ -16,6 +16,14 @@ public class GameSelector : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
+        StartCoroutine(StartScreen());
+    }
+
+    IEnumerator StartScreen()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("0", new string[] { "" });
     }
     void Update()
