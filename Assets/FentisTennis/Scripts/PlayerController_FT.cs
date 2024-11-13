@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController_FT : MonoBehaviour
 {
     public float movementSpeed;
+    public GameObject[] skins;
     float timer = 0.25f;
     public int racketSpeed;
     public GameObject racket;

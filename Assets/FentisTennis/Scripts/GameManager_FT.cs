@@ -27,7 +27,6 @@ public class GameManager_FT : MonoBehaviour
     [HideInInspector] public int games2 = 0;
     [HideInInspector] public int score1 = 0;
     [HideInInspector] public int score2 = 0;
-    public Material[] characters;
     public GameObject player1Canvas;
     public GameObject player2Canvas;
     public GameObject canvas;
@@ -53,8 +52,10 @@ public class GameManager_FT : MonoBehaviour
 
     void Start()
     {
-        player1.GetComponent<Renderer>().material = characters[GameData.char1];
-        player2.GetComponent<Renderer>().material = characters[GameData.char2];
+        player1.GetComponent<PlayerController_FT>().skins[0].SetActive(false);
+        player1.GetComponent<PlayerController_FT>().skins[GameData.char1].SetActive(false);
+        player2.GetComponent<PlayerController_FT>().skins[0].SetActive(false);
+        player2.GetComponent<PlayerController_FT>().skins[GameData.char2].SetActive(false);
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;
         player2Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name2;
         switch (startServing)
