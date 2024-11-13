@@ -1,14 +1,15 @@
 fileFormatVersion: 2
-guid: f7bf61836896c3448a14cf1df444e504
+guid: 47fb2eb5f35c68546811ceae8f06f3fc
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: textura peron
+    2100000: endesga
+    2100002: textura peron
     2300000: //RootNode
     3300000: //RootNode
-    4300000: peron
+    4300000: rabino
   externalObjects: {}
   materials:
     importMaterials: 1

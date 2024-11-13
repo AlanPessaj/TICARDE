@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 41186367aaaa4d642aaebd3f105ae5b4
+guid: 3a725a2409d98da43991a1ea8fa85e0d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Material.002
+    2100000: textura messi
     2100002: textura peron
     2300000: //RootNode
     3300000: //RootNode
-    4300000: marin fierro
+    4300000: messi
   externalObjects: {}
   materials:
     importMaterials: 1
