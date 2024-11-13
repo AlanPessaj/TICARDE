@@ -387,6 +387,8 @@ public class GameManager_FT : MonoBehaviour
         {
             ballmover.gameObject.SetActive(false);
             GetComponent<CameraController_FT>().enabled = false;
+            player1.GetComponent<Rigidbody>().isKinematic = true;
+            player2.GetComponent<Rigidbody>().isKinematic = true;
             player1.transform.position = new Vector3(-50, 6, -30);
             player2.transform.position = new Vector3(50, 6, 30);
             retry:
