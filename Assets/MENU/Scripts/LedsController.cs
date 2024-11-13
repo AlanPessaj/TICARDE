@@ -36,7 +36,7 @@ public class LedsController : MonoBehaviour
 
     public void FullRound(string color)
     {
-        conexion.SendMessagestoArduino("15", new string[] { ColorTranslator(color), "100" });
+        conexion.SendMessagestoArduino("15", new string[] { ColorTranslator(color), "50" });
     }
 
     public IEnumerator SideBlink(bool player1, string color, bool multiplayer = true, bool isTherePlayer1 = false)
@@ -49,15 +49,15 @@ public class LedsController : MonoBehaviour
         string player = "11";
         if (!player1) player = "12";
         conexion.SendMessagestoArduino(player, new string[] { ColorTranslator(color) });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino(player, new string[] { "000000" });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino(player, new string[] { ColorTranslator(color) });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino(player, new string[] { "000000" });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino(player, new string[] { ColorTranslator(color) });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino(player, new string[] { "000000" });
         if (color == "RED")
         {
@@ -89,26 +89,26 @@ public class LedsController : MonoBehaviour
     public void HalfRound(bool player1, string color)
     {
         string player = player1 ? "9" : "10";
-        conexion.SendMessagestoArduino(player, new string[] { ColorTranslator(color), "200" });
+        conexion.SendMessagestoArduino(player, new string[] { ColorTranslator(color), "50" });
     }
 
     public IEnumerator Blink(string color)
     {
         conexion.SendMessagestoArduino("12", new string[] { ColorTranslator(color) });
         conexion.SendMessagestoArduino("11", new string[] { ColorTranslator(color) });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino("12", new string[] { "000000" });
         conexion.SendMessagestoArduino("11", new string[] { "000000" });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino("12", new string[] { ColorTranslator(color) });
         conexion.SendMessagestoArduino("11", new string[] { ColorTranslator(color) });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino("12", new string[] { "000000" });
         conexion.SendMessagestoArduino("11", new string[] { "000000" });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino("12", new string[] { ColorTranslator(color) });
         conexion.SendMessagestoArduino("11", new string[] { ColorTranslator(color) });
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         conexion.SendMessagestoArduino("12", new string[] { "000000" });
         conexion.SendMessagestoArduino("11", new string[] { "000000" });
     }
