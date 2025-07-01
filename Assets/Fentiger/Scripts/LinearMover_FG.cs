@@ -235,6 +235,8 @@ public class LinearMover_FG : MonoBehaviour
             {
                 playerOn = false;
             }
+
+            if (transform.childCount > 2) Destroy(gameObject);
         }
         else if (gameObject.name == "BrokenLog(Clone)")
         {
