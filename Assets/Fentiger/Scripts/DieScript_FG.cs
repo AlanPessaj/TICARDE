@@ -42,7 +42,7 @@ public class DieScript_FG : MonoBehaviour
             bool thereIsAnother = false;
             foreach (DieScript_FG script in FindObjectsOfType<DieScript_FG>())
             {
-                if (script.playerGhost && script != this)
+                if (script.playerGhost && script != this && Vector3.Distance(transform.position, script.transform.position) > 0.5)
                 {
                     thereIsAnother = true;
                     break;
@@ -53,7 +53,6 @@ public class DieScript_FG : MonoBehaviour
             {
                 GameOver();
             }
-
             else
             {
                 Destroy(gameObject);
