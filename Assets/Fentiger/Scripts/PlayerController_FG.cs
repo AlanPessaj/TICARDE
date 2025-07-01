@@ -470,7 +470,10 @@ public class PlayerController_FG : MonoBehaviour
                     if (hit.transform.childCount == 1)
                     {
                         transform.parent = hit.transform;
-                        transform.localPosition = new Vector3(0, 1, 0);
+                    }
+                    else if (hit.transform.childCount == 2)
+                    {
+                        Destroy(hit.collider.gameObject);
                     }
                 }
                 else if (hit.collider.gameObject.name == "Frog(Clone)" && !onHippo)
