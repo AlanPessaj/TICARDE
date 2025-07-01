@@ -50,7 +50,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 DetectCombo("B", "A", "", HeartAbility, PortalAbility);
             }
-            if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
+            if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability());
             if (Input.GetKeyDown(KeyCode.W))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
@@ -99,7 +99,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 DetectCombo("B", "A", "2", HeartAbility, PortalAbility);
             }
-            if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability(true));
+            if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability());
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
@@ -591,11 +591,10 @@ public class PlayerController_FG : MonoBehaviour
         }
     }
 
-    public IEnumerator Invulnerability(bool ability = false)
+    public IEnumerator Invulnerability()
     {
         immortal = true;
         int index = 4;
-        if (ability) index /= 2;
         for (int i = 0; i < index; i++)
         {
             yield return new WaitForSeconds(0.3f);
