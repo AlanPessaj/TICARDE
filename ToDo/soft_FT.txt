@@ -1,2 +1,2 @@
-Solucionar repeticion demasiado corta
-testear sistema de puntos
+Solucionar repeticion demasiado corta | PENDIENTE
+testear sistema de puntos | PENDIENTE
