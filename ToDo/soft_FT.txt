@@ -1,1 +1,2 @@
-TESTEAR
+Solucionar repeticion demasiado corta
+testear sistema de puntos
