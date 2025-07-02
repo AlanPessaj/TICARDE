@@ -359,13 +359,10 @@ public class CharacterSelector : MonoBehaviour
                             p++;
                         }
                     }
-                    if (GetComponent<AudioSource>().clip != selectionSFX[translate[hIndex, vIndex]] || (GetComponent<AudioSource>().time >= GetComponent<AudioSource>().clip.length / 2))
-                    {
-                        GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
-                        GetComponents<AudioSource>()[1].Stop();
-                        GetComponent<AudioSource>().Play();
-                        GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "GREEN");
-                    }
+                    GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
+                    GetComponents<AudioSource>()[1].Stop();
+                    GetComponent<AudioSource>().Play();
+                    GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "GREEN");
                 }
             }
             if (multiplayer)
