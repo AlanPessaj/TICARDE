@@ -37,6 +37,8 @@ public class FollowPlayer_FG : MonoBehaviour
 
     void Update()
     {
+        if (generator.multiplayer) players = generator.players;
+
         patrolTimer -= Time.deltaTime;
         timer -= Time.deltaTime;
         if (patrolTimer <= 0)
