@@ -24,9 +24,24 @@ public class BallMover_FT : MonoBehaviour
     float a;
     float r1;
     public bool secondServe;
-    public GameObject TXTSecondServe;
+    public TextMeshProUGUI TXTSecondServe;
+    public float secondServeT;
 
     // Update is called once per frame
+    public void Update()
+    {
+        if (TXTSecondServe.gameObject.activeSelf)
+        {
+            TXTSecondServe.color = Color.Lerp(new Color(1, 0.5f, 0, 0), new Color(1, 0.5f, 0, 1), Mathf.PingPong(secondServeT, 1));
+            secondServeT += Time.deltaTime * 5;
+            if (secondServeT >= 10)
+            {
+                secondServeT = 0;
+                TXTSecondServe.gameObject.SetActive(false);
+            }
+        }
+    }
+
     public void FixedUpdate()
     {
         GetComponent<TrailRenderer>().emitting = active || gameManager.serving;
@@ -172,7 +187,7 @@ public class BallMover_FT : MonoBehaviour
                     if (gameManager.lastServePlayer1 == 1 && !secondServe && !PlayerController_FT.inReplay && gameManager.inServe)
                     {
                         secondServe = true;
-                        StartCoroutine(ShowSecondServe(3));
+                        TXTSecondServe.gameObject.SetActive(true);
                         gameManager.HandleServe();
                     }
                     else
@@ -200,7 +215,7 @@ public class BallMover_FT : MonoBehaviour
                     if (gameManager.lastServePlayer1 == -1 && !secondServe && !PlayerController_FT.inReplay && gameManager.inServe)
                     {
                         secondServe = true;
-                        StartCoroutine(ShowSecondServe(3));
+                        TXTSecondServe.gameObject.SetActive(true);
                         gameManager.HandleServe();
                     }
                     else
@@ -215,12 +230,5 @@ public class BallMover_FT : MonoBehaviour
             }
             bounced = false;
         }
-    }
-
-    public IEnumerator ShowSecondServe(float seconds)
-    {
-        TXTSecondServe.SetActive(true);
-        yield return new WaitForSeconds(seconds);
-        TXTSecondServe.SetActive(false);
     }
 }

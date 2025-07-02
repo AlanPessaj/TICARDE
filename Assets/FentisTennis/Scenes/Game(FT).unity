@@ -1762,8 +1762,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 33535
+  m_fontColor: {r: 1, g: 0.50980395, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4773,7 +4773,8 @@ MonoBehaviour:
   bounced: 0
   gameManager: {fileID: 645166231}
   secondServe: 0
-  TXTSecondServe: {fileID: 399910855}
+  TXTSecondServe: {fileID: 399910857}
+  secondServeT: 0
   failSafe: 1
 --- !u!54 &1639290138
 Rigidbody:
