@@ -45,7 +45,7 @@ public class conexion : MonoBehaviour
             {
                     string msg2send = identifier + "," + string.Join(",", messages);
                     arduinoPort.WriteLine(msg2send);
-                    Debug.Log(msg2send);
+                    //Debug.Log(msg2send);
             }
             catch (System.Exception e)
             {
