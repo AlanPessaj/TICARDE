@@ -344,6 +344,7 @@ public class CharacterSelector : MonoBehaviour
                     {
                         MPSquares1[hIndex, vIndex].GetComponent<Image>().color = new Color(1, 1, 0);
                     }
+                    GetComponents<AudioSource>()[0].Stop();
                     confirmedTimer = 0;
                 }
                 else
@@ -361,6 +362,7 @@ public class CharacterSelector : MonoBehaviour
                     if (GetComponent<AudioSource>().clip != selectionSFX[translate[hIndex, vIndex]] || (GetComponent<AudioSource>().time >= GetComponent<AudioSource>().clip.length / 2))
                     {
                         GetComponent<AudioSource>().clip = selectionSFX[translate[hIndex, vIndex]];
+                        GetComponents<AudioSource>()[1].Stop();
                         GetComponent<AudioSource>().Play();
                         GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(true, "GREEN");
                     }
@@ -592,6 +594,7 @@ public class CharacterSelector : MonoBehaviour
                         {
                             MPSquares2[hIndex2, vIndex2].GetComponent<Image>().color = Color.blue;
                         }
+                        GetComponents<AudioSource>()[1].Stop();
                         confirmedTimer2 = 0;
                     }
                     else
@@ -607,6 +610,7 @@ public class CharacterSelector : MonoBehaviour
                             }
                         }
                         GetComponents<AudioSource>()[1].clip = selectionSFX[translate[hIndex2, vIndex2]];
+                        GetComponents<AudioSource>()[0].Stop();
                         GetComponents<AudioSource>()[1].Play();
                         GAMEMANAGER.Instance.GetComponent<LedsController>().HalfRound(false, "GREEN");
                     }
