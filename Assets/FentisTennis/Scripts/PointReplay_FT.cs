@@ -25,6 +25,7 @@ public class PointReplay_FT : MonoBehaviour
     int cameraIndex;
     Camera[] ogCameras;
     bool firstTime = true;
+    bool skippingReplay;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,6 +34,14 @@ public class PointReplay_FT : MonoBehaviour
         ogCameras = new Camera[cameras.Length - 1];
         System.Array.Copy(cameras, 1, ogCameras, 0, ogCameras.Length);
         RandomizeCameras();
+    }
+
+    public void Update()
+    {
+        if (PlayerController_FT.inReplay && (Input.GetButtonDown("A") || Input.GetButtonDown("A2")))
+        {
+            skippingReplay = true;
+        }
     }
 
     // Update is called once per frame
@@ -59,7 +68,7 @@ public class PointReplay_FT : MonoBehaviour
         }
         if (PlayerController_FT.inReplay)
         {
-            if (Input.GetButtonDown("A") || Input.GetButtonDown("A2"))
+            if (skippingReplay)
             {
                 firstTime = true;
                 PlayerController_FT.replay = null;
@@ -69,6 +78,7 @@ public class PointReplay_FT : MonoBehaviour
                 exitingReplay = true;
                 RandomizeCameras();
                 GameManager_FT.instance.AddPoint(scorer);
+                skippingReplay = false;
                 return;
             }
             if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
