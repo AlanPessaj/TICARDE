@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BallMover_FT : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class BallMover_FT : MonoBehaviour
     float a;
     float r1;
     public bool secondServe;
+    public GameObject TXTSecondServe;
+
     // Update is called once per frame
     public void FixedUpdate()
     {
@@ -169,6 +172,7 @@ public class BallMover_FT : MonoBehaviour
                     if (gameManager.lastServePlayer1 == 1 && !secondServe && !PlayerController_FT.inReplay && gameManager.inServe)
                     {
                         secondServe = true;
+                        StartCoroutine(ShowSecondServe(3));
                         gameManager.HandleServe();
                     }
                     else
@@ -196,6 +200,7 @@ public class BallMover_FT : MonoBehaviour
                     if (gameManager.lastServePlayer1 == -1 && !secondServe && !PlayerController_FT.inReplay && gameManager.inServe)
                     {
                         secondServe = true;
+                        StartCoroutine(ShowSecondServe(3));
                         gameManager.HandleServe();
                     }
                     else
@@ -210,5 +215,12 @@ public class BallMover_FT : MonoBehaviour
             }
             bounced = false;
         }
+    }
+
+    public IEnumerator ShowSecondServe(float seconds)
+    {
+        TXTSecondServe.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        TXTSecondServe.SetActive(false);
     }
 }

@@ -4773,6 +4773,7 @@ MonoBehaviour:
   bounced: 0
   gameManager: {fileID: 645166231}
   secondServe: 0
+  TXTSecondServe: {fileID: 399910855}
   failSafe: 1
 --- !u!54 &1639290138
 Rigidbody:
