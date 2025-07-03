@@ -146,6 +146,7 @@ public class PlayerController_FG : MonoBehaviour
         if ((transform.position.z > 15f || transform.position.z < -15f) && !immortal)
         {
             //Perder vida
+            Debug.Log("2");
             Die();
         }
         CheckTile();
@@ -524,6 +525,7 @@ public class PlayerController_FG : MonoBehaviour
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
             {
                 //perder vida
+                Debug.Log("Out kill");
                 Die();
 
                 if (hit.collider.gameObject.name == "Car(Clone)")
@@ -560,9 +562,10 @@ public class PlayerController_FG : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if ((other.collider.gameObject.layer == LayerMask.NameToLayer("Lion") || other.collider.gameObject.layer == LayerMask.NameToLayer("Out")) && !immortal && !onFrog)
+        if ((other.collider.gameObject.layer == LayerMask.NameToLayer("Lion") || other.collider.gameObject.layer == LayerMask.NameToLayer("Out")) && !immortal && !onFrog && other.collider.gameObject.name != "agua")
         {
             //perder vida
+            Debug.Log(other.collider.gameObject.name);
             Die();
             if (other.collider.gameObject.name == "Car(Clone)")
             {
@@ -576,6 +579,7 @@ public class PlayerController_FG : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Seagull") && !immortal)
         {
             //perder vida
+            Debug.Log("Seagull kill");
             Die();
             if (other.transform.name == "Laser")
             {
