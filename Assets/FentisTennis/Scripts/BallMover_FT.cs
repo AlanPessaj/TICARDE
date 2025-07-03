@@ -96,11 +96,6 @@ public class BallMover_FT : MonoBehaviour
             Vector2 intermedio = new Vector2(r1 / 2, height - sPoint.position.y);
             a = intermedio.y / ((intermedio.x - r1) * intermedio.x);
         }
-        else
-        {
-            //BORRAME
-            shot.FindShot(0, ShotType.drive, false, false, true);
-        }
     }
     public bool failSafe;
     void ApproximateQuadratic()

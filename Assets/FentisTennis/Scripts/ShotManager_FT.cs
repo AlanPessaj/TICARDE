@@ -115,16 +115,6 @@ public class ShotManager_FT : MonoBehaviour
     public void FindShot(int direction, ShotType type, bool isPlayer1, bool serve = false, bool reset = false)
     {
         int directionModifier = 1;
-        if (reset)
-        {
-            ball.transform.position = new Vector3(23, 0, 0);
-            direction = 0;
-            //player.transform.position = new Vector3(Random.Range(0f, 51f), 0, Random.Range(-31, 31));
-            //direction = Random.Range(-2, 3);
-            //power = 40f;
-            isPlayer1 = false;
-            type = ShotType.lob;
-        }
         if (!isPlayer1)
         {
             directionModifier = -1;
