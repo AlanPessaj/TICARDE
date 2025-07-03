@@ -95,17 +95,17 @@ public class Generator_FG : MonoBehaviour
             player1Alive = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             //Portal
             //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
 
             
             // Ovni
-            if (camara.GetChild(0).childCount < 1)
+            /*if (camara.GetChild(0).childCount < 1)
             {
                 Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }
+            }*/
 
 
             //Gaviota
@@ -121,7 +121,7 @@ public class Generator_FG : MonoBehaviour
             {
                 Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
             }*/
-        }
+        }*/
 
         float difficultyPosition = 0; //reemplazo de camara.position.x
         if (difficulty >= 10 && difficulty % 10 == 0)
