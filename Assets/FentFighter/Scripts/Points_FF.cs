@@ -10,6 +10,7 @@ public class Points_FF : MonoBehaviour
     public TextMeshProUGUI txtPlayer1Score;
     public TextMeshProUGUI txtPlayer2Score;
     public TextMeshProUGUI txtWinner;
+    public GameObject insertCoin;
 
     // Start is called before the first frame update
     private void Start()
@@ -29,6 +30,23 @@ public class Points_FF : MonoBehaviour
 
     public void PlayAgain()
     {
+        if (GameData.credits < 1)
+        {
+            StartCoroutine(InsertCoinBlink());
+            return;
+        }
+        GameData.credits--;
         SceneManager.LoadScene("Game(FF)");
+    }
+
+    public IEnumerator InsertCoinBlink()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            insertCoin.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            insertCoin.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

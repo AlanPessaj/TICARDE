@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FentisTennis/Scenes/END(FT).unity
     guid: a721e95fd3abe3843aa77779a409a647
+  - enabled: 1
+    path: Assets/FentFighter/Scenes/END(FF).unity
+    guid: e35d00c0f37d4da40b9eca8e1d63accf
+  - enabled: 1
+    path: Assets/FentFighter/Scenes/Game(FF).unity
+    guid: 924a5b3bbb01d3140a5ae86fb23a7639
   m_configObjects: {}
