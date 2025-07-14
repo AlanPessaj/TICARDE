@@ -12,6 +12,7 @@ public class GameSelector : MonoBehaviour
     bool loadtitle;
     bool loadleaderboard;
     bool firstTime = true;
+    public GameObject insertCoin;
 
     // Update is called once per frame
     void Start()
@@ -72,6 +73,11 @@ public class GameSelector : MonoBehaviour
             }
             if (Input.GetButtonDown("A") && firstTime)
             {
+                if (GameData.credits < 1)
+                {
+                    StartCoroutine(InsertCoinBlink());
+                    return;
+                }
                 switch (index)
                 {
                     case 0:
@@ -81,6 +87,7 @@ public class GameSelector : MonoBehaviour
                         GameData.game = "FG";
                         break;
                 }
+                GameData.credits--;
                 GetComponent<AudioSource>().clip = joinTitle;
                 GetComponent<AudioSource>().Play();
                 StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().Blink("GREEN"));
@@ -109,5 +116,16 @@ public class GameSelector : MonoBehaviour
         if (loadtitle && !GetComponent<AudioSource>().isPlaying) SceneManager.LoadScene("NameInput");
         if (loadleaderboard && !GetComponent<AudioSource>().isPlaying) SceneManager.LoadScene("Leaderboard");
 
+    }
+
+    public IEnumerator InsertCoinBlink()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            insertCoin.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            insertCoin.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

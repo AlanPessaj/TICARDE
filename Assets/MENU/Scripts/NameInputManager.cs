@@ -13,6 +13,7 @@ public class NameInputManager : MonoBehaviour
     public Image joinButton;
     public Coroutine instance;
     string game = "FF";
+    public GameObject insertCoin;
 
 
     private void Start()
@@ -42,6 +43,12 @@ public class NameInputManager : MonoBehaviour
                 player2.gameObject.SetActive(false);
                 if (Input.GetButtonDown("A2") || Input.GetButtonDown("B2") || Input.GetButtonDown("C2"))
                 {
+                    if (GameData.credits < 1)
+                    {
+                        StartCoroutine(InsertCoinBlink());
+                        return;
+                    }
+                    GameData.credits--;
                     multiplayer = true;
                     GAMEMANAGER.Instance.GetComponent<LedsController>().FullRound("BLUE");
                 }
@@ -79,6 +86,17 @@ public class NameInputManager : MonoBehaviour
         else GameData.name2 = "";
         GameData.game = game;
         SceneManager.LoadScene("CharacterSelector");
+    }
+
+    public IEnumerator InsertCoinBlink()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            insertCoin.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            insertCoin.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
 

@@ -17,6 +17,11 @@ public class GAMEMANAGER : MonoBehaviour
             SceneManager.LoadScene("MENU");
             Time.timeScale = 1;
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            GameData.credits++;
+            //TODO: poner sonido y puede que mas
+        }
     }
 
     private void Awake()
@@ -43,4 +48,5 @@ public static class GameData
     public static int score1;
     public static int score2;
     public static bool p1Winner;
+    public static int credits;
 }

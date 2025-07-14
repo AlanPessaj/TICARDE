@@ -14,6 +14,7 @@ public class EndManager_FG : MonoBehaviour
     public GameObject player2Canvas;
     public float topScore;
     public GAMEMANAGER ticardemanager;
+    public GameObject insertCoin;
 
 
     private void Start()
@@ -50,6 +51,23 @@ public class EndManager_FG : MonoBehaviour
 
     public void PlayAgain()
     {
+        if (GameData.credits < (player2Name == "" ? 1 : 2))
+        {
+            StartCoroutine(InsertCoinBlink());
+            return;
+        }
+        if (player2Name == "") GameData.credits--;
+        else GameData.credits -= 2;
         SceneManager.LoadScene("Game(FG)");
+    }
+    public IEnumerator InsertCoinBlink()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            insertCoin.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            insertCoin.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
