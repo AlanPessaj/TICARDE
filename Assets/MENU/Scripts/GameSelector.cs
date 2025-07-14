@@ -81,9 +81,12 @@ public class GameSelector : MonoBehaviour
                 switch (index)
                 {
                     case 0:
-                        GameData.game = "FT";
+                        GameData.game = "FF";
                         break;
                     case 1:
+                        GameData.game = "FT";
+                        break;
+                    case 2:
                         GameData.game = "FG";
                         break;
                 }
@@ -99,9 +102,12 @@ public class GameSelector : MonoBehaviour
                 switch (index)
                 {
                     case 0:
-                        GameData.game = "FT";
+                        GameData.game = "FF";
                         break;
                     case 1:
+                        GameData.game = "FT";
+                        break;
+                    case 2:
                         GameData.game = "FG";
                         break;
                 }
