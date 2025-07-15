@@ -10,7 +10,6 @@ public class GAMEMANAGER : MonoBehaviour
     public bool menuActive;
     public TextMeshProUGUI txtCredits;
     bool showingCredits = false;
-    float time = 0f;
 
     // Update is called once per frame
     void Update()
@@ -26,7 +25,7 @@ public class GAMEMANAGER : MonoBehaviour
             GameData.credits++;
             GetComponent<AudioSource>().Play();
             txtCredits.text = "CREDITS: " + GameData.credits;
-            time += 3f;
+            txtCredits.color = new Color(0.4433962f, 0.4433962f, 0.4433962f, 1);
             if (!showingCredits) StartCoroutine(ShowCredits());
         }
     }
@@ -46,18 +45,24 @@ public class GAMEMANAGER : MonoBehaviour
 
     IEnumerator ShowCredits()
     {
-        float localTime = time;
-        time = 0f;
         showingCredits = true;
         txtCredits.enabled = true;
-        yield return new WaitForSeconds(localTime * Time.deltaTime);
-        while (time > 0f)
-        {
-            localTime = time;
-            yield return new WaitForSeconds(localTime * Time.deltaTime);
-        }
+        yield return new WaitForSeconds(3f);
         showingCredits = false;
         txtCredits.enabled = false;
+    }
+
+    public IEnumerator InsufficientCredits()
+    {
+        txtCredits.color = new Color(1, 0, 0, 1);
+
+        for (int i = 0; i < 3; i++)
+        {
+            txtCredits.enabled = true;
+            yield return new WaitForSeconds(0.1f);
+            txtCredits.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
 

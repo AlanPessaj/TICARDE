@@ -62,6 +62,7 @@ public class EndManager_FG : MonoBehaviour
     }
     public IEnumerator InsertCoinBlink()
     {
+        StartCoroutine(GAMEMANAGER.Instance.InsufficientCredits());
         for (int i = 0; i < 3; i++)
         {
             insertCoin.SetActive(true);
