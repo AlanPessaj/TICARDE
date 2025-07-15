@@ -1,5 +1,4 @@
-FANTASMAS NO SPAWNEAN (posible causa morise en simultaneo)
-si se paran dos sobre el nenufar que se destruya
+
 -----------------------------------------------------------------------------
 RECORDAR IMPORTANTISIMO, SI SE CAMBIA ALGUN PREFAB CAMBIAR TAMBIEN EN LAS TILES
 EXTRA:

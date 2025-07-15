@@ -52,6 +52,7 @@ public class GameManager_FT : MonoBehaviour
 
     void Start()
     {
+        GameData.credits--;
         player1.GetComponent<PlayerController_FT>().skins[GameData.char1].SetActive(true);
         player2.GetComponent<PlayerController_FT>().skins[GameData.char2].SetActive(true);
         player1Canvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameData.name1;

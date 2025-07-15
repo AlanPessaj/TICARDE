@@ -90,7 +90,6 @@ public class GameSelector : MonoBehaviour
                         GameData.game = "FG";
                         break;
                 }
-                GameData.credits--;
                 GetComponent<AudioSource>().clip = joinTitle;
                 GetComponent<AudioSource>().Play();
                 StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().Blink("GREEN"));

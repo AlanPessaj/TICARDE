@@ -43,7 +43,7 @@ public class NameInputManager : MonoBehaviour
                 player2.gameObject.SetActive(false);
                 if (Input.GetButtonDown("A2") || Input.GetButtonDown("B2") || Input.GetButtonDown("C2"))
                 {
-                    if (GameData.credits < 1)
+                    if (GameData.credits < 2)
                     {
                         StartCoroutine(InsertCoinBlink());
                         return;

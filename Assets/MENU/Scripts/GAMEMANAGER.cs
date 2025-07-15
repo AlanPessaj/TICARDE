@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GAMEMANAGER : MonoBehaviour
 {
     public static GAMEMANAGER Instance { get; private set; }
     public bool menuActive;
+    public TextMeshProUGUI txtCredits;
+    bool showingCredits = false;
+    float time = 0f;
 
     // Update is called once per frame
     void Update()
@@ -20,7 +24,10 @@ public class GAMEMANAGER : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             GameData.credits++;
-            //TODO: poner sonido y puede que mas
+            GetComponent<AudioSource>().Play();
+            txtCredits.text = "CREDITS: " + GameData.credits;
+            time += 3f;
+            if (!showingCredits) StartCoroutine(ShowCredits());
         }
     }
 
@@ -35,6 +42,22 @@ public class GAMEMANAGER : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator ShowCredits()
+    {
+        float localTime = time;
+        time = 0f;
+        showingCredits = true;
+        txtCredits.enabled = true;
+        yield return new WaitForSeconds(localTime * Time.deltaTime);
+        while (time > 0f)
+        {
+            localTime = time;
+            yield return new WaitForSeconds(localTime * Time.deltaTime);
+        }
+        showingCredits = false;
+        txtCredits.enabled = false;
     }
 }
 
