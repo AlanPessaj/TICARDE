@@ -685,6 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuActive: 0
   txtCredits: {fileID: 1609955343}
+  accessDenied: {fileID: 8300000, guid: ff052c613b0049a439be9e1ccdd7d19a, type: 3}
 --- !u!4 &351152832
 Transform:
   m_ObjectHideFlags: 0
