@@ -9,6 +9,7 @@ public class GAMEMANAGER : MonoBehaviour
     public static GAMEMANAGER Instance { get; private set; }
     public bool menuActive;
     public TextMeshProUGUI txtCredits;
+    public AudioClip accessDenied;
     bool showingCredits = false;
 
     // Update is called once per frame
@@ -54,6 +55,7 @@ public class GAMEMANAGER : MonoBehaviour
 
     public IEnumerator InsufficientCredits()
     {
+        GetComponent<AudioSource>().PlayOneShot(accessDenied);
         txtCredits.color = new Color(1, 0, 0, 1);
 
         for (int i = 0; i < 3; i++)
