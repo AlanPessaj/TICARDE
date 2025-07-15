@@ -335,10 +335,10 @@ public class PlayerController_FG : MonoBehaviour
 
     void HippoAbility()
     {
-        //2
+        //1
         if (Physics.Raycast(transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Out")) && hippoCheck.transform.name == "agua")
         {
-            if (GetComponent<UIManager_FG>().RemoveXP(50))
+            if (GetComponent<UIManager_FG>().RemoveXP(25))
             {
                 if (hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
                 {
