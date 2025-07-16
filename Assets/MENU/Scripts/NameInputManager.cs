@@ -48,7 +48,6 @@ public class NameInputManager : MonoBehaviour
                         StartCoroutine(InsertCoinBlink());
                         return;
                     }
-                    GameData.credits--;
                     multiplayer = true;
                     GAMEMANAGER.Instance.GetComponent<LedsController>().FullRound("BLUE");
                 }

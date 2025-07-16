@@ -66,6 +66,11 @@ public class GAMEMANAGER : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
+
+    public void UpdateCreditsValue()
+    {
+        txtCredits.text = "CREDITS: " + GameData.credits;
+    }
 }
 
 public static class GameData
