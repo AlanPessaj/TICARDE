@@ -16,6 +16,7 @@ public class GAMEMANAGER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space)) Debug.Log(txtCredits.rectTransform.position);
         if (Input.GetKeyDown(KeyCode.M) && menuActive)
         {
             menuActive = false;
@@ -54,8 +55,10 @@ public class GAMEMANAGER : MonoBehaviour
         txtCredits.enabled = false;
     }
 
-    public IEnumerator InsufficientCredits()
+    public IEnumerator InsufficientCredits(bool endScene = false)
     {
+        if (endScene) txtCredits.rectTransform.position = new Vector2(512, 159);
+        else txtCredits.rectTransform.position = new Vector2(862, 59);
         insufficientCreditsActive = true;
         GetComponent<AudioSource>().PlayOneShot(accessDenied);
         txtCredits.color = new Color(1, 0, 0, 1);

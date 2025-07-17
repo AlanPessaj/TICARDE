@@ -61,7 +61,7 @@ public class EndManager_FG : MonoBehaviour
     public IEnumerator InsertCoinBlink()
     {
         if (GAMEMANAGER.Instance.insufficientCreditsActive) yield break;
-        StartCoroutine(GAMEMANAGER.Instance.InsufficientCredits());
+        StartCoroutine(GAMEMANAGER.Instance.InsufficientCredits(true));
         for (int i = 0; i < 3; i++)
         {
             insertCoin.SetActive(true);

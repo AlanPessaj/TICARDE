@@ -565,7 +565,7 @@ public class PlayerController_FG : MonoBehaviour
         if ((other.collider.gameObject.layer == LayerMask.NameToLayer("Lion") || other.collider.gameObject.layer == LayerMask.NameToLayer("Out")) && !immortal && !onFrog && other.collider.gameObject.name != "agua")
         {
             //perder vida
-            Debug.Log(other.collider.gameObject.name);
+            //Debug.Log(other.collider.gameObject.name);
             Die();
             if (other.collider.gameObject.name == "Car(Clone)")
             {
