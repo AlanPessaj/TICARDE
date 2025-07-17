@@ -125,6 +125,21 @@ public class LinearMover_FG : MonoBehaviour
                     }
                 }
 
+                if (gameObject.name.Contains("MonsterTruck"))
+                {
+                    if (Physics.Raycast(new Vector3(transform.position.x + 1, 1, 0), Vector3.down, out RaycastHit hit, 10f, LayerMask.GetMask("Default")))
+                    {
+                        hippoRotating = true;
+                        hippoInitialPosition = transform.position;
+                        hippoInitialRotation = transform.rotation;
+                        hippoFinalPosition = new Vector3(transform.position.x + 0.5f, transform.position.y, 14);
+                        hippoFinalRotation = Quaternion.Euler(transform.eulerAngles.x, -90, transform.eulerAngles.z);
+
+                        hippoTime = 0;
+                        return;
+                    }
+                }
+
                 if (gameObject.name != "Seagull(Clone)")
                 {
                     transform.Translate(0, 0, speed * Time.deltaTime, Space.World);
