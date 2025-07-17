@@ -26,6 +26,7 @@ public class GameManager_FF : MonoBehaviour
     private void Start()
     {
         GameData.credits--;
+        GAMEMANAGER.Instance.UpdateCreditsValue();
         if (GameData.name1 == "" || GameData.name2 == null)
         {
             GameData.name1 = "Player1";

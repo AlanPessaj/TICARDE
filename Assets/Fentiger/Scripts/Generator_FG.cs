@@ -50,6 +50,7 @@ public class Generator_FG : MonoBehaviour
     void Start()
     {
         GameData.credits--;
+        GAMEMANAGER.Instance.UpdateCreditsValue();
         multiplayer = GameData.name2 != "";
         player1Name = GameData.name1;
         player2Name = GameData.name2;
@@ -59,6 +60,7 @@ public class Generator_FG : MonoBehaviour
             players[1].GetComponent<PlayerController_FG>().skins[GameData.char2].SetActive(true);
             initialMultiplayer = true;
             GameData.credits--;
+            GAMEMANAGER.Instance.UpdateCreditsValue();
         }
         else
         {
