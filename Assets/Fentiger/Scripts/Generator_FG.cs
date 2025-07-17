@@ -44,6 +44,8 @@ public class Generator_FG : MonoBehaviour
     public int player2Score;
     public string player1Name = "Player1";
     public string player2Name = "Player2";
+    float afkTimer0 = 30f;
+    float afkTimer1 = 30f;
 
 
 
@@ -101,30 +103,30 @@ public class Generator_FG : MonoBehaviour
 
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
-            //Portal
-            //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
-
-            
-            // Ovni
-            /*if (camara.GetChild(0).childCount < 1)
-            {
-                Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
-            }*/
+        //Portal
+        //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
 
 
-            //Gaviota
-            /*if (multiplayer)
-            {
-                Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
-            }
-            else if (player1Alive)
-            {
-                Instantiate(specials[0], new Vector3(players[0].transform.position.x, 3, 18), Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
-            }*/
+        // Ovni
+        /*if (camara.GetChild(0).childCount < 1)
+        {
+            Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
+        }*/
+
+
+        //Gaviota
+        /*if (multiplayer)
+        {
+            Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
+        }
+        else if (player1Alive)
+        {
+            Instantiate(specials[0], new Vector3(players[0].transform.position.x, 3, 18), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
+        }*/
         //}
 
         float difficultyPosition = 0; //reemplazo de camara.position.x
@@ -158,10 +160,29 @@ public class Generator_FG : MonoBehaviour
             else
             {
                 if (multiplayer) conexion.SendMessagestoArduino("5", new string[] { players[0].transform.position.x.ToString(), players[1].transform.position.x.ToString() });
-                else if(isTherePlayer1) conexion.SendMessagestoArduino("5", new string[] { players[0].transform.position.x.ToString(), "DEAD" });
+                else if (isTherePlayer1) conexion.SendMessagestoArduino("5", new string[] { players[0].transform.position.x.ToString(), "DEAD" });
                 else conexion.SendMessagestoArduino("5", new string[] { "DEAD", players[1].transform.position.x.ToString() });
             }
             arduinoTimer = 2f;
+        }
+
+        if (!players[0].GetComponent<PlayerController_FG>().AFK) afkTimer0 = 30f;
+        if (!players[1].GetComponent<PlayerController_FG>().AFK) afkTimer1 = 30f;
+        players[0].GetComponent<PlayerController_FG>().AFK = true;
+        players[1].GetComponent<PlayerController_FG>().AFK = true;
+        afkTimer0 -= Time.deltaTime;
+        afkTimer1 -= Time.deltaTime;
+
+        if (afkTimer0 < 0)
+        {
+            Instantiate(specials[0], new Vector3(players[0].transform.position.x, 3, 18), Quaternion.identity);
+            afkTimer0 = 15f;
+        }
+
+        if (afkTimer1 < 0)
+        {
+            Instantiate(specials[0], new Vector3(players[0].transform.position.x, 3, 18), Quaternion.identity);
+            afkTimer1 = 15f;
         }
     }
 

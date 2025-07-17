@@ -15,7 +15,7 @@ public class Points_FF : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        txtCredits.rectTransform.position = new Vector2(512, 159);
+        GAMEMANAGER.Instance.txtCredits.rectTransform.position = new Vector2(512, 159);
         GAMEMANAGER.Instance.GetComponent<conexion>().SendMessagestoArduino("0", new string[]{ "" });
         txtPlayer1Score.text = GameData.name1 + " SCORE: " + GameData.score1.ToString();
         txtPlayer2Score.text = GameData.name2 + " SCORE: " + GameData.score2.ToString();

@@ -23,6 +23,7 @@ public class PlayerController_FG : MonoBehaviour
     public Vector3 raycastPos;
     public GameObject ghost;
     public Material ghostMaterial;
+    [HideInInspector] public bool AFK;
     Material material;
     GameObject portal;
     GameObject hippo;
@@ -44,15 +45,18 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetButtonDown("A"))
             {
+                AFK = false;
                 DetectCombo("A", "B", "", HeartAbility, HippoAbility);
             }
             if (Input.GetButtonDown("B"))
             {
+                AFK = false;
                 DetectCombo("B", "A", "", HeartAbility, PortalAbility);
             }
             if (Input.GetButtonDown("C") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability());
             if (Input.GetKeyDown(KeyCode.W))
             {
+                AFK = false;
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
                     if (!facingTreeDown)
@@ -75,6 +79,7 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.S) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
             {
+                AFK = false;
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
                     MoveBackward();
@@ -82,10 +87,12 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.A) && transform.position.z < 12f && !facingTreeRight)
             {
+                AFK = false;
                 MoveLeft();
             }
             if (Input.GetKeyDown(KeyCode.D) && transform.position.z > -12f && !facingTreeLeft)
             {
+                AFK = false;
                 MoveRight();
             }
         }
@@ -93,15 +100,18 @@ public class PlayerController_FG : MonoBehaviour
         {
             if (Input.GetButtonDown("A2"))
             {
+                AFK = false;
                 DetectCombo("A", "B", "2", HeartAbility, HippoAbility);
             }
             if (Input.GetButtonDown("B2"))
             {
+                AFK = false;
                 DetectCombo("B", "A", "2", HeartAbility, PortalAbility);
             }
             if (Input.GetButtonDown("C2") && GetComponent<UIManager_FG>().RemoveXP(25)) StartCoroutine(Invulnerability());
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
+                AFK = false;
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x <= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
                     if (!facingTreeDown)
@@ -128,6 +138,7 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.DownArrow) && generator.distance - generator.despawnRadius < transform.position.x && transform.position.x > 0 && !facingTreeUp)
             {
+                AFK = false;
                 if (generator.multiplayer && (Mathf.Abs(transform.position.x - otherPlayer.transform.position.x) <= 15 || transform.position.x >= otherPlayer.transform.position.x) || !generator.multiplayer)
                 {
                     MoveBackward();
@@ -135,10 +146,12 @@ public class PlayerController_FG : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.z < 12f && !facingTreeRight)
             {
+                AFK = false;
                 MoveLeft();
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.z > -12f && !facingTreeLeft)
             {
+                AFK = false;
                 MoveRight();
             }
         }
@@ -146,7 +159,6 @@ public class PlayerController_FG : MonoBehaviour
         if ((transform.position.z > 15f || transform.position.z < -15f) && !immortal)
         {
             //Perder vida
-            Debug.Log("2");
             Die();
         }
         CheckTile();
@@ -526,7 +538,6 @@ public class PlayerController_FG : MonoBehaviour
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Out") && !immortal)
             {
                 //perder vida
-                Debug.Log("Out kill");
                 Die();
 
                 if (hit.collider.gameObject.name == "Car(Clone)")
@@ -580,7 +591,6 @@ public class PlayerController_FG : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Seagull") && !immortal)
         {
             //perder vida
-            Debug.Log("Seagull kill");
             Die();
             if (other.transform.name == "Laser")
             {
@@ -595,6 +605,7 @@ public class PlayerController_FG : MonoBehaviour
 
     public IEnumerator Invulnerability()
     {
+        AFK = false;
         immortal = true;
         int index = 4;
         for (int i = 0; i < index; i++)
