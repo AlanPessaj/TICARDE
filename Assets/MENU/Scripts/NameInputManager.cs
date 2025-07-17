@@ -89,6 +89,7 @@ public class NameInputManager : MonoBehaviour
 
     public IEnumerator InsertCoinBlink()
     {
+        if (GAMEMANAGER.Instance.insufficientCreditsActive) yield break;
         StartCoroutine(GAMEMANAGER.Instance.InsufficientCredits());
         for (int i = 0; i < 3; i++)
         {

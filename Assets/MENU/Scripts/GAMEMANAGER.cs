@@ -11,6 +11,7 @@ public class GAMEMANAGER : MonoBehaviour
     public TextMeshProUGUI txtCredits;
     public AudioClip accessDenied;
     bool showingCredits = false;
+    [HideInInspector] public bool insufficientCreditsActive = false;
 
     // Update is called once per frame
     void Update()
@@ -55,6 +56,7 @@ public class GAMEMANAGER : MonoBehaviour
 
     public IEnumerator InsufficientCredits()
     {
+        insufficientCreditsActive = true;
         GetComponent<AudioSource>().PlayOneShot(accessDenied);
         txtCredits.color = new Color(1, 0, 0, 1);
 
@@ -65,6 +67,7 @@ public class GAMEMANAGER : MonoBehaviour
             txtCredits.enabled = false;
             yield return new WaitForSeconds(0.1f);
         }
+        insufficientCreditsActive = false;
     }
 
     public void UpdateCreditsValue()
