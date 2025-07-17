@@ -35,7 +35,6 @@ public class Points_FT : MonoBehaviour
             StartCoroutine(InsertCoinBlink());
             return;
         }
-        GameData.credits--;
         SceneManager.LoadScene("Game(FT)");
     }
 

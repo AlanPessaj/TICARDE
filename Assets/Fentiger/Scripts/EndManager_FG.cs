@@ -56,8 +56,6 @@ public class EndManager_FG : MonoBehaviour
             StartCoroutine(InsertCoinBlink());
             return;
         }
-        if (player2Name == "") GameData.credits--;
-        else GameData.credits -= 2;
         SceneManager.LoadScene("Game(FG)");
     }
     public IEnumerator InsertCoinBlink()
