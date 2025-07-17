@@ -21,6 +21,7 @@ public class GAMEMANAGER : MonoBehaviour
         {
             menuActive = false;
             SceneManager.LoadScene("MENU");
+            GAMEMANAGER.Instance.txtCredits.rectTransform.position = new Vector2(862, 59);
             Time.timeScale = 1;
         }
         if (Input.GetKeyDown(KeyCode.C))
