@@ -54,7 +54,7 @@ public class conexion : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Serial port is not open.");
+            //Debug.LogWarning("Serial port is not open.");
         }
     }
 

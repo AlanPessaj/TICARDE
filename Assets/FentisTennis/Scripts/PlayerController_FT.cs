@@ -345,7 +345,7 @@ public class PlayerController_FT : MonoBehaviour
             else
             {
                 //A
-                if (((Input.GetButtonDown("A" + player) && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("A" + player))) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && driveRotation == 0 && canHit)
+                if (((Input.GetButtonDown("A" + player) && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("A" + player))) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && driveRotation == 0 && canHit && !gameManager.ending && !gameManager.doingGreeting)
                 {
                     ResetRaquet();
                     racket.transform.Rotate(-90, 0, 0);
@@ -361,7 +361,7 @@ public class PlayerController_FT : MonoBehaviour
             }
 
         }
-        if (((Input.GetButton("B" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("B" + player))) && !((Input.GetButton("A" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("A" + player))) && !serve)
+        if (((Input.GetButton("B" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("B" + player))) && !((Input.GetButton("A" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("A" + player))) && !serve && !gameManager.ending && !gameManager.doingGreeting)
         {
             if (((Input.GetButton("C" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("C" + player))))
             {
@@ -386,7 +386,7 @@ public class PlayerController_FT : MonoBehaviour
                 }
             }
         }
-        if (((Input.GetButton("C" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("C" + player))) && !((Input.GetButton("B" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("B" + player))) && !((Input.GetButton("A" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("A" + player))))
+        if (((Input.GetButton("C" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("C" + player))) && !((Input.GetButton("B" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("B" + player))) && !((Input.GetButton("A" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("A" + player))) && !gameManager.ending && !gameManager.doingGreeting)
         {
             //C
             if (((Input.GetButtonDown("C" + player) && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("C" + player))) && !doingDrive && !doingLob && !doingSmash && smashRotation == 0 && driveRotation == 0 && lobRotation == 0 && canHit)

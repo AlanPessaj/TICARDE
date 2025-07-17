@@ -2393,7 +2393,9 @@ MonoBehaviour:
   transition: {fileID: 1933297168}
   lastServePlayer1: 1
   inServe: 0
+  ending: 0
   endMovementSpeed: 0.3
+  doingGreeting: 0
 --- !u!114 &645166232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4426,6 +4428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuActive: 1
+  txtCredits: {fileID: 0}
+  accessDenied: {fileID: 0}
+  insufficientCreditsActive: 0
 --- !u!4 &1535367285
 Transform:
   m_ObjectHideFlags: 0

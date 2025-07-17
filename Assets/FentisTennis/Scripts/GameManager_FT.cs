@@ -40,10 +40,10 @@ public class GameManager_FT : MonoBehaviour
     float ballHeight;
     float arduinoTimer = 0f;
     public bool inServe;
-    bool ending;
-    float endingTime;
+    [HideInInspector] public bool ending;
+    [HideInInspector] float endingTime;
     public float endMovementSpeed;
-    bool doingGreeting;
+    [HideInInspector] public bool doingGreeting;
 
     void Awake()
     {
