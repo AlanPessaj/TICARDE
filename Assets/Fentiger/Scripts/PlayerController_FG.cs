@@ -502,6 +502,7 @@ public class PlayerController_FG : MonoBehaviour
             else
             {
                 transform.parent = null;
+                transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), -2, Mathf.RoundToInt(transform.position.z));
                 onHippo = false;
                 onLog = false;
