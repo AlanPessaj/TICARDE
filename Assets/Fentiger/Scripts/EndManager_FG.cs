@@ -19,6 +19,7 @@ public class EndManager_FG : MonoBehaviour
 
     private void Start()
     {
+        txtCredits.rectTransform.position = new Vector2(512, 159);
         player1Name = GameData.name1;
         player2Name = GameData.name2;
         player1Score = GameData.score1;
