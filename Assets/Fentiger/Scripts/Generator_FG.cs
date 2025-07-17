@@ -179,9 +179,9 @@ public class Generator_FG : MonoBehaviour
             afkTimer0 = 15f;
         }
 
-        if (afkTimer1 < 0)
+        if (afkTimer1 < 0 && multiplayer)
         {
-            Instantiate(specials[0], new Vector3(players[0].transform.position.x, 3, 18), Quaternion.identity);
+            Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
             afkTimer1 = 15f;
         }
     }
