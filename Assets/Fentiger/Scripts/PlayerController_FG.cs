@@ -170,9 +170,15 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveForward()
     {
-        if (!onFrog)
+        if (!onFrog && !onTruck)
         {
             transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
+        }
+        else if (onTruck)
+        {
+            transform.position = new Vector3(Mathf.RoundToInt(transform.position.x + 1.5f), transform.position.y, transform.position.z);
+            onHippo = false;
+            onTruck = false;
         }
         else
         {
@@ -192,9 +198,15 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveBackward()
     {
-        if (!onFrog)
+        if (!onFrog && !onTruck)
         {
             transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+        }
+        else if (onTruck)
+        {
+            transform.position = new Vector3(Mathf.RoundToInt(transform.position.x - 1.5f), transform.position.y, transform.position.z);
+            onHippo = false;
+            onTruck = false;
         }
         else
         {
