@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 421079976806164225}
   - component: {fileID: 2332567554645768481}
   m_Layer: 0
-  m_Name: calle (1)
+  m_Name: calle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thing: {fileID: 5276149425105017193, guid: d2b505a18e0885d419c13ba6423a6bd0, type: 3}
-  hippo: {fileID: 0}
+  hippo: {fileID: 1772561699166938222, guid: dedff0e227a9b044bbdc79166c12637f, type: 3}
   generator: {fileID: 0}
   changedSide: 0
   randomSpawnSide: 0

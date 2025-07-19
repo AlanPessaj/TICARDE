@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.56452405, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -895,6 +895,7 @@ MonoBehaviour:
   roadStep: {fileID: 8300000, guid: a534e12260596b64bb59d3ec9f640350, type: 3}
   laserImpact: {fileID: 8300000, guid: 4c9bef0f9c13dfe469816c9c76204743, type: 3}
   abilitySound: {fileID: 8300000, guid: 60473de46a3349d4aabebdc09a97ba65, type: 3}
+  explosion: {fileID: 8300000, guid: 29d0a2036de7d9f4cbccab4a8926dd28, type: 3}
 --- !u!82 &287369568
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2191,6 +2192,7 @@ MonoBehaviour:
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
   ghostMaterial: {fileID: 2100000, guid: 0cc81a99cc18e584785945dbd57e85ec, type: 2}
+  AFK: 0
   comboTime: 0.3
   notField: 0
 --- !u!136 &1220741842
@@ -2932,6 +2934,7 @@ MonoBehaviour:
   raycastPos: {x: 0, y: 0, z: 0}
   ghost: {fileID: 4985665989269004420, guid: b43e734cd65e01e4db06938379e0eebb, type: 3}
   ghostMaterial: {fileID: 2100000, guid: 0cc81a99cc18e584785945dbd57e85ec, type: 2}
+  AFK: 0
   comboTime: 0.3
   notField: 0
 --- !u!136 &1863136298

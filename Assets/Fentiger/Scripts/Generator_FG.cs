@@ -106,13 +106,43 @@ public class Generator_FG : MonoBehaviour
         //Portal
         //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
 
-
         // Ovni
         /*if (camara.GetChild(0).childCount < 1)
         {
             Instantiate(specials[1], ovniSpawn.position + Vector3.right * 3, Quaternion.identity, ovniSpawn);
         }*/
 
+        /*if (Physics.Raycast(transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Out")) && hippoCheck.transform.name == "agua")
+        {
+        //hippo
+                if (hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
+                {
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(transform.position.x + 1, -2.7f, transform.position.z + 2), Quaternion.Euler(0, 0, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                }
+                else
+                {
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(transform.position.x + 1, -2.7f, transform.position.z - 2), Quaternion.Euler(0, 180, 90), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                }
+                GetComponent<SoundManager_FG>().PlaySound(GetComponent<SoundManager_FG>().abilitySound);
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //monster truck
+            Debug.DrawRay(players[0].transform.position + Vector3.right + Vector3.up, Vector3.down * 5f, Color.red, 1f);
+            if (Physics.Raycast(players[0].transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Default")) && hippoCheck.transform.name == "calle")
+            {
+                if (hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
+                {
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(players[0].transform.position.x + 1.5f, -2.7f, players[0].transform.position.z + 2), Quaternion.Euler(0, 180, 0), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                }
+                else
+                {
+                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(players[0].transform.position.x + 1.5f, -2.7f, players[0].transform.position.z - 2), Quaternion.Euler(0, 0, 0), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+                }
+                GetComponent<SoundManager_FG>().PlaySound(GetComponent<SoundManager_FG>().abilitySound);
+            }
+        }
 
         //Gaviota
         /*if (multiplayer)

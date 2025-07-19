@@ -16,7 +16,6 @@ public class GAMEMANAGER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) Debug.Log(txtCredits.rectTransform.position);
         if (Input.GetKeyDown(KeyCode.M) && menuActive)
         {
             menuActive = false;

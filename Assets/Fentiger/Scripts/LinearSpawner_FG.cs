@@ -12,7 +12,6 @@ public class LinearSpawner_FG : MonoBehaviour
     public bool randomSpawnSide;
     float initialSpawnRate;
     public float time;
-    float intervalTime;
 
     void Start()
     {
