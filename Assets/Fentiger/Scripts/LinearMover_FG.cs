@@ -138,7 +138,7 @@ public class LinearMover_FG : MonoBehaviour
                         hippoRotating = true;
                         hippoInitialPosition = transform.position;
                         hippoInitialRotation = transform.rotation;
-                        hippoFinalPosition = new Vector3(transform.position.x + 1f, transform.position.y, 14);
+                        hippoFinalPosition = new Vector3(transform.position.x + 0.5f, transform.position.y, 14);
                         hippoFinalRotation = Quaternion.Euler(transform.eulerAngles.x, 90, transform.eulerAngles.z);
                         hippoTime = 0;
                         return;
@@ -194,7 +194,7 @@ public class LinearMover_FG : MonoBehaviour
                 if (gameObject.name.Contains("MonsterTruck") && transform.position.z <= -10)
                 {
                     //Debug.DrawRay(new Vector3(transform.position.x + 1.5f, 1, 0), Vector3.down * 10f, Color.red, 10f);
-                    if (Physics.Raycast(new Vector3(transform.position.x + 1.5f, 1, 0), Vector3.down, out RaycastHit hit, 10f, LayerMask.GetMask("Default")))
+                    if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, 1, 0), Vector3.down, out RaycastHit hit, 10f, LayerMask.GetMask("Default")))
                     {
                         hippoRotating = true;
                         hippoInitialPosition = transform.position;
