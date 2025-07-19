@@ -126,7 +126,7 @@ public class Generator_FG : MonoBehaviour
                 GetComponent<SoundManager_FG>().PlaySound(GetComponent<SoundManager_FG>().abilitySound);
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             //monster truck
             Debug.DrawRay(players[0].transform.position + Vector3.right + Vector3.up, Vector3.down * 5f, Color.red, 1f);
@@ -142,7 +142,7 @@ public class Generator_FG : MonoBehaviour
                 }
                 GetComponent<SoundManager_FG>().PlaySound(GetComponent<SoundManager_FG>().abilitySound);
             }
-        }
+        }*/
 
         //Gaviota
         /*if (multiplayer)
@@ -159,7 +159,7 @@ public class Generator_FG : MonoBehaviour
         }*/
         //}
 
-        float difficultyPosition = 0; //reemplazo de camara.position.x
+        float difficultyPosition = 0;
         if (difficulty >= 10 && difficulty % 10 == 0)
         {
             Level = Mathf.Clamp(difficulty / 10, 0 + startingLevel, 9);
