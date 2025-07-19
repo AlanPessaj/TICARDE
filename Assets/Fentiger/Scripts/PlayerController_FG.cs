@@ -173,12 +173,14 @@ public class PlayerController_FG : MonoBehaviour
         if (!onFrog && !onTruck)
         {
             transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
+            hasMoved = true;
         }
-        else if (onTruck)
+        else if (onTruck && !hippo.GetComponent<LinearMover_FG>().hippoRotating && !hippo.GetComponent<LinearMover_FG>().hippoResuming)
         {
             transform.position = new Vector3(Mathf.RoundToInt(transform.position.x + 1.5f), transform.position.y, transform.position.z);
             onHippo = false;
             onTruck = false;
+            hasMoved = true;
         }
         else
         {
@@ -187,13 +189,13 @@ public class PlayerController_FG : MonoBehaviour
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
                 onFrog = false;
+                hasMoved = true;
             }
         }
         if (generator.distance <= transform.position.x + (generator.despawnRadius / 2))
         {
             generator.GenerateZones();
         }
-        hasMoved = true;
     }
 
     void MoveBackward()
@@ -201,12 +203,14 @@ public class PlayerController_FG : MonoBehaviour
         if (!onFrog && !onTruck)
         {
             transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
+            hasMoved = true;
         }
-        else if (onTruck)
+        else if (onTruck && !hippo.GetComponent<LinearMover_FG>().hippoRotating && !hippo.GetComponent<LinearMover_FG>().hippoResuming)
         {
             transform.position = new Vector3(Mathf.RoundToInt(transform.position.x - 1.5f), transform.position.y, transform.position.z);
             onHippo = false;
             onTruck = false;
+            hasMoved = true;
         }
         else
         {
@@ -215,20 +219,21 @@ public class PlayerController_FG : MonoBehaviour
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
                 onFrog = false;
+                hasMoved = true;
             }
         }
-        hasMoved = true;
     }
 
     void MoveLeft()
     {
-        bool tempMoved = true;
         if (!onLog && !onFrog && !onHippo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
+            hasMoved = true;
         }
         else if (onLog)
         {
+            hasMoved = true;
             if (transform.localPosition.z < 0 && transform.localPosition.z >= -1)
             {
                 if (transform.localPosition.z > 0.3f)
@@ -252,6 +257,7 @@ public class PlayerController_FG : MonoBehaviour
         }
         else if (onHippo && !onTruck)
         {
+            hasMoved = true;
             if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
             {
                 if (hippo.GetComponent<LinearMover_FG>().movingForward)
@@ -264,15 +270,16 @@ public class PlayerController_FG : MonoBehaviour
                 }
             }
         }
-        else if (onTruck)
+        else if (onTruck && !hippo.GetComponent<LinearMover_FG>().hippoRotating && !hippo.GetComponent<LinearMover_FG>().hippoResuming)
         {
             if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
             {
                 if (!hippo.GetComponent<LinearMover_FG>().movingForward)
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1f);
+                    transform.parent = null;
+                    hasMoved = true;
                 }
-                else tempMoved = false;
             }
         }
         else
@@ -282,10 +289,9 @@ public class PlayerController_FG : MonoBehaviour
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
                 onFrog = false;
+                hasMoved = true;
             }
         }
-        if (tempMoved) hasMoved = true;
-        else hasMoved = false;
     }
     void DetectCombo(string button1, string button2, string player, System.Action func, System.Action noCombo = null, bool isBtn1 = true, bool isBtn2 = true)
     {
@@ -405,10 +411,10 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveRight()
     {
-        bool tempMoved = true;
         if (!onLog && !onFrog && !onHippo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
+            hasMoved = true;
         }
         else if (onLog)
         {
@@ -431,11 +437,12 @@ public class PlayerController_FG : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
             }
-
+            hasMoved = true;
             log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
         }
         else if (onHippo && !onTruck)
         {
+            hasMoved = true;
             if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
             {
                 if (hippo.GetComponent<LinearMover_FG>().movingForward)
@@ -448,15 +455,16 @@ public class PlayerController_FG : MonoBehaviour
                 }
             }
         }
-        else if (onTruck)
+        else if (onTruck && !hippo.GetComponent<LinearMover_FG>().hippoRotating && !hippo.GetComponent<LinearMover_FG>().hippoResuming)
         {
             if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
             {
                 if (hippo.GetComponent<LinearMover_FG>().movingForward)
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1f);
+                    transform.parent = null;
+                    hasMoved = true;
                 }
-                else tempMoved = false;
             }
         }
         else
@@ -466,10 +474,9 @@ public class PlayerController_FG : MonoBehaviour
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
                 onFrog = false;
+                hasMoved = true;
             }
         }
-        if (tempMoved) hasMoved = true;
-        else hasMoved = false;
     }
     
     public void Die()
@@ -551,6 +558,7 @@ public class PlayerController_FG : MonoBehaviour
                         onHippo = true;
                         onTruck = true;
                         hippo = hit.collider.gameObject;
+                        Debug.Log("truck mounted");
                     }
                 }
                 else if (hit.collider.gameObject.name.Contains("Log(Clone)") && !onHippo)
