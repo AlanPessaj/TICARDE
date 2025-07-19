@@ -184,7 +184,7 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
-            if (!rana.isJumping)
+            if (rana != null && !rana.isJumping)
             {
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) + 1, transform.position.y, transform.position.z);
@@ -214,7 +214,7 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
-            if (!rana.isJumping)
+            if (rana != null && !rana.isJumping)
             {
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x) - 1, transform.position.y, transform.position.z);
@@ -284,7 +284,7 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
-            if (!rana.isJumping)
+            if (rana != null && !rana.isJumping)
             {
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
@@ -469,7 +469,7 @@ public class PlayerController_FG : MonoBehaviour
         }
         else
         {
-            if (!rana.isJumping)
+            if (rana != null && !rana.isJumping)
             {
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
