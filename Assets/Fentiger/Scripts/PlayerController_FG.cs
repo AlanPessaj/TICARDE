@@ -276,7 +276,7 @@ public class PlayerController_FG : MonoBehaviour
             {
                 if (!hippo.GetComponent<LinearMover_FG>().movingForward)
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1f);
+                    transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1f);
                     transform.parent = null;
                     hasMoved = true;
                 }
@@ -558,7 +558,6 @@ public class PlayerController_FG : MonoBehaviour
                         onHippo = true;
                         onTruck = true;
                         hippo = hit.collider.gameObject;
-                        Debug.Log("truck mounted");
                     }
                 }
                 else if (hit.collider.gameObject.name.Contains("Log(Clone)") && !onHippo)
@@ -575,6 +574,7 @@ public class PlayerController_FG : MonoBehaviour
                 transform.rotation = Quaternion.identity;
                 transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), -2, Mathf.RoundToInt(transform.position.z));
                 onHippo = false;
+                onTruck = false;
                 onLog = false;
             }
             if ((hit.collider.gameObject.layer == LayerMask.NameToLayer("Field") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Grass")) && hasMoved)
