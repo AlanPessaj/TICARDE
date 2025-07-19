@@ -210,6 +210,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveLeft()
     {
+        bool tempMoved = true;
         if (!onLog && !onFrog && !onHippo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1);
@@ -259,6 +260,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1f);
                 }
+                else tempMoved = false;
             }
         }
         else
@@ -270,7 +272,8 @@ public class PlayerController_FG : MonoBehaviour
                 onFrog = false;
             }
         }
-        hasMoved = true;
+        if (tempMoved) hasMoved = true;
+        else hasMoved = false;
     }
     void DetectCombo(string button1, string button2, string player, System.Action func, System.Action noCombo = null, bool isBtn1 = true, bool isBtn2 = true)
     {
@@ -390,6 +393,7 @@ public class PlayerController_FG : MonoBehaviour
 
     void MoveRight()
     {
+        bool tempMoved = true;
         if (!onLog && !onFrog && !onHippo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1);
@@ -440,6 +444,7 @@ public class PlayerController_FG : MonoBehaviour
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1f);
                 }
+                else tempMoved = false;
             }
         }
         else
@@ -451,7 +456,8 @@ public class PlayerController_FG : MonoBehaviour
                 onFrog = false;
             }
         }
-        hasMoved = true;
+        if (tempMoved) hasMoved = true;
+        else hasMoved = false;
     }
     
     public void Die()
