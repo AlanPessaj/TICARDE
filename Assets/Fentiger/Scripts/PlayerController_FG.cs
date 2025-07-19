@@ -433,7 +433,7 @@ public class PlayerController_FG : MonoBehaviour
         hasMoved = true;
     }
     
-    void Die()
+    public void Die()
     {
         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "RED", generator.multiplayer, generator.isTherePlayer1));
         if (transform.GetChild(0).gameObject.activeSelf)
@@ -503,7 +503,17 @@ public class PlayerController_FG : MonoBehaviour
                         hippo = hit.collider.gameObject;
                     }
                 }
-                else if(hit.collider.gameObject.name.Contains("Log(Clone)") && !onHippo)
+                else if (hit.collider.gameObject.name == "MonsterTruck(Clone)" && !onHippo)
+                {
+                    if (hit.transform.childCount == 3)
+                    {
+                        transform.parent = hit.transform;
+                        transform.localPosition = new Vector3(0, 3.6f, -1.4f);
+                        onHippo = true;
+                        hippo = hit.collider.gameObject;
+                    }
+                }
+                else if (hit.collider.gameObject.name.Contains("Log(Clone)") && !onHippo)
                 {
                     transform.parent = hit.transform;
                     onLog = true;
