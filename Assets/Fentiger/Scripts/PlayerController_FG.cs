@@ -579,7 +579,7 @@ public class PlayerController_FG : MonoBehaviour
             //perder vida
             //Debug.Log(other.collider.gameObject.name);
             Die();
-            if (other.collider.gameObject.name == "Car(Clone)")
+            if (other.collider.gameObject.name == "Car(Clone)" || other.collider.gameObject.name == "MonsterOut") 
             {
                 generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
             }
