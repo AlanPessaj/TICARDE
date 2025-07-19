@@ -101,8 +101,8 @@ public class Generator_FG : MonoBehaviour
             player1Alive = false;
         }
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
         //Portal
         //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
 
@@ -126,26 +126,23 @@ public class Generator_FG : MonoBehaviour
                 GetComponent<SoundManager_FG>().PlaySound(GetComponent<SoundManager_FG>().abilitySound);
         }*/
 
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        //monster truck
+        /*Debug.DrawRay(players[0].transform.position + Vector3.right + Vector3.up, Vector3.down * 5f, Color.red, 1f);
+        if (Physics.Raycast(players[0].transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Default")) && hippoCheck.transform.name == "calle")
         {
-            //monster truck
-            Debug.DrawRay(players[0].transform.position + Vector3.right + Vector3.up, Vector3.down * 5f, Color.red, 1f);
-            if (Physics.Raycast(players[0].transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit hippoCheck, 5f, LayerMask.GetMask("Default")) && hippoCheck.transform.name == "calle")
+            if (hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
             {
-                if (hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
-                {
-                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(players[0].transform.position.x + 1.5f, -2.7f, players[0].transform.position.z + 2), Quaternion.Euler(0, 180, 0), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
-                }
-                else
-                {
-                    Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(players[0].transform.position.x + 1.5f, -2.7f, players[0].transform.position.z - 2), Quaternion.Euler(0, 0, 0), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
-                }
-                GetComponent<SoundManager_FG>().PlaySound(GetComponent<SoundManager_FG>().abilitySound);
+                Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(players[0].transform.position.x + 1.5f, -2.7f, players[0].transform.position.z + 2), Quaternion.Euler(0, 180, 0), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
             }
+            else
+            {
+                Instantiate(hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>().hippo, new Vector3(players[0].transform.position.x + 1.5f, -2.7f, players[0].transform.position.z - 2), Quaternion.Euler(0, 0, 0), hippoCheck.transform.parent).GetComponent<LinearMover_FG>().spawner = hippoCheck.transform.parent.GetComponent<LinearSpawner_FG>();
+            }
+            GetComponent<SoundManager_FG>().PlaySound(GetComponent<SoundManager_FG>().abilitySound);
         }*/
 
         //Gaviota
-        /*if (multiplayer)
+        if (multiplayer)
         {
             Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
         }
@@ -156,8 +153,8 @@ public class Generator_FG : MonoBehaviour
         else
         {
             Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
-        }*/
-        //}
+        }
+        }
 
         float difficultyPosition = 0;
         if (difficulty >= 10 && difficulty % 10 == 0)
