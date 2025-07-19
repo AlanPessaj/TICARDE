@@ -11,6 +11,7 @@ public class PlayerController_FG : MonoBehaviour
     public GameObject otherPlayer;
     public GameObject[] skins;
     bool onLog = false;
+    bool onTruck = false;
     bool facingTreeRight;
     bool facingTreeLeft;
     bool facingTreeUp;
@@ -236,7 +237,7 @@ public class PlayerController_FG : MonoBehaviour
             }
             log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
         }
-        else if (onHippo)
+        else if (onHippo && !onTruck)
         {
             if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
             {
@@ -247,6 +248,16 @@ public class PlayerController_FG : MonoBehaviour
                 else
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1.5f);
+                }
+            }
+        }
+        else if (onTruck)
+        {
+            if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
+            {
+                if (!hippo.GetComponent<LinearMover_FG>().movingForward)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1f);
                 }
             }
         }
@@ -407,7 +418,7 @@ public class PlayerController_FG : MonoBehaviour
 
             log.transform.GetComponent<AudioSource>().PlayOneShot(log.transform.GetComponent<AudioSource>().clip);
         }
-        else if (onHippo)
+        else if (onHippo && !onTruck)
         {
             if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
             {
@@ -418,6 +429,16 @@ public class PlayerController_FG : MonoBehaviour
                 else
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 2.3f);
+                }
+            }
+        }
+        else if (onTruck)
+        {
+            if (!hippo.GetComponent<LinearMover_FG>().hippoResuming && !hippo.GetComponent<LinearMover_FG>().hippoRotating)
+            {
+                if (hippo.GetComponent<LinearMover_FG>().movingForward)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1f);
                 }
             }
         }
@@ -510,6 +531,7 @@ public class PlayerController_FG : MonoBehaviour
                         transform.parent = hit.transform;
                         transform.localPosition = new Vector3(0, 3.6f, -1.4f);
                         onHippo = true;
+                        onTruck = true;
                         hippo = hit.collider.gameObject;
                     }
                 }
