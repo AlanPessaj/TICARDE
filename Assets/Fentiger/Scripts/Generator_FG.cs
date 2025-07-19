@@ -101,8 +101,8 @@ public class Generator_FG : MonoBehaviour
             player1Alive = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
         //Portal
         //Instantiate(specials[2], new Vector3((int)camara.position.x + 25.5f, -1.5f, Random.Range(-12, 13)), Quaternion.Euler(0, 0, 90));
 
@@ -142,7 +142,7 @@ public class Generator_FG : MonoBehaviour
         }*/
 
         //Gaviota
-        if (multiplayer)
+        /*if (multiplayer)
         {
             Instantiate(specials[0], new Vector3(Mathf.Max(players[0].transform.position.x, players[1].transform.position.x), 3, 18), Quaternion.identity);
         }
@@ -153,8 +153,8 @@ public class Generator_FG : MonoBehaviour
         else
         {
             Instantiate(specials[0], new Vector3(players[1].transform.position.x, 3, 18), Quaternion.identity);
-        }
-        }
+        }*/
+        //}
 
         float difficultyPosition = 0;
         if (difficulty >= 10 && difficulty % 10 == 0)

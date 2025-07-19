@@ -337,11 +337,6 @@ public class LinearMover_FG : MonoBehaviour
             transform.GetChild(0).GetComponent<PlayerController_FG>().enabled = true;
             transform.GetChild(0).parent = null;
         }
-        else if (gameObject.name.Contains("MonsterTruck") && transform.childCount > 3)
-        {
-            transform.GetChild(3).GetComponent<PlayerController_FG>().enabled = true;
-            transform.GetChild(3).parent = null;
-        }
         else if (transform.childCount > 1 && gameObject.name != "Car(Clone)" && gameObject.name != "MonsterTruck(Clone)")
         {
             transform.GetChild(1).GetComponent<PlayerController_FG>().enabled = true;
@@ -357,7 +352,9 @@ public class LinearMover_FG : MonoBehaviour
         {
             if (gameObject.name.Contains("MonsterTruck") && transform.childCount > 3)
             {
-                gameObject.transform.GetChild(3).GetComponent<PlayerController_FG>().Die();
+                GameObject player = transform.GetChild(3).gameObject;
+                player.transform.parent = null;
+                player.GetComponent<PlayerController_FG>().Die();
             }
             GameObject particles = GetComponentInChildren<ParticleSystem>().transform.parent.gameObject;
             particles.transform.parent = null;
