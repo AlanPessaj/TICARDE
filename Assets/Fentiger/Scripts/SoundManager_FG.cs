@@ -17,6 +17,7 @@ public class SoundManager_FG : MonoBehaviour
     public AudioClip laserImpact;
     public AudioClip abilitySound;
     public AudioClip explosion;
+    public AudioClip monsterStartUp;
     int level = 0;
     void Update()
     {

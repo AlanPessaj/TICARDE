@@ -33,7 +33,11 @@ public class LinearMover_FG : MonoBehaviour
     void Start()
     {
         speed = generator.Levels[generator.Level].speed;
-        if (gameObject.name.Contains("MonsterTruck")) speed *= 2f;
+        if (gameObject.name.Contains("MonsterTruck"))
+        {
+            speed *= 2f;
+            generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().monsterStartUp);
+        }
 
         rotation = Random.Range(-1f, 1f);
         if (gameObject.name == "Seagull(Clone)") movingForward = !transform.GetComponent<SeagullController_FG>().leftSide;
@@ -67,14 +71,14 @@ public class LinearMover_FG : MonoBehaviour
     void Update()
     {
         if (hippoCollision)
-        {
-            speed = generator.Levels[generator.Level].speed * 2;
-        }
-        else
-        {
-            speed = generator.Levels[generator.Level].speed;
-            if (gameObject.name.Contains("MonsterTruck")) speed *= 2f;
-        }
+            {
+                speed = generator.Levels[generator.Level].speed * 2;
+            }
+            else
+            {
+                speed = generator.Levels[generator.Level].speed;
+                if (gameObject.name.Contains("MonsterTruck")) speed *= 2f;
+            }
 
         if (hippoRotating)
         {

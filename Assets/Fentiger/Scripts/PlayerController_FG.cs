@@ -575,6 +575,11 @@ public class PlayerController_FG : MonoBehaviour
                         onTruck = true;
                         hippo = hit.collider.gameObject;
                     }
+                    else
+                    {
+                        Die();
+                        generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
+                    }
                 }
                 else if (hit.collider.gameObject.name.Contains("Log(Clone)") && !onHippo)
                 {

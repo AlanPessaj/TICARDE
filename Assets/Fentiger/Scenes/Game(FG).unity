@@ -896,6 +896,8 @@ MonoBehaviour:
   laserImpact: {fileID: 8300000, guid: 4c9bef0f9c13dfe469816c9c76204743, type: 3}
   abilitySound: {fileID: 8300000, guid: 60473de46a3349d4aabebdc09a97ba65, type: 3}
   explosion: {fileID: 8300000, guid: 29d0a2036de7d9f4cbccab4a8926dd28, type: 3}
+  monsterStartUp: {fileID: 8300000, guid: 6cf78c453680cf3408375afb0505dd14, type: 3}
+  monsterEngine: {fileID: 8300000, guid: a269a408ca52aea4c91d55ebe09e37b0, type: 3}
 --- !u!82 &287369568
 AudioSource:
   m_ObjectHideFlags: 0
