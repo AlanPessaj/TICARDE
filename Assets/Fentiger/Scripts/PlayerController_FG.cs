@@ -161,6 +161,7 @@ public class PlayerController_FG : MonoBehaviour
         if ((transform.position.z > 15f || transform.position.z < -15f) && !immortal)
         {
             //Perder vida
+            if ((onHippo && !onTruck) || onLog || transform.parent.name.Contains("LillyPad")) generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
             Die();
         }
         CheckTile();

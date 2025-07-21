@@ -189,7 +189,6 @@ public class LinearMover_FG : MonoBehaviour
                         hippoInitialRotation = transform.rotation;
                         hippoFinalPosition = new Vector3(transform.position.x + 0.5f, transform.position.y, -14);
                         hippoFinalRotation = Quaternion.Euler(transform.eulerAngles.x, -90, transform.eulerAngles.z);
-
                         hippoTime = 0;
                         return;
                     }
