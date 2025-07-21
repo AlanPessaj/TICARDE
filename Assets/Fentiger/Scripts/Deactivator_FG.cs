@@ -14,7 +14,7 @@ public class Deactivator_FG : MonoBehaviour
             
             foreach (MonoBehaviour script in allScripts)
             {
-                if (script != this && !(script is DieScript_FG) && !(script is Generator_FG) && !(script is SoundManager_FG))
+                if (script != this && !(script is DieScript_FG) && !(script is Generator_FG) && !(script is SoundManager_FG)&& !(script is LedsController) && !(script is GAMEMANAGER) && !(script is conexion))
                 {
                     script.enabled = false;
                 }
