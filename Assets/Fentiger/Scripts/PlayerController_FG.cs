@@ -573,6 +573,7 @@ public class PlayerController_FG : MonoBehaviour
                         rana = hit.transform.gameObject.GetComponent<FrogController_FG>();
                         transform.parent = hit.transform;
                         transform.localPosition = new Vector3(0, 1.5f, -0.5f);
+                        transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, -90, transform.localRotation.eulerAngles.z);
                         onFrog = true;
                     }
                 }
