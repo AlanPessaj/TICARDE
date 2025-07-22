@@ -134,7 +134,7 @@ public class LinearMover_FG : MonoBehaviour
                     }
                 }
                 
-                if (gameObject.name.Contains("MonsterTruck") && transform.position.z >= 10)
+                if (gameObject.name.Contains("MonsterTruck") && transform.position.z >= 12)
                 {
                     //Debug.DrawRay(new Vector3(transform.position.x + 1.5f, 1, 0), Vector3.down * 10f, Color.red, 10f);
                     if (Physics.Raycast(new Vector3(transform.position.x + 1.5f, 1, 0), Vector3.down, out RaycastHit hit, 10f, LayerMask.GetMask("Default")))
@@ -194,7 +194,7 @@ public class LinearMover_FG : MonoBehaviour
                     }
                 }
 
-                if (gameObject.name.Contains("MonsterTruck") && transform.position.z <= -10)
+                if (gameObject.name.Contains("MonsterTruck") && transform.position.z <= -12)
                 {
                     //Debug.DrawRay(new Vector3(transform.position.x + 1.5f, 1, 0), Vector3.down * 10f, Color.red, 10f);
                     if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, 1, 0), Vector3.down, out RaycastHit hit, 10f, LayerMask.GetMask("Default")))
