@@ -1,3 +1,14 @@
+Animaciones:
+Kick
+UpperCut
+SlideKick
+Ability
+Todos los Hits
+
+Cambiar abilidad del rabino
+
+
+----------------------------NO SE QUE ES ESTO PERO DEBE SER DE ALAN-------------------------------------------------------------------
 sonido +-
 interaccion con hardware
 TESTEAR

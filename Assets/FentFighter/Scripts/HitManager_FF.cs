@@ -7,7 +7,6 @@ public class HitManager_FF : MonoBehaviour
     public Collider[] hColliders = new Collider[3];
     public Damage_FF damageProperties = null;
     public Animator animator;
-    public bool blocking;
     public float XPMultiplier;
     public float smashForce;
     public float knockbackForce;
@@ -44,7 +43,7 @@ public class HitManager_FF : MonoBehaviour
                     {
                         if (hColliders[o + 1] != null)
                         {
-                            if (blocking)
+                            if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
                             {
                                 if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                                 {
@@ -68,7 +67,7 @@ public class HitManager_FF : MonoBehaviour
                         }
                         else
                         {
-                            if (blocking)
+                            if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
                             {
                                 //Debug.Log("(block cabeza pecho)");
                                 CheckBlock();
@@ -84,7 +83,7 @@ public class HitManager_FF : MonoBehaviour
                     }
                     else
                     {
-                        if (blocking)
+                        if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
                         {
                             if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                             {
@@ -108,7 +107,7 @@ public class HitManager_FF : MonoBehaviour
                 }
                 else
                 {
-                    if (blocking)
+                    if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
                     {
                         if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                         {
@@ -137,7 +136,7 @@ public class HitManager_FF : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    if (blocking)
+                    if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
                     {
                         if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
                         {
@@ -157,7 +156,7 @@ public class HitManager_FF : MonoBehaviour
                     }
                     break;
                 case 1:
-                    if (blocking)
+                    if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
                     {
                         if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
                         {

@@ -89,7 +89,7 @@ public class PlayerController_FF : MonoBehaviour
             animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S) && !InState("death") && !InState("hit_slideKick"));
             if (Input.GetKey(KeyCode.S) && !InState("death") && !InState("hit_slideKick"))
             {
-                if (hitManager.blocking)
+                if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
                 {
                     movDirection = 0;
                 }
@@ -116,7 +116,7 @@ public class PlayerController_FF : MonoBehaviour
                     GetComponent<CapsuleCollider>().center = Vector3.up * (1.11625f / transform.localScale.y);
                 }
             }
-            if (hitManager.blocking)
+            if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
             {
                 movDirection = movDirection / 2;
             }
@@ -181,7 +181,7 @@ public class PlayerController_FF : MonoBehaviour
             animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow) && !InState("death") && !InState("hit_slideKick"));
             if (Input.GetKey(KeyCode.DownArrow) && !InState("death") && !InState("hit_slideKick"))
             {
-                if (hitManager.blocking)
+                if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
                 {
                     movDirection = 0;
                 }
@@ -208,7 +208,7 @@ public class PlayerController_FF : MonoBehaviour
                     GetComponent<CapsuleCollider>().center = Vector3.up * (1.11625f / transform.localScale.y);
                 }
             }
-            if (hitManager.blocking)
+            if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
             {
                 movDirection /= 2;
             }
@@ -247,11 +247,7 @@ public class PlayerController_FF : MonoBehaviour
 
     void CheckButtons()
     {
-        string player = "";
-        if (!isPlayer1)
-        {
-            player = "2";
-        }
+        string player = isPlayer1 ? "" : "2";
         if (Input.GetButton("A" + player))
         {
             if (Input.GetButton("B" + player))
@@ -292,10 +288,7 @@ public class PlayerController_FF : MonoBehaviour
                     }
                     DetectCombo("A", "C", player, Ability);
                     DetectCombo("A", "B", player, UpperCut);
-                    if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch"))
-                    {
-                        animator.SetTrigger("punch");
-                    }
+                    animator.SetTrigger("punch");
                 }
             }
 
@@ -317,10 +310,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("B", "C", player, Ulti);
                     DetectCombo("B", "A", player, UpperCut);
-                    if (InState("idle") || (slideKickCooldown <= 0 && (InState("crouching") || InState("crouch") || InState("uncrouch") || InState("crouchedRun"))))
-                    {
-                        animator.SetTrigger("kick");
-                    }
+                    animator.SetTrigger("kick");
                 }
             }
         }
@@ -332,16 +322,13 @@ public class PlayerController_FF : MonoBehaviour
                 DetectCombo("C", "B", player, Ulti);
                 DetectCombo("C", "A", player, Ability);
             }
-            if (InState("idle") || InState("crouching") || InState("crouch") || InState("uncrouch") || InState("crouchedRun") || InState("crouchedRunBackwards"))
-            {
-                animator.SetBool("holdBlock", true);
-                hitManager.blocking = true;
-            }
+            animator.SetBool("holdBlock", true);
+            animator.SetFloat("speed", 0.5f);
         }
         else
         {
             animator.SetBool("holdBlock", false);
-            hitManager.blocking = false;
+            animator.SetFloat("speed", 1f);
         }
         if (!Input.GetButton("C" + player) && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
