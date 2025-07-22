@@ -37,7 +37,7 @@ public class PlayerController_FF : MonoBehaviour
         if (slideKickCooldown > 0) slideKickCooldown -= Time.deltaTime;
         float movDirection = 0;
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
-        if (((facingLeft && IsClose(transform.eulerAngles.y, 90)) || (!facingLeft && IsClose(transform.eulerAngles.y, 270))) && !InState("turnAround") && !InState("crouchedTurnAround")) animator.SetTrigger("turnAround");
+        if (((facingLeft && Mathf.Approximately(transform.eulerAngles.y, 90)) || (!facingLeft && Mathf.Approximately(transform.eulerAngles.y, 270))) && !InState("turnAround") && !InState("crouchedTurnAround")) animator.SetTrigger("turnAround");
         if (isPlayer1)
         {
             if (Input.GetKey(KeyCode.D) && !InState("death") && !InState("hit_slideKick"))
@@ -336,81 +336,108 @@ public class PlayerController_FF : MonoBehaviour
         }
     }
 
-    void UpdateCombo()
+    struct Combo
     {
-        Queue<string[]> removeQueue = new Queue<string[]>();
-        foreach (var item in combos)
+        public string Button1 { get; set; }
+        public string Button2 { get; set; }
+        public float TimeRemaining { get; set; }
+        public string ActionName { get; set; }
+        public bool IsBtn1 { get; set; }
+        public bool IsBtn2 { get; set; }
+
+        public Combo(string button1, string button2, float timeRemaining, string actionName, bool isBtn1, bool isBtn2)
         {
-            if (float.Parse(item[2]) <= 0)
-            {
-                removeQueue.Enqueue(item);
-                continue;
-            }
-            if (bool.Parse(item[4]))
-            {
-                if (bool.Parse(item[5]))
-                {
-                    if (Input.GetButton(item[0]) && Input.GetButtonDown(item[1]))
-                    {
-                        Invoke(item[3], 0);
-                        removeQueue.Enqueue(item);
-                        continue;
-                    }
-                }
-                else
-                {
-                    if (Input.GetButton(item[0]) && Input.GetKeyDown(item[1]))
-                    {
-                        Invoke(item[3], 0);
-                        removeQueue.Enqueue(item);
-                        continue;
-                    }
-                }
-            }
-            else
-            {
-                if (bool.Parse(item[5]))
-                {
-                    if (Input.GetKey(item[0]) && Input.GetButtonDown(item[1]))
-                    {
-                        Invoke(item[3], 0);
-                        removeQueue.Enqueue(item);
-                        continue;
-                    }
-                }
-                else
-                {
-                    if (Input.GetKey(item[0]) && Input.GetKeyDown(item[1]))
-                    {
-                        Invoke(item[3], 0);
-                        removeQueue.Enqueue(item);
-                        continue;
-                    }
-                }
-            }
-            item[2] = (float.Parse(item[2]) - Time.deltaTime).ToString();
-        }
-        while (removeQueue.Count > 0)
-        {
-            combos.Remove(removeQueue.Dequeue());
+            Button1 = button1;
+            Button2 = button2;
+            TimeRemaining = timeRemaining;
+            ActionName = actionName;
+            IsBtn1 = isBtn1;
+            IsBtn2 = isBtn2;
         }
     }
-    List<string[]> combos = new List<string[]>();
+    List<Combo> combos = new List<Combo>();
+
     void DetectCombo(string button1, string button2, string player, System.Action func, bool isBtn1 = true, bool isBtn2 = true)
     {
         if (isBtn1)
             button1 += player;
         if (isBtn2)
             button2 += player;
-        if (!combos.Contains(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() })) 
-            combos.Add(new string[] { button1, button2, comboTime.ToString(), func.Method.Name, isBtn1.ToString(), isBtn2.ToString() });
+
+        if (!combos.Exists(combo => combo.Button1 == button1 && combo.Button2 == button2 && combo.ActionName == func.Method.Name && combo.IsBtn1 == isBtn1 && combo.IsBtn2 == isBtn2))
+        {
+            combos.Add(new Combo(button1, button2, comboTime, func.Method.Name, isBtn1, isBtn2));
+        }
     }
 
+    void UpdateCombo()
+    {
+        Queue<Combo> removeQueue = new Queue<Combo>();
+        for (int i = 0; i < combos.Count; i++)
+        {
+            Combo combo = combos[i];
+            if (combo.TimeRemaining <= 0)
+            {
+                removeQueue.Enqueue(combo);
+                continue;
+            }
+
+            if (combo.IsBtn1)
+            {
+                if (combo.IsBtn2)
+                {
+                    if (Input.GetButton(combo.Button1) && Input.GetButtonDown(combo.Button2))
+                    {
+                        Invoke(combo.ActionName, 0);
+                        removeQueue.Enqueue(combo);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Input.GetButton(combo.Button1) && Input.GetKeyDown(combo.Button2))
+                    {
+                        Invoke(combo.ActionName, 0);
+                        removeQueue.Enqueue(combo);
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                if (combo.IsBtn2)
+                {
+                    if (Input.GetKey(combo.Button1) && Input.GetButtonDown(combo.Button2))
+                    {
+                        Invoke(combo.ActionName, 0);
+                        removeQueue.Enqueue(combo);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Input.GetKey(combo.Button1) && Input.GetKeyDown(combo.Button2))
+                    {
+                        Invoke(combo.ActionName, 0);
+                        removeQueue.Enqueue(combo);
+                        continue;
+                    }
+                }
+            }
+            combo.TimeRemaining -= Time.deltaTime;
+            combos[i] = combo;
+        }
+
+        while (removeQueue.Count > 0)
+        {
+            combos.Remove(removeQueue.Dequeue());
+        }
+    }
     void Smash()
     {
         if (airborne)
         {
-            if (InState("upperCut"))
+            if (InState("UpperCut"))
                 animator.SetBool("cutToSmash", true);
             animator.SetTrigger("smash");
         }
@@ -480,10 +507,5 @@ public class PlayerController_FF : MonoBehaviour
         {
             isColliding = false;
         }
-    }
-
-    public bool IsClose(float a, float b)
-    {
-        return a > b - b * 0.001f && a < b + b * 0.001f;
     }
 }
