@@ -6,12 +6,11 @@ public class Glad0s_FG : MonoBehaviour
 {
     public GameObject redPrefab;
     public GameObject redPortal;
-    int randomX;
-    int randomZ;
+    float randomX;
     // Start is called before the first frame update
     void Start()
     {
-        randomX = Random.Range(30, 71);
+        randomX = Random.Range(30, 71) + 0.5f;
         int tries = 1;
         bool foundGrass = false;
 
@@ -24,7 +23,7 @@ public class Glad0s_FG : MonoBehaviour
                 if (hit.collider != null)
                 {
                     foundGrass = true;
-                    redPortal = Instantiate(redPrefab, new Vector3((randomX - tries) + transform.position.x - 1, transform.position.y, Random.Range(-12, 12)), Quaternion.Euler(0, 0, 90));
+                    redPortal = Instantiate(redPrefab, new Vector3(randomX + 0.5f - tries + transform.position.x - 1, transform.position.y, Random.Range(-12, 12)), Quaternion.Euler(0, 0, 90));
                 }
             }
             tries++;
@@ -33,6 +32,5 @@ public class Glad0s_FG : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -160,6 +161,7 @@ public class PlayerController_FG : MonoBehaviour
         if ((transform.position.z > 15f || transform.position.z < -15f) && !immortal)
         {
             //Perder vida
+            if ((onHippo && !onTruck) || onLog || transform.parent.name.Contains("LillyPad")) generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
             Die();
         }
         CheckTile();
@@ -277,11 +279,13 @@ public class PlayerController_FG : MonoBehaviour
             {
                 if (hippo.GetComponent<LinearMover_FG>().movingForward)
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 2.3f);
+                    if (transform.localPosition.z <= 0.5f) transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.5f);
+                    else transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.25f);
                 }
                 else
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) + 1.5f);
+                    if (transform.localPosition.z <= 0f) transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.25f);
+                    else transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1f);
                 }
                 hasMoved = true;
             }
@@ -478,11 +482,13 @@ public class PlayerController_FG : MonoBehaviour
             {
                 if (hippo.GetComponent<LinearMover_FG>().movingForward)
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 1.5f);
+                    if (transform.localPosition.z >= 0) transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1f);
+                    else transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.25f);
                 }
                 else
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.z) - 2.3f);
+                    if (transform.localPosition.z >= 0.5f) transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.25f);
+                    else transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.5f);
                 }
                 hasMoved = true;
             }
@@ -568,6 +574,7 @@ public class PlayerController_FG : MonoBehaviour
                         rana = hit.transform.gameObject.GetComponent<FrogController_FG>();
                         transform.parent = hit.transform;
                         transform.localPosition = new Vector3(0, 1.5f, -0.5f);
+                        transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, -90, transform.localRotation.eulerAngles.z);
                         onFrog = true;
                     }
                 }
@@ -576,7 +583,8 @@ public class PlayerController_FG : MonoBehaviour
                     if (hit.transform.childCount == 0)
                     {
                         transform.parent = hit.transform;
-                        transform.localPosition = new Vector3(1.5f, 0, 0.5f);
+                        transform.localPosition = new Vector3(1.5f, 0, 0.25f);
+                        transform.localRotation = Quaternion.Euler(90, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
                         onHippo = true;
                         hippo = hit.collider.gameObject;
                     }

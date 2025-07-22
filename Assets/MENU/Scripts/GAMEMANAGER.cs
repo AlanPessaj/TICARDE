@@ -75,6 +75,7 @@ public class GAMEMANAGER : MonoBehaviour
 
     public void UpdateCreditsValue()
     {
+        txtCredits.rectTransform.position = new Vector2(862, 59);
         txtCredits.text = "CREDITS: " + GameData.credits;
     }
 }

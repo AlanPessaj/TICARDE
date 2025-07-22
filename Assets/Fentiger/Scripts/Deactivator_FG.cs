@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,7 +15,7 @@ public class Deactivator_FG : MonoBehaviour
             
             foreach (MonoBehaviour script in allScripts)
             {
-                if (script != this && !(script is DieScript_FG) && !(script is Generator_FG) && !(script is SoundManager_FG))
+                if (script != this && !(script is DieScript_FG) && !(script is Generator_FG) && !(script is SoundManager_FG)&& !(script is LedsController) && !(script is GAMEMANAGER) && !(script is conexion) && !(script is TextMeshProUGUI))
                 {
                     script.enabled = false;
                 }
