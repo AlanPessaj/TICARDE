@@ -117,7 +117,7 @@ public class LinearMover_FG : MonoBehaviour
         
         if (movingForward)
         {
-            if (transform.position.z < 18)
+            if (transform.position.z < 20)
             {
                 if (gameObject.name.Contains("Hippo") && transform.position.z >= 12)
                 {
@@ -178,7 +178,7 @@ public class LinearMover_FG : MonoBehaviour
         }
         else
         {
-            if (transform.position.z > -18)
+            if (transform.position.z > -20)
             {
                 if (gameObject.name.Contains("Hippo") && transform.position.z <= -12)
                 {
@@ -355,9 +355,8 @@ public class LinearMover_FG : MonoBehaviour
         {
             if (gameObject.name.Contains("MonsterTruck") && transform.childCount > 3)
             {
-                GameObject player = transform.GetChild(3).gameObject;
-                player.transform.parent = null;
-                player.GetComponent<PlayerController_FG>().Die();
+                transform.GetChild(3).gameObject.GetComponent<PlayerController_FG>().enabled = true;
+                transform.GetChild(3).parent = null;
             }
             GameObject particles = GetComponentInChildren<ParticleSystem>().transform.parent.gameObject;
             particles.transform.parent = null;

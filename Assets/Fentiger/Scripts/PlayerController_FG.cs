@@ -158,10 +158,11 @@ public class PlayerController_FG : MonoBehaviour
             }
         }
 
-        if ((transform.position.z > 15f || transform.position.z < -15f) && !immortal)
+        if (transform.position.z > 15f || transform.position.z < -15f)
         {
             //Perder vida
             if ((onHippo && !onTruck) || onLog || transform.parent.name.Contains("LillyPad")) generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().waterFalling);
+            if (onTruck) generator.GetComponent<SoundManager_FG>().PlaySound(generator.GetComponent<SoundManager_FG>().carRunOver);
             Die();
         }
         CheckTile();
@@ -520,13 +521,13 @@ public class PlayerController_FG : MonoBehaviour
     public void Die()
     {
         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "RED", generator.multiplayer, generator.isTherePlayer1));
-        if (transform.GetChild(0).gameObject.activeSelf)
+        if (transform.GetChild(0).gameObject.activeSelf || immortal)
         {
             transform.GetChild(0).gameObject.SetActive(false);
             int tries = 1;
             bool foundGrass = false;
-
-            while (tries < 30 && !foundGrass)
+            //TODO: Revisar este while, puede causar problemas si no se encuentra pasto
+            while (tries < 100 && !foundGrass)
             {
                 if (Physics.Raycast(transform.position + new Vector3(tries, 0, 0), Vector3.down, out RaycastHit hit, 10f))
                 {
