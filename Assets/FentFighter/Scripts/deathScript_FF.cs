@@ -14,7 +14,7 @@ public class deathScript_FF : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Time.timeScale = 1 - stateInfo.normalizedTime;
+        if (GAMEMANAGER.Instance.menuActive) Time.timeScale = 1 - stateInfo.normalizedTime;
         if (Time.timeScale <= 0.01) animator.GetComponent<UIManager_FF>().LoadEnd();
         if (stateInfo.normalizedTime > 0.5f)
         {
