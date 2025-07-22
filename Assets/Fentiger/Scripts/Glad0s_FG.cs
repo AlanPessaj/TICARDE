@@ -32,6 +32,5 @@ public class Glad0s_FG : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
     }
 }
