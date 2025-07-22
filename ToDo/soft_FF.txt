@@ -1,3 +1,14 @@
+Animaciones:
+Kick
+UpperCut
+SlideKick
+Ability
+Todos los Hits
+
+
+
+
+----------------------------NO SE QUE ES ESTO PERO DEBE SER DE ALAN-------------------------------------------------------------------
 sonido +-
 interaccion con hardware
 TESTEAR
