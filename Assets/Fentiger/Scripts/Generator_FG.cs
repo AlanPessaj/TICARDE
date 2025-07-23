@@ -57,9 +57,11 @@ public class Generator_FG : MonoBehaviour
         player1Name = GameData.name1;
         player2Name = GameData.name2;
         players[0].GetComponent<PlayerController_FG>().skins[GameData.char1].SetActive(true);
+        if (GameData.char1 == 3) players[0].transform.GetChild(0).transform.localPosition = new Vector3(0, 2.5f, 0);
         if (multiplayer)
         {
             players[1].GetComponent<PlayerController_FG>().skins[GameData.char2].SetActive(true);
+            if (GameData.char2 == 3) players[1].transform.GetChild(0).transform.localPosition = new Vector3(0, 2.5f, 0);
             initialMultiplayer = true;
             GameData.credits--;
             GAMEMANAGER.Instance.UpdateCreditsValue();
