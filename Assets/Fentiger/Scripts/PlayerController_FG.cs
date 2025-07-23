@@ -417,9 +417,10 @@ public class PlayerController_FG : MonoBehaviour
                 StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SideBlink(isPlayer1, "MAGENTA"));
             }
         }
-        else if (Physics.Raycast(transform.position + Vector3.right * 2 + Vector3.up, Vector3.down, out RaycastHit check, 5f, LayerMask.GetMask("Default")) && check.transform.name == "calle")
+        else if (Physics.Raycast(transform.position + Vector3.right * 2 + Vector3.up, Vector3.down, out RaycastHit check, 5f, LayerMask.GetMask("Default")) && Physics.Raycast(transform.position + Vector3.right + Vector3.up, Vector3.down, out RaycastHit check2, 5f, LayerMask.GetMask("Default")) && check.transform.name == "calle" && check2.transform.name == "calle")
         {
             //Debug.DrawRay(transform.position + Vector3.right * 2 + Vector3.up, Vector3.down * 5f, Color.red, 10f);
+            //Debug.DrawRay(transform.position + Vector3.right + Vector3.up, Vector3.down * 5f, Color.red, 10f);
             if (GetComponent<UIManager_FG>().RemoveXP(25))
             {
                 if (check.transform.parent.GetComponent<LinearSpawner_FG>().changedSide)
