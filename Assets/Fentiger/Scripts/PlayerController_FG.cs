@@ -598,6 +598,7 @@ public class PlayerController_FG : MonoBehaviour
                     {
                         transform.parent = hit.transform;
                         transform.localPosition = new Vector3(0, 3.6f, -1.4f);
+                        transform.localRotation = Quaternion.Euler(0, -90, 0);
                         onHippo = true;
                         onTruck = true;
                         hippo = hit.collider.gameObject;
