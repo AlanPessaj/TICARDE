@@ -1928,10 +1928,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conexion: {fileID: 0}
   selectionSFX:
-  - {fileID: 8300000, guid: 654204bf947626449a32dfc13c6d8349, type: 3}
+  - {fileID: 8300000, guid: 09225927c4ed6c34b92a411720db1b81, type: 3}
   - {fileID: 8300000, guid: 372ccc6a5014bc747a723a780e11cc3e, type: 3}
   - {fileID: 8300000, guid: 89d47902d01afab4591b3fdddd95c533, type: 3}
-  - {fileID: 8300000, guid: 7316db6cd15f2d643894558216af5985, type: 3}
+  - {fileID: 8300000, guid: 8f8e1f7377109ab4a8601eca25a5c80b, type: 3}
   moveSound: {fileID: 8300000, guid: 128b3e41220b9064e911563f8ef75d70, type: 3}
   pSquares:
   - {fileID: 2099750944}
