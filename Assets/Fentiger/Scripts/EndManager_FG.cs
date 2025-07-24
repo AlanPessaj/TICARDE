@@ -54,7 +54,6 @@ public class EndManager_FG : MonoBehaviour
     {
         if (GameData.credits < (player2Name == "" ? 1 : 2))
         {
-            GAMEMANAGER.Instance.txtCredits.rectTransform.position = new Vector2(862, 59);
             StartCoroutine(InsertCoinBlink());
             return;
         }

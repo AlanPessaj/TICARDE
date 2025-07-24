@@ -57,6 +57,7 @@ public class GAMEMANAGER : MonoBehaviour
 
     public IEnumerator InsufficientCredits(bool endScene = false)
     {
+        if (insufficientCreditsActive) yield break;
         if (endScene) txtCredits.rectTransform.position = new Vector2(512, 159);
         else txtCredits.rectTransform.position = new Vector2(862, 59);
         insufficientCreditsActive = true;

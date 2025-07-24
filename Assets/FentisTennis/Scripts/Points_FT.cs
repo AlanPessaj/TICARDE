@@ -33,7 +33,6 @@ public class Points_FT : MonoBehaviour
     {
         if (GameData.credits < 1)
         {
-            GAMEMANAGER.Instance.txtCredits.rectTransform.position = new Vector2(862, 59);
             StartCoroutine(InsertCoinBlink());
             return;
         }
