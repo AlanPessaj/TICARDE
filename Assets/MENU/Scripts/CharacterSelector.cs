@@ -751,13 +751,13 @@ public class CharacterSelector : MonoBehaviour
         switch (num)
         {
             case 0:
-                return "RABINO";
+                return "AGENTE";
             case 1:
                 return "FIERRO";
             case 2:
                 return "MESSI";
             case 3:
-                return "PERON";
+                return "GRANADERO";
             default:
                 return null;
         }
