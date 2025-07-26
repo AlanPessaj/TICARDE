@@ -428,9 +428,10 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (airborne)
         {
+            animator.ResetTrigger("punch");
             // if (InState("Punch")) animator.CrossFade("Smash", 0.25f);
             // if (InState("UpperCut")) animator.SetBool("cutToSmash", true);
-            if (InState("Idle", 1) || InState("Punch")) animator.SetTrigger("smash");
+            if (InState("Idle", 1) || InState("Punch") || InState("UpperCut")) animator.SetTrigger("smash");
         }
     }
 
