@@ -2912,7 +2912,7 @@ Animator:
   m_GameObject: {fileID: 8340632205591801724}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 850e2872487f946469c63d984541a698, type: 3}
-  m_Controller: {fileID: 9100000, guid: 779a8ff8d9808ad41ab86a722e6cf506, type: 2}
+  m_Controller: {fileID: 9100000, guid: 127feae9d19bafc4492e66717f0a987c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3000,7 +3000,6 @@ MonoBehaviour:
   - {fileID: 0}
   damageProperties: {fileID: 0}
   animator: {fileID: 8340632205599055156}
-  blocking: 0
   XPMultiplier: 1.5
   smashForce: 15
   knockbackForce: 250

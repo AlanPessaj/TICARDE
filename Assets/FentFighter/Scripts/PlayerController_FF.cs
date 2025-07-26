@@ -298,7 +298,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("B", "C", player, Ulti);
                     DetectCombo("B", "A", player, UpperCut);
-                    if ((InState("Idle", 1) && !animator.GetBool("holdCrouch")) || (slideKickCooldown <= 0 && animator.GetBool("holdCrouch") && !InState("CrouchedRunBackwards"))) animator.SetTrigger("kick");
+                    if ((InState("Idle", 1) && !(InState("Crouched") || InState("CrouchedRunFowards") || InState("CrouchedRunBackwards"))) || (slideKickCooldown <= 0 && (InState("Crouched") || InState("CrouchedRunFowards") || InState("CrouchedRunBackwards")) && !InState("CrouchedRunBackwards"))) animator.SetTrigger("kick");
                 }
             }
         }
@@ -310,7 +310,6 @@ public class PlayerController_FF : MonoBehaviour
                 DetectCombo("C", "B", player, Ulti);
                 DetectCombo("C", "A", player, Ability);
             }
-            //TODO: POSIBLE BUG SI MANTIENE C MIENTRAS ESTA EN UN ESTADO INVALIDO PARA BLOQUEAR PERO YA SE SETEO EL HOLD BLOCK
             if (InState("Idle", 1))
             {
                 animator.SetBool("holdBlock", true);
@@ -378,7 +377,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 if (combo.IsBtn2)
                 {
-                    if (Input.GetButton(combo.Button1) && Input.GetButtonDown(combo.Button2))
+                    if (Input.GetButton(combo.Button1) && Input.GetButton(combo.Button2))
                     {
                         Invoke(combo.ActionName, 0);
                         removeQueue.Enqueue(combo);
@@ -387,7 +386,7 @@ public class PlayerController_FF : MonoBehaviour
                 }
                 else
                 {
-                    if (Input.GetButton(combo.Button1) && Input.GetKeyDown(combo.Button2))
+                    if (Input.GetButton(combo.Button1) && Input.GetKey(combo.Button2))
                     {
                         Invoke(combo.ActionName, 0);
                         removeQueue.Enqueue(combo);
@@ -399,7 +398,7 @@ public class PlayerController_FF : MonoBehaviour
             {
                 if (combo.IsBtn2)
                 {
-                    if (Input.GetKey(combo.Button1) && Input.GetButtonDown(combo.Button2))
+                    if (Input.GetKey(combo.Button1) && Input.GetButton(combo.Button2))
                     {
                         Invoke(combo.ActionName, 0);
                         removeQueue.Enqueue(combo);
@@ -408,7 +407,7 @@ public class PlayerController_FF : MonoBehaviour
                 }
                 else
                 {
-                    if (Input.GetKey(combo.Button1) && Input.GetKeyDown(combo.Button2))
+                    if (Input.GetKey(combo.Button1) && Input.GetKey(combo.Button2))
                     {
                         Invoke(combo.ActionName, 0);
                         removeQueue.Enqueue(combo);
@@ -429,17 +428,17 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (airborne)
         {
-            if (InState("UpperCut")) animator.SetBool("cutToSmash", true);
-            animator.SetTrigger("smash");
+            animator.ResetTrigger("punch");
+            if (InState("Punching")) animator.CrossFade("Smash", 0.25f);
+            // if (InState("UpperCut")) animator.SetBool("cutToSmash", true);
+            if (InState("Idle", 1)) animator.SetTrigger("smash");
         }
     }
 
     void UpperCut()
     {
-        if (InState("Kick") || InState("Punch"))
-            animator.CrossFade("upperCut", 0.25f);
-        if (InState("Idle", 1))
-            animator.SetTrigger("upperCut");
+        if (InState("Kick") || InState("Punching")) animator.CrossFade("UpperCut", 0.25f);
+        if (InState("Idle", 1)) animator.SetTrigger("upperCut");
     }
 
     void Ability()

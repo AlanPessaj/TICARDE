@@ -1,11 +1,11 @@
 Animaciones:
-UpperCut
-Smash
 Kick
 SlideKick
 Ability
 Todos los Hits
 
+Revisar bug con DetectCombo: Las animaciones no tienen transicion de salida, hacen un salto. 
+El bug se propaga a todas las animaciones despues de ser activado por primera vez. La unica forma de arreglarlo es reiniciando el animator.
 Comprobar estados posibles en punch, kick y demas
 Cambiar abilidad del rabino
 
