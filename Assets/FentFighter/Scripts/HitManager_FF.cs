@@ -43,7 +43,7 @@ public class HitManager_FF : MonoBehaviour
                     {
                         if (hColliders[o + 1] != null)
                         {
-                            if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
+                            if (GetComponent<PlayerController_FF>().InState("Blocking"))
                             {
                                 if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                                 {
@@ -67,7 +67,7 @@ public class HitManager_FF : MonoBehaviour
                         }
                         else
                         {
-                            if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
+                            if (GetComponent<PlayerController_FF>().InState("Blocking"))
                             {
                                 //Debug.Log("(block cabeza pecho)");
                                 CheckBlock();
@@ -83,7 +83,7 @@ public class HitManager_FF : MonoBehaviour
                     }
                     else
                     {
-                        if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
+                        if (GetComponent<PlayerController_FF>().InState("Blocking"))
                         {
                             if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                             {
@@ -107,7 +107,7 @@ public class HitManager_FF : MonoBehaviour
                 }
                 else
                 {
-                    if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
+                    if (GetComponent<PlayerController_FF>().InState("Blocking"))
                     {
                         if (GetComponent<PlayerController_FF>().cColliders.activeSelf)
                         {
@@ -136,7 +136,7 @@ public class HitManager_FF : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
+                    if (GetComponent<PlayerController_FF>().InState("Blocking"))
                     {
                         if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
                         {
@@ -156,7 +156,7 @@ public class HitManager_FF : MonoBehaviour
                     }
                     break;
                 case 1:
-                    if (animator.GetCurrentAnimatorStateInfo(1).IsName("Blocking"))
+                    if (GetComponent<PlayerController_FF>().InState("Blocking"))
                     {
                         if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability)
                         {
@@ -210,7 +210,7 @@ public class HitManager_FF : MonoBehaviour
 
     void TakeDamage()
     {
-        if (((!detectedHit && damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti) || (!detectedAbility && (damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.Ulti))) && !(GetComponent<PlayerController_FF>().InState("death") || GetComponent<PlayerController_FF>().InState("hit_slideKick") || GetComponent<PlayerController_FF>().InState("hit_smash")))
+        if (((!detectedHit && damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti) || (!detectedAbility && (damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.Ulti))) && !GetComponent<PlayerController_FF>().InState("Death") && (!GetComponent<PlayerController_FF>().InState("HitSlideKick") || hTrigger == 2))
         {
             GetComponent<UIManager_FF>().ChangeHealth(-damageProperties.damage);
             if (damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti)
@@ -225,19 +225,19 @@ public class HitManager_FF : MonoBehaviour
                     GetComponent<Rigidbody>().velocity = GetComponent<PlayerController_FF>().movementSpeed * GetComponent<PlayerController_FF>().pMovDirection * Vector3.right * 2f;
                     animator.GetComponent<Rigidbody>().AddForce(0.5f * animator.GetComponent<PlayerController_FF>().jumpForce * Vector3.up, ForceMode.Impulse);
                 }
-                if (damageProperties.type == DamageType.Smash)
+                if (damageProperties.type == DamageType.Smash && GetComponent<PlayerController_FF>().airborne)
                 {
-                    if (GetComponent<PlayerController_FF>().airborne)
-                    {
-                        GetComponent<Rigidbody>().AddForce(Vector3.down * smashForce, ForceMode.Impulse);
-                    }
+                    GetComponent<Rigidbody>().AddForce(Vector3.down * smashForce, ForceMode.Impulse);
                 }
                 detectedHit = true;
             }
             else detectedAbility = true;
-            if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut && damageProperties.type != DamageType.Smash && damageProperties.type != DamageType.SlideKick)
-                CalculateKnockback();
-            if (!GetComponent<PlayerController_FF>().InState("death") && GetComponent<UIManager_FF>().health > 0) PlayHitAnimation();
+            if (!(GetComponent<PlayerController_FF>().InState("HitSlideKick") || GetComponent<PlayerController_FF>().InState("HitSmashAir")))
+            {
+                if (damageProperties.type != DamageType.Ulti && damageProperties.type != DamageType.UpperCut && damageProperties.type != DamageType.Smash && damageProperties.type != DamageType.SlideKick)
+                    CalculateKnockback();
+                if (GetComponent<UIManager_FF>().health > 0) PlayHitAnimation();
+            }
             damageProperties.disableAction = ResetDetection;
         }
     }
@@ -264,7 +264,7 @@ public class HitManager_FF : MonoBehaviour
         {
             knockback += Mathf.Round(-GetComponent<PlayerController_FF>().pMovDirection);
         }
-        if (GetComponent<PlayerController_FF>().InState("crouch") || GetComponent<PlayerController_FF>().InState("crouching") || GetComponent<PlayerController_FF>().InState("uncrouch"))
+        if (animator.GetBool("holdCrouch"))
         {
             knockback--;
         }
@@ -297,7 +297,7 @@ public class HitManager_FF : MonoBehaviour
     {
         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(GetComponent<PlayerController_FF>().isPlayer1, "RED"));
         GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
-        if (GetComponent<PlayerController_FF>().InState("crouch") || GetComponent<PlayerController_FF>().InState("crouching") || GetComponent<PlayerController_FF>().InState("uncrouch") || GetComponent<PlayerController_FF>().InState("crouchedPunch") || GetComponent<PlayerController_FF>().InState("crouchedRun") || GetComponent<PlayerController_FF>().InState("crouchedRunBackwards") || GetComponent<PlayerController_FF>().InState("crouchedTurnAround"))
+        if (animator.GetBool("holdCrouch"))
         {
             animator.SetTrigger("crouchHit");
             return;

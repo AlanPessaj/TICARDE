@@ -12,7 +12,7 @@ public class Damage_FF : MonoBehaviour
 
     private void Update()
     {
-        if (((transform.position.x > owner.GetComponent<PlayerController_FF>().otherPlayer.transform.position.x + 1 && transform.eulerAngles.y == 0) || (transform.position.x < owner.GetComponent<PlayerController_FF>().otherPlayer.transform.position.x - 1 && transform.eulerAngles.y != 0)) && disableAction != null)
+        if ((type == DamageType.Ability || type == DamageType.Ulti) && ((transform.position.x > owner.GetComponent<PlayerController_FF>().otherPlayer.transform.position.x + 1 && transform.eulerAngles.y == 0) || (transform.position.x < owner.GetComponent<PlayerController_FF>().otherPlayer.transform.position.x - 1 && transform.eulerAngles.y != 0)) && disableAction != null)
         {
             disableAction(this);
             disableAction = null;

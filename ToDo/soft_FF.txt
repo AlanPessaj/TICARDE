@@ -6,7 +6,6 @@ SlideKick
 Ability
 Todos los Hits
 
-Arreglar InState()
 Comprobar estados posibles en punch, kick y demas
 Cambiar abilidad del rabino
 
