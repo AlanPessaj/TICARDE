@@ -428,17 +428,16 @@ public class PlayerController_FF : MonoBehaviour
     {
         if (airborne)
         {
-            animator.ResetTrigger("punch");
-            if (InState("Punching")) animator.CrossFade("Smash", 0.25f);
+            // if (InState("Punch")) animator.CrossFade("Smash", 0.25f);
             // if (InState("UpperCut")) animator.SetBool("cutToSmash", true);
-            if (InState("Idle", 1)) animator.SetTrigger("smash");
+            if (InState("Idle", 1) || InState("Punch")) animator.SetTrigger("smash");
         }
     }
 
     void UpperCut()
     {
-        if (InState("Kick") || InState("Punching")) animator.CrossFade("UpperCut", 0.25f);
-        if (InState("Idle", 1)) animator.SetTrigger("upperCut");
+        // if (InState("Kick") || InState("Punch")) animator.CrossFade("UpperCut", 0.25f);
+        if (InState("Idle", 1) || InState("Kick") || InState("Punch")) animator.SetTrigger("upperCut");
     }
 
     void Ability()

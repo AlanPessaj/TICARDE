@@ -88,8 +88,6 @@ public class HitScript_FF : StateMachineBehaviour
             {
                 animator.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().damage /= 1.5f;
                 animator.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Normal;
-                if (stateInfo.IsName("UpperCut"))
-                    jumped = false;
             }
         }
         else
@@ -112,6 +110,7 @@ public class HitScript_FF : StateMachineBehaviour
         //     animator.gameObject.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().type = DamageType.Smash;
         //     animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
         // }
+        jumped = false;
         playedWoosh = false;
     }
 
