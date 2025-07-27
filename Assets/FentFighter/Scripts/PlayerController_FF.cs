@@ -40,13 +40,13 @@ public class PlayerController_FF : MonoBehaviour
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
 
         // Verifica si el jugador necesita girar
-        if ((facingLeft && !IsClose(transform.eulerAngles.y, 270)) || (!facingLeft && !IsClose(transform.eulerAngles.y, 90)) && !InState("Death"))
+        if ((facingLeft && !IsClose(transform.eulerAngles.y, 270)) || (!facingLeft && !IsClose(transform.eulerAngles.y, 90)) && !InState("Death") && !InState("CrouchedDeath"))
         {
             StartCoroutine(TurnAround());
         }
         if (isPlayer1)
         {
-            if (Input.GetKey(KeyCode.D) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
+            if (Input.GetKey(KeyCode.D) && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -69,7 +69,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            if (Input.GetKey(KeyCode.A) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
+            if (Input.GetKey(KeyCode.A) && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection -= 1;
                 if (!facingLeft)
@@ -92,8 +92,8 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned());
-            if (Input.GetKey(KeyCode.S) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S) && !InState("Kick") && !IsStunned());
+            if (Input.GetKey(KeyCode.S) && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection /= 2;
                 if (InState("Blocking")) movDirection = 0;
@@ -117,7 +117,7 @@ public class PlayerController_FF : MonoBehaviour
                 }
             }
             if (InState("Blocking")) movDirection /= 2;
-            if (Input.GetKeyDown(KeyCode.W) && !airborne && !InState("Blocking") && !animator.GetBool("holdCrouch") && !InState("UpperCut") && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
+            if (Input.GetKeyDown(KeyCode.W) && !airborne && !InState("Blocking") && !animator.GetBool("holdCrouch") && !InState("UpperCut") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
                 GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
@@ -126,7 +126,7 @@ public class PlayerController_FF : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.RightArrow) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
+            if (Input.GetKey(KeyCode.RightArrow) && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -149,7 +149,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            if (Input.GetKey(KeyCode.LeftArrow) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
+            if (Input.GetKey(KeyCode.LeftArrow) && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection -= 1;
                 if (!facingLeft)
@@ -172,8 +172,8 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow) && !InState("Death") && !InState("Kick") && (!IsStunned() || InState("HitCrouched")));
-            if (Input.GetKey(KeyCode.DownArrow) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow) && !InState("Kick") && (!IsStunned() || InState("HitCrouched")));
+            if (Input.GetKey(KeyCode.DownArrow) && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 if (InState("Blocking"))
                 {
@@ -206,13 +206,13 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection /= 2;
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow) && !airborne && !InState("Blocking") && !animator.GetBool("holdCrouch") && !InState("UpperCut") && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !airborne && !InState("Blocking") && !animator.GetBool("holdCrouch") && !InState("UpperCut") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 GetComponent<Rigidbody>().AddForce(movementSpeed * movDirection, jumpForce, 0, ForceMode.Impulse);
                 animator.SetTrigger("jump");
             }
         }
-        if (!InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned()) CheckButtons();
+        if (!InState("SlideKick") && !InState("Kick") && !IsStunned()) CheckButtons();
         if (isColliding)
         {
             if (transform.position.x > otherPlayer.transform.position.x)
@@ -232,7 +232,7 @@ public class PlayerController_FF : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
-        if (!InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned()) UpdateCombo();
+        if (!InState("SlideKick") && !InState("Kick") && !IsStunned()) UpdateCombo();
         pMovDirection = movDirection;
     }
 

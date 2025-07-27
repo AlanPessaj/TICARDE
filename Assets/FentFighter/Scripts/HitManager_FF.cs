@@ -210,7 +210,7 @@ public class HitManager_FF : MonoBehaviour
 
     void TakeDamage()
     {
-        if (((!detectedHit && damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti) || (!detectedAbility && (damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.Ulti))) && !GetComponent<PlayerController_FF>().InState("Death") && (!GetComponent<PlayerController_FF>().InState("HitSlideKick") || hTrigger == 2))
+        if (((!detectedHit && damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti) || (!detectedAbility && (damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.Ulti))) && !GetComponent<PlayerController_FF>().InState("Death") && !GetComponent<PlayerController_FF>().InState("CrouchedDeath") && (!GetComponent<PlayerController_FF>().InState("HitSlideKick") || hTrigger == 2))
         {
             GetComponent<UIManager_FF>().ChangeHealth(-damageProperties.damage);
             if (damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti)
