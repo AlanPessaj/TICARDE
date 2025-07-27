@@ -12,6 +12,11 @@ public class HitScript_FF : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (stateInfo.IsName("Smash") && animator.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction != null)
+        {
+            animator.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction(animator.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>());
+            animator.GetComponent<PlayerController_FF>().fist.GetComponent<Damage_FF>().disableAction = null;
+        }
         if (stateInfo.IsName("Punch") || stateInfo.IsName("UpperCut") || stateInfo.IsName("Smash"))
         {
             animator.gameObject.GetComponent<PlayerController_FF>().fist.SetActive(true);
@@ -51,7 +56,7 @@ public class HitScript_FF : StateMachineBehaviour
             playedWoosh = true;
             animator.GetComponent<AudioSource>().PlayOneShot(wooshSounds[Random.Range(0, wooshSounds.Length)]);
         }
-        if (stateInfo.IsName("SlideKick") && !animator.IsInTransition(layerIndex))
+        if (stateInfo.IsName("SlideKick") && (!animator.IsInTransition(layerIndex) || animator.GetNextAnimatorStateInfo(layerIndex).IsName("SlideKick")))
         {
             if (facingLeft)
             {

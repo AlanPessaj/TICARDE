@@ -2552,7 +2552,7 @@ Animator:
   m_GameObject: {fileID: 5805740824578844996}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 256590a9594b4ab46b7b4bf78628347d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 127feae9d19bafc4492e66717f0a987c, type: 2}
+  m_Controller: {fileID: 22100000, guid: fb816c6580bc2694daa454f1e21af504, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2608,6 +2608,7 @@ MonoBehaviour:
   facingLeft: 0
   isPlayer1: 0
   pMovDirection: 0
+  rotationSpeed: 1000
 --- !u!136 &2025080443070713162
 CapsuleCollider:
   m_ObjectHideFlags: 0

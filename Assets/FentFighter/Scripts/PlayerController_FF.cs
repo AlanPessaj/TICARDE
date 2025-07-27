@@ -31,16 +31,22 @@ public class PlayerController_FF : MonoBehaviour
     public bool facingLeft;
     public bool isPlayer1;
     public float pMovDirection;
+
     // Update is called once per frame
     void Update()
     {
         if (slideKickCooldown > 0) slideKickCooldown -= Time.deltaTime;
         float movDirection = 0;
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
-        if (((facingLeft && Mathf.Approximately(transform.eulerAngles.y, 90)) || (!facingLeft && Mathf.Approximately(transform.eulerAngles.y, 270))) && !InState("TurnAround") && !InState("CrouchedTurnAround")) animator.SetTrigger("turnAround");
+
+        // Verifica si el jugador necesita girar
+        if ((facingLeft && !IsClose(transform.eulerAngles.y, 270)) || (!facingLeft && !IsClose(transform.eulerAngles.y, 90)))
+        {
+            StartCoroutine(TurnAround());
+        }
         if (isPlayer1)
         {
-            if (Input.GetKey(KeyCode.D) && !InState("Death") && !InState("HitSlideKick"))
+            if (Input.GetKey(KeyCode.D) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -63,7 +69,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            if (Input.GetKey(KeyCode.A) && !InState("Death") && !InState("HitSlideKick"))
+            if (Input.GetKey(KeyCode.A) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection -= 1;
                 if (!facingLeft)
@@ -86,8 +92,8 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S) && !InState("Death") && !InState("HitSlideKick"));
-            if (Input.GetKey(KeyCode.S) && !InState("Death") && !InState("HitSlideKick"))
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.S) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned());
+            if (Input.GetKey(KeyCode.S) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection /= 2;
                 if (InState("Blocking")) movDirection = 0;
@@ -111,19 +117,16 @@ public class PlayerController_FF : MonoBehaviour
                 }
             }
             if (InState("Blocking")) movDirection /= 2;
-            if (Input.GetKeyDown(KeyCode.W) && !InState("Death") && !InState("HitSlideKick"))
+            if (Input.GetKeyDown(KeyCode.W) && !airborne && !InState("Blocking") && !animator.GetBool("holdCrouch") && !InState("UpperCut") && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
-                if (!airborne)
-                {
-                    GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
-                    GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
-                    animator.SetTrigger("jump");
-                }
+                GetComponent<Rigidbody>().velocity = new Vector3(movementSpeed * movDirection, 0, 0);
+                GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                animator.SetTrigger("jump");
             }
         }
         else
         {
-            if (Input.GetKey(KeyCode.RightArrow) && !InState("Death") && !InState("HitSlideKick"))
+            if (Input.GetKey(KeyCode.RightArrow) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection += 1;
                 if (facingLeft)
@@ -146,7 +149,7 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            if (Input.GetKey(KeyCode.LeftArrow) && !InState("Death") && !InState("HitSlideKick"))
+            if (Input.GetKey(KeyCode.LeftArrow) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 movDirection -= 1;
                 if (!facingLeft)
@@ -169,8 +172,8 @@ public class PlayerController_FF : MonoBehaviour
                     animator.SetBool("run", false);
                 }
             }
-            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow) && !InState("Death") && !InState("HitSlideKick"));
-            if (Input.GetKey(KeyCode.DownArrow) && !InState("Death") && !InState("HitSlideKick"))
+            animator.SetBool("holdCrouch", Input.GetKey(KeyCode.DownArrow) && !InState("Death") && !InState("Kick") && (!IsStunned() || InState("HitCrouched")));
+            if (Input.GetKey(KeyCode.DownArrow) && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
                 if (InState("Blocking"))
                 {
@@ -186,7 +189,7 @@ public class PlayerController_FF : MonoBehaviour
                     colliders.SetActive(false);
                     cColliders.SetActive(true);
                     GetComponent<CapsuleCollider>().height = 1.692f / transform.localScale.y;
-                    GetComponent<CapsuleCollider>().center = Vector3.up * (0.846f / transform.localScale.y); 
+                    GetComponent<CapsuleCollider>().center = Vector3.up * (0.846f / transform.localScale.y);
                 }
             }
             else
@@ -203,16 +206,13 @@ public class PlayerController_FF : MonoBehaviour
             {
                 movDirection /= 2;
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow) && !InState("Death") && !InState("HitSlideKick"))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !airborne && !InState("Blocking") && !animator.GetBool("holdCrouch") && !InState("UpperCut") && !InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned())
             {
-                if (!airborne)
-                {
-                    GetComponent<Rigidbody>().AddForce(movementSpeed * movDirection, jumpForce, 0, ForceMode.Impulse);
-                    animator.SetTrigger("jump");
-                }
+                GetComponent<Rigidbody>().AddForce(movementSpeed * movDirection, jumpForce, 0, ForceMode.Impulse);
+                animator.SetTrigger("jump");
             }
         }
-        if (!InState("Death") && !InState("HitSlideKick")) CheckButtons();
+        if (!InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned()) CheckButtons();
         if (isColliding)
         {
             if (transform.position.x > otherPlayer.transform.position.x)
@@ -232,7 +232,7 @@ public class PlayerController_FF : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(movementForce * movDirection, 0, 0);
         }
-        if (!InState("Death") && !InState("HitSlideKick")) UpdateCombo();
+        if (!InState("Death") && !InState("SlideKick") && !InState("Kick") && !IsStunned()) UpdateCombo();
         pMovDirection = movDirection;
     }
 
@@ -279,7 +279,7 @@ public class PlayerController_FF : MonoBehaviour
                     }
                     DetectCombo("A", "C", player, Ability);
                     DetectCombo("A", "B", player, UpperCut);
-                    if (InState("Idle", 1)) animator.SetTrigger("punch");
+                    if (InState("Idle", new int[] {1, 2}) && !IsStunned()) animator.SetTrigger("punch");
                 }
             }
 
@@ -298,7 +298,7 @@ public class PlayerController_FF : MonoBehaviour
                 {
                     DetectCombo("B", "C", player, Ulti);
                     DetectCombo("B", "A", player, UpperCut);
-                    if ((InState("Idle", 1) && !(InState("Crouched") || InState("CrouchedRunFowards") || InState("CrouchedRunBackwards"))) || (slideKickCooldown <= 0 && (InState("Crouched") || InState("CrouchedRunFowards") || InState("CrouchedRunBackwards")) && !InState("CrouchedRunBackwards"))) animator.SetTrigger("kick");
+                    if (InState("Idle", new int[] {1, 2}) && !IsStunned() && (InState("Idle", 0) || (slideKickCooldown <= 0 && (InState("CrouchedIdle") || InState("CrouchedRunningFowards"))))) animator.SetTrigger("kick");
                 }
             }
         }
@@ -310,7 +310,7 @@ public class PlayerController_FF : MonoBehaviour
                 DetectCombo("C", "B", player, Ulti);
                 DetectCombo("C", "A", player, Ability);
             }
-            if (InState("Idle", 1))
+            if (InState("Idle", new int[] {1, 2}) && !IsStunned())
             {
                 animator.SetBool("holdBlock", true);
                 animator.SetFloat("speed", 0.5f);
@@ -431,14 +431,14 @@ public class PlayerController_FF : MonoBehaviour
             animator.ResetTrigger("punch");
             // if (InState("Punch")) animator.CrossFade("Smash", 0.25f);
             // if (InState("UpperCut")) animator.SetBool("cutToSmash", true);
-            if (InState("Idle", 1) || InState("Punch") || InState("UpperCut")) animator.SetTrigger("smash");
+            if (InState("Idle", new int[] {1, 2}) && !IsStunned() || InState("Punch") || InState("UpperCut")) animator.SetTrigger("smash");
         }
     }
 
     void UpperCut()
     {
         // if (InState("Kick") || InState("Punch")) animator.CrossFade("UpperCut", 0.25f);
-        if (InState("Idle", 1) || InState("Kick") || InState("Punch")) animator.SetTrigger("upperCut");
+        if ((InState("Idle", new int[] {1, 2}) && !IsStunned() || InState("Kick") || InState("Punch")) && !airborne) animator.SetTrigger("upperCut");
     }
 
     void Ability()
@@ -470,23 +470,65 @@ public class PlayerController_FF : MonoBehaviour
         }
     }
 
-    public bool InState(string name, int animatorLayer = -1)
+    public bool InState(string name, int animatorLayer)
     {
-        if (animatorLayer == -1)
+        return animator.GetCurrentAnimatorStateInfo(animatorLayer).IsName(name) && !animator.IsInTransition(animatorLayer) || animator.GetNextAnimatorStateInfo(animatorLayer).IsName(name);
+    }
+
+    public bool InState(string name, int[] animatorLayers, bool allLayers = true)
+    {
+        if (allLayers)
         {
-            for (int i = 0; i < animator.layerCount; i++)
-            {
-                if ((animator.GetCurrentAnimatorStateInfo(i).IsName(name) && !animator.IsInTransition(i)) || animator.GetNextAnimatorStateInfo(i).IsName(name))
-                    return true;
-            }
+            foreach (int layer in animatorLayers) if (!InState(name, layer)) return false;
+            return true;
+        }
+        else
+        {
+            foreach (int layer in animatorLayers) if (InState(name, layer)) return true;
             return false;
         }
-        else return animator.GetCurrentAnimatorStateInfo(animatorLayer).IsName(name) && !animator.IsInTransition(animatorLayer) || animator.GetNextAnimatorStateInfo(animatorLayer).IsName(name);
+    }
+
+    public bool InState(string name)
+    {
+        for (int i = 0; i < animator.layerCount; i++)
+        {
+            if ((animator.GetCurrentAnimatorStateInfo(i).IsName(name) && !animator.IsInTransition(i)) || animator.GetNextAnimatorStateInfo(i).IsName(name))
+                return true;
+        }
+        return false;
+    }
+    
+    public bool IsStunned()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).IsTag("Stun") && !animator.IsInTransition(0) || animator.GetNextAnimatorStateInfo(0).IsTag("Stun");
+    }
+
+    public bool IsClose(float a, float b)
+    {
+        return Mathf.Abs(Mathf.DeltaAngle(a, b)) < 0.1f; // Ajusta la tolerancia según sea necesario
+    }
+
+    public float rotationSpeed;
+
+    IEnumerator TurnAround()
+    {
+        float targetRotation = facingLeft ? 270 : 90;
+        float currentRotation = transform.eulerAngles.y;
+
+        while (!IsClose(currentRotation, targetRotation))
+        {
+            currentRotation = Mathf.MoveTowardsAngle(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(0, currentRotation, 0);
+            yield return null;
+        }
+        // Asegura que el ángulo final sea exactamente el deseado
+        transform.rotation = Quaternion.Euler(0, targetRotation, 0);
     }
 
     private void OnCollisionStay(Collision other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             airborne = false;
         }

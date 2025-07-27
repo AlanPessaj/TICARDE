@@ -264,7 +264,7 @@ public class HitManager_FF : MonoBehaviour
         {
             knockback += Mathf.Round(-GetComponent<PlayerController_FF>().pMovDirection);
         }
-        if (GetComponent<PlayerController_FF>().InState("Crouched") || GetComponent<PlayerController_FF>().InState("CrouchedRunFowards") || GetComponent<PlayerController_FF>().InState("CrouchedRunBackwards"))
+        if (GetComponent<PlayerController_FF>().InState("CrouchedIdle") || GetComponent<PlayerController_FF>().InState("CrouchedRunFowards") || GetComponent<PlayerController_FF>().InState("CrouchedRunBackwards"))
         {
             knockback--;
         }
@@ -297,7 +297,7 @@ public class HitManager_FF : MonoBehaviour
     {
         StartCoroutine(GAMEMANAGER.Instance.GetComponent<LedsController>().SingleBlink(GetComponent<PlayerController_FF>().isPlayer1, "RED"));
         GetComponent<AudioSource>().PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)]);
-        if (GetComponent<PlayerController_FF>().InState("Crouched") || GetComponent<PlayerController_FF>().InState("CrouchedRunFowards") || GetComponent<PlayerController_FF>().InState("CrouchedRunBackwards"))
+        if (GetComponent<PlayerController_FF>().InState("CrouchedIdle") || GetComponent<PlayerController_FF>().InState("CrouchedRunFowards") || GetComponent<PlayerController_FF>().InState("CrouchedRunBackwards"))
         {
             animator.SetTrigger("crouchHit");
             return;

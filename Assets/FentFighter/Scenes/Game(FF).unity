@@ -374,6 +374,11 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 811843525}
+    - target: {fileID: 4461427881204288278, guid: c9a8e33e7ee4f0942863641807592421,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4461427881211721937, guid: c9a8e33e7ee4f0942863641807592421,
         type: 3}
       propertyPath: m_Controller
@@ -2555,6 +2560,11 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 2137694825}
+    - target: {fileID: 4461427881204288278, guid: c9a8e33e7ee4f0942863641807592421,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9a8e33e7ee4f0942863641807592421, type: 3}
 --- !u!1 &401410350
