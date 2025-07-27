@@ -40,7 +40,7 @@ public class PlayerController_FF : MonoBehaviour
         facingLeft = otherPlayer.transform.position.x < transform.position.x;
 
         // Verifica si el jugador necesita girar
-        if ((facingLeft && !IsClose(transform.eulerAngles.y, 270)) || (!facingLeft && !IsClose(transform.eulerAngles.y, 90)))
+        if ((facingLeft && !IsClose(transform.eulerAngles.y, 270)) || (!facingLeft && !IsClose(transform.eulerAngles.y, 90)) && !InState("Death"))
         {
             StartCoroutine(TurnAround());
         }

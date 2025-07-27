@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 12
-  type: 3
+  type: 0
   owner: {fileID: 8340632205591801724}
 --- !u!1 &1368906762231732812
 GameObject:
