@@ -501,7 +501,7 @@ public class PlayerController_FF : MonoBehaviour
     
     public bool IsStunned()
     {
-        return animator.GetCurrentAnimatorStateInfo(0).IsTag("Stun") && !animator.IsInTransition(0) || animator.GetNextAnimatorStateInfo(0).IsTag("Stun");
+        return animator.GetCurrentAnimatorStateInfo(3).IsTag("Stun") && !animator.IsInTransition(3) || animator.GetNextAnimatorStateInfo(3).IsTag("Stun");
     }
 
     public bool IsClose(float a, float b)

@@ -168,8 +168,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Throw In
       takeName: mixamo.com
-      firstFrame: 0
-      lastFrame: 50
+      firstFrame: 5
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
