@@ -1,5 +1,5 @@
-Revisar bug con DetectCombo: Las animaciones no tienen transicion de salida, hacen un salto. 
-El bug se propaga a todas las animaciones despues de ser activado por primera vez. La unica forma de arreglarlo es reiniciando el animator.
+Revisar bug con interrupts: Las animaciones no tienen transicion de salida, hacen un salto. 
+El bug se propaga a todas las animaciones en la misma layer despues de ser activado por primera vez. La unica forma de arreglarlo es recargando el animator.
 
 Cambiar habilidad del rabino
 
