@@ -3,6 +3,11 @@ El bug se propaga a todas las animaciones en la misma layer despues de ser activ
 
 Cambiar habilidad del rabino
 
+Cambiar Beit Hamikdash
+
+Cambiar animacion HitSmashAir, HitCrouched y si hay, HitLegs
+
+Cambiar Casa Rosada (tal vez, si sobra tiempo)
 
 ----------------------------NO SE QUE ES ESTO PERO DEBE SER DE ALAN-------------------------------------------------------------------
 sonido +-
