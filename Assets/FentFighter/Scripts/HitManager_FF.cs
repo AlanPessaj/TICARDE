@@ -11,7 +11,6 @@ public class HitManager_FF : MonoBehaviour
     public float smashForce;
     public float knockbackForce;
     bool detectedHit;
-    bool detectedBlock;
     bool detectedAbility;
     public bool detectedFall;
     int hTrigger;
@@ -199,7 +198,7 @@ public class HitManager_FF : MonoBehaviour
     {
         if (damageProperties.type != DamageType.Ability && damageProperties.type != DamageType.Ulti)
         {
-            detectedBlock = false;
+            detectedHit = false;
             detectedHit = false;
         }
         else
@@ -277,7 +276,7 @@ public class HitManager_FF : MonoBehaviour
 
     void CheckBlock()
     {
-        if (!detectedBlock)
+        if (!detectedHit)
         {
             if (damageProperties.type == DamageType.Ulti || damageProperties.type == DamageType.Ability || damageProperties.type == DamageType.SlideKick)
             {
@@ -287,7 +286,7 @@ public class HitManager_FF : MonoBehaviour
             {
                 GetComponent<AudioSource>().PlayOneShot(blockSounds[Random.Range(0, blockSounds.Length)]);
                 GetComponent<UIManager_FF>().AddXP(damageProperties.damage);
-                detectedBlock = true;
+                detectedHit = true;
                 damageProperties.disableAction = ResetDetection;
             }
         }
