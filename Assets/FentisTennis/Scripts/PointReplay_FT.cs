@@ -5,7 +5,7 @@ using System.Linq;
 
 public class PointReplay_FT : MonoBehaviour
 {
-    public const int REPLAY_LENGTH = 180;
+    public const int REPLAY_LENGTH = 250;
     public static PointReplay_FT instance;
     public CircularBuffer<Frame> frameBuffer = new CircularBuffer<Frame>(REPLAY_LENGTH);
     [HideInInspector] public int iDirection;
