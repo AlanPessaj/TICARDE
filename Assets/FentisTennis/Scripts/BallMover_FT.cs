@@ -44,7 +44,7 @@ public class BallMover_FT : MonoBehaviour
 
     public void FixedUpdate()
     {
-        GetComponent<TrailRenderer>().emitting = active || gameManager.serving;
+        //GetComponent<TrailRenderer>().emitting = active || gameManager.serving;
         if (active)
         {
             if (height < minheight && !rolling)
@@ -132,6 +132,7 @@ public class BallMover_FT : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        if (!active) return;
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             GetComponent<AudioSource>().Play();

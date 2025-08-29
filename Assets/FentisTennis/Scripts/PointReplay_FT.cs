@@ -5,8 +5,9 @@ using System.Linq;
 
 public class PointReplay_FT : MonoBehaviour
 {
+    public const int REPLAY_LENGTH = 1500;
     public static PointReplay_FT instance;
-    public List<Frame> replay = new List<Frame>();
+    public CircularBuffer<Frame> frameBuffer = new CircularBuffer<Frame>(REPLAY_LENGTH);
     [HideInInspector] public int iDirection;
     [HideInInspector] public ShotType shot;
     [HideInInspector] public bool wasPlayer1;
@@ -26,6 +27,8 @@ public class PointReplay_FT : MonoBehaviour
     Camera[] ogCameras;
     bool firstTime = true;
     bool skippingReplay;
+    public static Frame[] replay;
+    public static int replayFrameIndex;
 
     // Start is called before the first frame update
     void Awake()
@@ -50,20 +53,17 @@ public class PointReplay_FT : MonoBehaviour
         if (exitingReplay) { PlayerController_FT.inReplay = false; exitingReplay = false; }
         if (showReplay && !GameManager_FT.instance.transition.activeSelf)
         {
-            GameManager_FT.instance.player1.GetComponent<AudioSource>().Play();
             cameraIndex = Random.Range(1, cameras.Length);
             cameras[0].gameObject.SetActive(false);
             cameras[cameraIndex].gameObject.SetActive(true);
             ball.GetComponent<MeshRenderer>().enabled = true;
-            ball.active = true;
             showReplay = false;
-            PlayerController_FT.replay = replay;
-            ball.transform.position = iBallPos;
-            GetComponent<ShotManager_FT>().FindShot(iDirection, shot, wasPlayer1, wasServe);
-            GameManager_FT.instance.player1.transform.position = iP1Pos;
-            GameManager_FT.instance.player2.transform.position = iP2Pos;
+            replay = frameBuffer.ToArray();
+            ball.transform.position = frameBuffer.GetFirst().ballPos;
+            GameManager_FT.instance.player1.transform.position = frameBuffer.GetFirst().p1Pos;
+            GameManager_FT.instance.player2.transform.position = frameBuffer.GetFirst().p2Pos;
             PlayerController_FT.inReplay = true;
-            replay = new List<Frame>();
+            frameBuffer = new CircularBuffer<Frame>(REPLAY_LENGTH);
             ball.GetComponent<TrailRenderer>().emitting = true;
         }
         if (PlayerController_FT.inReplay)
@@ -71,8 +71,8 @@ public class PointReplay_FT : MonoBehaviour
             if (skippingReplay)
             {
                 firstTime = true;
-                PlayerController_FT.replay = null;
-                PlayerController_FT.frameIndex = 0;
+                replay = null;
+                replayFrameIndex = 0;
                 cameras[0].gameObject.SetActive(true);
                 cameras[cameraIndex].gameObject.SetActive(false);
                 exitingReplay = true;
@@ -81,35 +81,56 @@ public class PointReplay_FT : MonoBehaviour
                 skippingReplay = false;
                 return;
             }
-            if (PlayerController_FT.frameIndex >= PlayerController_FT.replay.Count)
+            if (replayFrameIndex >= replay.Length)
             {
                 ball.GetComponent<TrailRenderer>().emitting = false;
-                GameManager_FT.instance.player1.GetComponent<AudioSource>().Play();
                 cameras[cameraIndex].gameObject.SetActive(false);
                 if (cameraIndex < cameras.Length - 1) cameraIndex++; else cameraIndex = 1;
                 cameras[cameraIndex].gameObject.SetActive(true);
-                PlayerController_FT.frameIndex = 0;
-                ball.transform.position = iBallPos;
-                GetComponent<ShotManager_FT>().FindShot(iDirection, shot, wasPlayer1, wasServe);
-                GameManager_FT.instance.player1.transform.position = iP1Pos;
-                GameManager_FT.instance.player2.transform.position = iP2Pos;
+                replayFrameIndex = 0;
                 ball.GetComponent<TrailRenderer>().emitting = true;
             }
             cameras[cameraIndex].transform.LookAt(ball.transform);
             if (cameras[cameraIndex].name.Contains("FollowX")) cameras[cameraIndex].transform.position = new Vector3(ball.transform.position.x, cameras[cameraIndex].transform.position.y, cameras[cameraIndex].transform.position.z);
             if (cameras[cameraIndex].name.Contains("FollowZ")) cameras[cameraIndex].transform.position = new Vector3(cameras[cameraIndex].transform.position.x, cameras[cameraIndex].transform.position.y, ball.transform.position.z);
             if (iDirection == 0 && cameras[cameraIndex].name.Contains("FollowZ")) if (ball.transform.position.z >= 0) cameras[cameraIndex].transform.position += Vector3.forward; else cameras[cameraIndex].transform.position -= Vector3.forward;
-            PlayerController_FT.currentFrame = PlayerController_FT.replay[PlayerController_FT.frameIndex];
-            PlayerController_FT.frameIndex++;
+            GameManager_FT.instance.player1.transform.position = replay[replayFrameIndex].p1Pos;
+            GameManager_FT.instance.player2.transform.position = replay[replayFrameIndex].p2Pos;
+            // Usar racket y racketPivot del PlayerController_FT
+            GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().racket.transform.rotation = replay[replayFrameIndex].p1RaqRot;
+            GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().racket.transform.rotation = replay[replayFrameIndex].p2RaqRot;
+            GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().racket.transform.localPosition = replay[replayFrameIndex].p1RaqLocPos;
+            GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().racket.transform.localPosition = replay[replayFrameIndex].p2RaqLocPos;
+            GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().racketPivot.transform.rotation = replay[replayFrameIndex].p1RaqPivRot;
+            GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().racketPivot.transform.rotation = replay[replayFrameIndex].p2RaqPivRot;
+            ball.transform.position = replay[replayFrameIndex].ballPos;
+            if (replay[replayFrameIndex].p1PlayedHit) GameManager_FT.instance.player1.GetComponent<AudioSource>().Play();
+            if (replay[replayFrameIndex].p2PlayedHit) GameManager_FT.instance.player2.GetComponent<AudioSource>().Play();
+            if (replay[replayFrameIndex].p1PlayedWoosh) GameManager_FT.instance.player1.GetComponent<AudioSource>().PlayOneShot(GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().wooshSFX);
+            if (replay[replayFrameIndex].p2PlayedWoosh) GameManager_FT.instance.player2.GetComponent<AudioSource>().PlayOneShot(GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().wooshSFX);
+            replayFrameIndex++;
             return;
         }
         if (showReplay) return;
         Frame currentFrame = new Frame();
-        foreach (KeyCode item in codes) if (Input.GetKey(item)) currentFrame.keys.Add(item);
-        foreach (string item in buttons) if (Input.GetButton(item)) currentFrame.buttons.Add(item);
-        foreach (string item in buttons) if (Input.GetButtonDown(item)) currentFrame.buttonDowns.Add(item);
-        foreach (string item in buttons) if (Input.GetButtonUp(item)) currentFrame.buttonUps.Add(item);
-        replay.Add(currentFrame);
+        currentFrame.p1PlayedHit = GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().playedHit;
+        currentFrame.p2PlayedHit = GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().playedHit;
+        currentFrame.p1PlayedWoosh = GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().playedWoosh;
+        currentFrame.p2PlayedWoosh = GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().playedWoosh;
+        currentFrame.p1Pos = GameManager_FT.instance.player1.transform.position;
+        currentFrame.p2Pos = GameManager_FT.instance.player2.transform.position;
+        currentFrame.p1RaqRot = GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().racket.transform.rotation;
+        currentFrame.p2RaqRot = GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().racket.transform.rotation;
+        currentFrame.p1RaqLocPos = GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().racket.transform.localPosition;
+        currentFrame.p2RaqLocPos = GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().racket.transform.localPosition;
+        currentFrame.p1RaqPivRot = GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().racketPivot.transform.rotation;
+        currentFrame.p2RaqPivRot = GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().racketPivot.transform.rotation;
+        currentFrame.ballPos = ball.transform.position;
+        frameBuffer.Add(currentFrame);
+        GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().playedHit = false;
+        GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().playedHit = false;
+        GameManager_FT.instance.player1.GetComponent<PlayerController_FT>().playedWoosh = false;
+        GameManager_FT.instance.player2.GetComponent<PlayerController_FT>().playedWoosh = false;
     }
 
     bool emergency;
@@ -165,8 +186,92 @@ public class PointReplay_FT : MonoBehaviour
 
 public class Frame
 {
-    public List<KeyCode> keys = new List<KeyCode>();
-    public List<string> buttons = new List<string>();
-    public List<string> buttonDowns = new List<string>();
-    public List<string> buttonUps = new List<string>();
+    public Vector3 p1Pos;
+    public Vector3 p2Pos;
+    public bool p1PlayedHit;
+    public bool p2PlayedHit;
+    public bool p1PlayedWoosh;
+    public bool p2PlayedWoosh;
+    public Quaternion p1RaqRot;
+    public Quaternion p2RaqRot;
+    public Vector3 p1RaqLocPos;
+    public Vector3 p2RaqLocPos;
+    public Quaternion p1RaqPivRot;
+    public Quaternion p2RaqPivRot;
+    public Vector3 ballPos;
 }
+
+public class CircularBuffer<T>
+{
+    private readonly T[] buffer;
+    private int currentIndex;
+    private bool filled;
+
+    public int Length => buffer.Length;
+
+    public CircularBuffer(int size)
+    {
+        buffer = new T[size];
+        currentIndex = 0;
+        filled = false;
+    }
+
+    public void Add(T item)
+    {
+        buffer[currentIndex] = item;
+        currentIndex = (currentIndex + 1) % buffer.Length;
+
+        if (currentIndex == 0)
+            filled = true;
+    }
+
+    public T this[int index]
+    {
+        get => buffer[index];
+        set => buffer[index] = value;
+    }
+
+    public T GetFirst()
+    {
+        if (!filled) return buffer[0];
+        return buffer[currentIndex];
+    }
+
+    public T GetLast()
+    {
+        int lastIndex = (currentIndex - 1 + buffer.Length) % buffer.Length;
+        return buffer[lastIndex];
+    }
+
+    public T[] ToArray()
+    {
+        if (!filled)
+        {
+            // Si todavía no se llenó, simplemente devolvemos los elementos cargados en orden natural
+            T[] result = new T[currentIndex];
+            System.Array.Copy(buffer, result, currentIndex);
+            return result;
+        }
+
+        // Si ya está lleno, hay que rotar para que 0 sea el más viejo
+        T[] ordered = new T[buffer.Length];
+        int j = 0;
+
+        for (int i = currentIndex; i < buffer.Length; i++)
+            ordered[j++] = buffer[i];
+
+        for (int i = 0; i < currentIndex; i++)
+            ordered[j++] = buffer[i];
+
+        return ordered;
+    }
+
+    public void Clear()
+    {
+        currentIndex = 0;
+        filled = false;
+        System.Array.Clear(buffer, 0, buffer.Length);
+    }
+}
+
+

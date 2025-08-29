@@ -188,6 +188,7 @@ public class GameManager_FT : MonoBehaviour
     {
         if (readyToServe)
         {
+            GetComponent<PointReplay_FT>().frameBuffer.Clear();
             serving = true;
             throwingBall = true;
         }

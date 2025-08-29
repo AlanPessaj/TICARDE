@@ -33,11 +33,12 @@ public class PlayerController_FT : MonoBehaviour
     bool didSmash;
     float speedConst;
     bool canHit = true;
-    public static List<Frame> replay;
     public static bool inReplay;
-    public static int frameIndex;
-    public static Frame currentFrame;
     public AudioClip wooshSFX;
+
+    
+    public bool playedHit;
+    public bool playedWoosh;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,19 +66,19 @@ public class PlayerController_FT : MonoBehaviour
         {
             if(gameManager.serve == 2)
             {
-                if (((Input.GetKey(KeyCode.W) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.W))) && ((transform.position.x < -30 && gameManager.lastServePlayer1 == 1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == -1)))
+                if (Input.GetKey(KeyCode.W) && !inReplay && ((transform.position.x < -30 && gameManager.lastServePlayer1 == 1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.A) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.A))) && ((transform.position.z < 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == -1)))
+                if (Input.GetKey(KeyCode.A) && !inReplay && ((transform.position.z < 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (((Input.GetKey(KeyCode.S) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.S))) && ((transform.position.x < -30 && gameManager.lastServePlayer1 == -1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == 1)))
+                if (Input.GetKey(KeyCode.S) && !inReplay && ((transform.position.x < -30 && gameManager.lastServePlayer1 == -1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.D) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.D))) && ((transform.position.z < 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == 1)))
+                if (Input.GetKey(KeyCode.D) && !inReplay && ((transform.position.z < 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -85,19 +86,19 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (gameManager.serve == 0)
             {
-                if ((Input.GetKey(KeyCode.W) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.W)))
+                if (Input.GetKey(KeyCode.W) && !inReplay)
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.A) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.A))))
+                if (Input.GetKey(KeyCode.A) && !inReplay)
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (((Input.GetKey(KeyCode.S) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.S))))
+                if (Input.GetKey(KeyCode.S) && !inReplay)
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.D) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.D))))
+                if (Input.GetKey(KeyCode.D) && !inReplay)
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -106,23 +107,23 @@ public class PlayerController_FT : MonoBehaviour
             if (gameManager.serve == 1)
             {
                 //PLAYER 1  
-                if (((Input.GetKey(KeyCode.W) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.W))) && ((transform.position.x < -45 && gameManager.lastServePlayer1 == 1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == -1)))
+                if (Input.GetKey(KeyCode.W) && !inReplay && ((transform.position.x < -45 && gameManager.lastServePlayer1 == 1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.A) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.A))) && ((transform.position.z < 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == -1)))
+                if (Input.GetKey(KeyCode.A) && !inReplay && ((transform.position.z < 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (((Input.GetKey(KeyCode.S) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.S))) && ((transform.position.x < -45 && gameManager.lastServePlayer1 == -1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == 1)))
+                if (Input.GetKey(KeyCode.S) && !inReplay && ((transform.position.x < -45 && gameManager.lastServePlayer1 == -1) || (transform.position.x > -50 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.D) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.D))) && ((transform.position.z < 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == 1)))
+                if (Input.GetKey(KeyCode.D) && !inReplay && ((transform.position.z < 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z > -30 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(0, 0, -1);
                 }
-                if (((Input.GetButtonDown("A") && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("A"))) && !gameManager.serving)
+                if (Input.GetButtonDown("A") && !inReplay && !gameManager.serving)
                 {
                     gameManager.ThrowBall();
                 }
@@ -138,19 +139,19 @@ public class PlayerController_FT : MonoBehaviour
         {
             if (gameManager.serve == 1)
             {
-                if (((Input.GetKey(KeyCode.UpArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.UpArrow))) && ((transform.position.x > 30 && gameManager.lastServePlayer1 == -1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == 1)))
+                if (Input.GetKey(KeyCode.UpArrow) && !inReplay && ((transform.position.x > 30 && gameManager.lastServePlayer1 == -1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.LeftArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.LeftArrow))) && ((transform.position.z > 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == 1)))
+                if (Input.GetKey(KeyCode.LeftArrow) && !inReplay && ((transform.position.z > 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (((Input.GetKey(KeyCode.DownArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.DownArrow))) && ((transform.position.x > 30 && gameManager.lastServePlayer1 == 1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == -1)))
+                if (Input.GetKey(KeyCode.DownArrow) && !inReplay && ((transform.position.x > 30 && gameManager.lastServePlayer1 == 1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.RightArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.RightArrow))) && ((transform.position.z > 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == -1)))
+                if (Input.GetKey(KeyCode.RightArrow) && !inReplay && ((transform.position.z > 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -158,19 +159,19 @@ public class PlayerController_FT : MonoBehaviour
             }
             if(gameManager.serve == 0)
             {
-                if (((Input.GetKey(KeyCode.UpArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.UpArrow))))
+                if (Input.GetKey(KeyCode.UpArrow) && !inReplay)
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.LeftArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.LeftArrow))))
+                if (Input.GetKey(KeyCode.LeftArrow) && !inReplay)
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (((Input.GetKey(KeyCode.DownArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.DownArrow))))
+                if (Input.GetKey(KeyCode.DownArrow) && !inReplay)
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.RightArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.RightArrow))))
+                if (Input.GetKey(KeyCode.RightArrow) && !inReplay)
                 {
                     movement += new Vector3(0, 0, -1);
                 }
@@ -178,23 +179,23 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (gameManager.serve == 2)
             {
-                if (((Input.GetKey(KeyCode.UpArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.UpArrow))) && ((transform.position.x > 45 && gameManager.lastServePlayer1 == -1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == 1)))
+                if (Input.GetKey(KeyCode.UpArrow) && !inReplay && ((transform.position.x > 45 && gameManager.lastServePlayer1 == -1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.LeftArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.LeftArrow))) && ((transform.position.z > 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == 1)))
+                if (Input.GetKey(KeyCode.LeftArrow) && !inReplay && ((transform.position.z > 0 && gameManager.lastServePlayer1 == -1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == 1)))
                 {
                     movement += new Vector3(0, 0, 1);
                 }
-                if (((Input.GetKey(KeyCode.DownArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.DownArrow))) && ((transform.position.x > 45 && gameManager.lastServePlayer1 == 1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == -1)))
+                if (Input.GetKey(KeyCode.DownArrow) && !inReplay && ((transform.position.x > 45 && gameManager.lastServePlayer1 == 1) || (transform.position.x < 50 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(-1, 0, 0);
                 }
-                if (((Input.GetKey(KeyCode.RightArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.RightArrow))) && ((transform.position.z > 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == -1)))
+                if (Input.GetKey(KeyCode.RightArrow) && !inReplay && ((transform.position.z > 0 && gameManager.lastServePlayer1 == 1) || (transform.position.z < 30 && gameManager.lastServePlayer1 == -1)))
                 {
                     movement += new Vector3(0, 0, -1);
                 }
-                if (((Input.GetButtonDown("A2") && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("A2"))) && !gameManager.serving)
+                if (Input.GetButtonDown("A2") && !inReplay && !gameManager.serving)
                 {
                     gameManager.ThrowBall();
                 }
@@ -257,13 +258,13 @@ public class PlayerController_FT : MonoBehaviour
     {
         if (isPlayer1)
         {
-            if ((Input.GetKey(KeyCode.W) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.W)))
+            if (Input.GetKey(KeyCode.W))
             {
-                if (((Input.GetKey(KeyCode.A) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.A))))
+                if (Input.GetKey(KeyCode.A))
                 {
                     direction = -1;
                 }
-                else if (((Input.GetKey(KeyCode.D) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.D))))
+                else if (Input.GetKey(KeyCode.D))
                 {
                     direction = 1;
                 }
@@ -272,11 +273,11 @@ public class PlayerController_FT : MonoBehaviour
                     direction = 0;
                 }
             }
-            else if (((Input.GetKey(KeyCode.A) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.A))))
+            else if (Input.GetKey(KeyCode.A))
             {
                 direction = -2;
             }
-            else if (((Input.GetKey(KeyCode.D) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.D))))
+            else if (Input.GetKey(KeyCode.D))
             {
                 direction = 2;
             }
@@ -287,13 +288,13 @@ public class PlayerController_FT : MonoBehaviour
         }
         else
         {
-            if (((Input.GetKey(KeyCode.UpArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.UpArrow))))
+            if (Input.GetKey(KeyCode.UpArrow))
             {
-                if (((Input.GetKey(KeyCode.LeftArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.LeftArrow))))
+                if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     direction = -1;
                 }
-                else if (((Input.GetKey(KeyCode.RightArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.RightArrow))))
+                else if (Input.GetKey(KeyCode.RightArrow))
                 {
                     direction = 1;
                 }
@@ -302,11 +303,11 @@ public class PlayerController_FT : MonoBehaviour
                     direction = 0;
                 }
             }
-            else if (((Input.GetKey(KeyCode.LeftArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.LeftArrow))))
+            else if (Input.GetKey(KeyCode.LeftArrow))
             {
                 direction = -2;
             }
-            else if (((Input.GetKey(KeyCode.RightArrow) && !inReplay) || (inReplay && currentFrame.keys.Contains(KeyCode.RightArrow))))
+            else if (Input.GetKey(KeyCode.RightArrow))
             {
                 direction = 2;
             }
@@ -325,11 +326,11 @@ public class PlayerController_FT : MonoBehaviour
         {
             player = "2";
         }
-        if (((Input.GetButton("A" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("A" + player))) && !serve)
+        if (Input.GetButton("A" + player) && !inReplay && !serve)
         {
-            if (((Input.GetButton("B" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("B" + player))))
+            if (Input.GetButton("B" + player) && !inReplay)
             {
-                if (((Input.GetButton("C" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("C" + player))))
+                if (Input.GetButton("C" + player) && !inReplay)
                 {
                     //A + B + C
                 }
@@ -338,14 +339,14 @@ public class PlayerController_FT : MonoBehaviour
                     //A + B
                 }
             }
-            else if (((Input.GetButton("C" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("C" + player))))
+            else if (Input.GetButton("C" + player) && !inReplay)
             {
                 //A + C
             }
             else
             {
                 //A
-                if (((Input.GetButtonDown("A" + player) && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("A" + player))) && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && driveRotation == 0 && canHit && !gameManager.ending && !gameManager.doingGreeting)
+                if (Input.GetButtonDown("A" + player) && !inReplay && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && driveRotation == 0 && canHit && !gameManager.ending && !gameManager.doingGreeting)
                 {
                     ResetRaquet();
                     racket.transform.Rotate(-90, 0, 0);
@@ -361,16 +362,16 @@ public class PlayerController_FT : MonoBehaviour
             }
 
         }
-        if (((Input.GetButton("B" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("B" + player))) && !((Input.GetButton("A" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("A" + player))) && !serve && !gameManager.ending && !gameManager.doingGreeting)
+        if (Input.GetButton("B" + player) && !inReplay && !Input.GetButton("A" + player) && !serve && !gameManager.ending && !gameManager.doingGreeting)
         {
-            if (((Input.GetButton("C" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("C" + player))))
+            if (Input.GetButton("C" + player) && !inReplay)
             {
                 //B + C
             }
             else
             {
                 //B
-                if (((Input.GetButtonDown("B" + player) && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("B" + player))) && !doingSmash && !doingDrive && !doingLob && smashRotation == 0 && lobRotation == 0 && driveRotation == 0 && canHit)
+                if (Input.GetButtonDown("B" + player) && !inReplay && !doingSmash && !doingDrive && !doingLob && smashRotation == 0 && lobRotation == 0 && driveRotation == 0 && canHit)
                 {
                     ResetRaquet();
                     racket.transform.Rotate(0, 0, 180);
@@ -386,10 +387,10 @@ public class PlayerController_FT : MonoBehaviour
                 }
             }
         }
-        if (((Input.GetButton("C" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("C" + player))) && !((Input.GetButton("B" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("B" + player))) && !((Input.GetButton("A" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("A" + player))) && !gameManager.ending && !gameManager.doingGreeting)
+        if (Input.GetButton("C" + player) && !inReplay && !Input.GetButton("B" + player) && !Input.GetButton("A" + player) && !gameManager.ending && !gameManager.doingGreeting)
         {
             //C
-            if (((Input.GetButtonDown("C" + player) && !inReplay) || (inReplay && currentFrame.buttonDowns.Contains("C" + player))) && !doingDrive && !doingLob && !doingSmash && smashRotation == 0 && driveRotation == 0 && lobRotation == 0 && canHit)
+            if (Input.GetButtonDown("C" + player) && !inReplay && !doingDrive && !doingLob && !doingSmash && smashRotation == 0 && driveRotation == 0 && lobRotation == 0 && canHit)
             {
                 ResetRaquet();
                 racket.transform.localPosition = new Vector3(0, 3f, -3f);
@@ -403,7 +404,7 @@ public class PlayerController_FT : MonoBehaviour
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 45, smashRotation));
             }
         }
-        if (!((Input.GetButton("C" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("C" + player))) && !((Input.GetButton("B" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("B" + player))) && !((Input.GetButton("A" + player) && !inReplay) || (inReplay && currentFrame.buttons.Contains("A" + player))))
+        if (!Input.GetButton("C" + player) && !inReplay && !Input.GetButton("B" + player) && !Input.GetButton("A" + player))
         {
             //NONE
         }
@@ -412,21 +413,21 @@ public class PlayerController_FT : MonoBehaviour
 
     public void MoveRaquet(bool serve, string player)
     {
-        if (((Input.GetButtonUp("A" + player) && !inReplay) || (inReplay && currentFrame.buttonUps.Contains("A" + player))) && chargingDrive && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit && !serve)
+        if (Input.GetButtonUp("A" + player) && !inReplay && chargingDrive && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && lobRotation == 0 && canHit && !serve)
         {
             CheckDirection();
             doingDrive = true;
             chargingDrive = false;
             driveRotation = Mathf.InverseLerp(45, -90, racketPivot.transform.eulerAngles.y);
         }
-        if (((Input.GetButtonUp("B" + player) && !inReplay) || (inReplay && currentFrame.buttonUps.Contains("B" + player))) && chargingLob && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && driveRotation == 0 && canHit && !serve)
+        if (Input.GetButtonUp("B" + player) && !inReplay && chargingLob && !doingSmash && !doingLob && !doingDrive && smashRotation == 0 && driveRotation == 0 && canHit && !serve)
         {
             CheckDirection();
             doingLob = true;
             chargingLob = false;
             lobRotation = Mathf.InverseLerp(315, 90, racketPivot.transform.localEulerAngles.z);
         }
-        if (((Input.GetButtonUp("C" + player) && !inReplay) || (inReplay && currentFrame.buttonUps.Contains("C" + player))) && chargingSmash && !doingSmash && !doingDrive && !doingLob && driveRotation == 0 && lobRotation == 0 && canHit)
+        if (Input.GetButtonUp("C" + player) && !inReplay && chargingSmash && !doingSmash && !doingDrive && !doingLob && driveRotation == 0 && lobRotation == 0 && canHit)
         {
             CheckDirection();
             doingSmash = true;
@@ -453,7 +454,11 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (driveRotation >= 1)
             {
-                if (!didDrive) GetComponent<AudioSource>().PlayOneShot(wooshSFX);
+                if (!didDrive)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(wooshSFX);
+                    playedWoosh = true;
+                }
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                 racket.transform.Rotate(90, 0, 0);
                 driveRotation = 0;
@@ -482,7 +487,11 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (lobRotation >= 1)
             {
-                if (!didLob) GetComponent<AudioSource>().PlayOneShot(wooshSFX);
+                if (!didLob)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(wooshSFX);
+                    playedWoosh = true;
+                }
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                 racket.transform.Rotate(0, 0, -180);
                 racket.transform.localPosition = new Vector3(0, 0, -3f);
@@ -523,7 +532,11 @@ public class PlayerController_FT : MonoBehaviour
             }
             if (smashRotation >= 1)
             {
-                if (!didSmash) GetComponent<AudioSource>().PlayOneShot(wooshSFX);
+                if (!didSmash)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(wooshSFX);
+                    playedWoosh = true;
+                }
                 racketPivot.transform.localEulerAngles = new Vector3(0, 0, 0);
                 racket.transform.localPosition = new Vector3(0, 0, -3f);
                 smashRotation = 0;
@@ -541,16 +554,8 @@ public class PlayerController_FT : MonoBehaviour
     {
         if (inReplay) return;
         gameManager.inServe = serve;
-        PointReplay_FT.instance.replay = new List<Frame>();
-        PointReplay_FT.instance.iDirection = direction;
-        PointReplay_FT.instance.shot = shotType;
-        PointReplay_FT.instance.wasPlayer1 = isPlayer1;
-        PointReplay_FT.instance.wasServe = serve;
-        PointReplay_FT.instance.iBallPos = shot.ball.transform.position;
-        PointReplay_FT.instance.iP1Pos = isPlayer1 ? transform.position : gameManager.player1.transform.position;
-        PointReplay_FT.instance.iP2Pos = !isPlayer1 ? transform.position : gameManager.player2.transform.position;
-        PointReplay_FT.instance.shot = shotType;
         GetComponent<AudioSource>().Play();
+        playedHit = true;
         shot.ball.bounced = false;
         shot.ball.wasPlayer1 = isPlayer1;
         shot.FindShot(direction, shotType, isPlayer1, serve);
