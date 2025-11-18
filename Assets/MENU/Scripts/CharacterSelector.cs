@@ -156,7 +156,7 @@ public class CharacterSelector : MonoBehaviour
                             }
                         }
                     }
-                breakLoop:
+                    breakLoop:
                     if (!(squares[hIndex, vIndex].activeSelf && squares[hIndex, vIndex].GetComponent<Image>().color != new Color(1, 1, 0)))
                     {
                         squares[hIndex, vIndex].SetActive(true);
@@ -208,7 +208,7 @@ public class CharacterSelector : MonoBehaviour
                             }
                         }
                     }
-                breakLoop:
+                    breakLoop:
                     if (!(squares[hIndex, vIndex].activeSelf && squares[hIndex, vIndex].GetComponent<Image>().color != new Color(1, 1, 0)))
                     {
                         squares[hIndex, vIndex].SetActive(true);
@@ -260,7 +260,7 @@ public class CharacterSelector : MonoBehaviour
                             }
                         }
                     }
-                breakLoop:
+                    breakLoop:
                     if (!(squares[hIndex, vIndex].activeSelf && squares[hIndex, vIndex].GetComponent<Image>().color != new Color(1, 1, 0)))
                     {
                         squares[hIndex, vIndex].SetActive(true);
@@ -312,7 +312,7 @@ public class CharacterSelector : MonoBehaviour
                             }
                         }
                     }
-                breakLoop:
+                    breakLoop:
                     if (!(squares[hIndex, vIndex].activeSelf && squares[hIndex, vIndex].GetComponent<Image>().color != new Color(1, 1, 0)))
                     {
                         squares[hIndex, vIndex].SetActive(true);
@@ -403,7 +403,7 @@ public class CharacterSelector : MonoBehaviour
                                 }
                             }
                         }
-                    breakLoop:
+                        breakLoop:
                         if (!(squares[hIndex2, vIndex2].activeSelf && squares[hIndex2, vIndex2].GetComponent<Image>().color != Color.blue))
                         {
                             squares[hIndex2, vIndex2].SetActive(true);
@@ -455,7 +455,7 @@ public class CharacterSelector : MonoBehaviour
                                 }
                             }
                         }
-                    breakLoop:
+                        breakLoop:
                         if (!(squares[hIndex2, vIndex2].activeSelf && squares[hIndex2, vIndex2].GetComponent<Image>().color != Color.blue))
                         {
                             squares[hIndex2, vIndex2].SetActive(true);
@@ -507,7 +507,7 @@ public class CharacterSelector : MonoBehaviour
                                 }
                             }
                         }
-                    breakLoop:
+                        breakLoop:
                         if (!(squares[hIndex2, vIndex2].activeSelf && squares[hIndex2, vIndex2].GetComponent<Image>().color != Color.blue))
                         {
                             squares[hIndex2, vIndex2].SetActive(true);
@@ -614,6 +614,11 @@ public class CharacterSelector : MonoBehaviour
                 }
             }
         }
+        else if (Input.GetButtonDown("A") || Input.GetButtonDown("A2"))
+        {
+            GetComponent<AudioSource>().Stop();
+            GetComponents<AudioSource>()[1].Stop();
+        }
         if (confirmed[0])
         {
             confirmedTimer += Time.deltaTime * blinkingSpeed;
@@ -641,7 +646,25 @@ public class CharacterSelector : MonoBehaviour
         if (((confirmed[0] && confirmed[1] && multiplayer) || (confirmed[0] && !multiplayer)) && !loadingScene)
         {
             waitingForSounds = true;
-            if (!GetComponent<AudioSource>().isPlaying && !GetComponents<AudioSource>()[1].isPlaying) StartCoroutine(NextScene());
+            if (!GetComponent<AudioSource>().isPlaying && !GetComponents<AudioSource>()[1].isPlaying)
+            {
+                loadingScene = true;
+                Scene nextScene = SceneManager.GetSceneByName($"Game({game})");
+                int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
+                int p = 0;
+                for (int i = 0; i < pMPSquares2.Length / 2; i++)
+                {
+                    for (int o = 0; o < pMPSquares2.Length / 2; o++)
+                    {
+                        translate[i, o] = p;
+                        p++;
+                    }
+                }
+                GameData.char1 = translate[hIndex, vIndex];
+                GameData.char2 = translate[hIndex2, vIndex2];
+                conexion.SendMessagestoArduino("0", new string[]{ "" });
+                SceneManager.LoadScene($"Game({game})");
+            }
         }
     }
 
@@ -723,27 +746,6 @@ public class CharacterSelector : MonoBehaviour
                 p2txt[hIndex2, vIndex2].SetActive(true);
             break;
         }
-    }
-
-    IEnumerator NextScene()
-    {
-        loadingScene = true;
-        yield return new WaitForSeconds(2);
-        Scene nextScene = SceneManager.GetSceneByName($"Game({game})");
-        int[,] translate = new int[pMPSquares2.Length / 2, pMPSquares2.Length / 2];
-        int p = 0;
-        for (int i = 0; i < pMPSquares2.Length / 2; i++)
-        {
-            for (int o = 0; o < pMPSquares2.Length / 2; o++)
-            {
-                translate[i, o] = p;
-                p++;
-            }
-        }
-        GameData.char1 = translate[hIndex, vIndex];
-        GameData.char2 = translate[hIndex2, vIndex2];
-        conexion.SendMessagestoArduino("0", new string[]{ "" });
-        SceneManager.LoadScene($"Game({game})");
     }
 
     string Translator(int num)
